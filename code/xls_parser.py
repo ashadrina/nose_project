@@ -46,11 +46,13 @@ def create_structure(data, sensors, in_file, OUT_FILE):
 	data = list(zip(*data)) 
 	
 	txt_outfile = open(OUT_FILE, 'a')
-	for se,dat in zip(sensors[0][1:],data[1:]):
-		str_name= in_file_name+"_"+se.split(" ")[2].replace("[","").replace("]","")
-		print (str_name)
-		str_data = ';'.join(list(dat))
-		txt_outfile.write(str_name+";"+str_data+"\n")
+
+	str_data = []
+	for dat in data[1:]:
+		str_data.append(';'.join(list(dat)))
+	
+	res = '|'.join(list(str_data))
+	txt_outfile.write(res+"\n")
 	
 	txt_outfile.close()
 
@@ -71,7 +73,7 @@ def main():
 		
 	OUT_FILE_LABELS = "labels_"+OUT_FILE_DATA
 	OUT_FILE_DATA = "data_"+OUT_FILE_DATA
-	#open(OUT_FILE_DATA, 'w').close()
+	open(OUT_FILE_DATA, 'w').close()
 	open(OUT_FILE_LABELS, 'w').close()
 	if os.path.isdir(local_path):
 		if local_path == ".":
@@ -79,7 +81,7 @@ def main():
 		local_files = load_local_directory(local_path)
 		for in_file in local_files:
 			header,sensors,col_names,data=load_xls(local_path+"\\\\"+in_file)
-			#create_structure(data, sensors, in_file, OUT_FILE_DATA)
+			create_structure(data, sensors, in_file, OUT_FILE_DATA)
 			create_labels(in_file, OUT_FILE_LABELS)
 			
 	# if len (sys.argv) == 2:
