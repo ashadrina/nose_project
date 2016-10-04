@@ -13,6 +13,13 @@ from mpl_toolkits.mplot3d import Axes3D
 
 from numpy.linalg import svd
  
+from pylab import *
+from pybrain.structure.modules import KohonenMap
+from mvpa2.suite import *
+from scipy import random
+import time 
+
+ 
 def load_data(in_file):
 	input_f = open(in_file, "r")
 	matrix = []
@@ -94,78 +101,112 @@ def get_max(data):
 		max_matrix.append(max_block)
 	return max_matrix	
 
-def kmeans_clustering(data,labels,init_labels):		
+#########################################	
+	
+def kmeans_clustering_2d(data,labels,init_labels):		
 	avg_data = get_avg(data)
 	min_data = get_min(data)
 	max_data = get_max(data)
 	
 	labels_pairs = label_matching(labels,init_labels)
 	
-	datasets = {'average': avg_data, 'min': min_data,  'max': max_data}
+	#datasets = {'average': avg_data, 'min': min_data,  'max': max_data}
+	datasets = {'average': avg_data,   'max': max_data}
 			  
 	fignum = 1		  
 	for name,X in datasets.items():
 		X = np.array(X)
-		kmeans = KMeans(n_clusters=len(set(labels)))
+		kmeans = KMeans(n_clusters=18)
 		kmeans.fit(X)
 
 		fig = plt.figure(fignum, figsize=(4, 3))
 		plt.clf()
-		ax = Axes3D(fig, rect=[0, 0, .95, 1], elev=48, azim=134)
+		ax = fig.add_subplot(111)
 
-		plt.cla()
-		
-		labels = kmeans.labels_
-
-		ax.scatter(X[:, 0], X[:, 1], X[:, 2], c=labels.astype(np.float))
-
-		ax.w_xaxis.set_ticklabels([])
-		ax.w_yaxis.set_ticklabels([])
-		ax.w_zaxis.set_ticklabels([])
-		ax.set_xlabel('sensor1')
-		ax.set_ylabel('sensor2')
-		ax.set_zlabel('sensor3')
+		plt.cla()		
+		k_labels = kmeans.labels_
+		ax.scatter(X[:, 0], X[:, 1], c=k_labels.astype(np.float))
+		plt.legend()
 		fignum = fignum + 1
 		
 		# # Plot the ground truth
-		# fig = plt.figure(fignum, figsize=(4, 3))
-		# plt.clf()
-		# ax = Axes3D(fig, rect=[0, 0, .95, 1], elev=48, azim=134)
+		fig = plt.figure(fignum, figsize=(4, 3))
+		plt.clf()
+		ax = fig.add_subplot(111)
+		plt.cla()
+	
+		ax.scatter(X[:, 0], X[:, 1], c=labels)
 
-		# plt.cla()
-
-		# for name, label in labels_pairs:
-			# ax.text3D(X[labels == label, 0].mean(),
-					  # X[labels == label, 1].mean() + 1.5,
-					  # X[labels == label, 2].mean(), name,
-					  # horizontalalignment='center',
-					  # bbox=dict(alpha=.5, edgecolor='w', facecolor='w'))
-		# #Reorder the labels to have colors matching the cluster results
-		# labels = np.choose(labels, [0, 1, 2, 3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]).astype(np.float)
-		# ax.scatter(X[:, 0], X[:, 1], X[:, 2], c=labels)
-
-		ax.w_xaxis.set_ticklabels([])
-		ax.w_yaxis.set_ticklabels([])
-		ax.w_zaxis.set_ticklabels([])
-		ax.set_xlabel('sensor1')
-		ax.set_ylabel('sensor2')
-		ax.set_zlabel('sensor3')
+		for label, x, y in zip(init_labels, X[:, 0], X[:, 1]):
+			plt.annotate(
+				label, 
+				xy = (x, y), xytext = (-20, 20),
+				textcoords = 'offset points', ha = 'right', va = 'bottom',
+				bbox = dict(boxstyle = 'round,pad=0.5', fc = 'white', alpha = 0.5),
+				arrowprops = dict(arrowstyle = '->', connectionstyle = 'arc3,rad=0'))
+		
 		plt.show()
+		
 
+def kohonen_2(data, names):
+#used pymvpa
+	print ("kohonen:")
+	#names = df['fragment_ind'].tolist()
+	#names = ["mm", "MM", "mM", "Mm", "mM", "mm", "MM", "mM", "mm", "Mm", "MM", "mm", "Mm", "mm", "mM", "mm", "mm", "mm", "MM", "mm", "MM", "mM", "Mm", "mm", "Mm", "mm", "mM", "mm", "mm", "mm", "MM", "mm", "MM", "mM", "Mm", "mM", "mm", "MM", "mM", "mm", "Mm", "MM", "Mm", "mm", "Mm", "mm", "mM", "mm"]
+	
+	#del df['fragment_ind']
+#	data = array(df.values)
+	print ("Clustering elements: ",len(names))
+	print ("Clustering dataset: "+str(len(data))+" elements")
 
+	#data = array( [[0., 0., 0.],  [0., 0., 1.],  [0., 1., 0.],  [1., 0., 0.],  [1., 0., 1.],  [1., 1., 0.],  [1., 1., 1.],  [.66, .66, .66]])
+	#names = 	['black',	'blue','green',	 'red', 'violet',	 'yellow', 'white', 'lightgrey'] 	# store the names of the data for visualization later on
+
+	som = SimpleSOMMapper((10, 20), 1000, learning_rate=0.05)
+	#reduced_data = PCA(n_components=3).fit_transform(data)
+
+	som.train(data)
+	#print (som.K.shape)	
+	mapped = som(data)
+	#plt.title('Color SOM')
+	# SOM's kshape is (rows x columns), while matplotlib wants (X x Y)
+	#plt.matshow(mapped)
+	xyz = list(zip(*mapped))
+	min_list = list(map(min, xyz))
+	max_list = list(map(max, xyz))
+	
+	plt.xlim(min_list[1]-5, max_list[1]+5)
+	plt.ylim(min_list[0]-5, max_list[0]+5)
+	for i, m in enumerate(mapped):
+		#print (m[1], m[0], names[i])
+		if (names[i] == 'toluol'):
+			r, = plt.plot(m[1], m[0], 'ro', color="red")
+		elif (names[i] == 'fenol'):	
+			g, = plt.plot(m[1], m[0], 'ro', color="green")
+		elif (names[i] == 'etilazetat'):	
+			b, = plt.plot(m[1], m[0], 'ro', color="blue")
+		else:
+			y, = plt.plot(m[1], m[0], 'ro', color="yellow")
+
+		#plt.text(m[1], m[0], names[i], ha='center', va='center', bbox=dict(facecolor='white', alpha=0.5, lw=0))
+	plt.legend([r, g, b, y], ["toluol", "fenol", "etilazetat", "other"])
+	plt.show()
+	
 def run_svd(data):
 	new_data = []
 	for matr in data:
 		U, s, V = svd(np.array(matr), full_matrices=True)
-		print (U.shape, s.shape, V.shape)
-		s_s = []
-		for ss in s:
-			if ss < 10:
-				s_s.append(0.0)
-			else:
-				s_s.append(ss)
-		new_block = U*np.array(s_s)*V
-	new_data.append(new_block)	
+		s_s = [s[0], s[1]]
+		s_s_1 = [0.0] * 6
+		s_s.extend(s_s_1)
+		#for ss in s:
+		#	if ss < 10:
+		#		s_s.append(0.0)
+		#	else:
+		#		s_s.append(ss)
+		S = np.zeros((8, 121), dtype=float)	
+		S[:8, :8] = np.diag(s_s)
+		new_data.append(S)	
 	return new_data	
 	
 ###########################	
@@ -182,17 +223,18 @@ def main():
 	labels = load_labels(labels_file)
 
 	lat_labels = transliterate_labels(labels)
+	print (lat_labels)
 	#norm_data = normalize_data(data)
 	
 	#transform labels
 	lb = LabelBinarizer()
 	bin_labels = lb.fit_transform(lat_labels)
 	int_labels = labels_to_int(bin_labels)
-		
-	#kmeans_clustering(data,int_labels,lat_labels)
-	s = run_svd(data)
-	print (s)
-	#kmeans_clustering(data,int_labels,lat_labels)
+
+
+	ress = run_svd(data)
+	kohonen_2(np.array(data), lat_labels)
+	#kmeans_clustering_2d(ress,int_labels,lat_labels)
 	
 if __name__ == "__main__":
 	main()		
