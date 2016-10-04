@@ -3,22 +3,24 @@ import sys
 import numpy as np
 from scipy import stats
 
-from transliterate import translit
-
-from sklearn.cluster import KMeans
 from sklearn.preprocessing import LabelBinarizer
+from transliterate import translit #perform transliteration from russian labels to latin
 
+from numpy.linalg import svd #data reducion
+
+from sklearn.cluster import KMeans #n clusters NOT required
+
+from sklearn.cluster import DBSCAN #n clusters NOT required
+from sklearn.preprocessing import StandardScaler
+from sklearn import metrics
+
+from sklearn.cluster import MeanShift, estimate_bandwidth #n clusters NOT required
+
+from sklearn.cluster import AffinityPropagation #n clusters NOT required
+from itertools import cycle
+
+#visualization
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
-
-from numpy.linalg import svd
- 
-from pylab import *
-from pybrain.structure.modules import KohonenMap
-from mvpa2.suite import *
-from scipy import random
-import time 
-
  
 def load_data(in_file):
 	input_f = open(in_file, "r")
@@ -100,114 +102,188 @@ def get_max(data):
 			max_block.append(max(col))
 		max_matrix.append(max_block)
 	return max_matrix	
+	
+def reduce_data(data):		
+	new_data = []
+	for matr in data:
+		new_data.append(matr[:1])
+	return new_data	
 
 #########################################	
-	
-def kmeans_clustering_2d(data,labels,init_labels):		
-	avg_data = get_avg(data)
-	min_data = get_min(data)
-	max_data = get_max(data)
-	
-	labels_pairs = label_matching(labels,init_labels)
-	
-	#datasets = {'average': avg_data, 'min': min_data,  'max': max_data}
-	datasets = {'average': avg_data,   'max': max_data}
-			  
-	fignum = 1		  
-	for name,X in datasets.items():
-		X = np.array(X)
-		kmeans = KMeans(n_clusters=18)
-		kmeans.fit(X)
-
-		fig = plt.figure(fignum, figsize=(4, 3))
-		plt.clf()
-		ax = fig.add_subplot(111)
-
-		plt.cla()		
-		k_labels = kmeans.labels_
-		ax.scatter(X[:, 0], X[:, 1], c=k_labels.astype(np.float))
-		plt.legend()
-		fignum = fignum + 1
-		
-		# # Plot the ground truth
-		fig = plt.figure(fignum, figsize=(4, 3))
-		plt.clf()
-		ax = fig.add_subplot(111)
-		plt.cla()
-	
-		ax.scatter(X[:, 0], X[:, 1], c=labels)
-
-		for label, x, y in zip(init_labels, X[:, 0], X[:, 1]):
-			plt.annotate(
-				label, 
-				xy = (x, y), xytext = (-20, 20),
-				textcoords = 'offset points', ha = 'right', va = 'bottom',
-				bbox = dict(boxstyle = 'round,pad=0.5', fc = 'white', alpha = 0.5),
-				arrowprops = dict(arrowstyle = '->', connectionstyle = 'arc3,rad=0'))
-		
-		plt.show()
-		
-
-def kohonen_2(data, names):
-#used pymvpa
-	print ("kohonen:")
-	#names = df['fragment_ind'].tolist()
-	#names = ["mm", "MM", "mM", "Mm", "mM", "mm", "MM", "mM", "mm", "Mm", "MM", "mm", "Mm", "mm", "mM", "mm", "mm", "mm", "MM", "mm", "MM", "mM", "Mm", "mm", "Mm", "mm", "mM", "mm", "mm", "mm", "MM", "mm", "MM", "mM", "Mm", "mM", "mm", "MM", "mM", "mm", "Mm", "MM", "Mm", "mm", "Mm", "mm", "mM", "mm"]
-	
-	#del df['fragment_ind']
-#	data = array(df.values)
-	print ("Clustering elements: ",len(names))
-	print ("Clustering dataset: "+str(len(data))+" elements")
-
-	#data = array( [[0., 0., 0.],  [0., 0., 1.],  [0., 1., 0.],  [1., 0., 0.],  [1., 0., 1.],  [1., 1., 0.],  [1., 1., 1.],  [.66, .66, .66]])
-	#names = 	['black',	'blue','green',	 'red', 'violet',	 'yellow', 'white', 'lightgrey'] 	# store the names of the data for visualization later on
-
-	som = SimpleSOMMapper((10, 20), 1000, learning_rate=0.05)
-	#reduced_data = PCA(n_components=3).fit_transform(data)
-
-	som.train(data)
-	#print (som.K.shape)	
-	mapped = som(data)
-	#plt.title('Color SOM')
-	# SOM's kshape is (rows x columns), while matplotlib wants (X x Y)
-	#plt.matshow(mapped)
-	xyz = list(zip(*mapped))
-	min_list = list(map(min, xyz))
-	max_list = list(map(max, xyz))
-	
-	plt.xlim(min_list[1]-5, max_list[1]+5)
-	plt.ylim(min_list[0]-5, max_list[0]+5)
-	for i, m in enumerate(mapped):
-		#print (m[1], m[0], names[i])
-		if (names[i] == 'toluol'):
-			r, = plt.plot(m[1], m[0], 'ro', color="red")
-		elif (names[i] == 'fenol'):	
-			g, = plt.plot(m[1], m[0], 'ro', color="green")
-		elif (names[i] == 'etilazetat'):	
-			b, = plt.plot(m[1], m[0], 'ro', color="blue")
-		else:
-			y, = plt.plot(m[1], m[0], 'ro', color="yellow")
-
-		#plt.text(m[1], m[0], names[i], ha='center', va='center', bbox=dict(facecolor='white', alpha=0.5, lw=0))
-	plt.legend([r, g, b, y], ["toluol", "fenol", "etilazetat", "other"])
-	plt.show()
-	
 def run_svd(data):
 	new_data = []
 	for matr in data:
 		U, s, V = svd(np.array(matr), full_matrices=True)
-		s_s = [s[0], s[1]]
-		s_s_1 = [0.0] * 6
+		s_s = [s[0]]
+		s_s_1 = [0.0] * 7
 		s_s.extend(s_s_1)
-		#for ss in s:
-		#	if ss < 10:
-		#		s_s.append(0.0)
-		#	else:
-		#		s_s.append(ss)
 		S = np.zeros((8, 121), dtype=float)	
 		S[:8, :8] = np.diag(s_s)
 		new_data.append(S)	
 	return new_data	
+
+def kmeans_clustering(data,int_labels,lat_labels):
+	X = []
+	for dat in data:
+		X.extend(dat)
+	X = np.array(X)	
+	labels_pairs = label_matching(int_labels,lat_labels)
+		  
+	fignum = 1		  
+	kmeans = KMeans(n_clusters=18)
+	kmeans.fit(X)
+
+	fig = plt.figure(fignum, figsize=(4, 3))
+	plt.clf()
+	ax = fig.add_subplot(111)
+
+	plt.cla()		
+	k_labels = kmeans.labels_
+	ax.scatter(X[:, 0], X[:, 1], c=k_labels.astype(np.float))
+	fignum = fignum + 1
+	
+	# # Plot the ground truth
+	fig = plt.figure(fignum, figsize=(4, 3))
+	plt.clf()
+	ax = fig.add_subplot(111)
+	plt.cla()
+
+	ax.scatter(X[:, 0], X[:, 1], c=int_labels)
+
+	for label, x, y in zip(lat_labels, X[:, 0], X[:, 1]):
+		plt.annotate(
+			label, 
+			xy = (x, y), xytext = (-20, 20),
+			textcoords = 'offset points', ha = 'right', va = 'bottom',
+			bbox = dict(boxstyle = 'round,pad=0.5', fc = 'white', alpha = 0.5),
+			arrowprops = dict(arrowstyle = '->', connectionstyle = 'arc3,rad=0'))
+	
+	plt.show()	
+	
+def aff_prop(data,int_labels,lat_labels):	
+	X = []
+	for dat in data:
+		X.extend(dat)
+	X = np.array(X)
+		
+	af = AffinityPropagation(preference=-50).fit(X)
+	cluster_centers_indices = af.cluster_centers_indices_
+	labels = af.labels_
+	
+	n_clusters_ = len(cluster_centers_indices)
+
+	print("* Number of classes: %d" %len(set(int_labels)))
+	print('* Estimated number of clusters: %d' % n_clusters_)
+	print("* Homogeneity: %0.3f" % metrics.homogeneity_score(int_labels, labels))
+	print("* Completeness: %0.3f" % metrics.completeness_score(int_labels, labels))
+	print("* V-measure: %0.3f" % metrics.v_measure_score(int_labels, labels))
+	print("* Adjusted Rand Index: %0.3f" % metrics.adjusted_rand_score(int_labels, labels))
+	print("* Adjusted Mutual Information: %0.3f" % metrics.adjusted_mutual_info_score(int_labels, labels))
+	print("* Silhouette Coefficient: %0.3f" % metrics.silhouette_score(X, labels, metric='sqeuclidean'))
+		  
+	plt.close('all')
+	plt.figure(1)
+	plt.clf()
+	
+	colors = cycle('bgrcmykbgrcmykbgrcmykbgrcmyk')
+	for k, col in zip(range(n_clusters_), colors):
+		class_members = labels == k
+		cluster_center = X[cluster_centers_indices[k]]
+		plt.plot(X[class_members, 0], X[class_members, 1], col + '.')
+		plt.plot(cluster_center[0], cluster_center[1], 'o', markerfacecolor=col,
+				 markeredgecolor='k', markersize=14)
+		for x in X[class_members]:
+			plt.plot([cluster_center[0], x[0]], [cluster_center[1], x[1]], col)
+
+	plt.title('Estimated number of affinity propagation clusters: %d' % n_clusters_)
+	plt.show()	  
+
+def dbscan(data,int_labels,lat_labels):	
+	X = []
+	for dat in data:
+		X.extend(dat)
+	X = np.array(X)
+	
+	X = StandardScaler().fit_transform(X)
+	
+	db = DBSCAN(eps=0.3, min_samples=10).fit(X)
+	core_samples_mask = np.zeros_like(db.labels_, dtype=bool)
+	core_samples_mask[db.core_sample_indices_] = True
+	labels = db.labels_
+
+	# Number of clusters in labels, ignoring noise if present.
+	n_clusters_ = len(set(labels)) - (1 if -1 in labels else 0)
+
+	print("* Number of classes: %d" %len(set(int_labels)))
+	print('* Estimated number of clusters: %d' % n_clusters_)
+	print("* Homogeneity: %0.3f" % metrics.homogeneity_score(int_labels, labels))
+	print("* Completeness: %0.3f" % metrics.completeness_score(int_labels, labels))
+	print("* V-measure: %0.3f" % metrics.v_measure_score(int_labels, labels))
+	print("* Adjusted Rand Index: %0.3f" % metrics.adjusted_rand_score(int_labels, labels))	  
+	print("* Adjusted Mutual Information: %0.3f"  % metrics.adjusted_mutual_info_score(int_labels, labels))
+	print("* Silhouette Coefficient: %0.3f"
+		  % metrics.silhouette_score(X, labels))
+		
+	# Black removed and is used for noise instead.
+	unique_labels = set(labels)
+	colors = plt.cm.Spectral(np.linspace(0, 1, len(unique_labels)))
+	for k, col in zip(unique_labels, colors):
+		if k == -1:
+			# Black used for noise.
+			col = 'k'
+
+		class_member_mask = (labels == k)
+
+		xy = X[class_member_mask & core_samples_mask]
+		plt.plot(xy[:, 0], xy[:, 1], 'o', markerfacecolor=col,
+				 markeredgecolor='k', markersize=14)
+
+		xy = X[class_member_mask & ~core_samples_mask]
+		plt.plot(xy[:, 0], xy[:, 1], 'o', markerfacecolor=col,
+				 markeredgecolor='k', markersize=6)
+
+	plt.title('Estimated number of DBSCAN clusters: %d' % n_clusters_)
+	plt.show()
+	
+def mean_shift(data,int_labels,lat_labels):	
+	X = []
+	for dat in data:
+		X.extend(dat)
+	X = np.array(X)
+	
+	# The following bandwidth can be automatically detected using
+	bandwidth = estimate_bandwidth(X, quantile=0.2, n_samples=500)
+
+	ms = MeanShift(bandwidth=bandwidth, bin_seeding=True)
+	ms.fit(X)
+	labels = ms.labels_
+	cluster_centers = ms.cluster_centers_
+
+	labels_unique = np.unique(labels)
+	n_clusters_ = len(labels_unique)
+
+	print("* Number of classes: %d" %len(set(int_labels)))
+	print('* Estimated number of clusters: %d' % n_clusters_)	
+	print("* Homogeneity: %0.3f" % metrics.homogeneity_score(int_labels, labels))
+	print("* Completeness: %0.3f" % metrics.completeness_score(int_labels, labels))
+	print("* V-measure: %0.3f" % metrics.v_measure_score(int_labels, labels))
+	print("* Adjusted Rand Index: %0.3f"  % metrics.adjusted_rand_score(int_labels, labels))	  
+	print("* Adjusted Mutual Information: %0.3f"  % metrics.adjusted_mutual_info_score(int_labels, labels))
+	print("* Silhouette Coefficient: %0.3f" % metrics.silhouette_score(X, labels))
+		  
+	plt.figure(1)
+	plt.clf()
+
+	colors = cycle('bgrcmykbgrcmykbgrcmykbgrcmyk')
+	for k, col in zip(range(n_clusters_), colors):
+		my_members = labels == k
+		cluster_center = cluster_centers[k]
+		plt.plot(X[my_members, 0], X[my_members, 1], col + '.')
+		plt.plot(cluster_center[0], cluster_center[1], 'o', markerfacecolor=col,
+				 markeredgecolor='k', markersize=14)
+	plt.title('Estimated number of Mean Shift clusters: %d' % n_clusters_)
+	plt.show()
+
 	
 ###########################	
 # python clustering.py train_data2.txt
@@ -231,10 +307,17 @@ def main():
 	bin_labels = lb.fit_transform(lat_labels)
 	int_labels = labels_to_int(bin_labels)
 
-
+	print ("initial data: ", np.array(data).shape)
 	ress = run_svd(data)
-	kohonen_2(np.array(data), lat_labels)
-	#kmeans_clustering_2d(ress,int_labels,lat_labels)
+	new_ress = reduce_data(ress)
+	print ("reduced data: ", np.array(new_ress).shape)
+
+	#kmeans_clustering(new_ress,int_labels,lat_labels)
+	aff_prop(new_ress,int_labels,lat_labels)
+	print ("==================")
+	dbscan(new_ress,int_labels,lat_labels)
+	print ("==================")
+	mean_shift(new_ress,int_labels,lat_labels)
 	
 if __name__ == "__main__":
 	main()		
