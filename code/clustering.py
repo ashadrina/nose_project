@@ -58,7 +58,7 @@ def cyrillic2latin(input):
 def labels_to_int(labels):
 	new_labels = []
 	for l in labels:
-		new_labels.append(int((l.tolist()).index(1)+1))
+		new_labels.append(int((l.tolist()).index(1)))
 	return new_labels	
 
 def label_matching(bin_labels,labels):
@@ -159,6 +159,7 @@ def kmeans_clustering(data,int_labels,lat_labels):
 			arrowprops = dict(arrowstyle = '->', connectionstyle = 'arc3,rad=0'))
 	
 	plt.show()	
+	#plt.savefig("kmeans.png")
 	
 def aff_prop(data,int_labels,lat_labels):	
 	X = []
@@ -180,6 +181,13 @@ def aff_prop(data,int_labels,lat_labels):
 	print("* Adjusted Rand Index: %0.3f" % metrics.adjusted_rand_score(int_labels, labels))
 	print("* Adjusted Mutual Information: %0.3f" % metrics.adjusted_mutual_info_score(int_labels, labels))
 	print("* Silhouette Coefficient: %0.3f" % metrics.silhouette_score(X, labels, metric='sqeuclidean'))
+	
+	for cl,tl in zip(int_labels, labels):
+		if cl == tl:
+			print ("True: ", cl, "Cluster: ", tl, " !!")	
+		else: 	
+			print ("True: ", cl, "Cluster: ", tl)	
+
 		  
 	plt.close('all')
 	plt.figure(1)
@@ -196,8 +204,9 @@ def aff_prop(data,int_labels,lat_labels):
 			plt.plot([cluster_center[0], x[0]], [cluster_center[1], x[1]], col)
 
 	plt.title('Estimated number of affinity propagation clusters: %d' % n_clusters_)
-	plt.show()	  
-
+#	plt.show()	  
+	plt.savefig("aff_prop.png")
+	
 def dbscan(data,int_labels,lat_labels):	
 	X = []
 	for dat in data:
@@ -221,9 +230,19 @@ def dbscan(data,int_labels,lat_labels):
 	print("* V-measure: %0.3f" % metrics.v_measure_score(int_labels, labels))
 	print("* Adjusted Rand Index: %0.3f" % metrics.adjusted_rand_score(int_labels, labels))	  
 	print("* Adjusted Mutual Information: %0.3f"  % metrics.adjusted_mutual_info_score(int_labels, labels))
-	print("* Silhouette Coefficient: %0.3f"
-		  % metrics.silhouette_score(X, labels))
+	print("* Silhouette Coefficient: %0.3f" % metrics.silhouette_score(X, labels))
+	
+	for cl,tl in zip(int_labels, labels):
+		if cl == tl:
+			print ("True: ", cl, "Cluster: ", tl, " !!")	
+		else: 	
+			print ("True: ", cl, "Cluster: ", tl)	
+
 		
+	plt.close('all')
+	plt.figure(1)
+	plt.clf()
+	
 	# Black removed and is used for noise instead.
 	unique_labels = set(labels)
 	colors = plt.cm.Spectral(np.linspace(0, 1, len(unique_labels)))
@@ -243,7 +262,8 @@ def dbscan(data,int_labels,lat_labels):
 				 markeredgecolor='k', markersize=6)
 
 	plt.title('Estimated number of DBSCAN clusters: %d' % n_clusters_)
-	plt.show()
+#	plt.show()
+	plt.savefig("dbscan.png")
 	
 def mean_shift(data,int_labels,lat_labels):	
 	X = []
@@ -270,7 +290,15 @@ def mean_shift(data,int_labels,lat_labels):
 	print("* Adjusted Rand Index: %0.3f"  % metrics.adjusted_rand_score(int_labels, labels))	  
 	print("* Adjusted Mutual Information: %0.3f"  % metrics.adjusted_mutual_info_score(int_labels, labels))
 	print("* Silhouette Coefficient: %0.3f" % metrics.silhouette_score(X, labels))
-		  
+	
+	for cl,tl in zip(int_labels, labels):
+		if cl == tl:
+			print ("True: ", cl, "Cluster: ", tl, " !!")	
+		else: 	
+			print ("True: ", cl, "Cluster: ", tl)	
+
+	
+	plt.close('all')
 	plt.figure(1)
 	plt.clf()
 
@@ -282,8 +310,8 @@ def mean_shift(data,int_labels,lat_labels):
 		plt.plot(cluster_center[0], cluster_center[1], 'o', markerfacecolor=col,
 				 markeredgecolor='k', markersize=14)
 	plt.title('Estimated number of Mean Shift clusters: %d' % n_clusters_)
-	plt.show()
-
+#	plt.show()
+	plt.savefig("mean_shift.png")
 	
 ###########################	
 # python clustering.py train_data2.txt
@@ -313,9 +341,9 @@ def main():
 	print ("reduced data: ", np.array(new_ress).shape)
 
 	#kmeans_clustering(new_ress,int_labels,lat_labels)
-	aff_prop(new_ress,int_labels,lat_labels)
-	print ("==================")
-	dbscan(new_ress,int_labels,lat_labels)
+	#aff_prop(new_ress,int_labels,lat_labels)
+	#print ("==================")
+	#dbscan(new_ress,int_labels,lat_labels)
 	print ("==================")
 	mean_shift(new_ress,int_labels,lat_labels)
 	
