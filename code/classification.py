@@ -3,15 +3,19 @@ import sys
 import numpy as np
 from scipy import stats
 
-from transliterate import translit
-
 from sklearn.preprocessing import LabelBinarizer
-from sklearn.preprocessing import normalize
+from transliterate import translit #perform transliteration from russian labels to latin
 
-from sklearn.decomposition import PCA
-from numpy.linalg import svd
- 
-import matplotlib.pyplot as plt
+from numpy.linalg import svd #data reducion
+
+from sklearn.svm import LinearSVC 
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.multiclass import OneVsRestClassifier, OneVsOneClassifier
+from sklearn.cross_validation import train_test_split
+from sklearn.naive_bayes import GaussianNB
+
+from sklearn.lda import LDA
  
 def load_data(in_file):
 	input_f = open(in_file, "r")
@@ -33,23 +37,13 @@ def load_labels(in_file):
 	input_f.close()
 	return labels
 	
-def transliterate_labels(labels):	
-	lat_labels = []
-	for label in labels:
-		lat_labels.append(cyrillic2latin(label.replace("\n","")))
-	return lat_labels
-
-def cyrillic2latin(input):
-	symbols = (u"абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ",
-           u"abvgdeejzijklmnoprstufhzcss_y_euaABVGDEEJZIJKLMNOPRSTUFHZCSS_Y_EUA")
-
-	tr = {ord(a): ord(b) for a, b in zip(*symbols)}
-	return input.translate(tr)		
-	
 def labels_to_int(labels):
 	new_labels = []
-	for l in labels:
-		new_labels.append(int((l.tolist()).index(1)+1))
+	for label in labels:
+		if ";" in label:
+			new_labels.append([int((label[0].tolist()).index(1)+1), int((label[0].tolist()).index(1)+1)])
+		else:
+			new_labels.append(int((label.tolist()).index(1)+1))
 	return new_labels	
 
 def label_matching(bin_labels,labels):
@@ -67,13 +61,51 @@ def normalize_data(data):
 		norm_matrix.append(norm_col)
 	return norm_matrix
 
+def reduce_data(data):		
+	new_data = []
+	for matr in data:
+		new_data.append(matr[:1])
+	return new_data	
+
+#########################################	
 def run_svd(data):
+	new_data = []
 	for matr in data:
 		U, s, V = svd(np.array(matr), full_matrices=True)
-		plt.plot(s)
+		s_s = [s[0]]
+		s_s_1 = [0.0] * 7
+		s_s.extend(s_s_1)
+		S = np.zeros((8, 121), dtype=float)	
+		S[:8, :8] = np.diag(s_s)
+		new_data.append(S)	
+	return new_data	
+	
+	
+#########################################
+	
+def svm_cl(X_train, y_train, X_test, y_test):
+	svc = OneVsOneClassifier(LinearSVC(random_state=0)).fit(X_train, y_train)
+	err_train = np.mean(y_train != svc.predict(X_train))
+	err_test  = np.mean(y_test  != svc.predict(X_test))
+	print ("svm error: ", err_train, err_test)
+	
+def knn_cl(X_train, y_train, X_test, y_test):
+	knn = OneVsRestClassifier(KNeighborsClassifier(n_neighbors=3)).fit(X_train, y_train)
+	err_train = np.mean(y_train != knn.predict(X_train))
+	err_test  = np.mean(y_test  != knn.predict(X_test))
+	print ("knn error: ", err_train, err_test)
 
-	plt.title("Singular values for all data")	
-	plt.savefig("sk_n_svd.png")
+def rf_cl(X_train, y_train, X_test, y_test):
+	rf = OneVsRestClassifier(RandomForestClassifier(n_estimators=100)).fit(X_train, y_train)
+	err_train = np.mean(y_train != rf.predict(X_train))
+	err_test  = np.mean(y_test  != rf.predict(X_test))
+	print ("rf error: ", err_train, err_test)
+
+def bayes_cl(X_train, y_train, X_test, y_test):
+	gnb = OneVsRestClassifier(GaussianNB()).fit(X_train, y_train)
+	err_train = np.mean(y_train != gnb.predict(X_train))
+	err_test  = np.mean(y_test  != gnb.predict(X_test))
+	print ("nb error: ", err_train, err_test)
 	
 ###########################	
 # python clustering.py train_data2.txt
@@ -86,22 +118,35 @@ def main():
 
 	print (data_file, labels_file)
 	data = load_data(data_file)
-	labels = load_labels(labels_file)
+	lat_labels = load_labels(labels_file)
 
-	lat_labels = transliterate_labels(labels)
-	norm_data = normalize_data(data)
+	#norm_data = normalize_data(data)
 	
 	#transform labels
 	lb = LabelBinarizer()
 	bin_labels = lb.fit_transform(lat_labels)
 	int_labels = labels_to_int(bin_labels)
 
-	ndata = normalize_data(data)
-	normed_matrix = []
-	for matr in data:
-		normed_matrix.append(normalize(np.array(matr), axis=1, norm='l1'))
-	run_svd(normed_matrix)
-
+	print ("initial data: ", np.array(data).shape)
+	ress = run_svd(data)
+	new_ress = reduce_data(ress)
+	print ("reduced data: ", np.array(new_ress).shape)
+	
+	X = []
+	for dat in new_ress:
+		X.extend(dat)
+	X = np.array(X)
+	y = int_labels
+	
+	clf = LDA()
+	clf.fit(X, y)
+		
+	X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3, random_state = 1)
+	print ("Learning...")
+	svm_cl(X_train, y_train, X_test, y_test)
+	# knn_cl(X_train, y_train, X_test, y_test)
+	# rf_cl(X_train, y_train, X_test, y_test)
+	# bayes_cl(X_train, y_train, X_test, y_test)
 	
 	
 	

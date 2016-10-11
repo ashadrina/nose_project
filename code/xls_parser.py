@@ -20,8 +20,8 @@ def load_xls(xls_in):
 			header_row.append(str(sheet.cell(r,c).value))
 		header_row = [rr for rr in header_row if rr]
 		header.append(header_row)
-	
-	sensors= []	
+
+	sensors= []
 	for r in range(6, 8):
 		sensor_row=[]
 		for c in range(0,sheet.ncols):
@@ -56,14 +56,51 @@ def create_structure(data, sensors, in_file, OUT_FILE):
 	
 	txt_outfile.close()
 
-def create_labels(in_file, OUT_FILE_LABEL):
+def cyrillic2latin(input):
+	symbols = (u"абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ",
+           u"abvgdeejzijklmnoprstufhzcss_y_euaABVGDEEJZIJKLMNOPRSTUFHZCSS_Y_EUA")
+
+	tr = {ord(a): ord(b) for a, b in zip(*symbols)}
+	return input.translate(tr)		
+	
+def create_train_labels(in_file, OUT_FILE_LABEL):
 	print (in_file.split(".")[0].split(" ")[0])
 	txt_outfile = open(OUT_FILE_LABEL, 'a')
-	txt_outfile.write(str(in_file.split(".")[0].split(" ")[0])+"\n")
+	cyr_label = str(in_file.split(".")[0].split(" ")[0])
+	res = cyrillic2latin(cyr_label.replace("\n",""))
+	txt_outfile.write(res+"\n")
+
+def create_val_labels(header, OUT_FILE_LABEL):
+	head_str = header[0][1]
+	h1 = head_str.split("и")[0].strip()
+	h2 = head_str.split("и")[1].strip().split(" ")[0]
+	res = []
+	if "ДОФ" in h1:
+		res.append(cyrillic2latin("диоктилфталат"))
+	elif "этац" in h1:
+		res.append(cyrillic2latin("этилацетат"))
+	elif "ац-д" in h1:
+		res.append(cyrillic2latin("ацетальдегид"))
+	else:
+		res.append(cyrillic2latin(h1))
+		
+	if "ДОФ" in h2:
+		res.append(cyrillic2latin("диоктилфталат"))
+	elif "этац" in h2:
+		res.append(cyrillic2latin("этилацетат"))
+	elif "ац-д" in h2:
+		res.append(cyrillic2latin("ацетальдегид"))
+	else:
+		res.append(cyrillic2latin(h2))
 	
+	txt_outfile = open(OUT_FILE_LABEL, 'a')
+	txt_outfile.write(str(res[0])+";"+str(res[1])+"\n")	
+	print ("create_val_labels: ", res)
+
 ###########################	
-# python xls_parser.py train train_data.txt
-# python xls_parser.py test test_data.txt
+# python xls_parser.py train train.txt
+# python xls_parser.py test test.txt
+# python xls_parser.py val val.txt
 #########################	##
 
 def main():
@@ -81,13 +118,15 @@ def main():
 		local_files = load_local_directory(local_path)
 		for in_file in local_files:
 			header,sensors,col_names,data=load_xls(local_path+"\\\\"+in_file)
-			create_structure(data, sensors, in_file, OUT_FILE_DATA)
-			create_labels(in_file, OUT_FILE_LABELS)
-			
-	# if len (sys.argv) == 2:
-		# in_file = sys.argv[1]		
-	# header,sensors,col_names,data=load_xls(in_file)
-		
+			if (np.array(data).shape) != (121,9):
+				print("PANIC!!! ", (np.array(data).shape) )
+			else:
+				create_structure(data, sensors, in_file, OUT_FILE_DATA)
+				if "train" in local_path:
+					create_train_labels(in_file, OUT_FILE_LABELS)				
+				if "val" in local_path:
+					create_val_labels(header, OUT_FILE_LABELS)	
+	
 	
 if __name__ == "__main__":
 	main()		

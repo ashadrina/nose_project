@@ -42,23 +42,15 @@ def load_labels(in_file):
 	input_f.close()
 	return labels
 	
-def transliterate_labels(labels):	
-	lat_labels = []
-	for label in labels:
-		lat_labels.append(cyrillic2latin(label.replace("\n","")))
-	return lat_labels
-
-def cyrillic2latin(input):
-	symbols = (u"абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ",
-           u"abvgdeejzijklmnoprstufhzcss_y_euaABVGDEEJZIJKLMNOPRSTUFHZCSS_Y_EUA")
-
-	tr = {ord(a): ord(b) for a, b in zip(*symbols)}
-	return input.translate(tr)		
 	
 def labels_to_int(labels):
 	new_labels = []
-	for l in labels:
-		new_labels.append(int((l.tolist()).index(1)))
+	for label in labels:
+		if ";" in label:
+			l = label.split(";")
+			new_labels.append([int((l[0].tolist()).index(1)+1), int((l[0].tolist()).index(1)+1)])
+		else:
+			new_labels.append(int((label.tolist()).index(1)+1))
 	return new_labels	
 
 def label_matching(bin_labels,labels):
@@ -121,45 +113,6 @@ def run_svd(data):
 		S[:8, :8] = np.diag(s_s)
 		new_data.append(S)	
 	return new_data	
-
-def kmeans_clustering(data,int_labels,lat_labels):
-	X = []
-	for dat in data:
-		X.extend(dat)
-	X = np.array(X)	
-	labels_pairs = label_matching(int_labels,lat_labels)
-		  
-	fignum = 1		  
-	kmeans = KMeans(n_clusters=18)
-	kmeans.fit(X)
-
-	fig = plt.figure(fignum, figsize=(4, 3))
-	plt.clf()
-	ax = fig.add_subplot(111)
-
-	plt.cla()		
-	k_labels = kmeans.labels_
-	ax.scatter(X[:, 0], X[:, 1], c=k_labels.astype(np.float))
-	fignum = fignum + 1
-	
-	# # Plot the ground truth
-	fig = plt.figure(fignum, figsize=(4, 3))
-	plt.clf()
-	ax = fig.add_subplot(111)
-	plt.cla()
-
-	ax.scatter(X[:, 0], X[:, 1], c=int_labels)
-
-	for label, x, y in zip(lat_labels, X[:, 0], X[:, 1]):
-		plt.annotate(
-			label, 
-			xy = (x, y), xytext = (-20, 20),
-			textcoords = 'offset points', ha = 'right', va = 'bottom',
-			bbox = dict(boxstyle = 'round,pad=0.5', fc = 'white', alpha = 0.5),
-			arrowprops = dict(arrowstyle = '->', connectionstyle = 'arc3,rad=0'))
-	
-	plt.show()	
-	#plt.savefig("kmeans.png")
 	
 def aff_prop(data,int_labels,lat_labels):	
 	X = []
@@ -181,14 +134,7 @@ def aff_prop(data,int_labels,lat_labels):
 	print("* Adjusted Rand Index: %0.3f" % metrics.adjusted_rand_score(int_labels, labels))
 	print("* Adjusted Mutual Information: %0.3f" % metrics.adjusted_mutual_info_score(int_labels, labels))
 	print("* Silhouette Coefficient: %0.3f" % metrics.silhouette_score(X, labels, metric='sqeuclidean'))
-	
-	for cl,tl in zip(int_labels, labels):
-		if cl == tl:
-			print ("True: ", cl, "Cluster: ", tl, " !!")	
-		else: 	
-			print ("True: ", cl, "Cluster: ", tl)	
 
-		  
 	plt.close('all')
 	plt.figure(1)
 	plt.clf()
@@ -232,13 +178,6 @@ def dbscan(data,int_labels,lat_labels):
 	print("* Adjusted Mutual Information: %0.3f"  % metrics.adjusted_mutual_info_score(int_labels, labels))
 	print("* Silhouette Coefficient: %0.3f" % metrics.silhouette_score(X, labels))
 	
-	for cl,tl in zip(int_labels, labels):
-		if cl == tl:
-			print ("True: ", cl, "Cluster: ", tl, " !!")	
-		else: 	
-			print ("True: ", cl, "Cluster: ", tl)	
-
-		
 	plt.close('all')
 	plt.figure(1)
 	plt.clf()
@@ -291,13 +230,6 @@ def mean_shift(data,int_labels,lat_labels):
 	print("* Adjusted Mutual Information: %0.3f"  % metrics.adjusted_mutual_info_score(int_labels, labels))
 	print("* Silhouette Coefficient: %0.3f" % metrics.silhouette_score(X, labels))
 	
-	for cl,tl in zip(int_labels, labels):
-		if cl == tl:
-			print ("True: ", cl, "Cluster: ", tl, " !!")	
-		else: 	
-			print ("True: ", cl, "Cluster: ", tl)	
-
-	
 	plt.close('all')
 	plt.figure(1)
 	plt.clf()
@@ -324,10 +256,8 @@ def main():
 
 	print (data_file, labels_file)
 	data = load_data(data_file)
-	labels = load_labels(labels_file)
+	lat_labels = load_labels(labels_file)
 
-	lat_labels = transliterate_labels(labels)
-	print (lat_labels)
 	#norm_data = normalize_data(data)
 	
 	#transform labels
@@ -340,11 +270,13 @@ def main():
 	new_ress = reduce_data(ress)
 	print ("reduced data: ", np.array(new_ress).shape)
 
-	#kmeans_clustering(new_ress,int_labels,lat_labels)
-	#aff_prop(new_ress,int_labels,lat_labels)
-	#print ("==================")
-	#dbscan(new_ress,int_labels,lat_labels)
+	print ("AFFINITY PROPAGAITION")
+	aff_prop(new_ress,int_labels,lat_labels)
 	print ("==================")
+	print ("DBSCAN")
+	dbscan(new_ress,int_labels,lat_labels)
+	print ("==================")
+	print ("MEAN SHIFT")
 	mean_shift(new_ress,int_labels,lat_labels)
 	
 if __name__ == "__main__":
