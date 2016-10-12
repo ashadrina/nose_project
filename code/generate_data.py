@@ -90,7 +90,7 @@ def generate_data(X,y,thr):
 	X_new = []
 	y_new = []
 	c = collections.Counter(labels_to_int(y))
-	
+
 	for xx,yy, yyy in zip(X,y,labels_to_int(y)):
 		nr = thr - int(c[yyy])
 		for i in range(nr):
@@ -156,10 +156,10 @@ def generate_data_3(X,y,thr):
 		
 #########################################
 def training(X,y):
-	print ("INITIAL DATA")
-	X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3, random_state = 1)
-	print ("Learning...")
-	run_training(X_train, y_train, X_test, y_test)	
+	# print ("INITIAL DATA")
+	# X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3, random_state = 0)
+	# print ("Learning...")
+	# run_training(X_train, y_train, X_test, y_test)	
 	
 	print ("=======================")
 	print ("TRAIN - INITIAL DATA, TEST - GENERATED DATA")
@@ -192,27 +192,32 @@ def training(X,y):
 def run_training(X_train, y_train, X_test, y_test):
 	def svm_cl_training(X_train, y_train, X_test, y_test):
 		svc = OneVsRestClassifier(LinearSVC(random_state=0)).fit(X_train, y_train)
+	#	svc = OneVsOneClassifier(LinearSVC(random_state=0)).fit(X_train, y_train)
 		err_train = np.mean(y_train != svc.predict(X_train))
 		err_test  = np.mean(y_test  != svc.predict(X_test))
 		print ("svm accuracy: ", 1 - err_train, 1 - err_test)
 		
 	def knn_cl_training(X_train, y_train, X_test, y_test):
 		knn = OneVsRestClassifier(KNeighborsClassifier(n_neighbors=3)).fit(X_train, y_train)
+		#knn = OneVsOneClassifier(KNeighborsClassifier(n_neighbors=3)).fit(X_train, y_train)
 		err_train = np.mean(y_train != knn.predict(X_train))
 		err_test  = np.mean(y_test  != knn.predict(X_test))
 		print ("knn accuracy: ", 1 - err_train, 1 - err_test)
 
 	def rf_cl_training(X_train, y_train, X_test, y_test):
 		rf = OneVsRestClassifier(RandomForestClassifier(n_estimators=1000)).fit(X_train, y_train)
+		#rf = OneVsOneClassifier(RandomForestClassifier(n_estimators=1000)).fit(X_train, y_train)
 		err_train = np.mean(y_train != rf.predict(X_train))
 		err_test  = np.mean(y_test  != rf.predict(X_test))
 		print ("rf accuracy: ", 1 - err_train, 1 - err_test)
 
 	def bayes_cl_training(X_train, y_train, X_test, y_test):
 		gnb = OneVsRestClassifier(GaussianNB()).fit(X_train, y_train)
+		#gnb = OneVsOneClassifier(GaussianNB()).fit(X_train, y_train)
 		err_train = np.mean(y_train != gnb.predict(X_train))
 		err_test  = np.mean(y_test  != gnb.predict(X_test))
 		print ("gnb accuracy: ", 1 - err_train, 1 - err_test)	
+		#print ( gnb.predict(X_test))
 		
 	svm_cl_training(X_train, y_train, X_test, y_test)
 	knn_cl_training(X_train, y_train, X_test, y_test)
@@ -275,16 +280,13 @@ def main():
 	print (data_file, labels_file)
 	data = load_data(data_file)
 	lat_labels = load_labels(labels_file)
+	print (len(set(lat_labels)))
 		
-	#transform labels
-#	mlb1 = MultiLabelBinarizer()
-	mlb1 = LabelBinarizer()
-	bin_labels = mlb1.fit_transform(lat_labels)
+	##transform labels
+
+	mlb = LabelBinarizer()
+	bin_labels = mlb.fit_transform(lat_labels) 
 	int_labels = labels_to_int(bin_labels)
-	
-	print (lat_labels)
-	print (bin_labels)
-	
 	
 	print ("initial data: ", np.array(data).shape)
 	ress = run_svd(data)
@@ -295,24 +297,21 @@ def main():
 	for dat in new_ress:
 		X.extend(dat)
 	X = np.array(X)
-	y = bin_labels
 	
-#	training(X,y)
+	#training(X,bin_labels)
 	
-	print ("=======================")
-	print ("=======================")
-	print ("=======================")
 	print ("=======================")
 	print ("TRAIN, TEST - INITIAL + GENERATED DATA (+\-) \ 10")
-	X_train,y_train = generate_data(X,y,10)	
+	X_train,y_train = generate_data(X,bin_labels,10)	
+	
 	X_data = load_data("data_val.txt")
 	lat_labels_test = load_labels("labels_val.txt")
-	print (lat_labels_test)
 	
-	mlb = MultiLabelBinarizer()
-	bin_labels_test = mlb.fit_transform(lat_labels_test)
-	int_labels_test = labels_to_int(bin_labels_test)
-	
+	mlb1 = MultiLabelBinarizer()
+	lat_labels_test.append(lat_labels)
+	bin_labels_test = mlb1.fit_transform(lat_labels_test)
+	bin_labels_test = bin_labels_test[:-1]
+
 	print ("initial data: ", np.array(X_data).shape)
 	val_ress = run_svd(X_data)
 	new_val_ress = reduce_data(val_ress)
@@ -322,11 +321,9 @@ def main():
 	for dat in new_val_ress:
 		X_test.extend(dat)
 	X_test = np.array(X_test)
-	y_test = bin_labels_test
-	print (np.array(X_test).shape)
 
 	print ("Learning...")
-	run_training(X_train, y_train, X_test, y_test)
+	run_training(X_train, y_train, X_test, bin_labels_test)
 
 if __name__ == "__main__":
 	main()		
