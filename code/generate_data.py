@@ -4,6 +4,7 @@ import numpy as np
 from scipy import stats
 
 from sklearn.preprocessing import LabelBinarizer
+from sklearn.preprocessing import MultiLabelBinarizer
 from transliterate import translit #perform transliteration from russian labels to latin
 
 from numpy.linalg import svd #data reducion
@@ -18,6 +19,9 @@ from sklearn.cross_validation import train_test_split
 from sklearn.naive_bayes import GaussianNB
 
 from sklearn.lda import LDA
+
+from sklearn.datasets import make_multilabel_classification as make_ml_clf
+
  
 def load_data(in_file):
 	input_f = open(in_file, "r")
@@ -35,17 +39,17 @@ def load_labels(in_file):
 	input_f = open(in_file, "r")
 	labels = []
 	for line in input_f:
-		labels.append(line.replace("\n",""))
+		if ";" in line:
+			labels.append(line.replace("\n","").split(";"))
+		else:
+			labels.append(line.replace("\n",""))
 	input_f.close()
 	return labels
 	
 def labels_to_int(labels):
 	new_labels = []
 	for label in labels:
-		if ";" in label:
-			new_labels.append([int((label[0].tolist()).index(1)+1), int((label[0].tolist()).index(1)+1)])
-		else:
-			new_labels.append(int((label.tolist()).index(1)+1))
+		new_labels.append(int((label.tolist()).index(1)+1))
 	return new_labels	
 
 def label_matching(bin_labels,labels):
@@ -82,14 +86,15 @@ def run_svd(data):
 		new_data.append(S)	
 	return new_data	
 
-def generate_data(X,y):	
+def generate_data(X,y,thr):	
 	X_new = []
 	y_new = []
-	c = collections.Counter(y)
+	c = collections.Counter(labels_to_int(y))
 	
-	for xx,yy in zip(X,y):
-		nr = 10 - int(c[yy])
+	for xx,yy, yyy in zip(X,y,labels_to_int(y)):
+		nr = thr - int(c[yyy])
 		for i in range(nr):
+			X_new.append([x+i for x in xx])
 			y_new.append(yy)
 		for i in range(nr):
 			X_new.append([x-i for x in xx])
@@ -102,10 +107,10 @@ def generate_data(X,y):
 def generate_data_2(X,y,thr):	
 	X_new = []
 	y_new = []
-	c = collections.Counter(y)
+	c = collections.Counter(labels_to_int(y))
 		
-	for xx,yy in zip(X,y):
-		nr = thr - int(c[yy])
+	for xx,yy, yyy in zip(X,y,labels_to_int(y)):
+		nr = thr - int(c[yyy])
 		for i in range(nr):
 			X_new.append(xx)
 			X_new.append([x+i for x in xx])
@@ -124,10 +129,10 @@ def generate_data_2(X,y,thr):
 def generate_data_3(X,y,thr):	
 	X_new = []
 	y_new = []
-	c = collections.Counter(y)
+	c = collections.Counter(labels_to_int(y))
 		
-	for xx,yy in zip(X,y):
-		nr = thr - int(c[yy])
+	for xx,yy, yyy in zip(X,y,labels_to_int(y)):
+		nr = thr - int(c[yyy])
 		for i in range(nr):
 			X_new.append(xx)
 			X_new.append([x+i for x in xx])
@@ -154,74 +159,109 @@ def training(X,y):
 	print ("INITIAL DATA")
 	X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3, random_state = 1)
 	print ("Learning...")
-	svm_cl(X_train, y_train, X_test, y_test)
-	knn_cl(X_train, y_train, X_test, y_test)
-	rf_cl(X_train, y_train, X_test, y_test)
-	bayes_cl(X_train, y_train, X_test, y_test)	
+	run_training(X_train, y_train, X_test, y_test)	
 	
 	print ("=======================")
 	print ("TRAIN - INITIAL DATA, TEST - GENERATED DATA")
-	X_new,y_new = generate_data(X,y)	
+	X_new,y_new = generate_data(X,y,10)	
 	print ("Learning...")
-	svm_cl(X, y, X_new, y_new)
-	knn_cl(X, y, X_new, y_new)
-	rf_cl(X, y, X_new, y_new)
-	bayes_cl(X, y, X_new, y_new)
+	run_training(X, y, X_new, y_new)
 		
 	print ("=======================")
 	print ("TRAIN, TEST - INITIAL + GENERATED DATA (+\-) \ 10")
 	X_new_2,y_new_2 = generate_data_2(X,y,10)	
 	X_train_2, X_test_2, y_train_2, y_test_2 = train_test_split(X_new_2, y_new_2, test_size = 0.3, random_state = 1)
 	print ("Learning...")
-	svm_cl(X_train_2, y_train_2, X_test_2, y_test_2)
-	knn_cl(X_train_2, y_train_2, X_test_2, y_test_2)
-	rf_cl(X_train_2, y_train_2, X_test_2, y_test_2)
-	bayes_cl(X_train_2, y_train_2, X_test_2, y_test_2)			
+	run_training(X_train_2, y_train_2, X_test_2, y_test_2)
 	
 	print ("=======================")
 	print ("TRAIN, TEST - INITIAL + GENERATED DATA (+\-) \ 20")
-	X_new_2,y_new_2 = generate_data_2(X,y,20)	
-	X_train_2, X_test_2, y_train_2, y_test_2 = train_test_split(X_new_2, y_new_2, test_size = 0.3, random_state = 1)
+	X_new_20,y_new_20 = generate_data_2(X,y,20)	
+	X_train_20, X_test_20, y_train_20, y_test_20 = train_test_split(X_new_20, y_new_20, test_size = 0.3, random_state = 1)
 	print ("Learning...")
-	svm_cl(X_train_2, y_train_2, X_test_2, y_test_2)
-	knn_cl(X_train_2, y_train_2, X_test_2, y_test_2)
-	rf_cl(X_train_2, y_train_2, X_test_2, y_test_2)
-	bayes_cl(X_train_2, y_train_2, X_test_2, y_test_2)		
-	
+	run_training(X_train_20, y_train_20, X_test_20, y_test_20)
+
 	print ("=======================")
 	print ("TRAIN, TEST - INITIAL + GENERATED DATA (+\-\*) \ 10")
 	X_new_3,y_new_3 = generate_data_3(X,y,10)	
 	X_train_3, X_test_3, y_train_3, y_test_3 = train_test_split(X_new_3, y_new_3, test_size = 0.3, random_state = 1)
 	print ("Learning...")
-	svm_cl(X_train_3, y_train_3, X_test_3, y_test_3)
-	knn_cl(X_train_3, y_train_3, X_test_3, y_test_3)
-	rf_cl(X_train_3, y_train_3, X_test_3, y_test_3)
-	bayes_cl(X_train_3, y_train_3, X_test_3, y_test_3)	
+	run_training(X_train_3, y_train_3, X_test_3, y_test_3)
+	
 #########################################
-	
-def svm_cl(X_train, y_train, X_test, y_test):
-	svc = OneVsOneClassifier(LinearSVC(random_state=0)).fit(X_train, y_train)
-	err_train = np.mean(y_train != svc.predict(X_train))
-	err_test  = np.mean(y_test  != svc.predict(X_test))
-	print ("svm accuracy: ", 1 - err_train, 1 - err_test)
-	
-def knn_cl(X_train, y_train, X_test, y_test):
-	knn = OneVsRestClassifier(KNeighborsClassifier(n_neighbors=3)).fit(X_train, y_train)
-	err_train = np.mean(y_train != knn.predict(X_train))
-	err_test  = np.mean(y_test  != knn.predict(X_test))
-	print ("knn accuracy: ", 1 - err_train, 1 - err_test)
+def run_training(X_train, y_train, X_test, y_test):
+	def svm_cl_training(X_train, y_train, X_test, y_test):
+		svc = OneVsRestClassifier(LinearSVC(random_state=0)).fit(X_train, y_train)
+		err_train = np.mean(y_train != svc.predict(X_train))
+		err_test  = np.mean(y_test  != svc.predict(X_test))
+		print ("svm accuracy: ", 1 - err_train, 1 - err_test)
+		
+	def knn_cl_training(X_train, y_train, X_test, y_test):
+		knn = OneVsRestClassifier(KNeighborsClassifier(n_neighbors=3)).fit(X_train, y_train)
+		err_train = np.mean(y_train != knn.predict(X_train))
+		err_test  = np.mean(y_test  != knn.predict(X_test))
+		print ("knn accuracy: ", 1 - err_train, 1 - err_test)
 
-def rf_cl(X_train, y_train, X_test, y_test):
-	rf = OneVsRestClassifier(RandomForestClassifier(n_estimators=1000)).fit(X_train, y_train)
-	err_train = np.mean(y_train != rf.predict(X_train))
-	err_test  = np.mean(y_test  != rf.predict(X_test))
-	print ("rf accuracy: ", 1 - err_train, 1 - err_test)
+	def rf_cl_training(X_train, y_train, X_test, y_test):
+		rf = OneVsRestClassifier(RandomForestClassifier(n_estimators=1000)).fit(X_train, y_train)
+		err_train = np.mean(y_train != rf.predict(X_train))
+		err_test  = np.mean(y_test  != rf.predict(X_test))
+		print ("rf accuracy: ", 1 - err_train, 1 - err_test)
 
-def bayes_cl(X_train, y_train, X_test, y_test):
-	gnb = OneVsRestClassifier(GaussianNB()).fit(X_train, y_train)
-	err_train = np.mean(y_train != gnb.predict(X_train))
-	err_test  = np.mean(y_test  != gnb.predict(X_test))
-	print ("nb accuracy: ", 1 - err_train, 1 - err_test)
+	def bayes_cl_training(X_train, y_train, X_test, y_test):
+		gnb = OneVsRestClassifier(GaussianNB()).fit(X_train, y_train)
+		err_train = np.mean(y_train != gnb.predict(X_train))
+		err_test  = np.mean(y_test  != gnb.predict(X_test))
+		print ("gnb accuracy: ", 1 - err_train, 1 - err_test)	
+		
+	svm_cl_training(X_train, y_train, X_test, y_test)
+	knn_cl_training(X_train, y_train, X_test, y_test)
+	rf_cl_training(X_train, y_train, X_test, y_test)
+	bayes_cl_training(X_train, y_train, X_test, y_test)
+		
+#########################################
+def run_testing(X_train, y_train, X_test):
+	def svm_cl_testing(X_train, y_train, X_test):
+		svc = OneVsRestClassifier(LinearSVC(random_state=0)).fit(X_train, y_train)
+		err_train = np.mean(y_train != svc.predict(X_train))
+		y_new = svc.predict(X_test)
+		txt_outfile = open("svm_new_labels.txt", 'w')
+		for y in y_new:
+			txt_outfile.write(y+"\n")
+		txt_outfile.close()
+		
+	def knn_cl_testing(X_train, y_train, X_test):
+		knn = OneVsRestClassifier(KNeighborsClassifier(n_neighbors=3)).fit(X_train, y_train)
+		err_train = np.mean(y_train != knn.predict(X_train))
+		y_new = knn.predict(X_test)
+		txt_outfile = open("knn_new_labels.txt", 'w')
+		for y in y_new:
+			txt_outfile.write(y+"\n")
+		txt_outfile.close()
+		
+	def rf_cl_testing(X_train, y_train, X_test):
+		rf = OneVsRestClassifier(RandomForestClassifier(n_estimators=1000)).fit(X_train, y_train)
+		err_train = np.mean(y_train != rf.predict(X_train))
+		y_new = rf.predict(X_test)
+		txt_outfile = open("rf_new_labels.txt", 'w')
+		for y in y_new:
+			txt_outfile.write(y+"\n")
+		txt_outfile.close()
+		
+	def bayes_cl_testing(X_train, y_train, X_test):
+		gnb = OneVsRestClassifier(GaussianNB()).fit(X_train, y_train)
+		err_train = np.mean(y_train != gnb.predict(X_train))
+		y_new = gnb.predict(X_test)
+		txt_outfile = open("gnb_new_labels.txt", 'w')
+		for y in y_new:
+			txt_outfile.write(y+"\n")
+		txt_outfile.close()
+	
+	svm_cl_testing(X_train, y_train, X_test)
+	knn_cl_testing(X_train, y_train, X_test)
+	rf_cl_testing(X_train, y_train, X_test)
+	bayes_cl_testing(X_train, y_train, X_test)
+	
 	
 ###########################	
 # python clustering.py train_data2.txt
@@ -235,14 +275,17 @@ def main():
 	print (data_file, labels_file)
 	data = load_data(data_file)
 	lat_labels = load_labels(labels_file)
-
-	#norm_data = normalize_data(data)
-	
+		
 	#transform labels
-	lb = LabelBinarizer()
-	bin_labels = lb.fit_transform(lat_labels)
+#	mlb1 = MultiLabelBinarizer()
+	mlb1 = LabelBinarizer()
+	bin_labels = mlb1.fit_transform(lat_labels)
 	int_labels = labels_to_int(bin_labels)
-
+	
+	print (lat_labels)
+	print (bin_labels)
+	
+	
 	print ("initial data: ", np.array(data).shape)
 	ress = run_svd(data)
 	new_ress = reduce_data(ress)
@@ -252,34 +295,38 @@ def main():
 	for dat in new_ress:
 		X.extend(dat)
 	X = np.array(X)
-	y = int_labels
+	y = bin_labels
 	
-	#training(X,y)
+#	training(X,y)
 	
 	print ("=======================")
+	print ("=======================")
+	print ("=======================")
+	print ("=======================")
 	print ("TRAIN, TEST - INITIAL + GENERATED DATA (+\-) \ 10")
-	#X_train,y_train = generate_data(X,y,10)	
+	X_train,y_train = generate_data(X,y,10)	
 	X_data = load_data("data_val.txt")
 	lat_labels_test = load_labels("labels_val.txt")
+	print (lat_labels_test)
 	
-	print ("initial data: ", np.array(X_test).shape)
-	val_ress = run_svd(X_test)
+	mlb = MultiLabelBinarizer()
+	bin_labels_test = mlb.fit_transform(lat_labels_test)
+	int_labels_test = labels_to_int(bin_labels_test)
+	
+	print ("initial data: ", np.array(X_data).shape)
+	val_ress = run_svd(X_data)
 	new_val_ress = reduce_data(val_ress)
 	print ("reduced data: ", np.array(new_val_ress).shape)
 	
 	X_test = []
 	for dat in new_val_ress:
 		X_test.extend(dat)
-	X_test = np.array(X)
-	y_test = int_labels
+	X_test = np.array(X_test)
+	y_test = bin_labels_test
 	print (np.array(X_test).shape)
-	print (y_test)
 
-	# print ("Learning...")
-	# svm_cl(X_train, y_train, X_test, y_test)
-	# knn_cl(X_train, y_train, X_test, y_test)
-	# rf_cl(X_train, y_train, X_test, y_test)
-	# bayes_cl(X_train, y_train, X_test, y_test)			
-	
+	print ("Learning...")
+	run_training(X_train, y_train, X_test, y_test)
+
 if __name__ == "__main__":
 	main()		
