@@ -51,12 +51,6 @@ def labels_to_int(labels):
 	for label in labels:
 		new_labels.append(int((label.tolist()).index(1)+1))
 	return new_labels	
-
-def label_matching(bin_labels,labels):
-	pairs = []
-	for y,l in zip(bin_labels,labels):
-		pairs.append((l,y))
-	return pairs	
 	
 def normalize_data(data):
 	norm_matrix = []
@@ -189,6 +183,31 @@ def training(X,y):
 	run_training(X_train_3, y_train_3, X_test_3, y_test_3)
 	
 #########################################
+def testing(X_train,y_train):
+	print ("TRAIN, TEST - INITIAL + GENERATED DATA (+\-) \ 10")
+	
+	X_data = load_data("data_val.txt")
+	lat_labels_test = load_labels("labels_val.txt")
+	
+	mlb1 = MultiLabelBinarizer()
+	lat_labels_test.append(lat_labels)
+	bin_labels_test = mlb1.fit_transform(lat_labels_test)
+	bin_labels_test = bin_labels_test[:-1]
+
+	print ("initial data: ", np.array(X_data).shape)
+	val_ress = run_svd(X_data)
+	new_val_ress = reduce_data(val_ress)
+	print ("reduced data: ", np.array(new_val_ress).shape)
+	
+	X_test = []
+	for dat in new_val_ress:
+		X_test.extend(dat)
+	X_test = np.array(X_test)
+
+	print ("Learning...")
+	run_training(X_train, y_train, X_test, bin_labels_test)
+	
+#########################################
 def run_training(X_train, y_train, X_test, y_test):
 	def svm_cl_training(X_train, y_train, X_test, y_test):
 		svc = OneVsRestClassifier(LinearSVC(random_state=0)).fit(X_train, y_train)
@@ -225,42 +244,64 @@ def run_training(X_train, y_train, X_test, y_test):
 	bayes_cl_training(X_train, y_train, X_test, y_test)
 		
 #########################################
-def run_testing(X_train, y_train, X_test):
+def run_testing(X_train, y_train, X_test, mlb1):
 	def svm_cl_testing(X_train, y_train, X_test):
 		svc = OneVsRestClassifier(LinearSVC(random_state=0)).fit(X_train, y_train)
 		err_train = np.mean(y_train != svc.predict(X_train))
+		print ("svm train accuracy: ", 1 - err_train)
 		y_new = svc.predict(X_test)
+		y_labels = mlb1.inverse_transform(y_new)
 		txt_outfile = open("svm_new_labels.txt", 'w')
-		for y in y_new:
-			txt_outfile.write(y+"\n")
+		for y in y_labels:
+			if y:
+				txt_outfile.write(";".join(y)+"\n")
+			else:
+				txt_outfile.write("?\n")
 		txt_outfile.close()
 		
 	def knn_cl_testing(X_train, y_train, X_test):
 		knn = OneVsRestClassifier(KNeighborsClassifier(n_neighbors=3)).fit(X_train, y_train)
 		err_train = np.mean(y_train != knn.predict(X_train))
+		print ("knn train accuracy: ", 1 - err_train)		
 		y_new = knn.predict(X_test)
+		y_labels = mlb1.inverse_transform(y_new)
 		txt_outfile = open("knn_new_labels.txt", 'w')
-		for y in y_new:
-			txt_outfile.write(y+"\n")
+		for y in y_labels:
+			if y:
+				txt_outfile.write(";".join(y)+"\n")
+			else:
+				txt_outfile.write("?\n")
 		txt_outfile.close()
 		
 	def rf_cl_testing(X_train, y_train, X_test):
 		rf = OneVsRestClassifier(RandomForestClassifier(n_estimators=1000)).fit(X_train, y_train)
 		err_train = np.mean(y_train != rf.predict(X_train))
+		print ("rf train accuracy: ", 1 - err_train)
 		y_new = rf.predict(X_test)
+		y_labels = mlb1.inverse_transform(y_new)
 		txt_outfile = open("rf_new_labels.txt", 'w')
-		for y in y_new:
-			txt_outfile.write(y+"\n")
+		for y in y_labels:
+			if y:
+				txt_outfile.write(";".join(y)+"\n")
+			else:
+				txt_outfile.write("?\n")
 		txt_outfile.close()
+		
 		
 	def bayes_cl_testing(X_train, y_train, X_test):
 		gnb = OneVsRestClassifier(GaussianNB()).fit(X_train, y_train)
 		err_train = np.mean(y_train != gnb.predict(X_train))
+		print ("gnb train accuracy: ", 1 - err_train)
 		y_new = gnb.predict(X_test)
+		y_labels = mlb1.inverse_transform(y_new)
 		txt_outfile = open("gnb_new_labels.txt", 'w')
-		for y in y_new:
-			txt_outfile.write(y+"\n")
+		for y in y_labels:
+			if y:
+				txt_outfile.write(";".join(y)+"\n")
+			else:
+				txt_outfile.write("?\n")
 		txt_outfile.close()
+		
 	
 	svm_cl_testing(X_train, y_train, X_test)
 	knn_cl_testing(X_train, y_train, X_test)
@@ -286,7 +327,6 @@ def main():
 
 	mlb = LabelBinarizer()
 	bin_labels = mlb.fit_transform(lat_labels) 
-	int_labels = labels_to_int(bin_labels)
 	
 	print ("initial data: ", np.array(data).shape)
 	ress = run_svd(data)
@@ -296,34 +336,46 @@ def main():
 	X = []
 	for dat in new_ress:
 		X.extend(dat)
-	X = np.array(X)
-	
-	#training(X,bin_labels)
-	
-	print ("=======================")
-	print ("TRAIN, TEST - INITIAL + GENERATED DATA (+\-) \ 10")
-	X_train,y_train = generate_data(X,bin_labels,10)	
+	#X = np.array(X)
 	
 	X_data = load_data("data_val.txt")
 	lat_labels_test = load_labels("labels_val.txt")
-	
-	mlb1 = MultiLabelBinarizer()
-	lat_labels_test.append(lat_labels)
-	bin_labels_test = mlb1.fit_transform(lat_labels_test)
-	bin_labels_test = bin_labels_test[:-1]
-
 	print ("initial data: ", np.array(X_data).shape)
 	val_ress = run_svd(X_data)
 	new_val_ress = reduce_data(val_ress)
 	print ("reduced data: ", np.array(new_val_ress).shape)
 	
-	X_test = []
+	X_1= []
 	for dat in new_val_ress:
-		X_test.extend(dat)
-	X_test = np.array(X_test)
+		X_1.extend(dat)
+	#X_1 = np.array(X_1)
+	
+	X_1.extend(X)
+	X_1 = np.array(X_1)
+	ll = []
+	for l in lat_labels:
+		ll.append([l])
+	lat_labels_test.extend(ll)
+	mlb1 = MultiLabelBinarizer()
+	bin_y =  mlb1.fit_transform(lat_labels_test) 
+	bin_y_lar =  mlb1.inverse_transform(bin_y) 
 
-	print ("Learning...")
-	run_training(X_train, y_train, X_test, bin_labels_test)
+	X_data_new = load_data("data_test.txt")
+	print ("initial data: ", np.array(X_data_new).shape)
+	val_ress_new = run_svd(X_data_new)
+	new_val_ress_new = reduce_data(val_ress_new)
+	print ("reduced data: ", np.array(new_val_ress_new).shape)
+	
+	X_new = []
+	for dat in new_val_ress_new:
+		X_new.extend(dat)
+		
+	#training(X,bin_labels)
+	#X_train,y_train = generate_data(X,bin_labels,10)	
+	#testing(X_train,y_train)
+	
+	run_testing(X_1, bin_y, X_new,mlb1)
+
 
 if __name__ == "__main__":
 	main()		
