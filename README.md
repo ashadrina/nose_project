@@ -1,2 +1,1 @@
-# nose_project
-'Nose' team repo
+Data analisys on artificial odor system

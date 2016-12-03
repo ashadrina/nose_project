@@ -1,0 +1,36 @@
+data_train.txt labels_train.txt
+
+['azetal_degid', 'azetal_degid', 'azetal_degid', 'azetal_degid', 'azeton', 'azeton', 'azeton', 'benzin', 'benzol', 'benzol', 'benzol', 'benzol', 'butanol', 'butilazetat', 'geksan', 'dioktilftalat', 'dioktilftalat', 'dioktilftalat', 'dioktilftalat', 'dioktilftalat', 'dioktilftalat', 'dioktilftalat', 'dioktilftalat', 'dioktilftalat', 'izobutanol', 'izopropanol', 'plastizol_', 'plastizol_', 'propanol', 'stirol', 'toluol', 'fenol', 'etilazetat', 'etilazetat', 'etilazetat', 'etilazetat']
+
+initial data:  (36, 8, 121)
+reduced data:  (36, 1, 121)
+
+AFFINITY PROPAGAITION
+* Number of classes: 16
+* Estimated number of clusters: 18
+* Homogeneity: 0.710
+* Completeness: 0.637
+* V-measure: 0.672
+* Adjusted Rand Index: 0.028
+* Adjusted Mutual Information: 0.048
+* Silhouette Coefficient: 0.606
+==================
+DBSCAN
+* Number of classes: 16
+* Estimated number of clusters: 2
+* Homogeneity: 0.222
+* Completeness: 0.517
+* V-measure: 0.310
+* Adjusted Rand Index: 0.041
+* Adjusted Mutual Information: 0.033
+* Silhouette Coefficient: 0.570
+==================
+MEAN SHIFT
+* Number of classes: 16
+* Estimated number of clusters: 5
+* Homogeneity: 0.294
+* Completeness: 0.576
+* V-measure: 0.389
+* Adjusted Rand Index: 0.031
+* Adjusted Mutual Information: 0.049
+* Silhouette Coefficient: 0.599

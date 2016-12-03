@@ -1,0 +1,15 @@
+data_train.txt labels_train.txt
+16
+initial data:  (36, 8, 121)
+reduced data:  (36, 1, 121)
+=======================
+TRAIN, TEST - INITIAL + GENERATED DATA (+\-) \ 10
+(416, 121)
+(416, 16)
+initial data:  (4, 8, 121)
+reduced data:  (4, 1, 121)
+Learning...
+svm accuracy:  0.836688701923 0.875
+knn accuracy:  0.987980769231 0.8125
+rf accuracy:  1.0 0.8125
+gnb accuracy:  0.836538461538 0.828125

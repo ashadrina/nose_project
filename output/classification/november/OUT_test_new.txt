@@ -1,0 +1,10 @@
+initial data:  (36, 8, 121)
+generated data:  (13792, 8, 121)
+reduced data:  (13792, 1, 121)
+initial data:  (4, 8, 121)
+reduced data:  (4, 1, 121)
+
+svm accuracy:  0.90469112529 0.9375
+knn accuracy:  1.0 0.90625
+rf accuracy:  1.0 0.90625
+gnb accuracy:  0.936974332947 0.875
