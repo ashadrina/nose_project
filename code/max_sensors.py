@@ -84,30 +84,30 @@ def data_to_file(OUT_FILE, lat_labels, maxlist):
 #########################	##
 
 def main():
-    X_train = np.array(load_data("data_train.txt"))
-    lat_labels = np.array(load_labels("rus/labels_train.txt"))
+    X_train = np.array(load_data("data/data_train.txt"))
+    lat_labels = np.array(load_labels("data/labels_train.txt"))
     print (len(set(lat_labels)))
     print ("initial data: ", np.array(X_train).shape)
    
     print ("Train: ", X_train.shape, np.array(lat_labels).shape)   
     trainmax = get_max(X_train)
-    data_to_file("max/train.txt", lat_labels, trainmax)
+    data_to_file("output/max/train.txt", lat_labels, trainmax)
     
-    X_test = np.array(load_data("data_val.txt"))
-    lat_labels_test = np.array(load_labels("rus/labels_val.txt"))
+    X_test = np.array(load_data("data/data_test.txt"))
+    lat_labels_test = np.array(load_labels("data/labels_test.txt"))
     print ("initial data: ", np.array(X_test).shape)
 
     print ("Test: ", X_test.shape, lat_labels_test.shape)	    
     testmax = get_max(X_test)
-    data_to_file("max/test.txt", lat_labels_test, testmax)
+    data_to_file("output/max/test.txt", lat_labels_test, testmax)
     
-    X_new = np.array(load_data("data_test.txt"))
-    lat_labels_new = np.array(load_labels("test_names.txt"))
+    X_new = np.array(load_data("data/data_new.txt"))
+    lat_labels_new = np.array(load_labels("data/new_names.txt"))
     print ("initial data: ", np.array(X_new).shape, np.array(lat_labels_new).shape)
 
     print ("New: ", X_new.shape)	
     newmax = get_max(X_new)
-    data_to_file("max/new.txt", lat_labels_new, newmax)
+    data_to_file("output/max/new.txt", lat_labels_new, newmax)
 	
 if __name__ == "__main__":
 	main()		

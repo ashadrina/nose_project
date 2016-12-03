@@ -69,7 +69,8 @@ def create_train_labels(in_file, OUT_FILE_LABEL):
 	cyr_label = str(in_file.split(".")[0].split(" ")[0])
 	res = cyrillic2latin(cyr_label.replace("\n",""))
 	txt_outfile.write(res+"\n")
-
+	txt_outfile.close()
+	
 def create_val_labels(header, OUT_FILE_LABEL):
 	head_str = header[0][1]
 	h1 = head_str.split("и")[0].strip()
@@ -118,6 +119,7 @@ def main():
 		local_files = load_local_directory(local_path)
 		for in_file in local_files:
 			header,sensors,col_names,data=load_xls(local_path+"\\\\"+in_file)
+			print (header[0][1])
 			if (np.array(data).shape) != (121,9):
 				print("PANIC!!! ", (np.array(data).shape) )
 			else:
