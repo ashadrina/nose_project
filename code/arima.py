@@ -3,6 +3,8 @@ import sys
 import numpy as np
 from sklearn.preprocessing import LabelBinarizer
 from sklearn.preprocessing import MultiLabelBinarizer
+import matplotlib.pyplot as plt
+from statsmodels.tsa.arima_model import ARIMA
 
 def load_data(in_file):
 	input_f = open(in_file, "r")
@@ -43,46 +45,49 @@ def labels_to_int(labels):
 
 ##########################
 
-def data_to_file(OUT_FILE, lat_labels, maxlist):
+def data_to_file(OUT_FILE, lat_labels,  maxlist):
     txt_outfile = open(OUT_FILE, 'w')	
     for lab, ll in zip(lat_labels, maxlist):
         rr = [lab, ":", " ".join([str(l) for l in ll]), "\n"]
         res = ' '.join(str(i) for i in rr)
         txt_outfile.write(res)
     txt_outfile.close()
-
+    
 ###########################	
 # python clustering.py 
 #https://www.analyticsvidhya.com/blog/2016/02/time-series-forecasting-codes-python/ 
 #http://statsmodels.sourceforge.net/0.6.0/generated/statsmodels.tsa.arima_model.ARIMA.html
 #http://www.seanabu.com/2016/03/22/time-series-seasonal-ARIMA-model-in-python/
-#########################	##
+###########################
 
 def main():
-    X_train = np.array(load_data("data/data_train.txt"))
+    # X_train = np.array(load_data("data/data_train.txt"))
     lat_labels = np.array(load_labels("data/labels_train.txt"))
-    print (len(set(lat_labels)))
-    print ("initial data: ", np.array(X_train).shape)
+    # #rus_labels = np.array(load_labels("data/rus/labels_train.txt"))
+    # #print (len(set(lat_labels)), len(set(rus_labels)))
+    # print ("initial data: ", np.array(X_train).shape)
 
-    ##transform labels
-    mlb = LabelBinarizer()
-    y_train = mlb.fit_transform(lat_labels) 
+    # transform labels
+    # mlb = LabelBinarizer()
+    # y_train = mlb.fit_transform(lat_labels) 
 
-    print ("Train: ", X_train.shape, np.array(y_train).shape)   
-   # regr_coeff_train = regr(X_train, y_train)
-    #   data_to_file("output/regr/train.txt", y_train, regr_coeff_train)
+    # print ("Train: ", X_train.shape, np.array(y_train).shape)  
+    # regr_coeff_train = regr(X_train, y_train)
+    # data_to_file("output/regr/train.txt", y_train, regr_coeff_train)
     ###################################3 
     X_test = np.array(load_data("data/data_test.txt"))
     lat_labels_test = load_labels("data/labels_test.txt")
+    #rus_labels_test = np.array(load_labels("data/rus/labels_train.txt"))
+    #print (len(set(lat_labels_test)), len(set(rus_labels_test)))
     print ("initial data: ", np.array(X_test).shape)
 
-    mlb1 = MultiLabelBinarizer()
-    lat_labels_test.append(lat_labels)
-    bin_labels_test = mlb1.fit_transform(lat_labels_test)
-    y_test = bin_labels_test[:-1]
+    # mlb1 = MultiLabelBinarizer()
+    # lat_labels_test.append(lat_labels)
+    # bin_labels_test = mlb1.fit_transform(lat_labels_test)
+    # y_test = bin_labels_test[:-1]
 
-    print ("Test: ", X_test.shape, y_test.shape)	    
-    #regr_coeff_test = regr(X_test, y_test)
+    print ("Test: ", X_test.shape, np.array(lat_labels_test).shape)	    
+    #  regr_coeff_test = regr(X_test, y_test)
     #  data_to_file("output/regr/test.txt", y_test, regr_coeff_test)
     #############################################   
     #   X_new = np.array(load_data("data/data_new.txt"))
