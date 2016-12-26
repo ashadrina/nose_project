@@ -349,8 +349,8 @@ def run_testing(X_train, y_train, X_test, mlb1):
 #########################	##
 
 def main():
-	data = load_data("data_train.txt")
-	lat_labels = load_labels("labels_train.txt")
+	data = load_data("C:/Users/abelova/Desktop/hse/nis/nose/nose_project/data/data_train.txt")
+	lat_labels = load_labels("C:/Users/abelova/Desktop/hse/nis/nose/nose_project/data/labels_train.txt")
 	print (len(set(lat_labels)))
 	print ("initial data: ", np.array(data).shape)
 	
