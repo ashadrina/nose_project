@@ -1,31 +1,25 @@
 import os 
 import sys
 import numpy as np
-from sklearn.preprocessing import LabelBinarizer
-from sklearn.preprocessing import MultiLabelBinarizer
-import matplotlib.pyplot as plt
-from scipy import stats
 import pandas as pd
-from collections import OrderedDict
+import scipy
+from scipy import stats
+
 import matplotlib.pyplot as plt
+from collections import OrderedDict
 
-from statsmodels.graphics.api import qqplot
-
-import statsmodels.api as sm    
-from statsmodels.tsa.stattools import adfuller
 import statsmodels.api as sm  
+from statsmodels.graphics.api import qqplot
+from statsmodels.tsa.stattools import adfuller
 from statsmodels.tsa.stattools import acf  
 from statsmodels.tsa.stattools import pacf
-from statsmodels.tsa.seasonal import seasonal_decompose
-
 from statsmodels.tsa.arima_model import ARIMA
-from statsmodels.tsa.arima_model import ARMA
-from statsmodels.tsa.arima_model import ARMAResults
-from statsmodels.tsa.ar_model import AR
-from statsmodels.tsa.ar_model import ARResults
 
-import scipy
-from statsmodels.iolib.table import SimpleTable
+#from statsmodels.tsa.arima_model import ARMA
+#from statsmodels.tsa.arima_model import ARMAResults
+#from statsmodels.tsa.ar_model import AR
+#from statsmodels.tsa.ar_model import ARResults
+#from statsmodels.iolib.table import SimpleTable
 
 def load_data(in_file):
     input_f = open(in_file, "r")
@@ -36,6 +30,7 @@ def load_data(in_file):
             samples = l.split(";")
             channels.append([float(i) for i in samples])
         matrix.append(channels)
+        del channels
     input_f.close()
     return matrix
 
@@ -163,7 +158,6 @@ def test_stationarity(X_train, labels, folder_name):
             std = plt.plot(rolstd, color='black', label = 'Rolling Std')
             plt.legend(loc='best')
             plt.title('Rolling Mean & Standard Deviation')
-            #plt.show()
             print (folder_name+"/"+m_name+"_"+str(ind)+"/"+sensors[i]+"_"+".png",)
             try:
                 os.stat(folder_name+"/"+m_name+"_"+str(ind))
@@ -198,7 +192,6 @@ def a_dickey_fully_test(X_train, labels, out_file, stat_flag):
   
 def a_dickey_fully_test_analisys(in_file):
     df = pd.read_csv(in_file,";",header=0)
-    #print (df.loc[df['Stationarity'] != 1 ])
     if len(df.loc[df['Stationarity'] != 1 ]) > 0:
         print ("There are "+str(len(df.loc[df['Stationarity'] != 1]))+" non-stationary time series!")
         return 1
@@ -209,33 +202,42 @@ def stationarize(vec):
     r = list(np.log(vec))
     return r
 
-def arima_find_best(X_train, labels):
-    best_dict = {}
+def arima_find_best(X_train, labels, out_file):
+    #best_dict = {}
     e = 1
     sensors = ["S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8"] 
     print ("ARIMA parameters estimation...")
+    txt_outfile = open(out_file, 'w')
+    txt_outfile.write("Chemical;Sensor;p;d;q;AIC\n")
+    txt_outfile.close()
     for matr,m_name,ind in zip(X_train,labels,range(len(labels))):
         print (m_name)
         for i in range(len(matr)):    
             armodel = ARIMA(matr[i], (0,0,0)).fit(solver='newton')
             best = [(0,0,0), armodel.aic]
-            for p in range(0,4) :
-                for d in range(0,4) :
-                    for q in range(0,4) :
+            del armodel
+            for p in range(0,3):
+                for d in range(0,2):
+                    for q in range(0,3):
                         try:
                             armodel = ARIMA(matr[i], (p,d,q)).fit(solver='newton')
                             if armodel.aic < best[1]:
-                                best = [(p,d,q), armodel.aic]
+                                best = [[p,d,q], armodel.aic]
                         except ValueError:
                             e = 1
                             #print ("AR or MA non stationary")
                         except np.linalg.linalg.LinAlgError:
                             e = 1
                             #print ("Singular matrix")
-            k = m_name+"_"+str(ind+1)+sensors[i]
-            best_dict[k] = best
-            #print ("BEST: ", best)
-    return best_dict
+            output = [m_name+"_"+str(ind+1), sensors[i], str(best[0][0]), str(best[0][1]), str(best[0][2]), str(best[1])]
+            txt_outfile = open(out_file, 'a')
+            txt_outfile.write(";".join(output)+"\n")
+            txt_outfile.close()
+            #best_dict[k] = best
+            del best
+            del armodel
+    #return best_dict
+    
 
 def data_to_file(OUT_FILE, lat_labels,  maxlist):
     txt_outfile = open(OUT_FILE, 'w')
@@ -264,41 +266,33 @@ def stats_to_file(OUT_FILE, output):
 def main():
     X_train = np.array(load_data("data/data_train.txt"))
     lat_labels = np.array(load_labels("data/labels_train.txt"))
-    # #rus_labels = np.array(load_labels("data/rus/labels_train.txt"))
-    # #print (len(set(lat_labels)), len(set(rus_labels)))
-    print ("initial data: ", np.array(X_train).shape)
+    print ("initial data: ", X_train.shape)
     
     #norm_test(X_train, lat_labels, "graphs/norm")
     #jarque_bera_test(X_train, lat_labels)
     #jarque_bera_test_analisys("jarque_bera.txt")
-    ##fit_distribution(X_train[:3], lat_labels, "graphs/distr")
-    
+    ##fit_distribution(X_train[:3], lat_labels, "graphs/distr") #DO NOT UNCOMMENT
     #test_stationarity(X_train, lat_labels, "graphs/stat")
-    #print (np.array(X_train).shape)
     #X_train_stat = a_dickey_fully_test(X_train, lat_labels, "adf_protocol.txt", 1)
     #ret = a_dickey_fully_test_analisys("adf_protocol.txt")
-    #if ret == 1:
-        #print (np.array(X_train_stat).shape)
-        #r2 = a_dickey_fully_test(X_train_stat, lat_labels, "adf_protocol_stat.txt", 0)
-        #ret2 = a_dickey_fully_test_analisys("adf_protocol_stat.txt")
-        #print (ret2)
+    
+    ##if ret == 1: #DO NOT UNCOMMENT
+        ##print (np.array(X_train_stat).shape)
+        ##r2 = a_dickey_fully_test(X_train_stat, lat_labels, "adf_protocol_stat.txt", 0)
+        ##ret2 = a_dickey_fully_test_analisys("adf_protocol_stat.txt")
+        ##print (ret2)
      
     #autocorr(X_train, lat_labels, "graphs/auto")    
-    res = arima_find_best(X_train, lat_labels)
-    for k,v in res.items():
-        print (k, " - ", v)
+    arima_find_best(X_train, lat_labels, "arima_est.txt")
+    #for k,v in res.items():
+    #    print (k, " - ", v)
+    
     ###################################3 
     #X_test = np.array(load_data("data/data_test.txt"))
     #lat_labels_test = load_labels("data/labels_test.txt")
     #rus_labels_test = np.array(load_labels("data/rus/labels_train.txt"))
     #print (len(set(lat_labels_test)), len(set(rus_labels_test)))
     #print ("initial data: ", np.array(X_test).shape)
-
-    # mlb1 = MultiLabelBinarizer()
-    # lat_labels_test.append(lat_labels)
-    # bin_labels_test = mlb1.fit_transform(lat_labels_test)
-    # y_test = bin_labels_test[:-1]
-
     # print ("Test: ", X_test.shape, np.array(lat_labels_test).shape)	    
     #  regr_coeff_test = regr(X_test, y_test)
     #  data_to_file("output/regr/test.txt", y_test, regr_coeff_test)
@@ -306,7 +300,6 @@ def main():
     #   X_new = np.array(load_data("data/data_new.txt"))
     #   lat_labels_new = np.array(load_labels("data/test_names.txt"))
     #   print ("initial data: ", np.array(X_new).shape, np.array(lat_labels_new).shape)
-    #
     #    print ("New: ", X_new.shape)	
     #    regr_coeff_new = regr(X_new)
     #   # data_to_file("output/regr/new.txt", lat_labels_new, newmax)
