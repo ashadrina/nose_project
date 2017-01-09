@@ -21,6 +21,10 @@ from statsmodels.tsa.arima_model import ARIMA
 #from statsmodels.tsa.ar_model import ARResults
 #from statsmodels.iolib.table import SimpleTable
 
+import networkx
+import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
+
 def load_data(in_file):
     input_f = open(in_file, "r")
     matrix = []
@@ -142,6 +146,91 @@ def autocorr(X_train, labels, folder_name):
             plt.savefig(folder_name+"/"+m_name+"_"+str(ind)+"/"+sensors[i]+"_"+".png", dpi=100)
             plt.close('all')
 
+            
+def cross_corr(X_train, labels, folder_name):
+    sensors = ["S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8"] 
+    for matr,m_name,ind in zip(X_train,labels,range(len(labels))):
+        plt.clf()
+        plt.cla()
+        corr = np.corrcoef(matr)
+        graph = networkx.from_numpy_matrix(corr, create_using=networkx.Graph())
+        
+        labels = {}
+        for node,o_name in zip(graph.nodes(),sensors):
+            labels[node] = o_name
+
+        pos = networkx.circular_layout(graph)
+
+        networkx.draw_networkx_nodes(graph, pos, node_size=50, node_color='r', alpha=0.5)
+        elarge = [(u,v) for (u,v,d) in graph.edges(data=True) if d['weight'] > 0.9]
+        emid = [(u,v) for (u,v,d) in graph.edges(data=True) if d['weight'] > 0.3 and  d['weight'] <= 0.9 ]
+        esmall = [(u,v) for (u,v,d) in graph.edges(data=True) if d['weight'] > 0 and d['weight'] <= 0.3]
+        enlarge = [(u,v) for (u,v,d) in graph.edges(data=True) if d['weight'] >= -0.3 and d['weight'] < 0]
+        enmid = [(u,v) for (u,v,d) in graph.edges(data=True) if d['weight'] >= -0.9 and  d['weight'] < -0.3 ]
+        ensmall = [(u,v) for (u,v,d) in graph.edges(data=True) if d['weight'] < -0.9]
+
+        #plot edges
+        networkx.draw_networkx_edges(graph, pos, edgelist = elarge, width = 6, edge_color = '#8B0000')
+        networkx.draw_networkx_edges(graph, pos, edgelist = emid, width = 5, edge_color = '#FF4500')
+        networkx.draw_networkx_edges(graph, pos, edgelist = esmall, width = 4, alpha = 0.5, edge_color='#FF7F50')
+        networkx.draw_networkx_edges(graph, pos, edgelist = enlarge, width = 3, edge_color = '#40E0D0')
+        networkx.draw_networkx_edges(graph, pos, edgelist = enmid, width = 2, edge_color = '#0000FF')
+        networkx.draw_networkx_edges(graph, pos, edgelist = ensmall, width = 1, alpha = 0.5, edge_color='#000080')
+
+        # labels
+        networkx.draw_networkx_labels(graph,pos,labels,font_size=20,font_color='green')
+
+        plt.title(str(m_name)+", "+str(ind), fontsize=14, fontweight='bold')
+        plt.axis('off')
+
+        max_pos_patch = mpatches.Patch(color='#8B0000')
+        mid_pos_patch = mpatches.Patch(color='#FF4500')
+        min_pos_patch = mpatches.Patch(color='#FF7F50')
+        max_neg_patch = mpatches.Patch(color='#000080')
+        mid_neg_patch = mpatches.Patch(color='#0000FF')
+        min_neg_patch = mpatches.Patch(color='#40E0D0')
+
+        lgd = plt.legend([max_pos_patch, mid_pos_patch, min_pos_patch, min_neg_patch, mid_neg_patch, max_neg_patch], ['corr > 0.9','0.3 < corr <= 0.9','0 < corr <= 0.3','-0.3 <= corr < 0', '-0.9 <= corr < -0.3', 'corr < -0.9'], loc='center left', bbox_to_anchor=(1, 0.5))
+        print (folder_name+"/"+m_name+"_"+str(ind)+".jpeg")
+        try:
+            os.stat(folder_name)
+        except:
+            os.mkdir(folder_name) 
+        plt.savefig(folder_name+"/"+m_name+"_"+str(ind)+".jpeg", dpi=300, format='jpeg', bbox_extra_artists=(lgd,), bbox_inches='tight')
+        #plt.show()
+        plt.close('all')
+
+def fit_polynom(X_train, labels, N, folder_name):
+    sensors = ["S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8"] 
+    for matr,m_name,ind in zip(X_train,labels,range(len(labels))):
+        plt.clf()
+        plt.cla()
+        for i in range(len(matr)):
+            vec = matr[i]
+            L = len(vec)            
+            T = 1/250.0       
+            t = np.linspace(1,L,L)*T   
+            xx = np.asarray(t)
+            yy = np.asarray(vec)
+            z = np.asarray(np.polyfit(xx, yy, N))
+            ff = np.poly1d(z)
+            x_new = np.linspace(xx[0], xx[-1], len(xx))
+            y_new = ff(x_new)
+            
+            #figure(figsize=[18, 5])
+            plt.plot (y_new, lw=2)
+        plt.legend(sensors, loc='best') 
+        plt.title(m_name+"_"+str(ind)) 
+        plt.xlabel('Time (sec)')
+        plt.ylabel('dF')
+        print (folder_name+"/"+m_name+"_"+str(ind)+".png")
+        try:
+            os.stat(folder_name)
+        except:
+            os.mkdir(folder_name) 
+        plt.savefig(folder_name+"/"+m_name+"_"+str(ind)+".png", dpi = 100, bbox_inches='tight', pad_inches=0)
+        plt.close('all')
+
 def test_stationarity(X_train, labels, folder_name):
     sensors = ["S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8"] 
     for matr,m_name,ind in zip(X_train,labels,range(len(labels))):
@@ -170,7 +259,7 @@ def test_stationarity(X_train, labels, folder_name):
     
 def a_dickey_fully_test(X_train, labels, out_file, stat_flag):
     sensors = ["S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8"] 
-    stat = []
+    #stat = []
     txt_outfile = open(out_file, 'w')
     txt_outfile.write("Chemical;Sensor;UnitRoot;Stationarity\n")
     for matr,m_name,ind in zip(X_train,labels,range(len(labels))):
@@ -188,7 +277,7 @@ def a_dickey_fully_test(X_train, labels, out_file, stat_flag):
             txt_outfile.write(";".join(adf_res)+"\n")
         if stat_flag == 1: stat.append(new_matr)
     txt_outfile.close()
-    return stat
+    #return stat
   
 def a_dickey_fully_test_analisys(in_file):
     df = pd.read_csv(in_file,";",header=0)
@@ -267,26 +356,24 @@ def main():
     X_train = np.array(load_data("data/data_train.txt"))
     lat_labels = np.array(load_labels("data/labels_train.txt"))
     print ("initial data: ", X_train.shape)
-    
+    #cross_corr(X_train, lat_labels, "graphs/crosscorr")
+    fit_polynom(X_train, lat_labels, 5, "graphs/poly")
     #norm_test(X_train, lat_labels, "graphs/norm")
     #jarque_bera_test(X_train, lat_labels)
-    #jarque_bera_test_analisys("jarque_bera.txt")
+    #jarque_bera_test_analisys("jarque_bera.txt")   
+    #a_dickey_fully_test(X_train, lat_labels, "adf_protocol.txt", 0)
+    #ret = a_dickey_fully_test_analisys("adf_protocol.txt")
+    #autocorr(X_train, lat_labels, "graphs/auto")    
+    #arima_find_best(X_train, lat_labels, "arima_est.txt")
+    
     ##fit_distribution(X_train[:3], lat_labels, "graphs/distr") #DO NOT UNCOMMENT
     #test_stationarity(X_train, lat_labels, "graphs/stat")
-    #X_train_stat = a_dickey_fully_test(X_train, lat_labels, "adf_protocol.txt", 1)
-    #ret = a_dickey_fully_test_analisys("adf_protocol.txt")
-    
     ##if ret == 1: #DO NOT UNCOMMENT
         ##print (np.array(X_train_stat).shape)
         ##r2 = a_dickey_fully_test(X_train_stat, lat_labels, "adf_protocol_stat.txt", 0)
         ##ret2 = a_dickey_fully_test_analisys("adf_protocol_stat.txt")
         ##print (ret2)
-     
-    #autocorr(X_train, lat_labels, "graphs/auto")    
-    arima_find_best(X_train, lat_labels, "arima_est.txt")
-    #for k,v in res.items():
-    #    print (k, " - ", v)
-    
+         
     ###################################3 
     #X_test = np.array(load_data("data/data_test.txt"))
     #lat_labels_test = load_labels("data/labels_test.txt")
