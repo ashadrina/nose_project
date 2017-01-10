@@ -6,6 +6,7 @@ import scipy
 from scipy import stats
 
 import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
 from collections import OrderedDict
 
 import statsmodels.api as sm  
@@ -15,15 +16,8 @@ from statsmodels.tsa.stattools import acf
 from statsmodels.tsa.stattools import pacf
 from statsmodels.tsa.arima_model import ARIMA
 
-#from statsmodels.tsa.arima_model import ARMA
-#from statsmodels.tsa.arima_model import ARMAResults
-#from statsmodels.tsa.ar_model import AR
-#from statsmodels.tsa.ar_model import ARResults
-#from statsmodels.iolib.table import SimpleTable
-
 import networkx
-import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
+
 
 def load_data(in_file):
     input_f = open(in_file, "r")
@@ -75,11 +69,15 @@ def norm_test(X_train, labels, folder_name):
             row[1].set_title(sensors[i+1])
         plt.suptitle("Normality test for "+m_name, size=16)
         #plt.show()
+        try:
+            os.stat(folder_name)
+        except:
+            os.mkdir(folder_name) 
         print (folder_name+"/"+m_name+"_"+str(ind)+".png")
         plt.savefig(folder_name+"/"+m_name+"_"+str(ind)+".png", dpi=100)
         plt.close('all')
 
-def jarque_bera_test(X_train, labels):
+def jarque_bera_test(X_train, labels,outname):
     res_dict = {}
     for matr,m_name,ind in zip(X_train,labels,range(len(labels))):
         for y in matr:
@@ -93,7 +91,7 @@ def jarque_bera_test(X_train, labels):
     row =  [u'Chemical', "Sensor", u'JB', u'p-value', u'skew', u'kurtosis'] 
     sensors = ["S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8"]  
     chemicals = list(res_dict.keys())
-    txt_outfile = open("jarque_bera.txt", 'w')
+    txt_outfile = open(outname, 'w')
     txt_outfile.write(";".join(row)+"\n")
     res_dict_ordered = OrderedDict(sorted(res_dict.items(), key=lambda t: t[0]))
     for values,name in zip(list(res_dict_ordered.values()),chemicals):
@@ -105,7 +103,7 @@ def jarque_bera_test(X_train, labels):
     txt_outfile.close()
 
 def jarque_bera_test_analisys(in_file):
-    df = pd.read_csv(in_file,";",header=0)
+    df = pd.read_csv(in_file,";",header=0, encoding="cp1251")
     if len(df.loc[df['p-value'] > 0.05]) > 0:
         print ("There are "+str(len(df.loc[df['p-value'] > 0.05]))+" time series with not normal distribution!")
     
@@ -138,12 +136,17 @@ def autocorr(X_train, labels, folder_name):
             s = matr[i]
             sm.graphics.tsa.plot_acf(s, lags=120, ax=axes[0])
             sm.graphics.tsa.plot_pacf(s, lags=120, ax=axes[1])
-            print (folder_name+"/"+m_name+"_"+str(ind)+"_"+sensors[i]+"_"+".png")
+            print (folder_name+"/"+m_name+"_"+str(ind)+"/"+sensors[i]+".png")
+            try:
+                os.stat(folder_name)
+            except:
+                os.mkdir(folder_name) 
+                
             try:
                 os.stat(folder_name+"/"+m_name+"_"+str(ind))
             except:
                 os.mkdir(folder_name+"/"+m_name+"_"+str(ind)) 
-            plt.savefig(folder_name+"/"+m_name+"_"+str(ind)+"/"+sensors[i]+"_"+".png", dpi=100)
+            plt.savefig(folder_name+"/"+m_name+"_"+str(ind)+"/"+sensors[i]+".png", dpi=100)
             plt.close('all')
 
             
@@ -161,7 +164,7 @@ def cross_corr(X_train, labels, folder_name):
 
         pos = networkx.circular_layout(graph)
 
-        networkx.draw_networkx_nodes(graph, pos, node_size=50, node_color='r', alpha=0.5)
+        networkx.draw_networkx_nodes(graph, pos, node_size=800, node_color='r', alpha=0.8)
         elarge = [(u,v) for (u,v,d) in graph.edges(data=True) if d['weight'] > 0.9]
         emid = [(u,v) for (u,v,d) in graph.edges(data=True) if d['weight'] > 0.3 and  d['weight'] <= 0.9 ]
         esmall = [(u,v) for (u,v,d) in graph.edges(data=True) if d['weight'] > 0 and d['weight'] <= 0.3]
@@ -178,7 +181,7 @@ def cross_corr(X_train, labels, folder_name):
         networkx.draw_networkx_edges(graph, pos, edgelist = ensmall, width = 1, alpha = 0.5, edge_color='#000080')
 
         # labels
-        networkx.draw_networkx_labels(graph,pos,labels,font_size=20,font_color='green')
+        networkx.draw_networkx_labels(graph,pos,labels,font_size=20,font_color='white')
 
         plt.title(str(m_name)+", "+str(ind), fontsize=14, fontweight='bold')
         plt.axis('off')
@@ -228,7 +231,7 @@ def fit_polynom(X_train, labels, N, folder_name):
             os.stat(folder_name)
         except:
             os.mkdir(folder_name) 
-        plt.savefig(folder_name+"/"+m_name+"_"+str(ind)+".png", dpi = 100, bbox_inches='tight', pad_inches=0)
+        plt.savefig(folder_name+"/"+m_name+"_"+str(ind)+".png", dpi = 300, bbox_inches='tight')#, pad_inches=0)
         plt.close('all')
 
 def test_stationarity(X_train, labels, folder_name):
@@ -247,12 +250,16 @@ def test_stationarity(X_train, labels, folder_name):
             std = plt.plot(rolstd, color='black', label = 'Rolling Std')
             plt.legend(loc='best')
             plt.title('Rolling Mean & Standard Deviation')
-            print (folder_name+"/"+m_name+"_"+str(ind)+"/"+sensors[i]+"_"+".png",)
+            print (folder_name+"/"+m_name+"_"+str(ind)+"/"+sensors[i]+".png")
+            try:
+                os.stat(folder_name)
+            except:
+                os.mkdir(folder_name) 
             try:
                 os.stat(folder_name+"/"+m_name+"_"+str(ind))
             except:
                 os.mkdir(folder_name+"/"+m_name+"_"+str(ind)) 
-            plt.savefig(folder_name+"/"+m_name+"_"+str(ind)+"/"+sensors[i]+"_"+".png", dpi=100)
+            plt.savefig(folder_name+"/"+m_name+"_"+str(ind)+"/"+sensors[i]+".png", dpi=100)
             plt.close('all')
             #stats_to_file(folder_name+"/"+m_name+"_"+str(ind)+"/"+sensors[i]+".txt", dfoutput)
 
@@ -268,11 +275,11 @@ def a_dickey_fully_test(X_train, labels, out_file, stat_flag):
             dftest = adfuller(matr[i], autolag='AIC')
             if dftest[0] > dftest[4]['5%']: 
                 if stat_flag == 0: print (m_name+": unit roots - YES, stationarity - NO"+"\n")
-                adf_res = [m_name+"_"+str(ind+1), sensors[i], "1", "0"]
+                adf_res = [m_name+"_"+str(ind), sensors[i], "1", "0"]
                 if stat_flag == 1: new_matr.append(stationarize(matr[i]))
             else:
                 if stat_flag == 0: print (m_name+": unit root - NO, stationarity - YES"+"\n")
-                adf_res = [m_name+"_"+str(ind+1), sensors[i], "0", "1"]
+                adf_res = [m_name+"_"+str(ind), sensors[i], "0", "1"]
                 if stat_flag == 1: new_matr.append(matr[i])
             txt_outfile.write(";".join(adf_res)+"\n")
         if stat_flag == 1: stat.append(new_matr)
@@ -280,7 +287,7 @@ def a_dickey_fully_test(X_train, labels, out_file, stat_flag):
     #return stat
   
 def a_dickey_fully_test_analisys(in_file):
-    df = pd.read_csv(in_file,";",header=0)
+    df = pd.read_csv(in_file,";",header=0, encoding="cp1251")
     if len(df.loc[df['Stationarity'] != 1 ]) > 0:
         print ("There are "+str(len(df.loc[df['Stationarity'] != 1]))+" non-stationary time series!")
         return 1
@@ -293,7 +300,7 @@ def stationarize(vec):
 
 def arima_find_best(X_train, labels, out_file):
     #best_dict = {}
-    e = 1
+    e = 0
     sensors = ["S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8"] 
     print ("ARIMA parameters estimation...")
     txt_outfile = open(out_file, 'w')
@@ -316,9 +323,9 @@ def arima_find_best(X_train, labels, out_file):
                             e = 1
                             #print ("AR or MA non stationary")
                         except np.linalg.linalg.LinAlgError:
-                            e = 1
+                            e = 2
                             #print ("Singular matrix")
-            output = [m_name+"_"+str(ind+1), sensors[i], str(best[0][0]), str(best[0][1]), str(best[0][2]), str(best[1])]
+            output = [m_name+"_"+str(ind), sensors[i], str(best[0][0]), str(best[0][1]), str(best[0][2]), str(best[1])]
             txt_outfile = open(out_file, 'a')
             txt_outfile.write(";".join(output)+"\n")
             txt_outfile.close()
@@ -354,42 +361,63 @@ def stats_to_file(OUT_FILE, output):
 
 def main():
     X_train = np.array(load_data("data/data_train.txt"))
-    lat_labels = np.array(load_labels("data/labels_train.txt"))
+    lat_labels_train = np.array(load_labels("data/labels_train.txt"))
     print ("initial data: ", X_train.shape)
-    #cross_corr(X_train, lat_labels, "graphs/crosscorr")
-    fit_polynom(X_train, lat_labels, 5, "graphs/poly")
-    #norm_test(X_train, lat_labels, "graphs/norm")
-    #jarque_bera_test(X_train, lat_labels)
-    #jarque_bera_test_analisys("jarque_bera.txt")   
-    #a_dickey_fully_test(X_train, lat_labels, "adf_protocol.txt", 0)
-    #ret = a_dickey_fully_test_analisys("adf_protocol.txt")
-    #autocorr(X_train, lat_labels, "graphs/auto")    
-    #arima_find_best(X_train, lat_labels, "arima_est.txt")
+    #cross_corr(X_train, lat_labels_train, "graphs/crosscorr/train")
+    #fit_polynom(X_train, lat_labels_train, 5, "graphs/poly/train")
+    #norm_test(X_train, lat_labels_train, "graphs/norm/train")
+    #jarque_bera_test(X_train, lat_labels_train, "output/stats/jarque_bera_train.txt")
+    #jarque_bera_test_analisys("output/stats/jarque_bera_train.txt")   
+    #a_dickey_fully_test(X_train, lat_labels_train, "output/stats/adf_protocol_train.txt", 0)
+    #ret = a_dickey_fully_test_analisys("output/stats/adf_protocol_train.txt")
+    #autocorr(X_train, lat_labels_train, "graphs/auto/train")    
+    #arima_find_best(X_train, lat_labels_train, "output/stats/arima_est_train.txt")
+    #test_stationarity(X_train, lat_labels_train, "graphs/stat/train")
     
-    ##fit_distribution(X_train[:3], lat_labels, "graphs/distr") #DO NOT UNCOMMENT
-    #test_stationarity(X_train, lat_labels, "graphs/stat")
+    ##fit_distribution(X_train[:3], lat_labels_train, "graphs/distr") #DO NOT UNCOMMENT
     ##if ret == 1: #DO NOT UNCOMMENT
         ##print (np.array(X_train_stat).shape)
-        ##r2 = a_dickey_fully_test(X_train_stat, lat_labels, "adf_protocol_stat.txt", 0)
+        ##r2 = a_dickey_fully_test(X_train_stat, lat_labels_train, "adf_protocol_stat.txt", 0)
         ##ret2 = a_dickey_fully_test_analisys("adf_protocol_stat.txt")
         ##print (ret2)
          
-    ###################################3 
-    #X_test = np.array(load_data("data/data_test.txt"))
-    #lat_labels_test = load_labels("data/labels_test.txt")
-    #rus_labels_test = np.array(load_labels("data/rus/labels_train.txt"))
-    #print (len(set(lat_labels_test)), len(set(rus_labels_test)))
-    #print ("initial data: ", np.array(X_test).shape)
-    # print ("Test: ", X_test.shape, np.array(lat_labels_test).shape)	    
-    #  regr_coeff_test = regr(X_test, y_test)
-    #  data_to_file("output/regr/test.txt", y_test, regr_coeff_test)
+    ###################################
+    X_test = np.array(load_data("data/data_test.txt"))
+    lat_labels_list = load_labels("data/labels_test.txt")
+    rus_labels_test = np.array(load_labels("data/rus/labels_test.txt"))
+    # print ("initial data: ", np.array(X_test).shape)
+    # print (len(set(lat_labels_list)), len(set(rus_labels_test)))
+    # lat_labels_test = []
+    # for item in lat_labels_list:
+        # lat_labels_test.append("-".join(item))
+    # cross_corr(X_test, lat_labels_test, "graphs/crosscorr/test")
+    # fit_polynom(X_test, lat_labels_test, 5, "graphs/poly/test")
+    # norm_test(X_test, lat_labels_test, "graphs/norm/test")
+    # jarque_bera_test(X_test, lat_labels_test,"output/stats/jarque_bera_test.txt")
+    # jarque_bera_test_analisys("output/stats/jarque_bera_test.txt")   
+    # a_dickey_fully_test(X_test, lat_labels_test, "output/stats/adf_protocol_test.txt", 0)
+    # ret = a_dickey_fully_test_analisys("output/stats/adf_protocol_test.txt")
+    # autocorr(X_test, lat_labels_test, "graphs/auto/test")    
+    # arima_find_best(X_test, lat_labels_test, "output/stats/arima_est_test.txt")
+    # test_stationarity(X_test, lat_labels_test, "graphs/stat/test")
     #############################################   
-    #   X_new = np.array(load_data("data/data_new.txt"))
-    #   lat_labels_new = np.array(load_labels("data/test_names.txt"))
-    #   print ("initial data: ", np.array(X_new).shape, np.array(lat_labels_new).shape)
-    #    print ("New: ", X_new.shape)	
-    #    regr_coeff_new = regr(X_new)
-    #   # data_to_file("output/regr/new.txt", lat_labels_new, newmax)
+    X_new = np.array(load_data("data/data_new.txt"))
+    rus_labels_list = np.array(load_labels("data/new_names.txt"))
+    rus_labels_new = []
+    for lab in rus_labels_list:
+        rus_labels_new.append(lab.replace(" ", "_"))
+    print ("initial data: ", np.array(X_new).shape, np.array(rus_labels_new).shape)
+    print ("New: ", X_new.shape)     
+    #cross_corr(X_new, rus_labels_new, "graphs/crosscorr/new")
+    #fit_polynom(X_new, rus_labels_new, 5, "graphs/poly/new")
+    #norm_test(X_new, rus_labels_new, "graphs/norm/new")
+    #jarque_bera_test(X_new, rus_labels_new,"output/stats/jarque_bera_new.txt")
+    #jarque_bera_test_analisys("output/stats/jarque_bera_new.txt")   
+    #a_dickey_fully_test(X_new, rus_labels_new, "output/stats/adf_protocol_new.txt", 0)
+    #ret = a_dickey_fully_test_analisys("output/stats/adf_protocol_new.txt")
+    #autocorr(X_new, rus_labels_new, "graphs/auto/new")    
+    #arima_find_best(X_new, rus_labels_new, "output/stats/arima_est_new.txt")
+    test_stationarity(X_new, rus_labels_new, "graphs/stat/new")     
 
 if __name__ == "__main__":
     main()
