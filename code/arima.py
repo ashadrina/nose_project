@@ -10,6 +10,7 @@ import matplotlib.patches as mpatches
 from collections import OrderedDict
 
 import statsmodels.api as sm  
+import statsmodels.tsa.stattools
 from statsmodels.graphics.api import qqplot
 from statsmodels.tsa.stattools import adfuller
 from statsmodels.tsa.stattools import acf  
@@ -149,7 +150,23 @@ def autocorr(X_train, labels, folder_name):
             plt.savefig(folder_name+"/"+m_name+"_"+str(ind)+"/"+sensors[i]+".png", dpi=100)
             plt.close('all')
 
-            
+def autocorr_radius(X_train, labels, folder_name):
+    sensors = ["S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8"] 
+    outfile = open(folder_name, 'w')
+    for matr,m_name,ind in zip(X_train,labels,range(len(labels))):
+        for i in range(len(matr)):
+            autocorr=statsmodels.tsa.stattools.acf(matr[i], nlags=120)   
+            radius = 0
+            for item,num in zip(autocorr,range(1,len(autocorr))):
+                if (item > 0):
+                    continue
+                else:
+                    radius = num - 1
+                    break
+            res = m_name+"_"+str(ind)+";"+sensors[i]+";"+str(radius) + "\n"
+            outfile.write(res)
+    outfile.close()       
+     
 def cross_corr(X_train, labels, folder_name):
     sensors = ["S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8"] 
     for matr,m_name,ind in zip(X_train,labels,range(len(labels))):
@@ -371,6 +388,7 @@ def main():
     #a_dickey_fully_test(X_train, lat_labels_train, "output/stats/adf_protocol_train.txt", 0)
     #ret = a_dickey_fully_test_analisys("output/stats/adf_protocol_train.txt")
     #autocorr(X_train, lat_labels_train, "graphs/auto/train")    
+    autocorr_radius(X_train, lat_labels_train, "output/stats/radius_train.txt")
     #arima_find_best(X_train, lat_labels_train, "output/stats/arima_est_train.txt")
     #test_stationarity(X_train, lat_labels_train, "graphs/stat/train")
     
@@ -385,11 +403,11 @@ def main():
     X_test = np.array(load_data("data/data_test.txt"))
     lat_labels_list = load_labels("data/labels_test.txt")
     rus_labels_test = np.array(load_labels("data/rus/labels_test.txt"))
-    # print ("initial data: ", np.array(X_test).shape)
-    # print (len(set(lat_labels_list)), len(set(rus_labels_test)))
-    # lat_labels_test = []
-    # for item in lat_labels_list:
-        # lat_labels_test.append("-".join(item))
+    print ("initial data: ", np.array(X_test).shape)
+
+    lat_labels_test = []
+    for item in lat_labels_list:
+        lat_labels_test.append("-".join(item))
     # cross_corr(X_test, lat_labels_test, "graphs/crosscorr/test")
     # fit_polynom(X_test, lat_labels_test, 5, "graphs/poly/test")
     # norm_test(X_test, lat_labels_test, "graphs/norm/test")
@@ -398,6 +416,7 @@ def main():
     # a_dickey_fully_test(X_test, lat_labels_test, "output/stats/adf_protocol_test.txt", 0)
     # ret = a_dickey_fully_test_analisys("output/stats/adf_protocol_test.txt")
     # autocorr(X_test, lat_labels_test, "graphs/auto/test")    
+    autocorr_radius(X_test, lat_labels_test,"output/stats/radius_test.txt")
     # arima_find_best(X_test, lat_labels_test, "output/stats/arima_est_test.txt")
     # test_stationarity(X_test, lat_labels_test, "graphs/stat/test")
     #############################################   
@@ -406,6 +425,7 @@ def main():
     rus_labels_new = []
     for lab in rus_labels_list:
         rus_labels_new.append(lab.replace(" ", "_"))
+        
     print ("initial data: ", np.array(X_new).shape, np.array(rus_labels_new).shape)
     print ("New: ", X_new.shape)     
     #cross_corr(X_new, rus_labels_new, "graphs/crosscorr/new")
@@ -416,8 +436,9 @@ def main():
     #a_dickey_fully_test(X_new, rus_labels_new, "output/stats/adf_protocol_new.txt", 0)
     #ret = a_dickey_fully_test_analisys("output/stats/adf_protocol_new.txt")
     #autocorr(X_new, rus_labels_new, "graphs/auto/new")    
+    autocorr_radius(X_new, rus_labels_new, "output/stats/radius_new.txt")
     #arima_find_best(X_new, rus_labels_new, "output/stats/arima_est_new.txt")
-    test_stationarity(X_new, rus_labels_new, "graphs/stat/new")     
+    #test_stationarity(X_new, rus_labels_new, "graphs/stat/new")     
 
 if __name__ == "__main__":
     main()
