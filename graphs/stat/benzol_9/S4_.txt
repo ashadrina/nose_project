@@ -1,8 +1,0 @@
-Test Statistic                   5.068549
-p-value                          1.000000
-#Lags Used                       9.000000
-Number of Observations Used    111.000000
-Critical Value (5%)             -2.887952
-Critical Value (1%)             -3.490683
-Critical Value (10%)            -2.580857
-dtype: float64
