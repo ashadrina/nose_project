@@ -91,11 +91,10 @@ def jarque_bera_test(X_train, labels,outname):
         
     row =  [u'Chemical', "Sensor", u'JB', u'p-value', u'skew', u'kurtosis'] 
     sensors = ["S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8"]  
-    chemicals = list(res_dict.keys())
     txt_outfile = open(outname, 'w')
     txt_outfile.write(";".join(row)+"\n")
-    res_dict_ordered = OrderedDict(sorted(res_dict.items(), key=lambda t: t[0]))
-    for values,name in zip(list(res_dict_ordered.values()),chemicals):
+    res_dict_ordered = OrderedDict(sorted(res_dict.items()))
+    for name,values in res_dict_ordered.items():
         for r,s in zip(values,sensors):
             out = [name, s]
             out.extend(r)
@@ -152,7 +151,9 @@ def autocorr(X_train, labels, folder_name):
 
 def autocorr_radius(X_train, labels, folder_name):
     sensors = ["S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8"] 
+    row =  [u'Chemical', "Sensor", u'Radius'] 
     outfile = open(folder_name, 'w')
+    outfile.write(";".join(row)+"\n")
     for matr,m_name,ind in zip(X_train,labels,range(len(labels))):
         for i in range(len(matr)):
             autocorr=statsmodels.tsa.stattools.acf(matr[i], nlags=120)   
@@ -236,8 +237,6 @@ def fit_polynom(X_train, labels, N, folder_name):
             ff = np.poly1d(z)
             x_new = np.linspace(xx[0], xx[-1], len(xx))
             y_new = ff(x_new)
-            
-            #figure(figsize=[18, 5])
             plt.plot (y_new, lw=2)
         plt.legend(sensors, loc='best') 
         plt.title(m_name+"_"+str(ind)) 
@@ -316,7 +315,6 @@ def stationarize(vec):
     return r
 
 def arima_find_best(X_train, labels, out_file):
-    #best_dict = {}
     e = 0
     sensors = ["S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8"] 
     print ("ARIMA parameters estimation...")
@@ -346,12 +344,21 @@ def arima_find_best(X_train, labels, out_file):
             txt_outfile = open(out_file, 'a')
             txt_outfile.write(";".join(output)+"\n")
             txt_outfile.close()
-            #best_dict[k] = best
             del best
             del armodel
-    #return best_dict
     
-
+def generate_summary(hb, adf, rad, ar, outfile):  
+    hb_df = pd.read_csv(hb,";",header=0, encoding="cp1251")
+    adf_df = pd.read_csv(adf,";",header=0, encoding="cp1251")
+    adf_df = adf_df.drop('Chemical', 1)
+    rad_df = pd.read_csv(rad,";",header=0, encoding="cp1251")
+    rad_df = rad_df.drop('Chemical', 1)
+    ar_df = pd.read_csv(ar,";",header=0, encoding="cp1251")
+    ar_df = ar_df.drop('Chemical', 1)
+    frames = [hb_df, adf_df, rad_df, ar_df]
+    result = pd.concat(frames, axis=1, join='inner')
+    result.to_csv(outfile, sep=';', encoding='utf-8')
+    
 def data_to_file(OUT_FILE, lat_labels,  maxlist):
     txt_outfile = open(OUT_FILE, 'w')
     for lab, ll in zip(lat_labels, maxlist):
@@ -367,13 +374,6 @@ def stats_to_file(OUT_FILE, output):
     
 ###########################	
 # python clustering.py 
-#https://www.analyticsvidhya.com/blog/2016/02/time-series-forecasting-codes-python/ 
-#http://statsmodels.sourceforge.net/0.6.0/generated/statsmodels.tsa.arima_model.ARIMA.html
-#http://www.seanabu.com/2016/03/22/time-series-seasonal-ARIMA-model-in-python/
-
-#https://university.prognoz.ru/biu/ru/%D0%90%D0%B2%D1%82%D0%BE%D1%80%D0%B5%D0%B3%D1%80%D0%B5%D1%81%D1%81%D0%B8%D1%8F
-#https://university.prognoz.ru/biu/ru/Special:History?topicVersionId=807&topic=%D0%90%D0%9A%D0%A4_%D0%B8_%D0%A7%D0%90%D0%9A%D0%A4
-#http://www.legalmanager.ru/lems-835-1.html
 ###########################
 
 def main():
@@ -388,26 +388,22 @@ def main():
     #a_dickey_fully_test(X_train, lat_labels_train, "output/stats/adf_protocol_train.txt", 0)
     #ret = a_dickey_fully_test_analisys("output/stats/adf_protocol_train.txt")
     #autocorr(X_train, lat_labels_train, "graphs/auto/train")    
-    autocorr_radius(X_train, lat_labels_train, "output/stats/radius_train.txt")
+    #autocorr_radius(X_train, lat_labels_train, "output/stats/radius_train.txt")
     #arima_find_best(X_train, lat_labels_train, "output/stats/arima_est_train.txt")
     #test_stationarity(X_train, lat_labels_train, "graphs/stat/train")
     
-    ##fit_distribution(X_train[:3], lat_labels_train, "graphs/distr") #DO NOT UNCOMMENT
-    ##if ret == 1: #DO NOT UNCOMMENT
-        ##print (np.array(X_train_stat).shape)
-        ##r2 = a_dickey_fully_test(X_train_stat, lat_labels_train, "adf_protocol_stat.txt", 0)
-        ##ret2 = a_dickey_fully_test_analisys("adf_protocol_stat.txt")
-        ##print (ret2)
-         
+    ##fit_distribution(X_train[:3], lat_labels_train, "graphs/distr") #DO NOT UNCOMMENT     
+ 
+    generate_summary("output/stats/jarque_bera_train.txt", "output/stats/adf_protocol_train.txt", "output/stats/radius_train.txt", "output/stats/arima_est_train.txt", "output/stats/res_table_train.csv")
     ###################################
-    X_test = np.array(load_data("data/data_test.txt"))
-    lat_labels_list = load_labels("data/labels_test.txt")
-    rus_labels_test = np.array(load_labels("data/rus/labels_test.txt"))
-    print ("initial data: ", np.array(X_test).shape)
+    # X_test = np.array(load_data("data/data_test.txt"))
+    # lat_labels_list = load_labels("data/labels_test.txt")
+    # rus_labels_test = np.array(load_labels("data/rus/labels_test.txt"))
+    # print ("initial data: ", np.array(X_test).shape)
 
-    lat_labels_test = []
-    for item in lat_labels_list:
-        lat_labels_test.append("-".join(item))
+    # lat_labels_test = []
+    # for item in lat_labels_list:
+        # lat_labels_test.append("-".join(item))
     # cross_corr(X_test, lat_labels_test, "graphs/crosscorr/test")
     # fit_polynom(X_test, lat_labels_test, 5, "graphs/poly/test")
     # norm_test(X_test, lat_labels_test, "graphs/norm/test")
@@ -416,18 +412,20 @@ def main():
     # a_dickey_fully_test(X_test, lat_labels_test, "output/stats/adf_protocol_test.txt", 0)
     # ret = a_dickey_fully_test_analisys("output/stats/adf_protocol_test.txt")
     # autocorr(X_test, lat_labels_test, "graphs/auto/test")    
-    autocorr_radius(X_test, lat_labels_test,"output/stats/radius_test.txt")
+    # autocorr_radius(X_test, lat_labels_test,"output/stats/radius_test.txt")
     # arima_find_best(X_test, lat_labels_test, "output/stats/arima_est_test.txt")
     # test_stationarity(X_test, lat_labels_test, "graphs/stat/test")
+    generate_summary("output/stats/jarque_bera_test.txt", "output/stats/adf_protocol_test.txt", "output/stats/radius_test.txt", "output/stats/arima_est_test.txt", "output/stats/res_table_test.csv")
+
     #############################################   
-    X_new = np.array(load_data("data/data_new.txt"))
-    rus_labels_list = np.array(load_labels("data/new_names.txt"))
-    rus_labels_new = []
-    for lab in rus_labels_list:
-        rus_labels_new.append(lab.replace(" ", "_"))
+    # X_new = np.array(load_data("data/data_new.txt"))
+    # rus_labels_list = np.array(load_labels("data/new_names.txt"))
+    # rus_labels_new = []
+    # for lab in rus_labels_list:
+        # rus_labels_new.append(lab.replace(" ", "_"))
         
-    print ("initial data: ", np.array(X_new).shape, np.array(rus_labels_new).shape)
-    print ("New: ", X_new.shape)     
+    # print ("initial data: ", np.array(X_new).shape, np.array(rus_labels_new).shape)
+    # print ("New: ", X_new.shape)     
     #cross_corr(X_new, rus_labels_new, "graphs/crosscorr/new")
     #fit_polynom(X_new, rus_labels_new, 5, "graphs/poly/new")
     #norm_test(X_new, rus_labels_new, "graphs/norm/new")
@@ -436,9 +434,10 @@ def main():
     #a_dickey_fully_test(X_new, rus_labels_new, "output/stats/adf_protocol_new.txt", 0)
     #ret = a_dickey_fully_test_analisys("output/stats/adf_protocol_new.txt")
     #autocorr(X_new, rus_labels_new, "graphs/auto/new")    
-    autocorr_radius(X_new, rus_labels_new, "output/stats/radius_new.txt")
+    #autocorr_radius(X_new, rus_labels_new, "output/stats/radius_new.txt")
     #arima_find_best(X_new, rus_labels_new, "output/stats/arima_est_new.txt")
     #test_stationarity(X_new, rus_labels_new, "graphs/stat/new")     
+    #generate_summary("output/stats/jarque_bera_new.txt", "output/stats/adf_protocol_new.txt", "output/stats/radius_new.txt", "output/stats/arima_est_new.txt", "output/stats/res_table_new.csv")
 
 if __name__ == "__main__":
     main()
