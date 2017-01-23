@@ -1,3 +1,4 @@
+Chemical;Sensor;Radius
 dioktilftalat-azeton_0;S1;32
 dioktilftalat-azeton_0;S2;44
 dioktilftalat-azeton_0;S3;45

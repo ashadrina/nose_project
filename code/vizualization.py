@@ -47,28 +47,38 @@ def vizualize_data(data, labels, folder_name):
         plt.xlabel('Time (sec)')
         plt.ylabel('dF')
         #plt.show()
-        print (folder_name+"/"+m_name+"_"+str(ind)+".png")
-        plt.savefig(folder_name+"/"+m_name+"_"+str(ind)+".png")
+        
+        if type(m_name) is list:
+            mn = "_".join(m_name)
+            #print (folder_name+"/"+mn+"_"+str(ind)+".png")
+            plt.savefig(folder_name+"/"+mn+"_"+str(ind)+".png")
+        else:
+            #print (folder_name+"/"+m_name+"_"+str(ind)+".png")
+            plt.savefig(folder_name+"/"+m_name+"_"+str(ind)+".png")
         plt.close('all')
         
 def main():
     X_train = np.array(load_data("data/data_train.txt"))
-    lat_labels = np.array(load_labels("data/labels_train.txt"))
+    lat_labels_train = np.array(load_labels("data/labels_train.txt"))
     print ("initial data: ", np.array(X_train).shape)
-    print ("Train: ", X_train.shape, np.array(lat_labels).shape)   
-    vizualize_data(X_train, lat_labels, "graphs/matr")
-    ####################################3 
-    #X_test = np.array(load_data("data/data_test.txt"))
-    #lat_labels_test = load_labels("data/labels_test.txt")
-    #print ("initial data: ", np.array(X_test).shape)
-    #print ("Test: ", X_test.shape, np.array(lat_labels_test).shape)            
-    #vizualize_data(X_test, lat_labels_test, "graphs/data/test")
-    #############################################   
-    #   X_new = np.array(load_data("data/data_new.txt"))
-    #   lat_labels_new = np.array(load_labels("data/test_names.txt"))
-    #   print ("initial data: ", np.array(X_new).shape, np.array(lat_labels_new).shape)
-    #   print ("New: ", X_new.shape)        
-    #   vizualize_data(X_new, lat_labels_new, "graphs/data/new")
-    
+    print ("Train: ", X_train.shape, np.array(lat_labels_train).shape)   
+    vizualize_data(X_train, lat_labels_train, "graphs/matr/train")
+    ###################################3 
+    X_test = np.array(load_data("data/data_test.txt"))
+    lat_labels_test = load_labels("data/labels_test.txt")
+    print ("initial data: ", np.array(X_test).shape)
+    print ("Test: ", X_test.shape, np.array(lat_labels_test).shape)            
+    vizualize_data(X_test, lat_labels_test, "graphs/matr/test")
+    ############################################   
+    X_new = np.array(load_data("data/data_new.txt"))
+    rus_labels_list = np.array(load_labels("data/new_names.txt"))
+    rus_labels_new = []
+    for lab in rus_labels_list:
+        rus_labels_new.append(lab.replace(" ", "_"))
+    print ("initial data: ", np.array(X_new).shape, np.array(rus_labels_new).shape)
+    print ("New: ", X_new.shape)     
+    print (rus_labels_new)
+    vizualize_data(X_new, rus_labels_new, "graphs/matr/new")
+
 if __name__ == "__main__":
     main()

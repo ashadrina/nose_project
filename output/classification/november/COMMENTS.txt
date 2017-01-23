@@ -1,4 +1,0 @@
-Data generation: 
-1. Work with initial matrix instead of vectors after SVD
-2. Work with float constants instead of integer constants
-3. More samples (13 000)

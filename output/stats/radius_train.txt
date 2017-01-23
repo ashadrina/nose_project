@@ -1,3 +1,4 @@
+Chemical;Sensor;Radius
 azetal_degid_0;S1;43
 azetal_degid_0;S2;41
 azetal_degid_0;S3;43

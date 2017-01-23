@@ -3,6 +3,7 @@ import sys
 import xlrd
 import numpy as np
 import matplotlib.pyplot as plt
+import re 
 
 def load_local_directory(local_path):
 	print ("Local path: "+local_path+"...")
@@ -65,13 +66,22 @@ def cyrillic2latin(input):
 	
 def create_train_labels(in_file, OUT_FILE_LABEL):
 	print (in_file.split(".")[0].split(" ")[0])
+	#print (header[0][1])
 	txt_outfile = open(OUT_FILE_LABEL, 'a')
 	cyr_label = str(in_file.split(".")[0].split(" ")[0])
+	#cyr_label = str(header[0][1])
 	res = cyrillic2latin(cyr_label.replace("\n",""))
 	txt_outfile.write(res+"\n")
 	txt_outfile.close()
+    
+def create_new_labels(header, OUT_FILE_LABEL):
+	print (header[0][1])
+	txt_outfile = open(OUT_FILE_LABEL, 'a')
+	cyr_label = str(header[0][1])
+	txt_outfile.write(cyr_label+"\n")
+	txt_outfile.close()
 	
-def create_val_labels(header, OUT_FILE_LABEL):
+def create_test_labels(header, OUT_FILE_LABEL):
 	head_str = header[0][1]
 	h1 = head_str.split("и")[0].strip()
 	h2 = head_str.split("и")[1].strip().split(" ")[0]
@@ -105,29 +115,35 @@ def create_val_labels(header, OUT_FILE_LABEL):
 #########################	##
 
 def main():
-	if len (sys.argv) == 3:
-		local_path = sys.argv[1]
-		OUT_FILE_DATA =  sys.argv[2]
-		
-	OUT_FILE_LABELS = "labels_"+OUT_FILE_DATA
-	OUT_FILE_DATA = "data_"+OUT_FILE_DATA
-	open(OUT_FILE_DATA, 'w').close()
-	open(OUT_FILE_LABELS, 'w').close()
-	if os.path.isdir(local_path):
-		if local_path == ".":
-			local_path = os.path.abspath(os.curdir)
-		local_files = load_local_directory(local_path)
-		for in_file in local_files:
-			header,sensors,col_names,data=load_xls(local_path+"\\\\"+in_file)
-			print (header[0][1])
-			if (np.array(data).shape) != (121,9):
-				print("PANIC!!! ", (np.array(data).shape) )
-			else:
-				create_structure(data, sensors, in_file, OUT_FILE_DATA)
-				if "train" in local_path:
-					create_train_labels(in_file, OUT_FILE_LABELS)				
-				if "val" in local_path:
-					create_val_labels(header, OUT_FILE_LABELS)	
+    if len (sys.argv) == 3:
+        local_path = sys.argv[1]
+        OUT_FILE_DATA =  sys.argv[2]
+
+    OUT_FILE_LABELS = "labels_"+OUT_FILE_DATA
+    OUT_FILE_DATA = "data_"+OUT_FILE_DATA
+    open(OUT_FILE_DATA, 'w').close()
+    open(OUT_FILE_LABELS, 'w').close()
+    if os.path.isdir(local_path):
+        if local_path == ".":
+            local_path = os.path.abspath(os.curdir)
+        local_files = load_local_directory(local_path)
+        if "new" in local_path:
+            local_files = sorted(local_files, key=lambda x: (int(re.sub('\D','',x)),x))
+        print (local_files)
+        for in_file in local_files:
+            header,sensors,col_names,data=load_xls(local_path+"\\\\"+in_file)
+            print (header[0][1])
+            if (np.array(data).shape) != (121,9):
+                print("PANIC!!! ", (np.array(data).shape) )
+            else:
+                create_structure(data, sensors, in_file, OUT_FILE_DATA)
+                if "train" in local_path:
+                    create_train_labels(in_file, OUT_FILE_LABELS)				
+                    #create_train_labels(header, OUT_FILE_LABELS)				
+                if "test" in local_path:
+                    create_test_labels(header, OUT_FILE_LABELS)	                
+                if "new" in local_path:
+                    create_new_labels(header, OUT_FILE_LABELS)	
 	
 	
 if __name__ == "__main__":
