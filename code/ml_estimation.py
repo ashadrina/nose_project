@@ -10,30 +10,22 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 from collections import OrderedDict
 
+#from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+
+from sklearn.feature_selection import RFE 
+from sklearn.linear_model import LogisticRegression
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.naive_bayes import GaussianNB
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.svm import SVC
+from sklearn.ensemble import ExtraTreesClassifier
+from sklearn.ensemble import AdaBoostClassifier
+from sklearn.ensemble import BaggingClassifier
+from sklearn.cross_validation import KFold, cross_val_score
+from sklearn.multiclass import OneVsRestClassifier
 from sklearn.preprocessing import LabelBinarizer
 from sklearn.preprocessing import MultiLabelBinarizer
-from numpy.linalg import svd
-from sklearn.cross_validation import train_test_split
-from sklearn.decomposition import PCA
-
-from sklearn import preprocessing
-from keras.models import Model
-from keras.models import Sequential
-from keras.layers.embeddings import Embedding
-from keras.layers import Input, Dense
-from keras.utils.visualize_util import plot
-from keras.utils.np_utils import to_categorical
-from keras.layers.embeddings import Embedding
-from keras.layers.recurrent import LSTM
-
-from keras.wrappers.scikit_learn import KerasClassifier
-from keras.utils import np_utils
-from sklearn.model_selection import cross_val_score
-from sklearn.model_selection import KFold
-from sklearn.model_selection import GridSearchCV
-from sklearn.preprocessing import LabelEncoder
-from sklearn.pipeline import Pipeline
-import numpy 
 
 def load_data(in_file):
     input_f = open(in_file, "r")
@@ -70,16 +62,26 @@ def normalize_data(data):
     return norm_matrix
    
 def load_train():    
+    #training - compounds
     X_train_0 = np.array(load_data("data/data_train.txt"))
-    y_train = load_labels("data/labels_train.txt")
+    lat_labels_train = load_labels("data/labels_train.txt")
     print ("initial train data: ", X_train_0.shape)
     X_train_poly = fit_polynom(X_train_0, 3)
     X_train = normalize_data(X_train_poly)
+    mlb = LabelBinarizer()
+    y_train = mlb.fit_transform(lat_labels_train) 
+    
+    #testing - mixtures
     X_test_0 = np.array(load_data("data/data_test.txt"))
-    y_test = load_labels("data/labels_test.txt")
+    lat_labels_list = load_labels("data/labels_test.txt")
     print ("initial test data: ", np.array(X_test_0).shape)
     X_test_poly = fit_polynom(X_test_0, 3)
     X_test = normalize_data(X_test_poly)
+    mlb1 = MultiLabelBinarizer()
+    lat_labels_list.append(lat_labels_train)
+    y_test_bin_labels = mlb1.fit_transform(lat_labels_list)
+    y_test = y_test_bin_labels[:-1]
+
     return X_train, y_train, X_test, y_test
  
 def load_testing_2():
@@ -138,7 +140,7 @@ def load_testing_2():
     for matr in X_new_data_2:
         x.append(pca.fit_transform(matr))
     return X, y_train_big, x, mlb1
-
+ 
 def fit_polynom(X_train, N):
     sensors = ["S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8"] 
     X_train_new = []
@@ -158,50 +160,35 @@ def fit_polynom(X_train, N):
             matr_new.append(y_new)
         X_train_new.append(matr_new)
     return X_train_new
-
-def create_model():
-    model = Sequential()
-    model.add(Dense(480, input_dim=968, activation='relu'))
-    model.add(Dense(120, activation='relu'))
-    model.add(Dense(60, activation='relu'))
-    model.add(Dense(16, activation='sigmoid'))
-    model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
-    return model
-  
-def parameter_est(model, X_train, y_train):
-    encoder = LabelEncoder()
-    encoder.fit(y_train)
-    encoded_Y = encoder.transform(y_train)
-    dummy_y = np_utils.to_categorical(encoded_Y)
-    batch_size = [10, 13, 15, 17, 20, 23, 25, 27, 30]
-    epochs = [10, 13, 19, 23, 33, 50, 100]
-    param_grid = dict(batch_size=batch_size, nb_epoch=epochs)
-    grid = GridSearchCV(estimator=model, param_grid=param_grid, n_jobs=-1)
-    print (np.array(X_train).shape, np.array(dummy_y).shape)
-    grid_result = grid.fit(X_train, dummy_y)
-    print("Best: %f using %s" % (grid_result.best_score_, grid_result.best_params_))
+ 
+def model_evaluation(X_train, y_train):
+    processors=1
+    scoring='log_loss'
     
-def run_model(model, X_train, y_train, X_test, y_test):
-    encoder = LabelEncoder()
-    encoder.fit(y_train)
-    encoded_Y = encoder.transform(y_train)
-    dummy_y = np_utils.to_categorical(encoded_Y)
+    kfold = KFold(n=len(X_train), n_folds=2, random_state=7)
 
-    b_size = 11
-    print ("Training model...")
-    model.fit(X_train, dummy_y, nb_epoch=13, batch_size=b_size, verbose=2, shuffle=False)
-    print ("Training model... DONE")
+    # Prepare some basic models
+    models = []
+    models.append(('LogRegr', OneVsRestClassifier(LogisticRegression())))
+    models.append(('Knn', OneVsRestClassifier(KNeighborsClassifier())))
+    models.append(('DecTree', OneVsRestClassifier(DecisionTreeClassifier())))
+    models.append(('NaiveBayess', OneVsRestClassifier(GaussianNB())))
+    models.append(('RFC', OneVsRestClassifier(RandomForestClassifier(n_estimators=100, max_features=10))))
+    models.append(('SVM', OneVsRestClassifier(SVC(probability=True))))
+    models.append(('ExtraTrees', OneVsRestClassifier(ExtraTreesClassifier())))
+    models.append(('AdaBoost', OneVsRestClassifier(AdaBoostClassifier())))
+    models.append(('Bagging', OneVsRestClassifier(BaggingClassifier())))
 
-    train_loss, train_acc = model.evaluate(X_train, dummy_y, batch_size=b_size, verbose=0)
-    print('Train Score: %.2f, loss %.2f' % (train_acc, train_loss))
+    # Evaluate each model in turn
+    results = []
+    names = []
 
-    probabilities = model.predict(X_test)
-    probabilities[probabilities>= 0.5] = 1
-    probabilities[probabilities<0.5] = 0
-    print (probabilities)
-    print(encoder.inverse_transform(probabilities))
-
-    
+    for name, model in models:
+        cv_results = cross_val_score(model, X_train, y_train, cv=kfold, scoring=scoring, n_jobs=processors)
+        results.append(cv_results)
+        names.append(name)
+        print("{0}: ({1:.3f}) +/- ({2:.3f})".format(name, cv_results.mean(), cv_results.std()))
+ 
 def main():
     #learn on compouns, test on mixtures
     X_train, y_train, X_test, y_test = load_train()
@@ -212,26 +199,24 @@ def main():
     nsamples2, nx2, ny2 = X_test.shape
     X_test_2d = X_test.reshape((nsamples2,nx2*ny2))
     #(X_train_2d, y_train, X_test_2d, y_test)
+    
+    model_evaluation(X_train_2d, y_train)
 
-    #model = create_model()    
-    model = KerasClassifier(build_fn=create_model, verbose=0)
-    parameter_est(model, X_train_2d, y_train)
-    #run_model(model, X_train_2d, y_train, X_test_2d, y_test)
-    #############################################
-    #print ("#############################################")
-    ##learn on compounds and mixtures and try toys
-    #X_train_full, y_labels_train_full, X_new,mlb = load_testing_2()
-    #X_train_full = np.array(X_train_full)
-    #X_new = np.array(X_new)
-    #nsamples, nx, ny = X_train_full.shape
-    #X_train_full_2d = X_train_full.reshape((nsamples,nx*ny))    
-    #nsamples2, nx2, ny2 = X_new.shape
-    #X_test_full_2d = X_new.reshape((nsamples2,nx2*ny2))
+    # #############################################
+    # print ("#############################################")
+    # #learn on compounds and mixtures and try toys
+    # X_train_full, y_labels_train_full, X_new,mlb = load_testing_2()
+    # X_train_full = np.array(X_train_full)
+    # X_new = np.array(X_new)
+    # nsamples, nx, ny = X_train_full.shape
+    # X_train_full_2d = X_train_full.reshape((nsamples,nx*ny))    
+    # nsamples2, nx2, ny2 = X_new.shape
+    # X_test_full_2d = X_new.reshape((nsamples2,nx2*ny2))
     
-    #X_train_full_2d = preprocessing.scale(X_train_full_2d)
-    #X_test_full_2d = preprocessing.scale(X_test_full_2d)
-    
-    ##(X_train_full_2d, y_labels_train_full, X_test_full_2d,mlb) 
+    # X_train_full_2d = preprocessing.scale(X_train_full_2d)
+    # X_test_full_2d = preprocessing.scale(X_test_full_2d)
+    # #(X_train_full_2d, y_labels_train_full, X_test_full_2d,mlb) 
+
     
 if __name__ == "__main__":
     main()
