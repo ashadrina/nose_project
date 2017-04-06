@@ -1,0 +1,126 @@
+1. Исходные данные
+
+svm train accuracy:  0.95125
+()
+[('dioktilftalat', '0.440'), ('azeton', '0.312'), ('etilazetat', '0.110'), ('benzol', '0.106'), ('pl
+astizol_', '0.081'), ('azetal_degid', '0.071'), ('butilazetat', '0.046'), ('stirol', '0.046'), ('fen
+ol', '0.045'), ('benzin', '0.043'), ('butanol', '0.042'), ('dioktilftalat_with_azeton', '0.042'), ('
+izobutanol', '0.042'), ('izopropanol', '0.042'), ('dioktilftalat_with_azetal_degid', '0.041'), ('pro
+panol', '0.041'), ('dioktilftalat_with_benzol', '0.040'), ('toluol', '0.040'), ('dioktilftalat_with_
+etilazetat', '0.038'), ('geksan', '0.037')]
+['dioktilftalat', 'azeton']
+-----------------------------------
+You should predict top  19.525  labels for train
+(75, 20) (75, 20)
+You should predict top  9.56  labels for toys
+label_ranking_average_precision_score on train 0.07375
+label_ranking_average_precision_score on toys 0.487045814352
+label_ranking_loss on train 0.975
+label_ranking_loss on toys 0.250288751605
+----------------------------------
+
+2. Исходны + Фмакс
+-----------------------------------
+svm train accuracy:  0.985
+()
+[('etilazetat', '0.319'), ('dioktilftalat', '0.228'), ('benzol', '0.161'), ('azeton', '0.120'), ('az
+etal_degid', '0.107'), ('plastizol_', '0.067'), ('dioktilftalat_with_azetal_degid', '0.061'), ('feno
+l', '0.059'), ('izopropanol', '0.058'), ('butilazetat', '0.056'), ('stirol', '0.052'), ('propanol',
+'0.046'), ('izobutanol', '0.045'), ('toluol', '0.045'), ('butanol', '0.044'), ('dioktilftalat_with_b
+enzol', '0.040'), ('dioktilftalat_with_etilazetat', '0.029'), ('benzin', '0.027'), ('geksan', '0.021
+'), ('dioktilftalat_with_azeton', '0.019')]
+['dioktilftalat', 'azeton']
+-----------------------------------
+You should predict top  6.7  labels for train
+(75, 20) (75, 20)
+You should predict top  10.5066666667  labels for toys
+label_ranking_average_precision_score on train 0.715
+label_ranking_average_precision_score on toys 0.461508038769
+label_ranking_loss on train 0.3
+label_ranking_loss on toys 0.281624662807
+----------------------------------
+
+3. Исходные + Фмакс + Фравн
+-----------------------------------
+svm train accuracy:  0.995
+()
+[('dioktilftalat', '0.232'), ('etilazetat', '0.120'), ('benzol', '0.116'), ('azetal_degid', '0.107')
+, ('azeton', '0.056'), ('fenol', '0.042'), ('izopropanol', '0.041'), ('stirol', '0.041'), ('dioktilf
+talat_with_azetal_degid', '0.039'), ('dioktilftalat_with_benzol', '0.039'), ('propanol', '0.039'), (
+'butilazetat', '0.038'), ('izobutanol', '0.036'), ('toluol', '0.036'), ('butanol', '0.035'), ('diokt
+ilftalat_with_etilazetat', '0.035'), ('geksan', '0.033'), ('dioktilftalat_with_azeton', '0.026'), ('
+plastizol_', '0.026'), ('benzin', '0.025')]
+['dioktilftalat', 'azeton']
+-----------------------------------
+You should predict top  2.9  labels for train
+(75, 20) (75, 20)
+You should predict top  15.1333333333  labels for toys
+label_ranking_average_precision_score on train 0.905
+label_ranking_average_precision_score on toys 0.376608062115
+label_ranking_loss on train 0.1
+label_ranking_loss on toys 0.515297468344
+-----------------------------------
+
+4. Только Фравн
+svm train accuracy:  0.9975
+()
+[('dioktilftalat', '0.215'), ('azetal_degid', '0.111'), ('etilazetat', '0.088'), ('benzol', '0.076')
+, ('azeton', '0.061'), ('plastizol_', '0.046'), ('geksan', '0.045'), ('dioktilftalat_with_azeton', '
+0.038'), ('dioktilftalat_with_etilazetat', '0.038'), ('dioktilftalat_with_azetal_degid', '0.034'), (
+'dioktilftalat_with_benzol', '0.034'), ('fenol', '0.034'), ('toluol', '0.034'), ('izopropanol', '0.0
+33'), ('stirol', '0.033'), ('butanol', '0.032'), ('butilazetat', '0.032'), ('izobutanol', '0.032'),
+('propanol', '0.032'), ('benzin', '0.031')]
+['dioktilftalat', 'azeton']
+-----------------------------------
+You should predict top  1.95  labels for train
+(75, 20) (75, 20)
+You should predict top  11.5466666667  labels for toys
+label_ranking_average_precision_score on train 0.9525
+label_ranking_average_precision_score on toys 0.412267906134
+label_ranking_loss on train 0.05
+label_ranking_loss on toys 0.346659619795
+----------------------------------
+
+5. Исходные данные + Фравн 
+svm train accuracy:  0.98875
+()
+[('dioktilftalat', '0.171'), ('benzol', '0.117'), ('etilazetat', '0.108'), ('azetal_degid', '0.094')
+, ('azeton', '0.074'), ('plastizol_', '0.069'), ('dioktilftalat_with_etilazetat', '0.048'), ('diokti
+lftalat_with_benzol', '0.045'), ('fenol', '0.044'), ('dioktilftalat_with_azeton', '0.042'), ('geksan
+', '0.041'), ('propanol', '0.037'), ('stirol', '0.037'), ('izopropanol', '0.036'), ('butilazetat', '
+0.034'), ('dioktilftalat_with_azetal_degid', '0.031'), ('izobutanol', '0.031'), ('toluol', '0.031'),
+ ('butanol', '0.030'), ('benzin', '0.023')]
+['dioktilftalat', 'azeton']
+-----------------------------------
+You should predict top  5.275  labels for train
+(75, 20) (75, 20)
+You should predict top  11.0266666667  labels for toys
+label_ranking_average_precision_score on train 0.78625
+label_ranking_average_precision_score on toys 0.406012633125
+label_ranking_loss on train 0.225
+label_ranking_loss on toys 0.308432922679
+----------------------------------
+
+6. Только Фмакс
+C:\Users\ashadrin\Dropbox\MAG_PMI_1\2_DIPLOM\e-nose_data>python ml_compae.py
+initial data:  (36, 8, 121)
+initial data:  (4, 8, 121)
+initial data:  (75, 8, 121)
+svm train accuracy:  0.99625
+()
+[('etilazetat', '0.395'), ('dioktilftalat', '0.310'), ('azeton', '0.124'), ('benzol', '0.107'), ('az
+etal_degid', '0.079'), ('plastizol_', '0.062'), ('dioktilftalat_with_azetal_degid', '0.049'), ('feno
+l', '0.048'), ('izopropanol', '0.048'), ('stirol', '0.048'), ('propanol', '0.047'), ('butilazetat',
+'0.046'), ('toluol', '0.046'), ('butanol', '0.045'), ('izobutanol', '0.045'), ('dioktilftalat_with_b
+enzol', '0.044'), ('benzin', '0.037'), ('dioktilftalat_with_etilazetat', '0.016'), ('geksan', '0.016
+'), ('dioktilftalat_with_azeton', '0.005')]
+['dioktilftalat', 'azeton']
+-----------------------------------
+You should predict top  2.425  labels for train
+(75, 20) (75, 20)
+You should predict top  11.8266666667  labels for toys
+label_ranking_average_precision_score on train 0.92875
+label_ranking_average_precision_score on toys 0.41079512712
+label_ranking_loss on train 0.075
+label_ranking_loss on toys 0.35041317311
+----------------------------------

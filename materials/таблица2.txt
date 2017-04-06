@@ -1,0 +1,171 @@
+Только нормализация
+-----------------------------------
+svm train accuracy:  0.96125
+()
+[('dioktilftalat', '0.352'), ('azetal_degid', '0.228'), ('plastizol_', '0.228'), ('etilazetat', '0.1
+13'), ('benzol', '0.093'), ('azeton', '0.077'), ('dioktilftalat_with_etilazetat', '0.045'), ('benzin
+', '0.044'), ('dioktilftalat_with_benzol', '0.044'), ('dioktilftalat_with_azetal_degid', '0.043'), (
+'fenol', '0.043'), ('izopropanol', '0.043'), ('butilazetat', '0.042'), ('izobutanol', '0.041'), ('st
+irol', '0.039'), ('toluol', '0.039'), ('propanol', '0.038'), ('butanol', '0.036'), ('dioktilftalat_w
+ith_azeton', '0.036'), ('geksan', '0.031')]
+['dioktilftalat', 'azeton']
+-----------------------------------
+You should predict top  15.725  labels for train
+(75, 20) (75, 20)
+You should predict top  8.96  labels for toys
+label_ranking_average_precision_score on train 0.26375
+label_ranking_average_precision_score on toys 0.535163760034
+
+
+-----------------------------------
+Только удаление тренда
+-----------------------------------
+svm train accuracy:  0.95
+()
+[('dioktilftalat', '0.334'), ('azeton', '0.300'), ('etilazetat', '0.071'), ('azetal_degid', '0.070')
+, ('butilazetat', '0.061'), ('plastizol_', '0.056'), ('toluol', '0.053'), ('fenol', '0.052'), ('izob
+utanol', '0.049'), ('butanol', '0.048'), ('izopropanol', '0.046'), ('benzin', '0.045'), ('dioktilfta
+lat_with_azetal_degid', '0.044'), ('geksan', '0.041'), ('dioktilftalat_with_benzol', '0.039'), ('sti
+rol', '0.038'), ('dioktilftalat_with_azeton', '0.032'), ('dioktilftalat_with_etilazetat', '0.032'),
+('propanol', '0.021'), ('benzol', '0.007')]
+['dioktilftalat', 'azeton']
+-----------------------------------
+You should predict top  20.0  labels for train
+(75, 20) (75, 20)
+You should predict top  10.36  labels for toys
+label_ranking_average_precision_score on train 0.05
+label_ranking_average_precision_score on toys 0.416987703995
+
+-----------------------------------
+Нормализация + удаление тренда
+-----------------------------------
+svm train accuracy:  0.95125
+()
+[('dioktilftalat', '0.526'), ('azeton', '0.268'), ('etilazetat', '0.108'), ('benzol', '0.106'), (
+etal_degid', '0.103'), ('plastizol_', '0.074'), ('stirol', '0.045'), ('benzin', '0.043'), ('fenol
+'0.043'), ('toluol', '0.043'), ('butanol', '0.042'), ('dioktilftalat_with_azeton', '0.042'), ('iz
+tanol', '0.042'), ('izopropanol', '0.042'), ('propanol', '0.041'), ('dioktilftalat_with_benzol',
+040'), ('dioktilftalat_with_azetal_degid', '0.039'), ('butilazetat', '0.038'), ('geksan', '0.037'
+('dioktilftalat_with_etilazetat', '0.033')]
+['dioktilftalat', 'azeton']
+-----------------------------------
+You should predict top  19.525  labels for train
+(75, 20) (75, 20)
+You should predict top  9.56  labels for toys
+label_ranking_average_precision_score on train 0.07375
+label_ranking_average_precision_score on toys 0.471710219056
+
+-----------------------------------
+Полином 3 степени
+-----------------------------------
+svm train accuracy:  0.99125
+()
+[('dioktilftalat', '0.234'), ('etilazetat', '0.111'), ('benzol', '0.106'), ('azeton', '0.074'), ('az
+etal_degid', '0.068'), ('dioktilftalat_with_etilazetat', '0.045'), ('geksan', '0.044'), ('benzin', '
+0.040'), ('butilazetat', '0.038'), ('dioktilftalat_with_azeton', '0.038'), ('dioktilftalat_with_benz
+ol', '0.038'), ('izopropanol', '0.037'), ('stirol', '0.033'), ('dioktilftalat_with_azetal_degid', '0
+.032'), ('propanol', '0.032'), ('butanol', '0.031'), ('fenol', '0.031'), ('izobutanol', '0.031'), ('
+toluol', '0.030'), ('plastizol_', '0.026')]
+['dioktilftalat', 'azeton']
+-----------------------------------
+You should predict top  4.325  labels for train
+(75, 20) (75, 20)
+You should predict top  13.16  labels for toys
+label_ranking_average_precision_score on train 0.83375
+label_ranking_average_precision_score on toys 0.448564802696
+
+-----------------------------------
+Полином 5 степени
+-----------------------------------
+svm train accuracy:  0.99125
+()
+[('dioktilftalat', '0.241'), ('etilazetat', '0.115'), ('benzol', '0.106'), ('azetal_degid', '0.088')
+, ('azeton', '0.083'), ('dioktilftalat_with_etilazetat', '0.044'), ('geksan', '0.044'), ('dioktilfta
+lat_with_benzol', '0.039'), ('butilazetat', '0.037'), ('dioktilftalat_with_azeton', '0.036'), ('diok
+tilftalat_with_azetal_degid', '0.034'), ('stirol', '0.034'), ('fenol', '0.033'), ('toluol', '0.033')
+, ('izopropanol', '0.032'), ('propanol', '0.032'), ('butanol', '0.031'), ('izobutanol', '0.031'), ('
+plastizol_', '0.025'), ('benzin', '0.024')]
+['dioktilftalat', 'azeton']
+-----------------------------------
+You should predict top  4.325  labels for train
+(75, 20) (75, 20)
+You should predict top  12.3066666667  labels for toys
+label_ranking_average_precision_score on train 0.83375
+label_ranking_average_precision_score on toys 0.459431728718
+
+-----------------------------------
+Полином 7 степени
+-----------------------------------
+svm train accuracy:  0.99125
+()
+[('dioktilftalat', '0.227'), ('etilazetat', '0.113'), ('benzol', '0.107'), ('azeton', '0.079'), ('az
+etal_degid', '0.063'), ('dioktilftalat_with_etilazetat', '0.045'), ('geksan', '0.044'), ('benzin', '
+0.040'), ('dioktilftalat_with_benzol', '0.039'), ('butilazetat', '0.037'), ('dioktilftalat_with_azet
+on', '0.037'), ('izopropanol', '0.037'), ('stirol', '0.036'), ('plastizol_', '0.034'), ('dioktilftal
+at_with_azetal_degid', '0.033'), ('fenol', '0.032'), ('izobutanol', '0.032'), ('propanol', '0.032'),
+ ('toluol', '0.032'), ('butanol', '0.031')]
+['dioktilftalat', 'azeton']
+-----------------------------------
+You should predict top  4.325  labels for train
+(75, 20) (75, 20)
+You should predict top  12.36  labels for toys
+label_ranking_average_precision_score on train 0.83375
+label_ranking_average_precision_score on toys 0.42851337005
+
+
+-----------------------------------
+Нормализация + удаление тренда + полином
+-----------------------------------
+svm train accuracy:  0.95
+()
+[('dioktilftalat', '0.200'), ('azetal_degid', '0.132'), ('dioktilftalat_with_etilazetat', '0.118'),
+('etilazetat', '0.110'), ('benzol', '0.101'), ('azeton', '0.086'), ('fenol', '0.061'), ('stirol', '0
+.061'), ('propanol', '0.058'), ('butanol', '0.055'), ('dioktilftalat_with_azeton', '0.054'), ('diokt
+ilftalat_with_benzol', '0.051'), ('geksan', '0.050'), ('dioktilftalat_with_azetal_degid', '0.044'),
+('toluol', '0.042'), ('plastizol_', '0.039'), ('izopropanol', '0.030'), ('butilazetat', '0.027'), ('
+izobutanol', '0.022'), ('benzin', '0.016')]
+['dioktilftalat', 'azeton']
+-----------------------------------
+You should predict top  20.0  labels for train
+(75, 20) (75, 20)
+You should predict top  12.0533333333  labels for toys
+label_ranking_average_precision_score on train 0.05
+label_ranking_average_precision_score on toys 0.387778345479
+
+-----------------------------------
+Нормализация + удаление тренда + масштабирование  
+-----------------------------------
+svm train accuracy:  0.95125
+()
+[('azeton', '0.329'), ('dioktilftalat', '0.278'), ('benzol', '0.107'), ('etilazetat', '0.105'), ('pl
+astizol_', '0.078'), ('azetal_degid', '0.066'), ('toluol', '0.047'), ('benzin', '0.046'), ('butilaze
+tat', '0.045'), ('stirol', '0.045'), ('fenol', '0.044'), ('izopropanol', '0.043'), ('butanol', '0.04
+2'), ('izobutanol', '0.042'), ('dioktilftalat_with_azeton', '0.041'), ('propanol', '0.041'), ('diokt
+ilftalat_with_azetal_degid', '0.040'), ('dioktilftalat_with_benzol', '0.039'), ('geksan', '0.036'),
+('dioktilftalat_with_etilazetat', '0.031')]
+['dioktilftalat', 'azeton']
+-----------------------------------
+You should predict top  19.525  labels for train
+(75, 20) (75, 20)
+You should predict top  9.84  labels for toys
+label_ranking_average_precision_score on train 0.07375
+label_ranking_average_precision_score on toys 0.45866916798
+
+-----------------------------------
+Нормализация + удаление тренда + полином + масштабирование
+-----------------------------------
+svm train accuracy:  0.95
+()
+[('dioktilftalat', '0.223'), ('azetal_degid', '0.133'), ('etilazetat', '0.116'), ('benzol', '0.110')
+, ('azeton', '0.084'), ('dioktilftalat_with_etilazetat', '0.077'), ('dioktilftalat_with_benzol', '0.
+069'), ('fenol', '0.066'), ('dioktilftalat_with_azeton', '0.059'), ('propanol', '0.054'), ('stirol',
+ '0.052'), ('geksan', '0.050'), ('butanol', '0.047'), ('dioktilftalat_with_azetal_degid', '0.047'),
+('toluol', '0.045'), ('plastizol_', '0.041'), ('izopropanol', '0.031'), ('butilazetat', '0.027'), ('
+izobutanol', '0.018'), ('benzin', '0.014')]
+['dioktilftalat', 'azeton']
+-----------------------------------
+You should predict top  20.0  labels for train
+(75, 20) (75, 20)
+You should predict top  11.8533333333  labels for toys
+label_ranking_average_precision_score on train 0.05
+label_ranking_average_precision_score on toys 0.41342987452

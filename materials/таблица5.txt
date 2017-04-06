@@ -1,0 +1,57 @@
+﻿Удаление лишних
+-----------------------------------------------
+svm train accuracy:  0.965
+[('butanol', '0.130'), ('stirol', '0.125'), ('izopropanol', '0.097'), ('toluol', '0.095'), ('butilaz
+etat', '0.090'), ('dioktilftalat_with_benzol', '0.089'), ('fenol', '0.089'), ('azeton', '0.075'), ('
+benzin', '0.064'), ('izobutanol', '0.064'), ('dioktilftalat', '0.061'), ('geksan', '0.061'), ('diokt
+ilftalat_with_azetaldegid', '0.054'), ('etilazetat', '0.054'), ('propanol', '0.053'), ('benzol', '0.
+052'), ('dioktilftalat_with_azeton', '0.051'), ('plastizol', '0.049'), ('dioktilftalat_with_etilazet
+at', '0.048'), ('azetaldegid', '0.046')]
+['butanol', 'izobutanol', 'propanol', 'izopropanol']
+-----------------------------------
+You should predict top  14.3  labels for train
+You should predict top  16.1466666667  labels for toys
+label_ranking_average_precision_score on train 0.335
+label_ranking_average_precision_score on toys 0.209782607837
+
+-----------------------------------------------
+Усреднение
+-----------------------------------------------
+svm train accuracy:  0.9925
+[('benzol', '0.093'), ('butilazetat', '0.089'), ('etilazetat', '0.088'), ('dioktilftalat_with_etilaz
+etat', '0.087'), ('stirol', '0.086'), ('dioktilftalat_with_benzol', '0.084'), ('azetaldegid', '0.082
+'), ('azeton', '0.082'), ('dioktilftalat', '0.081'), ('izopropanol', '0.081'), ('izobutanol', '0.080
+'), ('dioktilftalat_with_azetaldegid', '0.079'), ('propanol', '0.079'), ('fenol', '0.078'), ('butano
+l', '0.077'), ('toluol', '0.077'), ('geksan', '0.063'), ('benzin', '0.024'), ('plastizol', '0.020'),
+ ('dioktilftalat_with_azeton', '0.006')]
+['butanol', 'izobutanol', 'propanol', 'izopropanol']
+-----------------------------------
+You should predict top  3.85  labels for train
+You should predict top  15.8  labels for toys
+label_ranking_average_precision_score on train 0.8575
+label_ranking_average_precision_score on toys 0.213971155885
+
+------------------------------------------------
+Размножение
+------------------------------------------------
+svm train accuracy:  1.0
+[('dioktilftalat', '0.824'), ('azetaldegid', '0.037'), ('benzol', '0.027'), ('azeton', '0.022'), ('e
+tilazetat', '0.010'), ('plastizol', '0.010'), ('propanol', '0.010'), ('dioktilftalat_with_azetaldegi
+d', '0.009'), ('dioktilftalat_with_azeton', '0.009'), ('dioktilftalat_with_benzol', '0.009'), ('diok
+tilftalat_with_etilazetat', '0.009'), ('geksan', '0.008'), ('izobutanol', '0.008'), ('benzin', '0.00
+7'), ('fenol', '0.006'), ('izopropanol', '0.006'), ('toluol', '0.006'), ('butilazetat', '0.005'), ('
+stirol', '0.005'), ('butanol', '0.004')]
+['butanol', 'izobutanol', 'propanol', 'izopropanol']
+-----------------------------------
+You should predict top  1.0  labels for train
+You should predict top  10.0133333333  labels for toys
+label_ranking_average_precision_score on train 1.0
+label_ranking_average_precision_score on toys 0.430023970167
+
+------------------------------------------------
+oversampling
+------------------------------------------------
+
+------------------------------------------------
+undersampling
+------------------------------------------------

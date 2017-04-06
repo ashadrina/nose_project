@@ -62,24 +62,38 @@ def load_labels(in_file):
 def normalize_data(data):
     norm_matrix = []
     for block in data:
-        current_max = np.amax(block)
         norm_col = []
         for col in block:
-            norm_col.append([float(i)//current_max for i in col])
+            current_mean = np.mean(col)
+            surrent_std = np.std(col)
+            norm_col.append([(float(i) - current_mean)//surrent_std for i in col])
         norm_matrix.append(norm_col)
     return norm_matrix
+
+def patch_detrend(X_train):
+    X_res = []
+    for matr in X_train:
+        matr_res = []
+        for ch in matr:
+            matr_res.append(detrend(ch))
+        X_res.append(matr_res)
+    return X_res
    
 def load_train():    
-    X_train_0 = np.array(load_data("data/data_train.txt"))
-    y_train = load_labels("data/labels_train.txt")
+  #  X_train_0 = np.array(load_data("data/data_train.txt"))
+    X_train_0 = np.array(load_data("data/data_train_over.txt"))
+  #  y_train = load_labels("data/labels_train.txt")
+    y_train = load_labels("data/labels_train_over.txt")
     print ("initial train data: ", X_train_0.shape)
-    X_train_poly = fit_polynom(X_train_0, 3)
-    X_train = normalize_data(X_train_poly)
-    X_test_0 = np.array(load_data("data/data_test.txt"))
-    y_test = load_labels("data/labels_test.txt")
-    print ("initial test data: ", np.array(X_test_0).shape)
-    X_test_poly = fit_polynom(X_test_0, 3)
-    X_test = normalize_data(X_test_poly)
+    from sklearn.cross_validation import train_test_split as tts
+    X_train, X_test, y_train, y_test = tts(X_train_0, y_train, train_size=0.6, random_state=42)
+#    X_train_poly = fit_polynom(X_train_0, 3)
+ #   X_train = normalize_data(X_train)
+ #   X_test = np.array(load_data("data/data_test.txt"))
+ #   y_test = load_labels("data/labels_test.txt")
+ #   print ("initial test data: ", np.array(X_test_0).shape)
+ #   X_test_poly = fit_polynom(X_test_0, 3)
+  #  X_test = normalize_data(X_teX_trainst_poly)
     return X_train, y_train, X_test, y_test
  
 def load_testing_2():
@@ -164,8 +178,8 @@ def create_model():
     model.add(Dense(480, input_dim=968, activation='relu'))
     model.add(Dense(120, activation='relu'))
     model.add(Dense(60, activation='relu'))
-    model.add(Dense(16, activation='sigmoid'))
-    model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+    model.add(Dense(20, activation='sigmoid'))
+    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
     return model
   
 def parameter_est(model, X_train, y_train):

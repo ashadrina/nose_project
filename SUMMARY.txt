@@ -1,0 +1,74 @@
+1.	ann.py
+    - input: train initial data (36, 121,8) and (4,121,8), new initial
+    - what's this: keras ANN
+   !!! - TBD: improve preprocessing scheme " raw -> normalize each VOC -> detrend each VOC sensors -> Scale dataset "
+   
+2.	arima.py
+    - input: initial data 
+    - what's this: ARIMA model coefficients (0-3), cross-correlation between sensors, polynom filtering, normality test (Jarque-Bera), stationarity test (aughmented Dickey-Fully), autocorrelation, autocorrelation radius 
+    - TBD: rename to statistics (closed)
+    
+4.	generated_claffification_2.py
+    - input: initial data 
+    - what's this: generate data and compare classification on generated and real
+    - TBD: - (closed)
+    
+5.	image_recognition.py
+    - input: initial data 
+    - what's this: nothing but trash; classify dFmax radial plots
+    - TBD: - (not implemented at all)
+    
+6.	imbalanced.py
+    - input: initial data 
+    - what's this: generate samples using over_sampling technique ADASYN from "imblearn" package, implemente data prepreocessing scheme " raw -> normalize each VOC -> detrend each VOC sensors -> Scale dataset ", plot SVM class separation for two classes ("dof"+N), test some classifiers
+  !!!  - TBD: -
+  
+9.	initial_classification.py
+    - input: initial data 
+    - what's this: runs RF, SVM, GaussianNB and KNN on initial data
+    - TBD: -  (closed -> REMOVE)
+    
+10. initial_clustering.py
+    - input: initial data 
+    - what's this: runs affinity propagation, meanshift and dbscan on initial data
+   !! - TBD: try to run algorithms on generated data from imbalanced.py
+   
+11.	max_sensors.py
+    - input: initial data 
+    - what's this: calculates maximum dF for each channel 
+  !  - TBD: move get_avg, get_min, get_max from initial_clustering.py
+  
+12.	ml.py
+    - input: initial data 
+    - what's this: runs SVM son initial datal 
+   !! - TBD: remove unused functions
+   
+13.	ml_estimation.py
+    - input: initial data 
+    - what's this: runs SVM son initial datal 
+ !! - TBD: try to on generated data from imbalanced.py
+ 
+14.	mysql_parse.py
+    - input: SQL database sniff.db
+    - what's this: parse SQL base
+    - TBD: - (closed)
+    
+15.	my_dcgan.py
+    - input: initial data
+    - what's this: apply convolutional GAN to initial data
+    - TBD: - (closed)
+    
+16.	radar_visualizer.py
+    - input: initial data
+    - what's this: plots dFmzx radar plot 
+    - TBD: - (closed) 
+    
+17.	vizualization.py
+    - input: initial data
+    - what's this: plots channels 
+    - TBD: - (closed)
+    
+18.	xls_parser.py
+    - input: directory with XLS 
+    - what's this: reads XLS files and saves to initial data
+    - TBD: - (closed)

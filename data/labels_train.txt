@@ -1,7 +1,7 @@
-azetal_degid
-azetal_degid
-azetal_degid
-azetal_degid
+azetaldegid
+azetaldegid
+azetaldegid
+azetaldegid
 azeton
 azeton
 azeton
@@ -24,8 +24,8 @@ dioktilftalat
 dioktilftalat
 izobutanol
 izopropanol
-plastizol_
-plastizol_
+plastizol
+plastizol
 propanol
 stirol
 toluol

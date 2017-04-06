@@ -75,7 +75,7 @@ def norm_test(X_train, labels, folder_name):
         except:
             os.mkdir(folder_name) 
         print (folder_name+"/"+m_name+"_"+str(ind)+".png")
-        plt.savefig(folder_name+"/"+m_name+"_"+str(ind)+".png", dpi=100)
+        plt.savefig(folder_name+"/"+str(ind)+"_"+m_name+".png", dpi=100)
         plt.close('all')
 
 def jarque_bera_test(X_train, labels,outname):
@@ -217,7 +217,7 @@ def cross_corr(X_train, labels, folder_name):
             os.stat(folder_name)
         except:
             os.mkdir(folder_name) 
-        plt.savefig(folder_name+"/"+m_name+"_"+str(ind)+".jpeg", dpi=300, format='jpeg', bbox_extra_artists=(lgd,), bbox_inches='tight')
+        plt.savefig(folder_name+"/"+str(ind)+"_"+m_name+".png"+".jpeg", dpi=300, format='jpeg', bbox_extra_artists=(lgd,), bbox_inches='tight')
         #plt.show()
         plt.close('all')
 
@@ -247,7 +247,7 @@ def fit_polynom(X_train, labels, N, folder_name):
             os.stat(folder_name)
         except:
             os.mkdir(folder_name) 
-        plt.savefig(folder_name+"/"+m_name+"_"+str(ind)+".png", dpi = 300, bbox_inches='tight')#, pad_inches=0)
+        plt.savefig(folder_name+"/"+str(ind)+"_"+m_name+".png", dpi = 300, bbox_inches='tight')#, pad_inches=0)
         plt.close('all')
 
 def test_stationarity(X_train, labels, folder_name):
@@ -419,12 +419,12 @@ def stats_to_file(OUT_FILE, output):
 ###########################
 
 def main():
-    X_train = np.array(load_data("data/data_train.txt"))
-    lat_labels_train = np.array(load_labels("data/labels_train.txt"))
-    print ("initial data: ", X_train.shape)
+    # X_train = np.array(load_data("data/data_train.txt"))
+    # lat_labels_train = np.array(load_labels("data/labels_train.txt"))
+    # print ("initial data: ", X_train.shape)
     
-    armodel = ARIMA(X_train[0][0], (43,1,0)).fit(solver='newton')
-    print ("AIC", armodel)
+    # armodel = ARIMA(X_train[0][0], (43,1,0)).fit(solver='newton')
+    # print ("AIC", armodel)
     #cross_corr(X_train, lat_labels_train, "graphs/crosscorr/train")
     #fit_polynom(X_train, lat_labels_train, 5, "graphs/poly/train")
     #norm_test(X_train, lat_labels_train, "graphs/norm/train")
@@ -463,14 +463,14 @@ def main():
     # generate_summary("output/stats/jarque_bera_test.txt", "output/stats/adf_protocol_test.txt", "output/stats/radius_test.txt", "output/stats/arima_est_test.txt", "output/stats/res_table_test.csv")
 
     #############################################   
-    # X_new = np.array(load_data("data/data_new.txt"))
-    # rus_labels_list = np.array(load_labels("data/labels_new.txt"))
-    # rus_labels_new = []
-    # for lab in rus_labels_list:
-        # rus_labels_new.append(lab.replace(" ", "_"))
+    X_new = np.array(load_data("data/data_new.txt"))
+    rus_labels_list = np.array(load_labels("data/labels_new.txt"))
+    rus_labels_new = []
+    for lab in rus_labels_list:
+        rus_labels_new.append(lab.replace(" ", "_"))
         
-    # print ("initial data: ", np.array(X_new).shape, np.array(rus_labels_new).shape)
-    # print ("New: ", X_new.shape)     
+    print ("initial data: ", np.array(X_new).shape, np.array(rus_labels_new).shape)
+    print ("New: ", X_new.shape)     
     # cross_corr(X_new, rus_labels_new, "graphs/crosscorr/new")
     # fit_polynom(X_new, rus_labels_new, 5, "graphs/poly/new")
     # norm_test(X_new, rus_labels_new, "graphs/norm/new")
