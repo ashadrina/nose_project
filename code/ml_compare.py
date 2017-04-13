@@ -54,8 +54,8 @@ def load_labels(in_file):
     return labels
     
 def load_testing_2():
-    X_train_data = load_data("data/data_train_rm.txt")
-    y_train_lat_labels = load_labels("data/labels_train_rm.txt")
+    X_train_data = load_data("data/data_train.txt")
+    y_train_lat_labels = load_labels("data/labels_train.txt")
     print ("initial data: ", np.array(X_train_data).shape, np.array(y_train_lat_labels).shape)
     #X_train_data = fit_polynom(X_train_data,3)  
     #X_train_data = normalize_data(X_train_data)  
@@ -210,11 +210,7 @@ def fit_polynom(X_train, N):
         X_train_new.append(matr_new)
     return X_train_new
     
-def svm_cl_testing(X_train, y_train, X_test, mlb1):
-    # pca = PCA(n_components=1)
-    # pca.fit_transform(X_train)        
-    # pca.fit_transform(X_test)   
-   
+def svm_cl_testing(X_train, y_train, X_test, mlb1):  
     svc = OneVsRestClassifier(SVC(kernel='rbf', probability=True)).fit(X_train, y_train)
     y_score =  svc.predict(X_train) 
     err_train = np.mean(y_train != y_score)
@@ -224,24 +220,28 @@ def svm_cl_testing(X_train, y_train, X_test, mlb1):
     y_test_true_labels = load_labels("true_labels.txt")
     #y_test_true_labels = load_labels("data/labels_new_2.txt")
     y_new_proba = svc.predict_proba(X_test)
-    #y_new_proba = svc.predict(X_test)
-    
-    # for y_pred,y_tr in zip(y_new_proba,y_test_true_labels):
-        # print (mlb1.inverse_transform(y_pred), " - ",y_tr)
-        # print (y_pred, " - ",y_tr)
-    
-  
-    
-    #for y_pred,y_tr in zip(y_new_proba,y_test_true_labels):
-    for y_pred,y_tr in zip(list(reversed(y_new_proba)),list(reversed(y_test_true_labels))):
-       r1 = [(c,"{:.3f}".format(yy)) for c,yy in zip(mlb1.classes_,y_pred)]
-       sorted_by_second_1 = sorted(r1, key=lambda tup: tup[1], reverse=True)
-       print (sorted_by_second_1)
-       print (y_tr)
-       print ("-----------------------------------")
-       break
-      
 
+    
+    first_six = []
+    for y_pred,y_tr in zip(y_new_proba,y_test_true_labels):
+    #for y_pred,y_tr in zip(list(reversed(y_new_proba)),list(reversed(y_test_true_labels))):
+        r1 = [(c,"{:.3f}".format(yy)) for c,yy in zip(mlb1.classes_,y_pred)]
+        sorted_by_second_1 = sorted(r1, key=lambda tup: tup[1], reverse=True)
+        six = []
+        for item in sorted_by_second_1[:6]:
+            six.append(item[0])
+        first_six.append(six)
+        #print (sorted_by_second_1)
+        #print (y_tr)
+        #print ("-----------------------------------")
+        #break
+        
+    from collections import Counter
+    first_six =  list(zip(*first_six)) 
+    for item in first_six:
+        print (Counter(item))
+
+    print (Counter(mlb1.inverse_transform(y_train)))
     y_test_true_labels = load_labels("true_labels.txt")
 #    y_test_true_labels = load_labels("data/labels_new_2.txt")
     y_test_true_labels = [list(filter(None, lab)) for lab in y_test_true_labels]
@@ -249,12 +249,6 @@ def svm_cl_testing(X_train, y_train, X_test, mlb1):
     #y_test_true_labels_0 = [[y] for y in y_test_true_labels]
     y_test_true =  mlb1.transform(y_test_true_labels) 
     y_test_true = list(y_test_true)[:-1]      
-    
-   # print (mlb1.classes_)
-  #  print (y_test_true)
-    
-   # print (np.array(y_test_true).shape)
-   # print (np.array(y_new_proba).shape)
 
     from sklearn.metrics import coverage_error
     err1 = coverage_error(y_train, y_score)
@@ -271,9 +265,82 @@ def svm_cl_testing(X_train, y_train, X_test, mlb1):
 def main():
     import warnings
     warnings.filterwarnings("ignore", category=DeprecationWarning)
-    X_train_full, y_labels_train_full, X_new, mlb = load_testing_2()
     
+    X = load_data("data/imbalanced/data_train_over.txt")
+    y = load_labels("data/imbalanced/labels_train_over.txt")
+    #X = load_data("data/imbalanced/data_train_under.txt")
+    #y = load_labels("data/imbalanced/labels_train_under.txt")
+    
+    X = np.array(X)
+    nsamples00, nx, ny = X.shape
+    X = X.reshape((nsamples00,nx*ny))
+    
+    y_train = []
+    for i in y:
+        y_train.append([i])
+
+    mlb = MultiLabelBinarizer()
+    y_train =  mlb.fit_transform(y_train) 
+    
+    X_new = load_data("data/data_new.txt")
+    X_new = np.array(X_new)
+    nsamples00, nx, ny = X_new.shape
+    X_new = X_new.reshape((nsamples00,nx*ny))
+    
+    svm_cl_testing( X, y_train, X_new, mlb)
     ############################################
+    ####         original data             #### 
+    #X_train_full, y_labels_train_full, X_new, mlb = load_testing_2()
+    
+    ## X_train_full_max = get_fmax(X_train_full)
+    ## X_train_full_max = np.array(X_train_full_max)    
+    ## X_train_full_eq = get_feq(X_train_full)
+    ## # X_train_full_eq = np.array(X_train_full_eq)
+    
+    #X_train_full = normalize_data(X_train_full)
+    #X_train_full = patch_detrend(X_train_full)    
+       
+    #X_train_full = np.array(X_train_full)
+    #nsamples00, nx, ny = X_train_full.shape
+    #X_train_full_2d_init = X_train_full.reshape((nsamples00,nx*ny))      
+    ## nsamples0, nx, ny = X_train_full_max.shape
+    ## X_train_full_2d_max = X_train_full_max.reshape((nsamples0,nx*ny))    
+    ## nsamples1, nx, ny = X_train_full_eq.shape
+    ## X_train_full_2d_eq = X_train_full_eq.reshape((nsamples1,nx*ny))    
+    
+    ##X_train_full_2d = np.hstack((X_train_full_2d_init, X_train_full_2d_max))
+    ##X_train_full_2d = np.hstack((X_train_full_2d_init, X_train_full_2d_max, X_train_full_2d_eq))
+    
+    #########################################
+    #print ("----")
+    ## X_new_max = get_fmax(X_new)
+    ## X_new_max = np.array(X_new_max)
+    ## X_new_full_eq = get_feq(X_new)
+    ## X_new_full_eq = np.array(X_new_full_eq)
+
+    #X_new = normalize_data(X_new)    
+    #X_new = patch_detrend(X_new)    
+
+    #X_new = np.array(X_new)
+    #nsamples22, nx, ny = X_new.shape
+    #X_new_2d_init = X_new.reshape((nsamples22,nx*ny))        
+    ## nsamples2, nx2, ny2 = X_new_max.shape
+    ## X_new_full_2d_max = X_new_max.reshape((nsamples2,nx2*ny2))
+    ## nsamples3, nx2, ny2 = X_new_full_eq.shape
+    ## X_test_new_2d_eq = X_new_full_eq.reshape((nsamples3,nx2*ny2))
+     
+    ##X_new_full_2d = np.hstack((X_new_2d_init, X_new_full_2d_max))
+    ##X_new_full_2d = np.hstack((X_new_2d_init, X_new_full_2d_max, X_test_new_2d_eq))
+    
+    ##########################################
+    
+    ##X_train_full_2d = preprocessing.scale(X_train_full_2d_init)
+    ##X_new_full_2d = preprocessing.scale(X_new_2d_init)
+    
+    #svm_cl_testing( X_train_full_2d_init, y_labels_train_full, X_new_2d_init, mlb)
+
+    ############################################
+    #### replace duplication by average     #### 
     
     # y_train_lat_labels = load_labels("data/labels_train.txt")
     # y_test_lat_labels = load_labels("data/labels_test.txt")
@@ -302,7 +369,6 @@ def main():
             # data_dict_average[k] = av_v
         # else:
             # data_dict_average[k] = v[0]
-            
             
     # X = []
     # y = []
@@ -333,100 +399,6 @@ def main():
     # svm_cl_testing( X, y_bin, X_new, mlb)
     # # ########################################
         
-    # X_train_full_max = get_fmax(X_train_full)
-    # X_train_full_max = np.array(X_train_full_max)    
-    # X_train_full_eq = get_feq(X_train_full)
-    # # X_train_full_eq = np.array(X_train_full_eq)
-    
-    X_train_full = normalize_data(X_train_full)
-    X_train_full = patch_detrend(X_train_full)    
-       
-    X_train_full = np.array(X_train_full)
-    nsamples00, nx, ny = X_train_full.shape
-    X_train_full_2d_init = X_train_full.reshape((nsamples00,nx*ny))      
-    # nsamples0, nx, ny = X_train_full_max.shape
-    # X_train_full_2d_max = X_train_full_max.reshape((nsamples0,nx*ny))    
-    # nsamples1, nx, ny = X_train_full_eq.shape
-    # X_train_full_2d_eq = X_train_full_eq.reshape((nsamples1,nx*ny))    
-    
-    #X_train_full_2d = np.hstack((X_train_full_2d_init, X_train_full_2d_max))
-    #X_train_full_2d = np.hstack((X_train_full_2d_init, X_train_full_2d_max, X_train_full_2d_eq))
-    
-    ########################################
-    print ("----")
-    # X_new_max = get_fmax(X_new)
-    # X_new_max = np.array(X_new_max)
-    # X_new_full_eq = get_feq(X_new)
-    # X_new_full_eq = np.array(X_new_full_eq)
 
-    X_new = normalize_data(X_new)    
-    X_new = patch_detrend(X_new)    
-
-    X_new = np.array(X_new)
-    nsamples22, nx, ny = X_new.shape
-    X_new_2d_init = X_new.reshape((nsamples22,nx*ny))        
-    # nsamples2, nx2, ny2 = X_new_max.shape
-    # X_new_full_2d_max = X_new_max.reshape((nsamples2,nx2*ny2))
-    # nsamples3, nx2, ny2 = X_new_full_eq.shape
-    # X_test_new_2d_eq = X_new_full_eq.reshape((nsamples3,nx2*ny2))
-     
-    #X_new_full_2d = np.hstack((X_new_2d_init, X_new_full_2d_max))
-    #X_new_full_2d = np.hstack((X_new_2d_init, X_new_full_2d_max, X_test_new_2d_eq))
-    
-    #########################################
-    
-    #X_train_full_2d = preprocessing.scale(X_train_full_2d)
-    #X_new_full_2d = preprocessing.scale(X_new_full_2d)    
-    
-    X_train_full_2d = preprocessing.scale(X_train_full_2d_init)
-    X_new_full_2d = preprocessing.scale(X_new_2d_init)
-  
-    svm_cl_testing( X_train_full_2d, y_labels_train_full, X_new_full_2d, mlb)
-
-#############################################
-    # X_tr = load_data("data/data_train.txt")
-    # X_tt = load_data("data/data_test.txt")
-    # Y_tr = load_labels("data/labels_train.txt")
-    # Y_tt = load_labels("data/labels_test.txt")
-    # Y_tt = ["_with_".join(i) for i in Y_tt]
-        
-    # x = load_data("data/data_test_2.txt")
-    
-    # X = []
-    # X.extend(X_tr)
-    # X.extend(X_tt)
-    # Y = []
-    # Y.extend(Y_tr)
-    # Y.extend(Y_tt)
-    
-   # #Y = np.array(Y)
-    
-    # mlb = MultiLabelBinarizer()
-    # Y = [[y] for y in Y ]
-    # Y =  mlb.fit_transform(Y) 
-    # print (np.array(Y).shape)
-    # print (mlb.classes_)
-    
-    # X = normalize_data(X)    
-    # X = patch_detrend(X)    
-    
-
-    # X = np.array(X)
-    # nsamples00, nx, ny = X.shape
-    # X = X.reshape((nsamples00,nx*ny))      
-    # X = preprocessing.scale(X)
-    # X = preprocessing.scale(X)
-    
-    # x = np.array(x)
-    # nsamples00, nx, ny = x.shape
-    # x = x.reshape((nsamples00,nx*ny))      
-    # x = preprocessing.scale(x)
-    
-    # print (X.shape, Y.shape)
-    # print (x.shape)
-        
-    # svm_cl_testing( X, Y, x, mlb)
-
-      
 if __name__ == "__main__":
     main()
