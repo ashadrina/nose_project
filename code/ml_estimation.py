@@ -185,14 +185,34 @@ def estimation_log_reg(X_train, y_train, kfold):
     print("best score: ", lr_grid.best_score_)
     print("best params: ", lr_grid.best_params_)
 
+#best score:  0.9235836627140975
+#best params:  {'penalty': 'l2', 'C': 1}
+
+def run_log_reg(X_train, y_train, X_new, y_new):
+	clf = LogisticRegression(random_state=5, C=1, penalty='l2')
+	clf.fit(X_train, y_train)
+	y_score = clf.predict(X_new)
+	err_train = np.mean(y_new != y_score)
+	print ("LR train accuracy: ", 1 - err_train)
+	
+	#from sklearn.metrics import confusion_matrix
+	#cnf_matrix_train = confusion_matrix(y_new, y_score)    
+
+	#np.set_printoptions(precision=2)
+	#class_names = list(set(y_new))
+
+	#plt.figure()
+	#plot_confusion_matrix(cnf_matrix_train, classes=class_names, title='Confusion matrix train')
+	#plt.show()
+
 def estimation_svm(X_train, y_train, kfold):
     print ("parameter estimation for SVM")    
     from sklearn.grid_search import GridSearchCV
     #Cs = 10.**np.arange(-5, 5)
-    Cs = [0.001, 0.01, 1, 10, 100]
+    Cs = [0.001, 0.01, 1, 10]
  #   Gammas = 10.**np.arange(-5, 5)
-    Gammas = [0.001, 0.01, 1, 10, 100]
-    kernels = ['rbf','linear','poly']
+    Gammas = [0.001, 0.01, 1, 10]
+    kernels = ['rbf','linear']
 
     svc_grid = GridSearchCV(estimator = SVC(random_state=7), 
         param_grid = {'C': Cs, 'gamma': Gammas, 'kernel':kernels},
@@ -201,13 +221,32 @@ def estimation_svm(X_train, y_train, kfold):
  
     svc_grid.fit(X_train, y_train)
 
-    best_cv_err = 1 - svc_grid.best_score_
     best_C = svc_grid.best_estimator_.C
     best_Gamma = svc_grid.best_estimator_.gamma
     best_kernel = svc_grid.best_estimator_.kernel
 
-    print ("best score", best_cv_err)
-    print ("C = "+best_C+", gamma = "+best_Gamma+", kernel = "+best_kernel)
+    print ("best score", svc_grid.best_score_)
+    print ("C = "+str(best_C)+", gamma = "+str(best_Gamma)+", kernel = "+str(best_kernel))
+#best score 0.9288537549407114
+#C = 1, gamma = 0.001, kernel = rbf
+
+def run_svm(X_train, y_train, X_new, y_new):
+	clf = SVC(random_state=7, C=1, gamma=0.001,kernel='rbf')
+	clf.fit(X_train, y_train)
+	y_score = clf.predict(X_new)
+	err_train = np.mean(y_new != y_score)
+	print ("LR train accuracy: ", 1 - err_train)
+	
+	#from sklearn.metrics import confusion_matrix
+	#cnf_matrix_train = confusion_matrix(y_new, y_score)    
+
+	#np.set_printoptions(precision=2)
+	#class_names = list(set(y_new))
+
+	#plt.figure()
+	#plot_confusion_matrix(cnf_matrix_train, classes=class_names, title='Confusion matrix train')
+	#plt.show()
+
    
  
 def plot_confusion_matrix(cm, classes, normalize=False, title='Confusion matrix', cmap=plt.cm.Blues):
@@ -276,29 +315,19 @@ def main():
     
     ########################
     
-    y_train_over = load_labels("data/imbalanced/labels_train_over.txt")
-    X_train_over = load_data("data/imbalanced/data_train_over.txt")
+    y_train_over = load_labels("data/labels_train_over.txt")
+    X_train_over = load_data("data/data_train_over.txt")
     X_train_over = np.array(X_train_over)
     nsamples00, nx, ny = X_train_over.shape
     X_train_over = X_train_over.reshape((nsamples00,nx*ny))   
     print (np.array(X_train_over).shape)
     
-    kfold = model_evaluation(X_train_over, y_train_over)  
-    estimation_log_reg(X_train_over, y_train_over, kfold)
-    estimation_svm(X_train_over, y_train_over, kfold)
-    
-    # from sklearn.metrics import confusion_matrix
-    # cnf_matrix_train = confusion_matrix(y_train, y_score)    
-    
-    # np.set_printoptions(precision=2)
-    # class_names = list(set(y_train))
+    #kfold = model_evaluation(X_train_over, y_train_over)  
+    #estimation_log_reg(X_train_over, y_train_over, kfold)
+    #estimation_svm(X_train_over, y_train_over, kfold)
 
-    # plt.figure()
-    # plot_confusion_matrix(cnf_matrix_train, classes=class_names, title='Confusion matrix train')
-
-    # plt.show()
-    
-
+    run_log_reg(X_train_over, y_train_over, X_train, y_train)
+    run_svm(X_train_over, y_train_over, X_train, y_train)
     
 if __name__ == "__main__":
     main()

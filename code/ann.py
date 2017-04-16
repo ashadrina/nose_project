@@ -10,30 +10,24 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 from collections import OrderedDict
 
-from sklearn.preprocessing import LabelBinarizer
-from sklearn.preprocessing import MultiLabelBinarizer
-from numpy.linalg import svd
-from sklearn.cross_validation import train_test_split
-from sklearn.decomposition import PCA
-
 from sklearn import preprocessing
+
 from keras.models import Model
 from keras.models import Sequential
-from keras.layers.embeddings import Embedding
 from keras.layers import Input, Dense
+from keras.layers.core import Dropout
+from keras.layers.normalization import BatchNormalization
+from keras.layers.recurrent import LSTM
+from keras.layers.embeddings import Embedding
+
 from keras.utils.visualize_util import plot
 from keras.utils.np_utils import to_categorical
-from keras.layers.embeddings import Embedding
-from keras.layers.recurrent import LSTM
+from keras.utils import np_utils
 
 from keras.wrappers.scikit_learn import KerasClassifier
-from keras.utils import np_utils
-from sklearn.model_selection import cross_val_score
-from sklearn.model_selection import KFold
 from sklearn.model_selection import GridSearchCV
 from sklearn.preprocessing import LabelEncoder
-from sklearn.pipeline import Pipeline
-import numpy 
+
 
 def load_data(in_file):
     input_f = open(in_file, "r")
@@ -159,16 +153,20 @@ def fit_polynom(X_train, N):
     
 ########################################## 
 
-def create_model():
+def create_model_fully_connected():
     model = Sequential()
-    model.add(Dense(480, input_dim=968, activation='relu'))
-    model.add(Dense(120, activation='relu'))
-    model.add(Dense(60, activation='relu'))
-    model.add(Dense(20, activation='sigmoid'))
-    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+    model.add(Dense(968, input_dim=968, activation='relu'))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.7)) 
+    model.add(Dense(968, activation='relu'))
+    model.add(Dropout(0.5)) 
+    model.add(Dense(121, activation='relu'))
+    model.add(Dropout(0.3)) 
+    model.add(Dense(20, activation='softmax'))
+    model.compile(loss='categorical_crossentropy', optimizer='adadelta', metrics=['accuracy'])
     return model
   
-def parameter_est(model, X_train, y_train):
+def parameter_est_fully_connected(model, X_train, y_train):
     encoder = LabelEncoder()
     encoder.fit(y_train)
     encoded_Y = encoder.transform(y_train)
@@ -181,25 +179,174 @@ def parameter_est(model, X_train, y_train):
     grid_result = grid.fit(X_train, dummy_y)
     print("Best: %f using %s" % (grid_result.best_score_, grid_result.best_params_))
     
-def run_model(model, X_train, y_train, X_new):
+def run_model_fully_connected(model, X_train, y_train, X_new):
     encoder = LabelEncoder()
     encoder.fit(y_train)
     encoded_Y = encoder.transform(y_train)
-    dummy_y = np_utils.to_categorical(encoded_Y)
+    dummy_y = np_utils.to_categorical(encoded_Y)    
 
-    b_size = 11
     print ("Training model...")
-    model.fit(X_train, dummy_y, nb_epoch=13, batch_size=b_size, verbose=2, shuffle=False)
+    model.fit(X_train, dummy_y, nb_epoch=100, batch_size=5, verbose=2, shuffle=False)
+    y_score = model.predict(X_train)
+    print ("Training model... DONE")
+    
+    y_test_true = load_labels("true_labels.txt")
+    y_new_proba = []
+    for x,y_tr in zip(X_new, y_test_true):
+        probabilities = model.predict_proba(x.reshape(1,968))
+        y_new_proba.append(probabilities[0])
+        probabilities = [float(p) for p in probabilities[0]]
+        r1 = [(c,"{:.3f}".format(yy)) for c,yy in zip(encoder.classes_,probabilities)]
+        sorted_by_second_1 = sorted(r1, key=lambda tup: tup[1], reverse=True)
+        #print (sorted_by_second_1)
+        #print (y_tr)
+        #print ("-----------------------------------")
+
+    from sklearn.preprocessing import MultiLabelBinarizer
+  
+    ytrain = []
+    for i in y_train:
+        ytrain.append([i])   
+        
+    yscore = []
+    for i in y_score:
+        yscore.append([i])    
+                     
+
+    mlb = MultiLabelBinarizer()
+    ytrain =  mlb.fit_transform(ytrain) 
+    yscore =  mlb.fit_transform(yscore) 
+   # y_new_proba =  mlb.fit_transform(y_new_proba) 
+   # print (y_new_proba)
+    y_test_true_labels = load_labels("true_labels.txt")
+    y_test_true_labels = [list(filter(None, lab)) for lab in y_test_true_labels]
+    y_test_true_labels.append(['benzin'])
+    y_test_true =  mlb.fit_transform(y_test_true_labels) 
+    y_test_true = list(y_test_true)[:-1]   
+  #  print (y_new_proba)
+
+    from sklearn.metrics import coverage_error
+    err1 = coverage_error(ytrain, yscore)
+    print ("You should predict top ",err1, " labels for train")
+    err2 = coverage_error(y_test_true, y_new_proba)
+    print ("You should predict top ",err2, " labels for toys")
+
+    from sklearn.metrics import label_ranking_average_precision_score
+    rap1 = label_ranking_average_precision_score(ytrain, yscore) 
+    print ("label_ranking_average_precision_score on train", rap1)
+    rap2 = label_ranking_average_precision_score(y_test_true, y_new_proba) 
+    print ("label_ranking_average_precision_score on toys", rap2)
+
+##########################################
+    
+def get_lookback(a, lsize):
+    a=a.tolist()
+    new_a = []
+    for item in a:
+        st=a.index(item)
+        if st-lsize < 0:
+            arr = []
+            for i in range(0, lsize):
+                arr.append(a[st-lsize+i])
+        else:
+            arr=a[st-lsize:st]
+        new_a.append(arr)
+    return np.asarray(new_a)
+
+def create_model_lstm():
+    look_back = 3
+    b_size = 5
+    n_classes = 20
+    epoches = 100
+    
+    #define model
+    model = Sequential()
+    model.add(LSTM(128, return_sequences=True, batch_input_shape=(b_size, look_back, 968), stateful=True))  # returns a sequence of vectors
+    model.add(BatchNormalization())
+    model.add(Dropout(0.7)) 
+    model.add(LSTM(128, batch_input_shape=(b_size, look_back, 968), stateful=True, dropout_W=0.2, dropout_U=0.2))  # return a single vector 
+    model.add(Dropout(0.3)) 
+    model.add(Dense(n_classes, activation='sigmoid'))
+
+    print ("Compiling model...")
+    model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+    print ("Compiling model... DONE")    
+    return model
+    
+def lstm_rnn(X_train, y_train, X_test):
+    look_back = 3
+    b_size = 5
+    n_classes = 20
+    epoches = 100
+
+    print ("Preparing data...")
+    X_train = get_lookback(X_train, look_back)
+    X_test =  get_lookback(X_test, look_back)
+
+    encoder = LabelEncoder()
+    encoder.fit(y_train)
+    encoded_Y = encoder.transform(y_train)
+    dummy_y = np_utils.to_categorical(encoded_Y, n_classes)
+    
+    print (X_train.shape, dummy_y.shape, X_test.shape)
+
+    model = create_model_lstm()
+        
+    print ("Training model...")
+    for i in range(epoches):
+        model.fit(X_train, dummy_y, nb_epoch=1, batch_size=b_size, verbose=2, shuffle=False)
+        model.reset_states()
     print ("Training model... DONE")
 
+    #model performance estimation
     train_loss, train_acc = model.evaluate(X_train, dummy_y, batch_size=b_size, verbose=0)
-    print('Train Score: %.2f, loss %.2f' % (train_acc, train_loss))
+    model.reset_states()
+    print ("Train score: "+str(train_acc)+", loss: "+str(train_loss))
 
-    probabilities = model.predict(X_new)
-    #probabilities[probabilities>= 0.5] = 1
-    #probabilities[probabilities<0.5] = 0
-    print (probabilities)
-    print(encoder.inverse_transform(probabilities))
+    #predictions for training and test
+    y_score = model.predict_classes(X_train, batch_size=b_size)
+    
+    y_test_true = load_labels("true_labels.txt")
+    y_new_proba = model.predict_proba(X_test,  batch_size=b_size)
+    for x,y_tr in zip(y_new_proba, y_test_true):
+        probabilities = [float(p) for p in x]
+        r1 = [(c,"{:.3f}".format(yy)) for c,yy in zip(encoder.classes_,probabilities)]
+        sorted_by_second_1 = sorted(r1, key=lambda tup: tup[1], reverse=True)
+        print (sorted_by_second_1)
+        print (y_tr)
+        print ("-----------------------------------")
+    
+    from sklearn.preprocessing import MultiLabelBinarizer
+  
+    ytrain = []
+    for i in y_train:
+        ytrain.append([i])   
+        
+    yscore = []
+    for i in y_score:
+        yscore.append([i])    
+                     
+    mlb = MultiLabelBinarizer()
+    ytrain =  mlb.fit_transform(ytrain) 
+    yscore =  mlb.fit_transform(yscore) 
+    y_test_true_labels = load_labels("true_labels.txt")
+    y_test_true_labels = [list(filter(None, lab)) for lab in y_test_true_labels]
+    y_test_true_labels.append(['benzin'])
+    y_test_true =  mlb.fit_transform(y_test_true_labels) 
+    y_test_true = list(y_test_true)[:-1]   
+
+    from sklearn.metrics import coverage_error
+    err1 = coverage_error(ytrain, yscore)
+    print ("You should predict top ",err1, " labels for train")
+    err2 = coverage_error(y_test_true, y_new_proba)
+    print ("You should predict top ",err2, " labels for toys")
+
+    from sklearn.metrics import label_ranking_average_precision_score
+    rap1 = label_ranking_average_precision_score(ytrain, yscore) 
+    print ("label_ranking_average_precision_score on train", rap1)
+    rap2 = label_ranking_average_precision_score(y_test_true, y_new_proba) 
+    print ("label_ranking_average_precision_score on toys", rap2)
+
 
     
 def main():
@@ -223,9 +370,11 @@ def main():
     X_train = preprocessing.scale(X_train)
     X_new = preprocessing.scale(X_new)
     
-    model = KerasClassifier(build_fn=create_model, verbose=0)
-    parameter_est(model, X_train, y_train)
-    #run_model(model, X_train_2d, y_train, X_test_2d, y_test)
+    #model = KerasClassifier(build_fn=create_model_fully_connected, verbose=0)
+    #parameter_est_fully_connected(model, X_train, y_train)
+    #run_model_fully_connected(model, X_train, y_train, X_new)
+    
+    lstm_rnn(X_train, y_train, X_new)
     
 if __name__ == "__main__":
     main()

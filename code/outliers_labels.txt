@@ -1,0 +1,40 @@
+azetaldegid ацетальдегид 1 мкл -1 
+azetaldegid ацетальдегид 3 мкл 1
+azetaldegid ацетальдегид 5 мкл 1
+azetaldegid ац-д 1
+azeton ацетон 1 мкл 1
+azeton ацетон 3 мкл 1 
+azeton ацетон 5 мкл 1
+benzin ацетон 1
+benzol бензол 1 мкл 1
+benzol бензол 3 мкл 1
+benzol бензол 5 мкл 1
+benzol бензол 1
+butanol бутанол 1
+butilazetat  бутилац 1
+geksan гексан -1
+dioktilftalat диоктилфталт  -1
+dioktilftalat диоктидфталат 1
+dioktilftalat диоктилфталат 2 см2 пятно 1
+dioktilftalat ДОФ 1 мк на листе 1
+dioktilftalat ДОФ на листе 3 мкл 1
+dioktilftalat Доф 5 мкл на листе 1
+dioktilftalat доф 1 мкл на пластизоле -1
+dioktilftalat ДОФ на пл 3 мкл 1
+dioktilftalat ДОФ на пластизоле 5 мкл 1
+izobutanol изобутанол 1
+izopropanol изопропанол 1
+plastizol пластизоль 1
+plastizol пластизоль 1 
+propanol пропанол 1
+stirol стирол 1
+toluol толуол 1
+fenol фенол 1
+etilazetat этилацетат 1 мкл 1
+etilazetat этилацетат 3 мкл 1
+etilazetat этилацетат 5 мкл 1
+etilazetat этилацетат 1
+dioktilftalat;azeton ДОФ и ацетон 3:1 на пл 1
+dioktilftalat;etilazetat ДОФ и этац 3:1 на пл 1
+dioktilftalat;benzol ДОФ и бензол 3:1 на пл 1
+dioktilftalat;azetaldegid ДОФ и ац-д 3:1 1

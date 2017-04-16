@@ -41,36 +41,6 @@ def load_labels(in_file):
     input_f.close()
     return labels
 
-def load_dataset():
-    X_train_data = load_data("data/data_train.txt")
-    y_train_lat_labels = load_labels("data/labels_train.txt")
-    print ("initial data: ", np.array(X_train_data).shape)
-
-    X_test_data = load_data("data/data_test.txt")
-    y_test_lat_labels = load_labels("data/labels_test.txt")
-    y_test_lat_labels = ["_with_".join(i) for i in y_test_lat_labels]    
-    print ("initial data: ", np.array(X_test_data).shape)
-    
-    ##########################################
-    X_train_big = []
-    X_train_big.extend(X_train_data)
-    X_train_big.extend(X_test_data)
-    X_train_big = np.array(X_train_big)
-
-    y_train_lat_big = []
-    y_train_lat_big.extend(y_train_lat_labels)
-    y_train_lat_big.extend(y_test_lat_labels)
-    
-    y_train_lat_big_list = []
-    for i in y_train_lat_big:
-        y_train_lat_big_list.append([i])
-
-    mlb = MultiLabelBinarizer()
-    y_train_big =  mlb.fit_transform(y_train_lat_big_list) 
-
-    X_new_data = load_data("data/data_new.txt")
-    print ("initial data: ", np.array(X_new_data).shape)
-    return X_train_big, y_train_big, X_new_data, mlb
 
 ##########################################
     
@@ -90,23 +60,12 @@ def detrend(x):
     import numpy as np
     import scipy.signal as sps
     import matplotlib.pyplot as plt
-
     x = np.asarray(x)    
-    #plt.plot(x, label='original')
-
-    # detect and remove jumps
-    jmps = np.where(np.diff(x) < -0.5)[0]  # find large, rapid drops in amplitdue
+    jmps = np.where(np.diff(x) < -0.5)[0]  
     for j in jmps:
         x[j+1:] += x[j] - x[j+1]    
-    #plt.plot(x, label='unrolled')
-
-    # detrend with a low-pass
     order = 20
-    x -= sps.filtfilt([1] * order, [order], x)  # this is a very simple moving average filter
-    #plt.plot(x, label='detrended')
-
-    #plt.legend(loc='best')
-    #plt.show()
+    x -= sps.filtfilt([1] * order, [order], x) 
     return x
     
 def patch_detrend(X_train):
@@ -168,7 +127,5 @@ for i, (clf_name, clf) in enumerate(classifiers.items()):
     
     for voc,res in zip(y_train,y_pred):
         print (voc, " - ", res)
-    
-    # [-1  1  1  1  1  1  1  1  1  1  1  1  1  1 -1 -1  1  1  1  1  1  1 -1  1  1
-    # 1  1  1  1  1  1  1  1  1  1  1  1  1  1  1]
+'
 
