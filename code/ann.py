@@ -20,12 +20,13 @@ from keras.layers.normalization import BatchNormalization
 from keras.layers.recurrent import LSTM
 from keras.layers.embeddings import Embedding
 
-from keras.utils.visualize_util import plot
+#from keras.utils.visualize_util import plot
 from keras.utils.np_utils import to_categorical
 from keras.utils import np_utils
 
 from keras.wrappers.scikit_learn import KerasClassifier
-from sklearn.model_selection import GridSearchCV
+#from sklearn.model_selection import GridSearchCV
+from sklearn.grid_search import GridSearchCV
 from sklearn.preprocessing import LabelEncoder
 
 
@@ -72,17 +73,9 @@ def load_dataset():
     y_train_lat_big = []
     y_train_lat_big.extend(y_train_lat_labels)
     y_train_lat_big.extend(y_test_lat_labels)
-    
-    #y_train_lat_big_list = []
-    #for i in y_train_lat_big:
-    #    y_train_lat_big_list.append([i])
-
-    #mlb = MultiLabelBinarizer()
-    #y_train_big =  mlb.fit_transform(y_train_lat_big_list) 
-
+    ##########################################
     X_new_data = load_data("data/data_new.txt")
     print ("initial data: ", np.array(X_new_data).shape)
-    #return X_train_big, y_train_big, X_new_data, mlb
     return X_train_big, y_train_lat_big, X_new_data
 
 ##########################################
@@ -152,18 +145,19 @@ def fit_polynom(X_train, N):
     return X_train_new
     
 ########################################## 
-
 def create_model_fully_connected():
     model = Sequential()
     model.add(Dense(968, input_dim=968, activation='relu'))
     model.add(BatchNormalization())
     model.add(Dropout(0.7)) 
-    model.add(Dense(968, activation='relu'))
+    model.add(Dense(968, activation='sigmoid'))
     model.add(Dropout(0.5)) 
     model.add(Dense(121, activation='relu'))
     model.add(Dropout(0.3)) 
-    model.add(Dense(20, activation='softmax'))
-    model.compile(loss='categorical_crossentropy', optimizer='adadelta', metrics=['accuracy'])
+    model.add(Dense(60, activation='tanh'))
+    model.add(Dropout(0.3)) 
+    model.add(Dense(fully_n_classes, activation='softmax'))
+    model.compile(loss='categorical_crossentropy', optimizer='adagrad', metrics=['accuracy'])
     return model
   
 def parameter_est_fully_connected(model, X_train, y_train):
@@ -186,59 +180,17 @@ def run_model_fully_connected(model, X_train, y_train, X_new):
     dummy_y = np_utils.to_categorical(encoded_Y)    
 
     print ("Training model...")
-    model.fit(X_train, dummy_y, nb_epoch=100, batch_size=5, verbose=2, shuffle=False)
-    y_score = model.predict(X_train)
+    model.fit(X_train, dummy_y, nb_epoch=100, batch_size=fully_b_size, verbose=2, shuffle=False)
+    y_score = model.predict_classes(X_train)
     print ("Training model... DONE")
     
-    y_test_true = load_labels("true_labels.txt")
-    y_new_proba = []
-    for x,y_tr in zip(X_new, y_test_true):
-        probabilities = model.predict_proba(x.reshape(1,968))
-        y_new_proba.append(probabilities[0])
-        probabilities = [float(p) for p in probabilities[0]]
-        r1 = [(c,"{:.3f}".format(yy)) for c,yy in zip(encoder.classes_,probabilities)]
-        sorted_by_second_1 = sorted(r1, key=lambda tup: tup[1], reverse=True)
-        #print (sorted_by_second_1)
-        #print (y_tr)
-        #print ("-----------------------------------")
+    #model performance estimation
+    train_loss, train_acc = model.evaluate(X_train, dummy_y, batch_size=fully_b_size, verbose=0)
+    print ("Train score: "+str(train_acc)+", loss: "+str(train_loss))
 
-    from sklearn.preprocessing import MultiLabelBinarizer
-  
-    ytrain = []
-    for i in y_train:
-        ytrain.append([i])   
-        
-    yscore = []
-    for i in y_score:
-        yscore.append([i])    
-                     
-
-    mlb = MultiLabelBinarizer()
-    ytrain =  mlb.fit_transform(ytrain) 
-    yscore =  mlb.fit_transform(yscore) 
-   # y_new_proba =  mlb.fit_transform(y_new_proba) 
-   # print (y_new_proba)
-    y_test_true_labels = load_labels("true_labels.txt")
-    y_test_true_labels = [list(filter(None, lab)) for lab in y_test_true_labels]
-    y_test_true_labels.append(['benzin'])
-    y_test_true =  mlb.fit_transform(y_test_true_labels) 
-    y_test_true = list(y_test_true)[:-1]   
-  #  print (y_new_proba)
-
-    from sklearn.metrics import coverage_error
-    err1 = coverage_error(ytrain, yscore)
-    print ("You should predict top ",err1, " labels for train")
-    err2 = coverage_error(y_test_true, y_new_proba)
-    print ("You should predict top ",err2, " labels for toys")
-
-    from sklearn.metrics import label_ranking_average_precision_score
-    rap1 = label_ranking_average_precision_score(ytrain, yscore) 
-    print ("label_ranking_average_precision_score on train", rap1)
-    rap2 = label_ranking_average_precision_score(y_test_true, y_new_proba) 
-    print ("label_ranking_average_precision_score on toys", rap2)
+    compute_ind_metrics(y_train, y_score, X_new,  model,  "fcn") 
 
 ##########################################
-    
 def get_lookback(a, lsize):
     a=a.tolist()
     new_a = []
@@ -253,71 +205,113 @@ def get_lookback(a, lsize):
         new_a.append(arr)
     return np.asarray(new_a)
 
-def create_model_lstm():
-    look_back = 3
-    b_size = 5
-    n_classes = 20
-    epoches = 100
-    
+def create_model_lstm(): 
     #define model
     model = Sequential()
-    model.add(LSTM(128, return_sequences=True, batch_input_shape=(b_size, look_back, 968), stateful=True))  # returns a sequence of vectors
+    model.add(LSTM(128, return_sequences=True, batch_input_shape=(lstm_b_size, look_back, 968), stateful=True))  # returns a sequence of vectors
     model.add(BatchNormalization())
     model.add(Dropout(0.7)) 
-    model.add(LSTM(128, batch_input_shape=(b_size, look_back, 968), stateful=True, dropout_W=0.2, dropout_U=0.2))  # return a single vector 
+    model.add(LSTM(128, batch_input_shape=(lstm_b_size, look_back, 968), stateful=True, dropout_W=0.2, dropout_U=0.2))  # return a single vector 
+    #model.add(BatchNormalization())
     model.add(Dropout(0.3)) 
-    model.add(Dense(n_classes, activation='sigmoid'))
+    model.add(Dense(20, activation='sigmoid'))
 
-    print ("Compiling model...")
+    print ("Compiling LSTM model...")
     model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
-    print ("Compiling model... DONE")    
+    print ("Compiling LSTM model... DONE")    
     return model
     
-def lstm_rnn(X_train, y_train, X_test):
-    look_back = 3
-    b_size = 5
-    n_classes = 20
+def run_lstm_rnn(model, X_train, y_train, X_new):
     epoches = 100
-
     print ("Preparing data...")
     X_train = get_lookback(X_train, look_back)
-    X_test =  get_lookback(X_test, look_back)
+    X_new =  get_lookback(X_new, look_back)
 
     encoder = LabelEncoder()
     encoder.fit(y_train)
     encoded_Y = encoder.transform(y_train)
     dummy_y = np_utils.to_categorical(encoded_Y, n_classes)
     
-    print (X_train.shape, dummy_y.shape, X_test.shape)
-
-    model = create_model_lstm()
-        
-    print ("Training model...")
+    print (X_train.shape, dummy_y.shape, X_new.shape)
+    print ("Training LSTM model...")
     for i in range(epoches):
-        model.fit(X_train, dummy_y, nb_epoch=1, batch_size=b_size, verbose=2, shuffle=False)
+        model.fit(X_train, dummy_y, nb_epoch=1, batch_size=lstm_b_size, verbose=2, shuffle=False)
         model.reset_states()
-    print ("Training model... DONE")
+    print ("Training LSTM model... DONE")
 
     #model performance estimation
-    train_loss, train_acc = model.evaluate(X_train, dummy_y, batch_size=b_size, verbose=0)
+    train_loss, train_acc = model.evaluate(X_train, dummy_y, batch_size=lstm_b_size, verbose=0)
     model.reset_states()
     print ("Train score: "+str(train_acc)+", loss: "+str(train_loss))
 
     #predictions for training and test
-    y_score = model.predict_classes(X_train, batch_size=b_size)
+    y_score = model.predict_classes(X_train, batch_size=lstm_b_size)
+    compute_ind_metrics(y_train, encoder.inverse_transform(y_score), X_new,  model,  "lstm")   
     
-    y_test_true = load_labels("true_labels.txt")
-    y_new_proba = model.predict_proba(X_test,  batch_size=b_size)
-    for x,y_tr in zip(y_new_proba, y_test_true):
-        probabilities = [float(p) for p in x]
-        r1 = [(c,"{:.3f}".format(yy)) for c,yy in zip(encoder.classes_,probabilities)]
-        sorted_by_second_1 = sorted(r1, key=lambda tup: tup[1], reverse=True)
-        print (sorted_by_second_1)
-        print (y_tr)
-        print ("-----------------------------------")
-    
-    from sklearn.preprocessing import MultiLabelBinarizer
+##########################################
+def predicted_vs_real_label(y_pred, mlb, folder_name):
+    import pandas
+    y_true = load_labels("true_labels.txt")
+    y_true = [[x.replace('dioktilftalat','dof') for x in l] for l in y_true]
+    nums = range(1,76)
+    folder_name = "graphs/proba/real/"+folder_name
+    #folder_name = "graphs/proba/outliers/"+folder_name
+   
+    for x_test,y_tr,num in zip(y_pred,y_true, nums):
+        y_tr = filter(None, y_tr)
+        pred = dict([(c.replace('dioktilftalat','dof'),float("{:.3f}".format(yy))) for c,yy in zip(mlb.classes_,x_test)])      
+        vocs = set(pred.keys())
+        true = dict([(key, 0.0) for key in vocs])
+        for tr in y_tr:
+            true[tr] = 1.0
+
+        df_pred = pandas.DataFrame.from_dict(pred, orient='index')
+        df_pred.columns=["Predicted"]
+        df_true = pandas.DataFrame.from_dict(true, orient='index')
+        df_true.columns=["True"]
+        df_result = pd.concat([df_true, df_pred], axis=1)
+        df_result =  df_result.sort('Predicted', ascending=False)
+              
+        #print (num)
+        #print (df_result)             
+        #print ("--------------------------------")
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+        df_result["Predicted"].plot(kind='bar', ax=ax, color = 'teal', label="pred", alpha = 0.7, rot=90)
+        df_result["True"].plot(kind='bar',ax=ax, color = 'red',  label="true",  alpha = 0.2)
+        ax.set_xticklabels(df_result.index)
+        plt.legend()
+        plt.tight_layout()
+        plt.title(num)
+        # plt.show()
+
+        try:
+         os.stat(folder_name)
+        except:
+         os.mkdir(folder_name) 
+        plt.savefig(folder_name+"/"+str(num)+".png", dpi=100)
+        plt.close('all')
+
+def compute_av_metrics(y_train, y_score, y_new_proba):
+    y_test_true_labels = load_labels("true_labels.txt")
+    y_test_true_labels = [list(filter(None, lab)) for lab in y_test_true_labels]
+    y_test_true_labels.append(['benzin'])
+    y_test_true =  mlb.fit_transform(y_test_true_labels) 
+    y_test_true = list(y_test_true)[:-1]      
+
+    from sklearn.metrics import coverage_error
+    err1 = coverage_error(y_train, y_score)
+    print ("You should predict top ",err1, " labels for train")
+    err2 = coverage_error(y_test_true, y_new_proba)
+    print ("You should predict top ",err2, " labels for toys")
+
+    from sklearn.metrics import label_ranking_average_precision_score
+    rap1 = label_ranking_average_precision_score(y_train, y_score) 
+    print ("label_ranking_average_precision_score on train", rap1)
+    rap2 = label_ranking_average_precision_score(y_test_true, y_new_proba) 
+    print ("label_ranking_average_precision_score on toys", rap2)
   
+def compute_ind_metrics(y_train, y_score, X_new, clf, algo):
     ytrain = []
     for i in y_train:
         ytrain.append([i])   
@@ -325,56 +319,128 @@ def lstm_rnn(X_train, y_train, X_test):
     yscore = []
     for i in y_score:
         yscore.append([i])    
-                     
+
+    from sklearn.preprocessing import MultiLabelBinarizer
     mlb = MultiLabelBinarizer()
-    ytrain =  mlb.fit_transform(ytrain) 
-    yscore =  mlb.fit_transform(yscore) 
+    ytrain =  mlb.fit_transform(y_train) 
+    y = []
+    for item in yscore:
+        y.extend(mlb.transform(item))
+    yscore =  y#mlb.transform(yscore) 
+
     y_test_true_labels = load_labels("true_labels.txt")
     y_test_true_labels = [list(filter(None, lab)) for lab in y_test_true_labels]
     y_test_true_labels.append(['benzin'])
-    y_test_true =  mlb.fit_transform(y_test_true_labels) 
-    y_test_true = list(y_test_true)[:-1]   
 
+    y = []
+    for item in y_test_true_labels:
+        y.extend(mlb.transform(item)) 
+    y_test_true = list(y)[:-1]      
+    
     from sklearn.metrics import coverage_error
     err1 = coverage_error(ytrain, yscore)
     print ("You should predict top ",err1, " labels for train")
-    err2 = coverage_error(y_test_true, y_new_proba)
-    print ("You should predict top ",err2, " labels for toys")
-
     from sklearn.metrics import label_ranking_average_precision_score
-    rap1 = label_ranking_average_precision_score(ytrain, yscore) 
+    rap1 = label_ranking_average_precision_score(ytrain, yscore)
     print ("label_ranking_average_precision_score on train", rap1)
-    rap2 = label_ranking_average_precision_score(y_test_true, y_new_proba) 
-    print ("label_ranking_average_precision_score on toys", rap2)
+        
+    true = {}
+    pred = {}
+    y_new = []
+    probabilities = clf.predict_proba(X_new, batch_size=lstm_b_size)
+    for i in range(len(X_new)):
+        print (i+1)
+        y_new_proba = probabilities[i]
+        y_new.append(y_new_proba)
+        err2 = coverage_error([y_test_true[i]], [y_new_proba])
+        print ("Compounds in real solution: ", len(y_test_true_labels[i]))
+        print ("You should predict top ",err2, " labels for toys")
+        rap2 = label_ranking_average_precision_score([y_test_true[i]], [y_new_proba])
+        print ("label_ranking_average_precision_score on toys", rap2)
+        print ("--------------------------------------------------------------")
+        true[i] = float(len(y_test_true_labels[i]))
+        pred[i] = err2
+        
 
-
+    df_pred = pd.DataFrame.from_dict(pred, orient='index')
+    df_pred.columns=["Predicted"]
+    df_true = pd.DataFrame.from_dict(true, orient='index')
+    df_true.columns=["True"]
+    df_result = pd.concat([df_true, df_pred], axis=1)
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    df_result["Predicted"].plot(kind='line', ax=ax, color = 'teal', label="pred", alpha = 0.7, rot=90, lw=3)
+    df_result["True"].plot(kind='line',ax=ax, color = 'red',  label="true",  alpha = 0.7, lw=3, ls='dotted')
+    plt.legend()
+    plt.tight_layout()
+    plt.grid()
+    plt.title("Coverage error VS true labell number")
+    plt.savefig("graphs/metrics/real/"+algo+".png", dpi=100)
+    #plt.savefig("graphs/metrics/outliers/"+algo+".png", dpi=100)
+    compute_area_between_curves(df_result)
+    predicted_vs_real_label(y_new, mlb, algo)
+    
+def compute_area_between_curves(df_result):
+    y1 = df_result["Predicted"].values
+    y2 = df_result["True"].values
+    x = df_result.index
+    z = y1-y2
+    dx = x[1:] - x[:-1]
+    cross_test = np.sign(z[:-1] * z[1:])
+    x_intersect = x[:-1] - dx / (z[1:] - z[:-1]) * z[:-1]
+    dx_intersect = - dx / (z[1:] - z[:-1]) * z[:-1]
+    areas_pos = abs(z[:-1] + z[1:]) * 0.5 * dx # signs of both z are same
+    areas_neg = 0.5 * dx_intersect * abs(z[:-1]) + 0.5 * (dx - dx_intersect) * abs(z[1:])
+    areas = np.where(cross_test < 0, areas_neg, areas_pos)
+    total_area = np.sum(areas)
+    print ("Area between curves: ", total_area)
     
 def main():
-    #X_train, y_train, X_new, mlb = load_dataset()
     X_train, y_train, X_new = load_dataset()
+    #X_train = load_data("data/data_all_outliers.txt")
+    #y_train = load_labels("data/labels_all_outliers.txt")
 
     X_train = normalize_data(X_train)    
     X_train = patch_detrend(X_train)    
-
+    
     X_train = np.array(X_train)
     nsamples00, nx, ny = X_train.shape
-    X_train = X_train.reshape((nsamples00,nx*ny))        
-
+    X_train = X_train.reshape((nsamples00,nx*ny))       
+    
+    ###################################  
+    X_new = load_data("data/data_new.txt")
     X_new = normalize_data(X_new)    
     X_new = patch_detrend(X_new)    
-
+  
     X_new = np.array(X_new)
     nsamples22, nx, ny = X_new.shape
-    X_new = X_new.reshape((nsamples22,nx*ny))        
+    X_new = X_new.reshape((nsamples22,nx*ny))      
 
+    ###################################
     X_train = preprocessing.scale(X_train)
     X_new = preprocessing.scale(X_new)
+
+    print (np.array(X_train).shape)
+    print (np.array(X_new).shape)
+    ###################################
+    global fully_b_size
+    fully_b_size = 5
+    global fully_n_classes
+    fully_n_classes = 20
     
-    #model = KerasClassifier(build_fn=create_model_fully_connected, verbose=0)
+    #model = create_model_fully_connected()
     #parameter_est_fully_connected(model, X_train, y_train)
     #run_model_fully_connected(model, X_train, y_train, X_new)
+
+    global look_back
+    look_back = 5
+    global lstm_b_size
+    lstm_b_size = 5
+    global n_classes
+    n_classes = 20
     
-    lstm_rnn(X_train, y_train, X_new)
+    model = create_model_lstm()
+    run_lstm_rnn(model, X_train, y_train, X_new)
     
 if __name__ == "__main__":
     main()

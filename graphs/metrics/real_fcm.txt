@@ -1,0 +1,587 @@
+initial data:  (36, 8, 121)
+initial data:  (4, 8, 121)
+initial data:  (75, 8, 121)
+(40, 968)
+(75, 968)
+Training model...
+Epoch 1/100
+0s - loss: 4.3474 - acc: 0.0000e+00
+Epoch 2/100
+0s - loss: 3.8788 - acc: 0.0250
+Epoch 3/100
+0s - loss: 3.2343 - acc: 0.1250
+Epoch 4/100
+0s - loss: 3.0413 - acc: 0.0750
+Epoch 5/100
+0s - loss: 3.3512 - acc: 0.1000
+Epoch 6/100
+0s - loss: 3.1910 - acc: 0.1000
+Epoch 7/100
+0s - loss: 2.8985 - acc: 0.1250
+Epoch 8/100
+0s - loss: 2.7321 - acc: 0.2750
+Epoch 9/100
+0s - loss: 2.8438 - acc: 0.2250
+Epoch 10/100
+0s - loss: 2.7849 - acc: 0.1500
+Epoch 11/100
+0s - loss: 2.7390 - acc: 0.1750
+Epoch 12/100
+0s - loss: 2.7137 - acc: 0.2000
+Epoch 13/100
+0s - loss: 2.8815 - acc: 0.1000
+Epoch 14/100
+0s - loss: 2.4543 - acc: 0.2000
+Epoch 15/100
+0s - loss: 2.6137 - acc: 0.1500
+Epoch 16/100
+0s - loss: 2.2776 - acc: 0.3250
+Epoch 17/100
+0s - loss: 2.1888 - acc: 0.3250
+Epoch 18/100
+0s - loss: 2.2220 - acc: 0.3500
+Epoch 19/100
+0s - loss: 2.3864 - acc: 0.2250
+Epoch 20/100
+0s - loss: 2.2719 - acc: 0.3500
+Epoch 21/100
+0s - loss: 2.2682 - acc: 0.2250
+Epoch 22/100
+0s - loss: 2.1256 - acc: 0.2500
+Epoch 23/100
+0s - loss: 2.1412 - acc: 0.2250
+Epoch 24/100
+0s - loss: 1.9711 - acc: 0.3750
+Epoch 25/100
+0s - loss: 2.1014 - acc: 0.3500
+Epoch 26/100
+0s - loss: 2.2261 - acc: 0.3000
+Epoch 27/100
+0s - loss: 1.9670 - acc: 0.4000
+Epoch 28/100
+0s - loss: 1.7948 - acc: 0.3500
+Epoch 29/100
+0s - loss: 1.8617 - acc: 0.4000
+Epoch 30/100
+0s - loss: 1.9064 - acc: 0.4000
+Epoch 31/100
+0s - loss: 1.9933 - acc: 0.3500
+Epoch 32/100
+0s - loss: 1.8623 - acc: 0.3500
+Epoch 33/100
+0s - loss: 2.0759 - acc: 0.4000
+Epoch 34/100
+0s - loss: 1.9119 - acc: 0.4250
+Epoch 35/100
+0s - loss: 1.7141 - acc: 0.4000
+Epoch 36/100
+0s - loss: 1.7518 - acc: 0.3000
+Epoch 37/100
+0s - loss: 1.4496 - acc: 0.5000
+Epoch 38/100
+0s - loss: 1.8136 - acc: 0.4250
+Epoch 39/100
+0s - loss: 1.5343 - acc: 0.5000
+Epoch 40/100
+0s - loss: 1.6649 - acc: 0.5250
+Epoch 41/100
+0s - loss: 1.4870 - acc: 0.5500
+Epoch 42/100
+0s - loss: 1.3983 - acc: 0.6000
+Epoch 43/100
+0s - loss: 1.4748 - acc: 0.5250
+Epoch 44/100
+0s - loss: 1.5816 - acc: 0.4750
+Epoch 45/100
+0s - loss: 1.5029 - acc: 0.5750
+Epoch 46/100
+0s - loss: 1.2982 - acc: 0.6250
+Epoch 47/100
+0s - loss: 1.5032 - acc: 0.5250
+Epoch 48/100
+0s - loss: 1.4962 - acc: 0.5000
+Epoch 49/100
+0s - loss: 1.5518 - acc: 0.4250
+Epoch 50/100
+0s - loss: 1.3499 - acc: 0.6250
+Epoch 51/100
+0s - loss: 1.2817 - acc: 0.5500
+Epoch 52/100
+0s - loss: 1.1599 - acc: 0.6250
+Epoch 53/100
+0s - loss: 1.4708 - acc: 0.4500
+Epoch 54/100
+0s - loss: 1.4392 - acc: 0.5750
+Epoch 55/100
+0s - loss: 1.1141 - acc: 0.6500
+Epoch 56/100
+0s - loss: 1.2767 - acc: 0.6000
+Epoch 57/100
+0s - loss: 1.2977 - acc: 0.5500
+Epoch 58/100
+0s - loss: 1.3800 - acc: 0.5250
+Epoch 59/100
+0s - loss: 1.2178 - acc: 0.7500
+Epoch 60/100
+0s - loss: 1.1984 - acc: 0.5500
+Epoch 61/100
+0s - loss: 1.1588 - acc: 0.6750
+Epoch 62/100
+0s - loss: 1.0963 - acc: 0.6500
+Epoch 63/100
+0s - loss: 1.1267 - acc: 0.5750
+Epoch 64/100
+0s - loss: 0.9262 - acc: 0.7750
+Epoch 65/100
+0s - loss: 1.0347 - acc: 0.8000
+Epoch 66/100
+0s - loss: 0.9752 - acc: 0.7250
+Epoch 67/100
+0s - loss: 1.0860 - acc: 0.7000
+Epoch 68/100
+0s - loss: 1.1624 - acc: 0.6750
+Epoch 69/100
+0s - loss: 0.9720 - acc: 0.7000
+Epoch 70/100
+0s - loss: 0.9782 - acc: 0.7000
+Epoch 71/100
+0s - loss: 0.9968 - acc: 0.7500
+Epoch 72/100
+0s - loss: 1.0485 - acc: 0.6500
+Epoch 73/100
+0s - loss: 0.7732 - acc: 0.8250
+Epoch 74/100
+0s - loss: 0.9662 - acc: 0.7250
+Epoch 75/100
+0s - loss: 1.0129 - acc: 0.7750
+Epoch 76/100
+0s - loss: 0.8504 - acc: 0.8750
+Epoch 77/100
+0s - loss: 0.7794 - acc: 0.8000
+Epoch 78/100
+0s - loss: 0.8373 - acc: 0.8500
+Epoch 79/100
+0s - loss: 0.7906 - acc: 0.7750
+Epoch 80/100
+0s - loss: 1.1122 - acc: 0.7500
+Epoch 81/100
+0s - loss: 0.8208 - acc: 0.8000
+Epoch 82/100
+0s - loss: 0.9088 - acc: 0.8250
+Epoch 83/100
+0s - loss: 0.7907 - acc: 0.9000
+Epoch 84/100
+0s - loss: 0.8897 - acc: 0.8000
+Epoch 85/100
+0s - loss: 0.8375 - acc: 0.8250
+Epoch 86/100
+0s - loss: 0.9365 - acc: 0.7500
+Epoch 87/100
+0s - loss: 0.6966 - acc: 0.8250
+Epoch 88/100
+0s - loss: 0.7834 - acc: 0.8500
+Epoch 89/100
+0s - loss: 0.6921 - acc: 0.8750
+Epoch 90/100
+0s - loss: 0.8880 - acc: 0.7500
+Epoch 91/100
+0s - loss: 0.9218 - acc: 0.7250
+Epoch 92/100
+0s - loss: 0.6616 - acc: 0.8750
+Epoch 93/100
+0s - loss: 0.7313 - acc: 0.8000
+Epoch 94/100
+0s - loss: 0.6547 - acc: 0.8750
+Epoch 95/100
+0s - loss: 0.7130 - acc: 0.8500
+Epoch 96/100
+0s - loss: 0.7469 - acc: 0.8250
+Epoch 97/100
+0s - loss: 0.8082 - acc: 0.8500
+Epoch 98/100
+0s - loss: 0.8304 - acc: 0.8000
+Epoch 99/100
+0s - loss: 0.6732 - acc: 0.8500
+Epoch 100/100
+0s - loss: 0.5583 - acc: 0.9500
+
+32/40 [=======================>......] - ETA: 0sTraining model... DONE
+Train score: 1.0, loss: 0.194885238074
+You should predict top  1.0  labels for train
+label_ranking_average_precision_score on train 1.0
+1
+Compounds in real solution:  2
+You should predict top  12.0  labels for toys
+label_ranking_average_precision_score on toys 0.183333333333
+--------------------------------------------------------------
+2
+Compounds in real solution:  2
+You should predict top  5.0  labels for toys
+label_ranking_average_precision_score on toys 0.7
+--------------------------------------------------------------
+3
+Compounds in real solution:  1
+You should predict top  17.0  labels for toys
+label_ranking_average_precision_score on toys 0.0588235294118
+--------------------------------------------------------------
+4
+Compounds in real solution:  6
+You should predict top  20.0  labels for toys
+label_ranking_average_precision_score on toys 0.268487993488
+--------------------------------------------------------------
+5
+Compounds in real solution:  6
+You should predict top  20.0  labels for toys
+label_ranking_average_precision_score on toys 0.445248538012
+--------------------------------------------------------------
+6
+Compounds in real solution:  1
+You should predict top  5.0  labels for toys
+label_ranking_average_precision_score on toys 0.2
+--------------------------------------------------------------
+7
+Compounds in real solution:  1
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 0.5
+--------------------------------------------------------------
+8
+Compounds in real solution:  1
+You should predict top  14.0  labels for toys
+label_ranking_average_precision_score on toys 0.0714285714286
+--------------------------------------------------------------
+9
+Compounds in real solution:  1
+You should predict top  3.0  labels for toys
+label_ranking_average_precision_score on toys 0.333333333333
+--------------------------------------------------------------
+10
+Compounds in real solution:  5
+You should predict top  16.0  labels for toys
+label_ranking_average_precision_score on toys 0.629166666667
+--------------------------------------------------------------
+11
+Compounds in real solution:  5
+You should predict top  13.0  labels for toys
+label_ranking_average_precision_score on toys 0.69965034965
+--------------------------------------------------------------
+12
+Compounds in real solution:  3
+You should predict top  13.0  labels for toys
+label_ranking_average_precision_score on toys 0.632478632479
+--------------------------------------------------------------
+13
+Compounds in real solution:  1
+You should predict top  10.0  labels for toys
+label_ranking_average_precision_score on toys 0.1
+--------------------------------------------------------------
+14
+Compounds in real solution:  6
+You should predict top  19.0  labels for toys
+label_ranking_average_precision_score on toys 0.251675127991
+--------------------------------------------------------------
+15
+Compounds in real solution:  1
+You should predict top  3.0  labels for toys
+label_ranking_average_precision_score on toys 0.333333333333
+--------------------------------------------------------------
+16
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+17
+Compounds in real solution:  1
+You should predict top  5.0  labels for toys
+label_ranking_average_precision_score on toys 0.2
+--------------------------------------------------------------
+18
+Compounds in real solution:  4
+You should predict top  19.0  labels for toys
+label_ranking_average_precision_score on toys 0.198086124402
+--------------------------------------------------------------
+19
+Compounds in real solution:  1
+You should predict top  13.0  labels for toys
+label_ranking_average_precision_score on toys 0.0769230769231
+--------------------------------------------------------------
+20
+Compounds in real solution:  1
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 0.5
+--------------------------------------------------------------
+21
+Compounds in real solution:  1
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 0.5
+--------------------------------------------------------------
+22
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+23
+Compounds in real solution:  2
+You should predict top  16.0  labels for toys
+label_ranking_average_precision_score on toys 0.118055555556
+--------------------------------------------------------------
+24
+Compounds in real solution:  2
+You should predict top  10.0  labels for toys
+label_ranking_average_precision_score on toys 0.266666666667
+--------------------------------------------------------------
+25
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+26
+Compounds in real solution:  1
+You should predict top  7.0  labels for toys
+label_ranking_average_precision_score on toys 0.142857142857
+--------------------------------------------------------------
+27
+Compounds in real solution:  1
+You should predict top  9.0  labels for toys
+label_ranking_average_precision_score on toys 0.111111111111
+--------------------------------------------------------------
+28
+Compounds in real solution:  4
+You should predict top  16.0  labels for toys
+label_ranking_average_precision_score on toys 0.366071428571
+--------------------------------------------------------------
+29
+Compounds in real solution:  4
+You should predict top  15.0  labels for toys
+label_ranking_average_precision_score on toys 0.228525641026
+--------------------------------------------------------------
+30
+Compounds in real solution:  3
+You should predict top  16.0  labels for toys
+label_ranking_average_precision_score on toys 0.440277777778
+--------------------------------------------------------------
+31
+Compounds in real solution:  2
+You should predict top  3.0  labels for toys
+label_ranking_average_precision_score on toys 0.833333333333
+--------------------------------------------------------------
+32
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+33
+Compounds in real solution:  5
+You should predict top  20.0  labels for toys
+label_ranking_average_precision_score on toys 0.469047619048
+--------------------------------------------------------------
+34
+Compounds in real solution:  4
+You should predict top  18.0  labels for toys
+label_ranking_average_precision_score on toys 0.519097222222
+--------------------------------------------------------------
+35
+Compounds in real solution:  7
+You should predict top  17.0  labels for toys
+label_ranking_average_precision_score on toys 0.773109243697
+--------------------------------------------------------------
+36
+Compounds in real solution:  2
+You should predict top  9.0  labels for toys
+label_ranking_average_precision_score on toys 0.173611111111
+--------------------------------------------------------------
+37
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+38
+Compounds in real solution:  2
+You should predict top  8.0  labels for toys
+label_ranking_average_precision_score on toys 0.375
+--------------------------------------------------------------
+39
+Compounds in real solution:  1
+You should predict top  8.0  labels for toys
+label_ranking_average_precision_score on toys 0.125
+--------------------------------------------------------------
+40
+Compounds in real solution:  4
+You should predict top  19.0  labels for toys
+label_ranking_average_precision_score on toys 0.412006578947
+--------------------------------------------------------------
+41
+Compounds in real solution:  1
+You should predict top  3.0  labels for toys
+label_ranking_average_precision_score on toys 0.333333333333
+--------------------------------------------------------------
+42
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+43
+Compounds in real solution:  1
+You should predict top  8.0  labels for toys
+label_ranking_average_precision_score on toys 0.125
+--------------------------------------------------------------
+44
+Compounds in real solution:  1
+You should predict top  8.0  labels for toys
+label_ranking_average_precision_score on toys 0.125
+--------------------------------------------------------------
+45
+Compounds in real solution:  1
+You should predict top  4.0  labels for toys
+label_ranking_average_precision_score on toys 0.25
+--------------------------------------------------------------
+46
+Compounds in real solution:  1
+You should predict top  7.0  labels for toys
+label_ranking_average_precision_score on toys 0.142857142857
+--------------------------------------------------------------
+47
+Compounds in real solution:  3
+You should predict top  13.0  labels for toys
+label_ranking_average_precision_score on toys 0.521367521368
+--------------------------------------------------------------
+48
+Compounds in real solution:  3
+You should predict top  12.0  labels for toys
+label_ranking_average_precision_score on toys 0.55
+--------------------------------------------------------------
+49
+Compounds in real solution:  7
+You should predict top  19.0  labels for toys
+label_ranking_average_precision_score on toys 0.348238353126
+--------------------------------------------------------------
+50
+Compounds in real solution:  4
+You should predict top  12.0  labels for toys
+label_ranking_average_precision_score on toys 0.451515151515
+--------------------------------------------------------------
+51
+Compounds in real solution:  4
+You should predict top  20.0  labels for toys
+label_ranking_average_precision_score on toys 0.591666666667
+--------------------------------------------------------------
+52
+Compounds in real solution:  1
+You should predict top  12.0  labels for toys
+label_ranking_average_precision_score on toys 0.0833333333333
+--------------------------------------------------------------
+53
+Compounds in real solution:  1
+You should predict top  7.0  labels for toys
+label_ranking_average_precision_score on toys 0.142857142857
+--------------------------------------------------------------
+54
+Compounds in real solution:  1
+You should predict top  3.0  labels for toys
+label_ranking_average_precision_score on toys 0.333333333333
+--------------------------------------------------------------
+55
+Compounds in real solution:  7
+You should predict top  16.0  labels for toys
+label_ranking_average_precision_score on toys 0.607476452119
+--------------------------------------------------------------
+56
+Compounds in real solution:  1
+You should predict top  7.0  labels for toys
+label_ranking_average_precision_score on toys 0.142857142857
+--------------------------------------------------------------
+57
+Compounds in real solution:  1
+You should predict top  5.0  labels for toys
+label_ranking_average_precision_score on toys 0.2
+--------------------------------------------------------------
+58
+Compounds in real solution:  2
+You should predict top  20.0  labels for toys
+label_ranking_average_precision_score on toys 0.0777777777778
+--------------------------------------------------------------
+59
+Compounds in real solution:  1
+You should predict top  3.0  labels for toys
+label_ranking_average_precision_score on toys 0.333333333333
+--------------------------------------------------------------
+60
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+61
+Compounds in real solution:  1
+You should predict top  13.0  labels for toys
+label_ranking_average_precision_score on toys 0.0769230769231
+--------------------------------------------------------------
+62
+Compounds in real solution:  1
+You should predict top  9.0  labels for toys
+label_ranking_average_precision_score on toys 0.111111111111
+--------------------------------------------------------------
+63
+Compounds in real solution:  5
+You should predict top  14.0  labels for toys
+label_ranking_average_precision_score on toys 0.660317460317
+--------------------------------------------------------------
+64
+Compounds in real solution:  2
+You should predict top  4.0  labels for toys
+label_ranking_average_precision_score on toys 0.5
+--------------------------------------------------------------
+65
+Compounds in real solution:  4
+You should predict top  19.0  labels for toys
+label_ranking_average_precision_score on toys 0.502631578947
+--------------------------------------------------------------
+66
+Compounds in real solution:  5
+You should predict top  16.0  labels for toys
+label_ranking_average_precision_score on toys 0.3125
+--------------------------------------------------------------
+67
+Compounds in real solution:  4
+You should predict top  14.0  labels for toys
+label_ranking_average_precision_score on toys 0.758928571429
+--------------------------------------------------------------
+68
+Compounds in real solution:  6
+You should predict top  15.0  labels for toys
+label_ranking_average_precision_score on toys 0.74188034188
+--------------------------------------------------------------
+69
+Compounds in real solution:  4
+You should predict top  15.0  labels for toys
+label_ranking_average_precision_score on toys 0.424621212121
+--------------------------------------------------------------
+70
+Compounds in real solution:  6
+You should predict top  19.0  labels for toys
+label_ranking_average_precision_score on toys 0.458187134503
+--------------------------------------------------------------
+71
+Compounds in real solution:  6
+You should predict top  18.0  labels for toys
+label_ranking_average_precision_score on toys 0.655769230769
+--------------------------------------------------------------
+72
+Compounds in real solution:  3
+You should predict top  15.0  labels for toys
+label_ranking_average_precision_score on toys 0.460606060606
+--------------------------------------------------------------
+73
+Compounds in real solution:  2
+You should predict top  6.0  labels for toys
+label_ranking_average_precision_score on toys 0.416666666667
+--------------------------------------------------------------
+74
+Compounds in real solution:  4
+You should predict top  9.0  labels for toys
+label_ranking_average_precision_score on toys 0.634920634921
+--------------------------------------------------------------
+75
+Compounds in real solution:  4
+You should predict top  15.0  labels for toys
+label_ranking_average_precision_score on toys 0.474358974359
+--------------------------------------------------------------
+Area between curves:  581.5
