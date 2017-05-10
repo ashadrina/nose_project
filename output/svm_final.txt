@@ -1,0 +1,317 @@
+initial data:  (36, 8, 121)
+initial data:  (4, 8, 121)
+initial data:  (75, 8, 121)
+order:  15
+order:  15
+(40, 968)
+(75, 968)
+------------------------------------------
+--------------------SVM-------------------
+------------------------------------------
+svm train accuracy:  1.0
+1
+[('dioktilftalat', '0.323'), ('azeton', '0.137'), ('benzol', '0.113'), ('azetaldegid', '0.104'), ('plastizol', '0.082'), ('stirol', '0.073')]
+{'azeton', 'dioktilftalat'}
+------------------
+2
+[('dioktilftalat', '0.327'), ('benzol', '0.120'), ('azetaldegid', '0.110'), ('azeton', '0.102'), ('plastizol', '0.081'), ('stirol', '0.055')]
+{'azeton', 'dioktilftalat'}
+------------------
+3
+[('dioktilftalat', '0.237'), ('etilazetat', '0.167'), ('benzol', '0.112'), ('azetaldegid', '0.103'), ('plastizol', '0.077'), ('azeton', '0.076')]
+{'plastizol'}
+------------------
+4
+[('dioktilftalat', '0.157'), ('azetaldegid', '0.132'), ('azeton', '0.083'), ('benzol', '0.077'), ('etilazetat', '0.058'), ('geksan', '0.054')]
+{'dioktilftalat_with_etilazetat', 'izopropanol', 'butilazetat', 'izobutanol', 'dioktilftalat_with_azetaldegid', 'toluol'}
+------------------
+5
+[('dioktilftalat', '0.231'), ('etilazetat', '0.210'), ('azetaldegid', '0.112'), ('benzol', '0.112'), ('propanol', '0.058'), ('plastizol', '0.052')]
+{'dioktilftalat_with_etilazetat', 'izopropanol', 'butilazetat', 'izobutanol', 'dioktilftalat_with_azetaldegid', 'toluol'}
+------------------
+6
+[('dioktilftalat', '0.265'), ('azetaldegid', '0.133'), ('benzol', '0.114'), ('azeton', '0.076'), ('plastizol', '0.061'), ('toluol', '0.052')]
+{'plastizol'}
+------------------
+7
+[('dioktilftalat', '0.285'), ('azetaldegid', '0.129'), ('benzol', '0.126'), ('azeton', '0.072'), ('plastizol', '0.068'), ('benzol_with_dioktilftalat', '0.062')]
+{'plastizol'}
+------------------
+8
+[('dioktilftalat', '0.273'), ('benzol', '0.117'), ('azeton', '0.114'), ('azetaldegid', '0.112'), ('plastizol', '0.074'), ('butilazetat', '0.057')]
+{'plastizol'}
+------------------
+9
+[('dioktilftalat', '0.272'), ('azetaldegid', '0.145'), ('benzol', '0.111'), ('etilazetat', '0.108'), ('azeton', '0.085'), ('plastizol', '0.082')]
+{'plastizol'}
+------------------
+10
+[('dioktilftalat', '0.192'), ('azetaldegid', '0.116'), ('benzol', '0.104'), ('azeton', '0.096'), ('fenol', '0.058'), ('izobutanol', '0.056')]
+{'azetaldegid', 'azeton', 'benzol', 'dioktilftalat', 'toluol'}
+------------------
+11
+[('dioktilftalat', '0.243'), ('azetaldegid', '0.130'), ('benzol', '0.101'), ('etilazetat', '0.098'), ('geksan', '0.065'), ('izopropanol', '0.061')]
+{'azetaldegid', 'azeton', 'benzol', 'dioktilftalat', 'toluol'}
+------------------
+12
+[('dioktilftalat', '0.268'), ('azetaldegid', '0.128'), ('benzol', '0.120'), ('etilazetat', '0.080'), ('geksan', '0.066'), ('izopropanol', '0.058')]
+{'dioktilftalat_with_azeton', 'dioktilftalat_with_azetaldegid', 'dioktilftalat'}
+------------------
+13
+[('dioktilftalat', '0.335'), ('azeton', '0.127'), ('benzol', '0.120'), ('azetaldegid', '0.116'), ('plastizol', '0.088'), ('etilazetat', '0.065')]
+{'plastizol'}
+------------------
+14
+[('dioktilftalat', '0.151'), ('azetaldegid', '0.118'), ('benzol', '0.087'), ('azeton', '0.085'), ('geksan', '0.058'), ('plastizol', '0.057')]
+{'fenol', 'benzol', 'dioktilftalat_with_azeton', 'butilazetat', 'dioktilftalat_with_azetaldegid', 'toluol'}
+------------------
+15
+[('dioktilftalat', '0.193'), ('etilazetat', '0.116'), ('benzol', '0.103'), ('azetaldegid', '0.094'), ('azeton', '0.090'), ('geksan', '0.082')]
+{'dioktilftalat_with_azeton'}
+------------------
+16
+[('dioktilftalat', '0.179'), ('etilazetat', '0.118'), ('azetaldegid', '0.115'), ('benzol', '0.108'), ('geksan', '0.075'), ('plastizol', '0.075')]
+{'azeton', 'dioktilftalat'}
+------------------
+17
+[('dioktilftalat', '0.323'), ('benzol', '0.116'), ('azetaldegid', '0.111'), ('azeton', '0.101'), ('plastizol', '0.077'), ('etilazetat', '0.076')]
+{'plastizol'}
+------------------
+18
+[('dioktilftalat', '0.238'), ('benzol', '0.106'), ('azeton', '0.103'), ('etilazetat', '0.099'), ('azetaldegid', '0.097'), ('plastizol', '0.060')]
+{'dioktilftalat_with_etilazetat', 'dioktilftalat_with_azetaldegid', 'geksan', 'azeton'}
+------------------
+19
+[('dioktilftalat', '0.225'), ('etilazetat', '0.179'), ('benzol', '0.096'), ('azetaldegid', '0.088'), ('azeton', '0.065'), ('plastizol', '0.064')]
+{'plastizol'}
+------------------
+20
+[('dioktilftalat', '0.271'), ('etilazetat', '0.154'), ('azetaldegid', '0.139'), ('benzol', '0.115'), ('plastizol', '0.062'), ('azeton', '0.055')]
+{'dioktilftalat'}
+------------------
+21
+[('dioktilftalat', '0.319'), ('azeton', '0.127'), ('etilazetat', '0.105'), ('benzol', '0.090'), ('stirol', '0.087'), ('azetaldegid', '0.085')]
+{'dioktilftalat'}
+------------------
+22
+[('dioktilftalat', '0.235'), ('azetaldegid', '0.143'), ('benzol', '0.118'), ('etilazetat', '0.072'), ('plastizol', '0.066'), ('azeton_with_dioktilftalat', '0.049')]
+{'dioktilftalat'}
+------------------
+23
+[('dioktilftalat', '0.234'), ('azetaldegid', '0.127'), ('benzol', '0.118'), ('azeton', '0.106'), ('plastizol', '0.076'), ('etilazetat', '0.071')]
+{'dioktilftalat_with_etilazetat', 'dioktilftalat_with_azetaldegid'}
+------------------
+24
+[('dioktilftalat', '0.193'), ('azetaldegid', '0.142'), ('benzol', '0.092'), ('plastizol', '0.062'), ('azeton', '0.061'), ('benzol_with_dioktilftalat', '0.057')]
+{'dioktilftalat_with_etilazetat', 'azeton'}
+------------------
+25
+[('dioktilftalat', '0.189'), ('azetaldegid', '0.157'), ('benzol', '0.100'), ('plastizol', '0.061'), ('azeton', '0.053'), ('benzol_with_dioktilftalat', '0.050')]
+{'dioktilftalat'}
+------------------
+26
+[('dioktilftalat', '0.307'), ('benzol', '0.129'), ('azeton', '0.122'), ('azetaldegid', '0.116'), ('plastizol', '0.071'), ('etilazetat', '0.058')]
+{'plastizol'}
+------------------
+27
+[('dioktilftalat', '0.330'), ('benzol', '0.121'), ('azetaldegid', '0.114'), ('azeton', '0.102'), ('etilazetat', '0.101'), ('plastizol', '0.084')]
+{'plastizol'}
+------------------
+28
+[('etilazetat', '0.243'), ('dioktilftalat', '0.219'), ('azetaldegid', '0.111'), ('benzol', '0.111'), ('azeton', '0.067'), ('plastizol', '0.063')]
+{'geksan', 'benzol', 'butilazetat', 'toluol'}
+------------------
+29
+[('dioktilftalat', '0.211'), ('benzol', '0.125'), ('azetaldegid', '0.115'), ('etilazetat_with_dioktilftalat', '0.087'), ('geksan', '0.078'), ('fenol', '0.065')]
+{'geksan', 'benzol', 'butilazetat', 'toluol'}
+------------------
+30
+[('dioktilftalat', '0.278'), ('azetaldegid', '0.140'), ('benzol', '0.105'), ('plastizol', '0.062'), ('azeton', '0.061'), ('etilazetat_with_dioktilftalat', '0.059')]
+{'benzol', 'dioktilftalat', 'toluol'}
+------------------
+31
+[('dioktilftalat', '0.243'), ('etilazetat', '0.101'), ('azetaldegid', '0.096'), ('azeton', '0.087'), ('benzol', '0.087'), ('benzol_with_dioktilftalat', '0.060')]
+{'azeton', 'dioktilftalat'}
+------------------
+32
+[('dioktilftalat', '0.194'), ('azetaldegid', '0.113'), ('benzol', '0.112'), ('azeton', '0.065'), ('izopropanol', '0.055'), ('etilazetat', '0.054')]
+{'azeton', 'dioktilftalat'}
+------------------
+33
+[('dioktilftalat', '0.189'), ('azetaldegid', '0.131'), ('azeton', '0.094'), ('etilazetat_with_dioktilftalat', '0.090'), ('benzol', '0.083'), ('benzin', '0.060')]
+{'fenol', 'dioktilftalat_with_etilazetat', 'dioktilftalat_with_azetaldegid', 'benzol', 'toluol'}
+------------------
+34
+[('dioktilftalat', '0.239'), ('benzol', '0.133'), ('azetaldegid', '0.103'), ('azeton', '0.077'), ('etilazetat', '0.073'), ('azetaldegid_with_dioktilftalat', '0.061')]
+{'izobutanol', 'azeton', 'etilazetat', 'dioktilftalat'}
+------------------
+35
+[('dioktilftalat', '0.186'), ('azetaldegid', '0.105'), ('benzol', '0.099'), ('stirol', '0.061'), ('benzol_with_dioktilftalat', '0.059'), ('plastizol', '0.059')]
+{'azetaldegid', 'fenol', 'azeton', 'etilazetat', 'benzol', 'dioktilftalat', 'toluol'}
+------------------
+36
+[('dioktilftalat', '0.282'), ('azetaldegid', '0.125'), ('benzol', '0.121'), ('azeton', '0.095'), ('plastizol', '0.074'), ('benzol_with_dioktilftalat', '0.061')]
+{'azeton', 'benzol'}
+------------------
+37
+[('dioktilftalat', '0.202'), ('azetaldegid', '0.121'), ('benzol', '0.100'), ('azeton', '0.061'), ('plastizol', '0.061'), ('fenol', '0.056')]
+{'azeton', 'dioktilftalat'}
+------------------
+38
+[('dioktilftalat', '0.223'), ('azetaldegid', '0.109'), ('benzol', '0.108'), ('azeton', '0.073'), ('plastizol', '0.071'), ('butilazetat', '0.059')]
+{'azeton', 'dioktilftalat'}
+------------------
+39
+[('dioktilftalat', '0.277'), ('benzol', '0.121'), ('azetaldegid', '0.093'), ('plastizol', '0.080'), ('etilazetat', '0.070'), ('fenol', '0.061')]
+{'plastizol'}
+------------------
+40
+[('dioktilftalat', '0.225'), ('azetaldegid', '0.119'), ('benzol', '0.110'), ('azeton_with_dioktilftalat', '0.059'), ('geksan', '0.059'), ('plastizol', '0.054')]
+{'azetaldegid', 'izobutanol', 'benzol', 'dioktilftalat'}
+------------------
+41
+[('dioktilftalat', '0.333'), ('azeton', '0.123'), ('azetaldegid', '0.120'), ('benzol', '0.119'), ('fenol', '0.079'), ('plastizol', '0.079')]
+{'plastizol'}
+------------------
+42
+[('dioktilftalat', '0.256'), ('azetaldegid', '0.117'), ('benzol', '0.115'), ('plastizol', '0.086'), ('azeton', '0.078'), ('etilazetat', '0.069')]
+{'plastizol'}
+------------------
+43
+[('dioktilftalat', '0.219'), ('etilazetat', '0.159'), ('benzol', '0.114'), ('azetaldegid', '0.073'), ('azetaldegid_with_dioktilftalat', '0.071'), ('benzin', '0.063')]
+{'plastizol'}
+------------------
+44
+[('dioktilftalat', '0.287'), ('benzol', '0.149'), ('azeton', '0.084'), ('azetaldegid', '0.082'), ('benzol_with_dioktilftalat', '0.061'), ('izopropanol', '0.058')]
+{'plastizol'}
+------------------
+45
+[('dioktilftalat', '0.262'), ('azetaldegid', '0.128'), ('benzol', '0.120'), ('etilazetat', '0.074'), ('etilazetat_with_dioktilftalat', '0.065'), ('plastizol', '0.060')]
+{'plastizol'}
+------------------
+46
+[('dioktilftalat', '0.220'), ('benzol', '0.108'), ('azetaldegid', '0.104'), ('azeton', '0.066'), ('benzol_with_dioktilftalat', '0.061'), ('plastizol', '0.061')]
+{'plastizol'}
+------------------
+47
+[('dioktilftalat', '0.202'), ('benzol', '0.101'), ('azetaldegid', '0.081'), ('azeton', '0.078'), ('geksan', '0.060'), ('stirol', '0.058')]
+{'azetaldegid', 'azeton', 'dioktilftalat'}
+------------------
+48
+[('dioktilftalat', '0.233'), ('azeton', '0.118'), ('benzol', '0.116'), ('azetaldegid', '0.103'), ('fenol', '0.076'), ('plastizol', '0.054')]
+{'azetaldegid', 'azeton', 'dioktilftalat'}
+------------------
+49
+[('dioktilftalat', '0.220'), ('benzol', '0.120'), ('azetaldegid', '0.112'), ('stirol', '0.062'), ('butanol', '0.052'), ('azeton', '0.050')]
+{'azetaldegid', 'geksan', 'benzol', 'dioktilftalat_with_azetaldegid', 'dioktilftalat_with_benzol', 'stirol', 'toluol'}
+------------------
+50
+[('dioktilftalat', '0.237'), ('etilazetat', '0.135'), ('benzol', '0.118'), ('azetaldegid', '0.104'), ('plastizol', '0.062'), ('benzin', '0.061')]
+{'geksan', 'benzol', 'dioktilftalat', 'butilazetat'}
+------------------
+51
+[('dioktilftalat', '0.244'), ('etilazetat', '0.119'), ('azetaldegid', '0.096'), ('azeton', '0.093'), ('benzol', '0.087'), ('benzin', '0.055')]
+{'geksan', 'benzol', 'dioktilftalat', 'butilazetat'}
+------------------
+52
+[('dioktilftalat', '0.287'), ('benzol', '0.118'), ('azeton', '0.104'), ('azetaldegid', '0.100'), ('plastizol', '0.076'), ('etilazetat', '0.064')]
+{'plastizol'}
+------------------
+53
+[('dioktilftalat', '0.219'), ('azetaldegid', '0.116'), ('benzol', '0.108'), ('etilazetat', '0.100'), ('azeton', '0.057'), ('benzol_with_dioktilftalat', '0.053')]
+{'plastizol'}
+------------------
+54
+[('dioktilftalat', '0.287'), ('azetaldegid', '0.117'), ('benzol', '0.114'), ('plastizol', '0.093'), ('azeton', '0.085'), ('etilazetat', '0.069')]
+{'plastizol'}
+------------------
+55
+[('dioktilftalat', '0.199'), ('benzol', '0.102'), ('azetaldegid', '0.099'), ('etilazetat', '0.061'), ('plastizol', '0.059'), ('benzol_with_dioktilftalat', '0.054')]
+{'azetaldegid', 'etilazetat', 'benzol', 'izopropanol', 'dioktilftalat', 'butilazetat', 'toluol'}
+------------------
+56
+[('dioktilftalat', '0.237'), ('azeton', '0.156'), ('benzol', '0.110'), ('azetaldegid', '0.101'), ('plastizol', '0.074'), ('stirol', '0.060')]
+{'plastizol'}
+------------------
+57
+[('dioktilftalat', '0.288'), ('benzol', '0.125'), ('azetaldegid', '0.113'), ('azeton', '0.093'), ('plastizol', '0.088'), ('etilazetat', '0.064')]
+{'plastizol'}
+------------------
+58
+[('etilazetat', '0.188'), ('dioktilftalat', '0.166'), ('azeton', '0.137'), ('benzol', '0.108'), ('azetaldegid', '0.077'), ('azeton_with_dioktilftalat', '0.060')]
+{'izobutanol', 'etilazetat'}
+------------------
+59
+[('dioktilftalat', '0.296'), ('benzol', '0.117'), ('azeton', '0.111'), ('azetaldegid', '0.109'), ('plastizol', '0.094'), ('stirol', '0.058')]
+{'plastizol'}
+------------------
+60
+[('dioktilftalat', '0.283'), ('benzol', '0.124'), ('azetaldegid', '0.108'), ('azeton', '0.092'), ('etilazetat_with_dioktilftalat', '0.062'), ('plastizol', '0.061')]
+{'dioktilftalat', 'butilazetat'}
+------------------
+61
+[('dioktilftalat', '0.253'), ('benzol', '0.119'), ('azeton', '0.097'), ('etilazetat', '0.089'), ('azetaldegid', '0.086'), ('plastizol', '0.060')]
+{'plastizol'}
+------------------
+62
+[('dioktilftalat', '0.313'), ('azetaldegid', '0.124'), ('benzol', '0.116'), ('etilazetat', '0.102'), ('azeton', '0.079'), ('plastizol', '0.078')]
+{'plastizol'}
+------------------
+63
+[('etilazetat', '0.211'), ('dioktilftalat', '0.169'), ('azetaldegid', '0.122'), ('benzol', '0.111'), ('geksan', '0.072'), ('plastizol', '0.056')]
+{'azetaldegid', 'azeton', 'etilazetat', 'dioktilftalat', 'butilazetat'}
+------------------
+64
+[('dioktilftalat', '0.248'), ('etilazetat', '0.106'), ('benzol', '0.100'), ('azetaldegid', '0.089'), ('plastizol', '0.079'), ('azeton', '0.064')]
+{'azetaldegid', 'etilazetat'}
+------------------
+65
+[('dioktilftalat', '0.337'), ('benzol', '0.123'), ('azetaldegid', '0.121'), ('plastizol', '0.071'), ('etilazetat', '0.065'), ('etilazetat_with_dioktilftalat', '0.060')]
+{'etilazetat', 'benzol', 'dioktilftalat', 'toluol'}
+------------------
+66
+[('dioktilftalat', '0.158'), ('azetaldegid', '0.107'), ('benzin', '0.102'), ('geksan', '0.093'), ('benzol', '0.089'), ('fenol', '0.058')]
+{'azetaldegid', 'izobutanol', 'benzol', 'butilazetat', 'toluol'}
+------------------
+67
+[('dioktilftalat', '0.143'), ('etilazetat_with_dioktilftalat', '0.118'), ('azetaldegid', '0.100'), ('azeton', '0.093'), ('benzol', '0.081'), ('azetaldegid_with_dioktilftalat', '0.077')]
+{'azetaldegid', 'benzol', 'dioktilftalat', 'toluol'}
+------------------
+68
+[('dioktilftalat', '0.124'), ('benzol', '0.088'), ('azetaldegid', '0.086'), ('geksan', '0.086'), ('azeton_with_dioktilftalat', '0.076'), ('azetaldegid_with_dioktilftalat', '0.074')]
+{'fenol', 'azetaldegid', 'azeton', 'benzol', 'dioktilftalat', 'toluol'}
+------------------
+69
+[('dioktilftalat', '0.154'), ('etilazetat', '0.104'), ('benzin', '0.098'), ('geksan', '0.082'), ('azetaldegid', '0.081'), ('azeton_with_dioktilftalat', '0.078')]
+{'fenol', 'azeton', 'benzol', 'toluol'}
+------------------
+70
+[('dioktilftalat', '0.278'), ('etilazetat', '0.277'), ('benzol', '0.111'), ('azetaldegid', '0.086'), ('fenol', '0.056'), ('plastizol', '0.055')]
+{'azetaldegid', 'etilazetat', 'benzol', 'dioktilftalat', 'butilazetat', 'stirol'}
+------------------
+71
+[('dioktilftalat', '0.171'), ('azetaldegid', '0.105'), ('etilazetat', '0.098'), ('azetaldegid_with_dioktilftalat', '0.097'), ('benzol', '0.094'), ('etilazetat_with_dioktilftalat', '0.082')]
+{'azetaldegid', 'etilazetat', 'izopropanol', 'dioktilftalat', 'butilazetat', 'izobutanol'}
+------------------
+72
+[('dioktilftalat', '0.154'), ('etilazetat_with_dioktilftalat', '0.114'), ('azetaldegid', '0.113'), ('benzol', '0.099'), ('azetaldegid_with_dioktilftalat', '0.088'), ('benzin', '0.066')]
+{'azetaldegid', 'dioktilftalat', 'toluol'}
+------------------
+73
+[('dioktilftalat', '0.175'), ('azetaldegid', '0.105'), ('benzol', '0.100'), ('etilazetat', '0.067'), ('geksan', '0.060'), ('azeton', '0.057')]
+{'izopropanol', 'dioktilftalat'}
+------------------
+74
+[('dioktilftalat', '0.293'), ('etilazetat', '0.125'), ('azeton', '0.122'), ('benzol', '0.114'), ('azetaldegid', '0.099'), ('plastizol', '0.074')]
+{'izobutanol', 'butanol', 'propanol', 'izopropanol'}
+------------------
+75
+[('dioktilftalat', '0.238'), ('etilazetat', '0.152'), ('azetaldegid', '0.101'), ('benzol', '0.101'), ('azeton', '0.076'), ('plastizol', '0.074')]
+{'izobutanol', 'butanol', 'propanol', 'izopropanol'}
+------------------
+You should predict top  1.0  labels for train
+You should predict top  11.6  labels for toys
+label_ranking_average_precision_score on train 1.0
+label_ranking_average_precision_score on toys 0.307682822592
+Area between curves:  652.0
+------------------------------------------

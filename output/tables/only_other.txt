@@ -1,0 +1,945 @@
+initial data:  (36, 8, 121)
+initial data:  (4, 8, 121)
+initial data:  (75, 8, 121)
+order:  15
+order:  15
+(15, 968)
+(75, 968)
+------------------------------------------
+--------------------SVM-------------------
+------------------------------------------
+svm train accuracy:  1.0
+[('stirol', '0.128'), ('toluol', '0.127'), ('propanol', '0.124'), ('fenol', '0.116'), ('butanol', '0.110'), ('butilazetat', '0.103')]
+{'other'}
+------------------
+[('butilazetat', '0.115'), ('toluol', '0.110'), ('izobutanol', '0.105'), ('izopropanol', '0.105'), ('propanol', '0.101'), ('butanol', '0.097')]
+{'other'}
+------------------
+[('butanol', '0.120'), ('fenol', '0.104'), ('izopropanol', '0.104'), ('toluol', '0.101'), ('propanol', '0.100'), ('izobutanol', '0.099')]
+{'', 'other'}
+------------------
+[('geksan', '0.123'), ('other', '0.117'), ('butanol', '0.106'), ('propanol', '0.098'), ('izopropanol', '0.097'), ('fenol', '0.093')]
+{'izobutanol', 'izopropanol', 'dioktilftalat_with_etilazetat', 'butilazetat', 'toluol', 'dioktilftalat_with_azetaldegid'}
+------------------
+[('propanol', '0.157'), ('dioktilftalat_with_benzol', '0.103'), ('geksan', '0.094'), ('izopropanol', '0.094'), ('other', '0.092'), ('fenol', '0.085')]
+{'izobutanol', 'izopropanol', 'dioktilftalat_with_etilazetat', 'butilazetat', 'toluol', 'dioktilftalat_with_azetaldegid'}
+------------------
+[('butanol', '0.119'), ('propanol', '0.099'), ('toluol', '0.097'), ('stirol', '0.091'), ('other', '0.090'), ('butilazetat', '0.089')]
+{'', 'other'}
+------------------
+[('propanol', '0.121'), ('izopropanol', '0.112'), ('dioktilftalat_with_benzol', '0.104'), ('butanol', '0.098'), ('butilazetat', '0.089'), ('fenol', '0.083')]
+{'', 'other'}
+------------------
+[('butilazetat', '0.127'), ('izobutanol', '0.119'), ('butanol', '0.115'), ('stirol', '0.111'), ('propanol', '0.108'), ('dioktilftalat_with_benzol', '0.087')]
+{'', 'other'}
+------------------
+[('propanol', '0.121'), ('fenol', '0.118'), ('butilazetat', '0.114'), ('stirol', '0.109'), ('izobutanol', '0.099'), ('toluol', '0.099')]
+{'', 'other'}
+------------------
+[('other', '0.128'), ('fenol', '0.117'), ('izobutanol', '0.117'), ('butanol', '0.111'), ('geksan', '0.101'), ('izopropanol', '0.090')]
+{'toluol', 'other'}
+------------------
+[('izopropanol', '0.152'), ('geksan', '0.137'), ('other', '0.115'), ('propanol', '0.108'), ('fenol', '0.091'), ('butanol', '0.090')]
+{'toluol', 'other'}
+------------------
+[('geksan', '0.138'), ('propanol', '0.131'), ('izopropanol', '0.124'), ('other', '0.097'), ('izobutanol', '0.092'), ('butanol', '0.087')]
+{'dioktilftalat_with_azetaldegid', 'dioktilftalat_with_azeton', 'other'}
+------------------
+[('propanol', '0.125'), ('toluol', '0.122'), ('butanol', '0.118'), ('butilazetat', '0.112'), ('stirol', '0.108'), ('izobutanol', '0.107')]
+{'', 'other'}
+------------------
+[('geksan', '0.130'), ('other', '0.126'), ('butanol', '0.115'), ('propanol', '0.104'), ('dioktilftalat_with_azetaldegid', '0.091'), ('dioktilftalat_with_azeton', '0.083')]
+{'other', 'fenol', 'butilazetat', 'toluol', 'dioktilftalat_with_azeton', 'dioktilftalat_with_azetaldegid'}
+------------------
+[('geksan', '0.185'), ('other', '0.119'), ('butanol', '0.114'), ('izopropanol', '0.103'), ('propanol', '0.096'), ('dioktilftalat_with_azeton', '0.086')]
+{'', 'dioktilftalat_with_azeton'}
+------------------
+[('geksan', '0.153'), ('other', '0.109'), ('butanol', '0.107'), ('stirol', '0.104'), ('izopropanol', '0.103'), ('propanol', '0.103')]
+{'other'}
+------------------
+[('propanol', '0.115'), ('stirol', '0.111'), ('fenol', '0.110'), ('izopropanol', '0.109'), ('toluol', '0.108'), ('butilazetat', '0.107')]
+{'', 'other'}
+------------------
+[('propanol', '0.124'), ('dioktilftalat_with_benzol', '0.094'), ('izopropanol', '0.093'), ('butilazetat', '0.090'), ('benzin', '0.087'), ('stirol', '0.087')]
+{'dioktilftalat_with_etilazetat', 'dioktilftalat_with_azetaldegid', 'geksan', 'other'}
+------------------
+[('izobutanol', '0.105'), ('butilazetat', '0.101'), ('propanol', '0.100'), ('izopropanol', '0.097'), ('butanol', '0.093'), ('stirol', '0.088')]
+{'', 'other'}
+------------------
+[('butilazetat', '0.138'), ('propanol', '0.117'), ('izopropanol', '0.113'), ('butanol', '0.095'), ('fenol', '0.094'), ('izobutanol', '0.080')]
+{'', 'other'}
+------------------
+[('izopropanol', '0.131'), ('stirol', '0.128'), ('fenol', '0.123'), ('izobutanol', '0.109'), ('butilazetat', '0.096'), ('propanol', '0.091')]
+{'', 'other'}
+------------------
+[('izopropanol', '0.119'), ('butilazetat', '0.117'), ('other', '0.108'), ('geksan', '0.092'), ('toluol', '0.092'), ('propanol', '0.087')]
+{'', 'other'}
+------------------
+[('izobutanol', '0.120'), ('stirol', '0.111'), ('butanol', '0.102'), ('propanol', '0.098'), ('toluol', '0.097'), ('fenol', '0.090')]
+{'dioktilftalat_with_etilazetat', 'dioktilftalat_with_azetaldegid'}
+------------------
+[('propanol', '0.129'), ('izopropanol', '0.120'), ('fenol', '0.109'), ('dioktilftalat_with_benzol', '0.107'), ('toluol', '0.103'), ('geksan', '0.098')]
+{'dioktilftalat_with_etilazetat', 'other'}
+------------------
+[('izopropanol', '0.120'), ('other', '0.101'), ('fenol', '0.100'), ('butanol', '0.099'), ('dioktilftalat_with_benzol', '0.094'), ('butilazetat', '0.088')]
+{'', 'other'}
+------------------
+[('izopropanol', '0.124'), ('izobutanol', '0.119'), ('toluol', '0.106'), ('butanol', '0.104'), ('butilazetat', '0.104'), ('fenol', '0.094')]
+{'', 'other'}
+------------------
+[('propanol', '0.120'), ('izopropanol', '0.111'), ('stirol', '0.109'), ('butanol', '0.107'), ('toluol', '0.105'), ('izobutanol', '0.100')]
+{'', 'other'}
+------------------
+[('izopropanol', '0.121'), ('geksan', '0.112'), ('other', '0.109'), ('butanol', '0.108'), ('dioktilftalat_with_azeton', '0.092'), ('fenol', '0.091')]
+{'geksan', 'toluol', 'other', 'butilazetat'}
+------------------
+[('geksan', '0.161'), ('other', '0.130'), ('butanol', '0.116'), ('fenol', '0.116'), ('propanol', '0.106'), ('dioktilftalat_with_etilazetat', '0.091')]
+{'geksan', 'toluol', 'other', 'butilazetat'}
+------------------
+[('propanol', '0.134'), ('butanol', '0.108'), ('butilazetat', '0.108'), ('other', '0.091'), ('stirol', '0.091'), ('geksan', '0.086')]
+{'toluol', 'other'}
+------------------
+[('propanol', '0.115'), ('fenol', '0.098'), ('izobutanol', '0.097'), ('stirol', '0.096'), ('izopropanol', '0.095'), ('butanol', '0.094')]
+{'other'}
+------------------
+[('izopropanol', '0.120'), ('propanol', '0.111'), ('geksan', '0.110'), ('butanol', '0.108'), ('dioktilftalat_with_azeton', '0.094'), ('butilazetat', '0.088')]
+{'other'}
+------------------
+[('butilazetat', '0.134'), ('propanol', '0.104'), ('benzin', '0.095'), ('butanol', '0.094'), ('geksan', '0.093'), ('dioktilftalat_with_azeton', '0.091')]
+{'dioktilftalat_with_etilazetat', 'dioktilftalat_with_azetaldegid', 'toluol', 'other', 'fenol'}
+------------------
+[('fenol', '0.120'), ('izopropanol', '0.118'), ('geksan', '0.108'), ('butilazetat', '0.102'), ('dioktilftalat_with_azetaldegid', '0.099'), ('propanol', '0.097')]
+{'izobutanol', 'other'}
+------------------
+[('izopropanol', '0.109'), ('geksan', '0.106'), ('stirol', '0.105'), ('other', '0.097'), ('dioktilftalat_with_benzol', '0.094'), ('propanol', '0.088')]
+{'toluol', 'other', 'fenol'}
+------------------
+[('propanol', '0.110'), ('butilazetat', '0.106'), ('fenol', '0.101'), ('izobutanol', '0.099'), ('butanol', '0.093'), ('dioktilftalat_with_benzol', '0.093')]
+{'other'}
+------------------
+[('fenol', '0.111'), ('butilazetat', '0.107'), ('izopropanol', '0.107'), ('geksan', '0.100'), ('toluol', '0.097'), ('dioktilftalat_with_benzol', '0.087')]
+{'other'}
+------------------
+[('propanol', '0.143'), ('butilazetat', '0.136'), ('izopropanol', '0.091'), ('geksan', '0.085'), ('toluol', '0.083'), ('butanol', '0.082')]
+{'other'}
+------------------
+[('butilazetat', '0.124'), ('propanol', '0.122'), ('fenol', '0.121'), ('stirol', '0.098'), ('izopropanol', '0.095'), ('butanol', '0.090')]
+{'', 'other'}
+------------------
+[('geksan', '0.118'), ('izopropanol', '0.108'), ('other', '0.104'), ('fenol', '0.101'), ('butilazetat', '0.094'), ('toluol', '0.094')]
+{'izobutanol', 'other'}
+------------------
+[('fenol', '0.155'), ('toluol', '0.125'), ('propanol', '0.115'), ('izobutanol', '0.111'), ('butanol', '0.097'), ('stirol', '0.097')]
+{'', 'other'}
+------------------
+[('propanol', '0.127'), ('butilazetat', '0.114'), ('fenol', '0.104'), ('toluol', '0.101'), ('butanol', '0.094'), ('dioktilftalat_with_etilazetat', '0.092')]
+{'', 'other'}
+------------------
+[('izopropanol', '0.148'), ('butilazetat', '0.106'), ('geksan', '0.105'), ('stirol', '0.097'), ('butanol', '0.094'), ('benzin', '0.091')]
+{'', 'other'}
+------------------
+[('izopropanol', '0.132'), ('butilazetat', '0.112'), ('fenol', '0.101'), ('geksan', '0.101'), ('dioktilftalat_with_benzol', '0.094'), ('toluol', '0.091')]
+{'', 'other'}
+------------------
+[('butilazetat', '0.120'), ('propanol', '0.110'), ('izopropanol', '0.105'), ('fenol', '0.104'), ('stirol', '0.102'), ('toluol', '0.093')]
+{'', 'other'}
+------------------
+[('izopropanol', '0.126'), ('geksan', '0.107'), ('izobutanol', '0.107'), ('dioktilftalat_with_benzol', '0.095'), ('propanol', '0.085'), ('stirol', '0.084')]
+{'', 'other'}
+------------------
+[('geksan', '0.126'), ('izopropanol', '0.106'), ('propanol', '0.104'), ('butilazetat', '0.098'), ('other', '0.095'), ('stirol', '0.095')]
+{'other'}
+------------------
+[('fenol', '0.141'), ('butanol', '0.117'), ('izobutanol', '0.106'), ('propanol', '0.098'), ('izopropanol', '0.097'), ('geksan', '0.093')]
+{'other'}
+------------------
+[('butanol', '0.123'), ('stirol', '0.115'), ('other', '0.098'), ('geksan', '0.091'), ('propanol', '0.088'), ('butilazetat', '0.086')]
+{'other', 'dioktilftalat_with_benzol', 'geksan', 'toluol', 'stirol', 'dioktilftalat_with_azetaldegid'}
+------------------
+[('izopropanol', '0.107'), ('propanol', '0.102'), ('stirol', '0.101'), ('butanol', '0.095'), ('geksan', '0.090'), ('izobutanol', '0.090')]
+{'geksan', 'other', 'butilazetat'}
+------------------
+[('butanol', '0.117'), ('fenol', '0.102'), ('izopropanol', '0.096'), ('butilazetat', '0.093'), ('stirol', '0.089'), ('dioktilftalat_with_benzol', '0.084')]
+{'geksan', 'other', 'butilazetat'}
+------------------
+[('toluol', '0.126'), ('butanol', '0.113'), ('fenol', '0.109'), ('propanol', '0.107'), ('izopropanol', '0.106'), ('butilazetat', '0.100')]
+{'', 'other'}
+------------------
+[('propanol', '0.132'), ('izopropanol', '0.119'), ('fenol', '0.106'), ('geksan', '0.101'), ('dioktilftalat_with_benzol', '0.097'), ('stirol', '0.097')]
+{'', 'other'}
+------------------
+[('fenol', '0.113'), ('izobutanol', '0.111'), ('propanol', '0.107'), ('izopropanol', '0.103'), ('toluol', '0.102'), ('butanol', '0.101')]
+{'', 'other'}
+------------------
+[('butanol', '0.110'), ('fenol', '0.106'), ('geksan', '0.102'), ('propanol', '0.102'), ('stirol', '0.102'), ('dioktilftalat_with_benzol', '0.096')]
+{'izopropanol', 'toluol', 'other', 'butilazetat'}
+------------------
+[('butanol', '0.122'), ('stirol', '0.118'), ('izopropanol', '0.108'), ('propanol', '0.104'), ('toluol', '0.097'), ('butilazetat', '0.095')]
+{'', 'other'}
+------------------
+[('propanol', '0.131'), ('stirol', '0.108'), ('butanol', '0.104'), ('butilazetat', '0.104'), ('izobutanol', '0.098'), ('fenol', '0.094')]
+{'', 'other'}
+------------------
+[('geksan', '0.135'), ('propanol', '0.122'), ('dioktilftalat_with_azeton', '0.117'), ('dioktilftalat_with_benzol', '0.100'), ('izopropanol', '0.098'), ('butanol', '0.089')]
+{'izobutanol', 'other'}
+------------------
+[('propanol', '0.129'), ('toluol', '0.116'), ('fenol', '0.113'), ('butanol', '0.111'), ('stirol', '0.108'), ('izopropanol', '0.097')]
+{'', 'other'}
+------------------
+[('butanol', '0.129'), ('propanol', '0.107'), ('izopropanol', '0.101'), ('geksan', '0.090'), ('fenol', '0.084'), ('other', '0.084')]
+{'other', 'butilazetat'}
+------------------
+[('butanol', '0.122'), ('toluol', '0.113'), ('propanol', '0.106'), ('fenol', '0.094'), ('izopropanol', '0.093'), ('butilazetat', '0.092')]
+{'', 'other'}
+------------------
+[('toluol', '0.128'), ('fenol', '0.124'), ('propanol', '0.115'), ('butilazetat', '0.112'), ('izobutanol', '0.094'), ('butanol', '0.093')]
+{'', 'other'}
+------------------
+[('geksan', '0.153'), ('propanol', '0.135'), ('other', '0.124'), ('butanol', '0.095'), ('dioktilftalat_with_azetaldegid', '0.091'), ('fenol', '0.089')]
+{'other', 'butilazetat'}
+------------------
+[('butanol', '0.119'), ('propanol', '0.099'), ('toluol', '0.099'), ('izobutanol', '0.097'), ('stirol', '0.095'), ('geksan', '0.093')]
+{'other'}
+------------------
+[('butanol', '0.107'), ('izobutanol', '0.106'), ('butilazetat', '0.097'), ('toluol', '0.096'), ('propanol', '0.095'), ('izopropanol', '0.094')]
+{'toluol', 'other'}
+------------------
+[('geksan', '0.191'), ('benzin', '0.129'), ('other', '0.101'), ('propanol', '0.095'), ('fenol', '0.092'), ('butanol', '0.089')]
+{'izobutanol', 'toluol', 'other', 'butilazetat'}
+------------------
+[('geksan', '0.148'), ('izopropanol', '0.130'), ('dioktilftalat_with_azeton', '0.119'), ('propanol', '0.112'), ('other', '0.108'), ('dioktilftalat_with_azetaldegid', '0.106')]
+{'toluol', 'other'}
+------------------
+[('geksan', '0.192'), ('dioktilftalat_with_azeton', '0.133'), ('benzin', '0.116'), ('izopropanol', '0.116'), ('other', '0.107'), ('dioktilftalat_with_azetaldegid', '0.105')]
+{'toluol', 'other', 'fenol'}
+------------------
+[('geksan', '0.171'), ('dioktilftalat_with_azeton', '0.136'), ('benzin', '0.127'), ('dioktilftalat_with_azetaldegid', '0.107'), ('dioktilftalat_with_benzol', '0.099'), ('izopropanol', '0.091')]
+{'toluol', 'other', 'fenol'}
+------------------
+[('toluol', '0.119'), ('fenol', '0.109'), ('izopropanol', '0.103'), ('butanol', '0.095'), ('dioktilftalat_with_azeton', '0.088'), ('geksan', '0.088')]
+{'stirol', 'other', 'butilazetat'}
+------------------
+[('geksan', '0.125'), ('dioktilftalat_with_azetaldegid', '0.120'), ('propanol', '0.119'), ('other', '0.100'), ('benzin', '0.098'), ('izopropanol', '0.098')]
+{'izobutanol', 'izopropanol', 'other', 'butilazetat'}
+------------------
+[('propanol', '0.137'), ('geksan', '0.130'), ('dioktilftalat_with_azeton', '0.121'), ('benzin', '0.116'), ('dioktilftalat_with_azetaldegid', '0.116'), ('other', '0.112')]
+{'toluol', 'other'}
+------------------
+[('geksan', '0.132'), ('butanol', '0.114'), ('other', '0.111'), ('propanol', '0.111'), ('dioktilftalat_with_azeton', '0.101'), ('izopropanol', '0.100')]
+{'izopropanol', 'other'}
+------------------
+[('stirol', '0.128'), ('propanol', '0.121'), ('butilazetat', '0.111'), ('fenol', '0.108'), ('izobutanol', '0.102'), ('butanol', '0.097')]
+{'izobutanol', 'izopropanol', 'propanol', 'butanol'}
+------------------
+[('butanol', '0.130'), ('stirol', '0.116'), ('fenol', '0.106'), ('izopropanol', '0.105'), ('toluol', '0.097'), ('butilazetat', '0.092')]
+{'izobutanol', 'izopropanol', 'propanol', 'butanol'}
+------------------
+You should predict top  1.0  labels for train
+You should predict top  11.5066666667  labels for toys
+label_ranking_average_precision_score on train 1.0
+label_ranking_average_precision_score on toys 0.197633546084
+------------------------------------------
+------------------------------------------
+------------Bagging with RF---------------
+------------------------------------------
+bagging train accuracy:  0.933333333333
+[('butilazetat', '0.118'), ('toluol', '0.104'), ('stirol', '0.102'), ('dioktilftalat_with_etilazetat', '0.093'), ('butanol', '0.087'), ('dioktilftalat_with_azetaldegid', '0.079')]
+['other', 'other']
+------------------
+[('butilazetat', '0.112'), ('stirol', '0.110'), ('toluol', '0.108'), ('dioktilftalat_with_etilazetat', '0.095'), ('butanol', '0.088'), ('dioktilftalat_with_azetaldegid', '0.079')]
+['other', 'other']
+------------------
+[('butilazetat', '0.122'), ('toluol', '0.109'), ('stirol', '0.102'), ('dioktilftalat_with_etilazetat', '0.092'), ('butanol', '0.086'), ('dioktilftalat_with_azetaldegid', '0.072')]
+['other', '']
+------------------
+[('butilazetat', '0.115'), ('toluol', '0.113'), ('stirol', '0.110'), ('butanol', '0.087'), ('dioktilftalat_with_etilazetat', '0.086'), ('dioktilftalat_with_azetaldegid', '0.079')]
+['izobutanol', 'izopropanol', 'toluol', 'butilazetat', 'dioktilftalat_with_etilazetat', 'dioktilftalat_with_azetaldegid']
+------------------
+[('butilazetat', '0.123'), ('stirol', '0.113'), ('toluol', '0.110'), ('butanol', '0.091'), ('dioktilftalat_with_etilazetat', '0.084'), ('dioktilftalat_with_azetaldegid', '0.077')]
+['izobutanol', 'izopropanol', 'toluol', 'butilazetat', 'dioktilftalat_with_etilazetat', 'dioktilftalat_with_azetaldegid']
+------------------
+[('butilazetat', '0.116'), ('stirol', '0.105'), ('toluol', '0.105'), ('dioktilftalat_with_etilazetat', '0.094'), ('butanol', '0.085'), ('dioktilftalat_with_azetaldegid', '0.079')]
+['other', '']
+------------------
+[('butilazetat', '0.114'), ('toluol', '0.108'), ('stirol', '0.107'), ('butanol', '0.089'), ('dioktilftalat_with_etilazetat', '0.089'), ('dioktilftalat_with_azetaldegid', '0.081')]
+['other', '']
+------------------
+[('butilazetat', '0.112'), ('toluol', '0.110'), ('stirol', '0.106'), ('dioktilftalat_with_etilazetat', '0.091'), ('butanol', '0.085'), ('dioktilftalat_with_azetaldegid', '0.080')]
+['other', '']
+------------------
+[('butilazetat', '0.115'), ('toluol', '0.110'), ('stirol', '0.102'), ('butanol', '0.092'), ('dioktilftalat_with_etilazetat', '0.090'), ('dioktilftalat_with_azetaldegid', '0.082')]
+['other', '']
+------------------
+[('butilazetat', '0.113'), ('stirol', '0.112'), ('toluol', '0.108'), ('dioktilftalat_with_etilazetat', '0.088'), ('butanol', '0.084'), ('dioktilftalat_with_azetaldegid', '0.082')]
+['other', 'toluol', 'other', 'other', 'other']
+------------------
+[('butilazetat', '0.116'), ('toluol', '0.111'), ('stirol', '0.107'), ('butanol', '0.089'), ('dioktilftalat_with_etilazetat', '0.087'), ('dioktilftalat_with_azetaldegid', '0.080')]
+['other', 'toluol', 'other', 'other', 'other']
+------------------
+[('butilazetat', '0.123'), ('stirol', '0.108'), ('toluol', '0.108'), ('butanol', '0.089'), ('dioktilftalat_with_etilazetat', '0.087'), ('dioktilftalat_with_azetaldegid', '0.079')]
+['dioktilftalat_with_azeton', 'other', 'dioktilftalat_with_azetaldegid']
+------------------
+[('butilazetat', '0.109'), ('stirol', '0.107'), ('toluol', '0.104'), ('dioktilftalat_with_etilazetat', '0.094'), ('butanol', '0.083'), ('dioktilftalat_with_azetaldegid', '0.083')]
+['other', '']
+------------------
+[('butilazetat', '0.114'), ('stirol', '0.112'), ('toluol', '0.107'), ('butanol', '0.086'), ('dioktilftalat_with_etilazetat', '0.086'), ('dioktilftalat_with_azetaldegid', '0.079')]
+['butilazetat', 'dioktilftalat_with_azeton', 'dioktilftalat_with_azetaldegid', 'toluol', 'other', 'fenol']
+------------------
+[('stirol', '0.115'), ('toluol', '0.114'), ('butilazetat', '0.111'), ('dioktilftalat_with_etilazetat', '0.087'), ('butanol', '0.084'), ('dioktilftalat_with_azetaldegid', '0.078')]
+['dioktilftalat_with_azeton', '']
+------------------
+[('butilazetat', '0.119'), ('toluol', '0.109'), ('stirol', '0.105'), ('butanol', '0.089'), ('dioktilftalat_with_etilazetat', '0.086'), ('dioktilftalat_with_azetaldegid', '0.078')]
+['other', 'other']
+------------------
+[('butilazetat', '0.118'), ('stirol', '0.107'), ('toluol', '0.105'), ('dioktilftalat_with_etilazetat', '0.090'), ('butanol', '0.087'), ('dioktilftalat_with_azetaldegid', '0.081')]
+['other', '']
+------------------
+[('butilazetat', '0.119'), ('toluol', '0.114'), ('stirol', '0.102'), ('butanol', '0.093'), ('dioktilftalat_with_etilazetat', '0.086'), ('dioktilftalat_with_azetaldegid', '0.076')]
+['dioktilftalat_with_etilazetat', 'dioktilftalat_with_azetaldegid', 'geksan', 'other']
+------------------
+[('butilazetat', '0.115'), ('toluol', '0.109'), ('stirol', '0.105'), ('butanol', '0.088'), ('dioktilftalat_with_etilazetat', '0.087'), ('dioktilftalat_with_azetaldegid', '0.075')]
+['other', '']
+------------------
+[('stirol', '0.111'), ('toluol', '0.111'), ('butilazetat', '0.109'), ('dioktilftalat_with_etilazetat', '0.094'), ('butanol', '0.085'), ('dioktilftalat_with_azetaldegid', '0.078')]
+['other', '']
+------------------
+[('butilazetat', '0.120'), ('toluol', '0.116'), ('stirol', '0.102'), ('butanol', '0.096'), ('dioktilftalat_with_etilazetat', '0.088'), ('dioktilftalat_with_azetaldegid', '0.078')]
+['other', '']
+------------------
+[('butilazetat', '0.109'), ('stirol', '0.108'), ('toluol', '0.108'), ('dioktilftalat_with_etilazetat', '0.091'), ('butanol', '0.088'), ('dioktilftalat_with_azetaldegid', '0.082')]
+['other', '']
+------------------
+[('butilazetat', '0.116'), ('toluol', '0.107'), ('stirol', '0.105'), ('dioktilftalat_with_etilazetat', '0.089'), ('butanol', '0.087'), ('dioktilftalat_with_azetaldegid', '0.080')]
+['dioktilftalat_with_etilazetat', 'dioktilftalat_with_azetaldegid']
+------------------
+[('butilazetat', '0.117'), ('stirol', '0.110'), ('toluol', '0.108'), ('butanol', '0.092'), ('dioktilftalat_with_etilazetat', '0.085'), ('dioktilftalat_with_azetaldegid', '0.079')]
+['dioktilftalat_with_etilazetat', 'other']
+------------------
+[('butilazetat', '0.113'), ('toluol', '0.108'), ('stirol', '0.105'), ('dioktilftalat_with_etilazetat', '0.089'), ('butanol', '0.088'), ('dioktilftalat_with_azetaldegid', '0.083')]
+['other', '']
+------------------
+[('butilazetat', '0.112'), ('stirol', '0.110'), ('toluol', '0.106'), ('dioktilftalat_with_etilazetat', '0.091'), ('butanol', '0.087'), ('dioktilftalat_with_azetaldegid', '0.079')]
+['other', '']
+------------------
+[('butilazetat', '0.117'), ('stirol', '0.111'), ('toluol', '0.110'), ('dioktilftalat_with_etilazetat', '0.097'), ('butanol', '0.089'), ('dioktilftalat_with_azetaldegid', '0.080')]
+['other', '']
+------------------
+[('butilazetat', '0.124'), ('toluol', '0.109'), ('stirol', '0.107'), ('butanol', '0.089'), ('dioktilftalat_with_etilazetat', '0.086'), ('dioktilftalat_with_azetaldegid', '0.077')]
+['geksan', 'toluol', 'butilazetat', 'other']
+------------------
+[('butilazetat', '0.115'), ('stirol', '0.114'), ('toluol', '0.109'), ('butanol', '0.087'), ('dioktilftalat_with_etilazetat', '0.082'), ('dioktilftalat_with_azetaldegid', '0.080')]
+['geksan', 'toluol', 'butilazetat', 'other']
+------------------
+[('butilazetat', '0.110'), ('toluol', '0.107'), ('stirol', '0.106'), ('dioktilftalat_with_etilazetat', '0.089'), ('dioktilftalat_with_azetaldegid', '0.086'), ('butanol', '0.082')]
+['toluol', 'other', 'other']
+------------------
+[('butilazetat', '0.121'), ('toluol', '0.119'), ('stirol', '0.103'), ('butanol', '0.096'), ('dioktilftalat_with_etilazetat', '0.087'), ('dioktilftalat_with_azetaldegid', '0.074')]
+['other', 'other']
+------------------
+[('toluol', '0.113'), ('butilazetat', '0.112'), ('stirol', '0.112'), ('dioktilftalat_with_etilazetat', '0.087'), ('butanol', '0.085'), ('dioktilftalat_with_azetaldegid', '0.081')]
+['other', 'other']
+------------------
+[('butilazetat', '0.114'), ('toluol', '0.109'), ('stirol', '0.105'), ('butanol', '0.090'), ('dioktilftalat_with_etilazetat', '0.084'), ('dioktilftalat_with_azetaldegid', '0.079')]
+['dioktilftalat_with_etilazetat', 'dioktilftalat_with_azetaldegid', 'toluol', 'other', 'fenol']
+------------------
+[('butilazetat', '0.117'), ('stirol', '0.109'), ('toluol', '0.109'), ('butanol', '0.088'), ('dioktilftalat_with_etilazetat', '0.086'), ('dioktilftalat_with_azetaldegid', '0.077')]
+['other', 'other', 'other', 'izobutanol']
+------------------
+[('butilazetat', '0.120'), ('toluol', '0.112'), ('stirol', '0.102'), ('butanol', '0.092'), ('dioktilftalat_with_etilazetat', '0.087'), ('dioktilftalat_with_azetaldegid', '0.078')]
+['other', 'other', 'other', 'toluol', 'other', 'other', 'fenol']
+------------------
+[('butilazetat', '0.113'), ('toluol', '0.111'), ('stirol', '0.110'), ('dioktilftalat_with_etilazetat', '0.092'), ('butanol', '0.090'), ('dioktilftalat_with_azetaldegid', '0.084')]
+['other', 'other']
+------------------
+[('butilazetat', '0.112'), ('toluol', '0.109'), ('stirol', '0.108'), ('butanol', '0.090'), ('dioktilftalat_with_etilazetat', '0.089'), ('dioktilftalat_with_azetaldegid', '0.082')]
+['other', 'other']
+------------------
+[('butilazetat', '0.113'), ('stirol', '0.109'), ('toluol', '0.107'), ('dioktilftalat_with_etilazetat', '0.093'), ('butanol', '0.087'), ('dioktilftalat_with_azetaldegid', '0.079')]
+['other', 'other']
+------------------
+[('butilazetat', '0.113'), ('toluol', '0.111'), ('stirol', '0.105'), ('butanol', '0.092'), ('dioktilftalat_with_etilazetat', '0.092'), ('dioktilftalat_with_azetaldegid', '0.081')]
+['other', '']
+------------------
+[('butilazetat', '0.112'), ('toluol', '0.106'), ('stirol', '0.104'), ('butanol', '0.087'), ('dioktilftalat_with_etilazetat', '0.087'), ('dioktilftalat_with_azetaldegid', '0.080')]
+['other', 'other', 'other', 'izobutanol']
+------------------
+[('butilazetat', '0.116'), ('stirol', '0.107'), ('toluol', '0.102'), ('dioktilftalat_with_etilazetat', '0.089'), ('butanol', '0.087'), ('dioktilftalat_with_azetaldegid', '0.084')]
+['other', '']
+------------------
+[('butilazetat', '0.108'), ('stirol', '0.104'), ('toluol', '0.104'), ('dioktilftalat_with_azetaldegid', '0.089'), ('butanol', '0.086'), ('dioktilftalat_with_etilazetat', '0.084')]
+['other', '']
+------------------
+[('butilazetat', '0.116'), ('toluol', '0.110'), ('stirol', '0.102'), ('butanol', '0.088'), ('dioktilftalat_with_etilazetat', '0.086'), ('dioktilftalat_with_azetaldegid', '0.075')]
+['other', '']
+------------------
+[('butilazetat', '0.115'), ('toluol', '0.112'), ('stirol', '0.110'), ('butanol', '0.089'), ('dioktilftalat_with_etilazetat', '0.082'), ('dioktilftalat_with_azetaldegid', '0.081')]
+['other', '']
+------------------
+[('butilazetat', '0.116'), ('toluol', '0.106'), ('stirol', '0.103'), ('butanol', '0.090'), ('dioktilftalat_with_etilazetat', '0.085'), ('dioktilftalat_with_azetaldegid', '0.084')]
+['other', '']
+------------------
+[('butilazetat', '0.119'), ('toluol', '0.111'), ('stirol', '0.100'), ('butanol', '0.092'), ('dioktilftalat_with_etilazetat', '0.085'), ('dioktilftalat_with_azetaldegid', '0.081')]
+['other', '']
+------------------
+[('butilazetat', '0.114'), ('toluol', '0.111'), ('stirol', '0.101'), ('butanol', '0.093'), ('dioktilftalat_with_etilazetat', '0.085'), ('dioktilftalat_with_azetaldegid', '0.083')]
+['other', 'other', 'other']
+------------------
+[('butilazetat', '0.120'), ('toluol', '0.108'), ('stirol', '0.105'), ('dioktilftalat_with_etilazetat', '0.087'), ('butanol', '0.086'), ('dioktilftalat_with_azetaldegid', '0.082')]
+['other', 'other', 'other']
+------------------
+[('butilazetat', '0.118'), ('toluol', '0.104'), ('stirol', '0.103'), ('butanol', '0.089'), ('dioktilftalat_with_etilazetat', '0.087'), ('dioktilftalat_with_azetaldegid', '0.081')]
+['geksan', 'dioktilftalat_with_benzol', 'dioktilftalat_with_azetaldegid', 'toluol', 'other', 'stirol', 'other']
+------------------
+[('butilazetat', '0.120'), ('toluol', '0.110'), ('stirol', '0.103'), ('butanol', '0.090'), ('dioktilftalat_with_etilazetat', '0.089'), ('dioktilftalat_with_azetaldegid', '0.076')]
+['geksan', 'other', 'butilazetat', 'other']
+------------------
+[('butilazetat', '0.117'), ('toluol', '0.111'), ('stirol', '0.103'), ('butanol', '0.092'), ('dioktilftalat_with_etilazetat', '0.085'), ('dioktilftalat_with_azetaldegid', '0.078')]
+['geksan', 'other', 'butilazetat', 'other']
+------------------
+[('butilazetat', '0.117'), ('stirol', '0.110'), ('toluol', '0.103'), ('dioktilftalat_with_etilazetat', '0.096'), ('butanol', '0.089'), ('dioktilftalat_with_azetaldegid', '0.079')]
+['other', '']
+------------------
+[('butilazetat', '0.118'), ('toluol', '0.115'), ('stirol', '0.106'), ('butanol', '0.093'), ('dioktilftalat_with_etilazetat', '0.087'), ('dioktilftalat_with_azetaldegid', '0.079')]
+['other', '']
+------------------
+[('butilazetat', '0.118'), ('toluol', '0.110'), ('stirol', '0.109'), ('dioktilftalat_with_etilazetat', '0.092'), ('butanol', '0.090'), ('dioktilftalat_with_azetaldegid', '0.082')]
+['other', '']
+------------------
+[('butilazetat', '0.116'), ('toluol', '0.106'), ('stirol', '0.101'), ('dioktilftalat_with_etilazetat', '0.092'), ('butanol', '0.086'), ('dioktilftalat_with_azetaldegid', '0.083')]
+['other', 'other', 'butilazetat', 'izopropanol', 'other', 'toluol', 'other']
+------------------
+[('butilazetat', '0.118'), ('toluol', '0.108'), ('stirol', '0.106'), ('dioktilftalat_with_etilazetat', '0.091'), ('butanol', '0.086'), ('dioktilftalat_with_azetaldegid', '0.081')]
+['other', '']
+------------------
+[('butilazetat', '0.116'), ('toluol', '0.111'), ('stirol', '0.106'), ('butanol', '0.093'), ('dioktilftalat_with_etilazetat', '0.091'), ('dioktilftalat_with_azetaldegid', '0.079')]
+['other', '']
+------------------
+[('butilazetat', '0.117'), ('toluol', '0.115'), ('stirol', '0.114'), ('butanol', '0.090'), ('dioktilftalat_with_etilazetat', '0.086'), ('dioktilftalat_with_azetaldegid', '0.079')]
+['other', 'izobutanol']
+------------------
+[('butilazetat', '0.116'), ('toluol', '0.110'), ('stirol', '0.109'), ('dioktilftalat_with_etilazetat', '0.093'), ('butanol', '0.091'), ('dioktilftalat_with_azetaldegid', '0.081')]
+['other', '']
+------------------
+[('butilazetat', '0.120'), ('stirol', '0.113'), ('toluol', '0.108'), ('butanol', '0.087'), ('dioktilftalat_with_etilazetat', '0.084'), ('dioktilftalat_with_azetaldegid', '0.077')]
+['butilazetat', 'other']
+------------------
+[('stirol', '0.116'), ('butilazetat', '0.114'), ('toluol', '0.108'), ('dioktilftalat_with_etilazetat', '0.091'), ('butanol', '0.086'), ('dioktilftalat_with_azetaldegid', '0.082')]
+['other', '']
+------------------
+[('butilazetat', '0.115'), ('stirol', '0.110'), ('toluol', '0.106'), ('dioktilftalat_with_etilazetat', '0.090'), ('butanol', '0.087'), ('dioktilftalat_with_azetaldegid', '0.083')]
+['other', '']
+------------------
+[('butilazetat', '0.117'), ('toluol', '0.107'), ('stirol', '0.104'), ('butanol', '0.090'), ('dioktilftalat_with_etilazetat', '0.087'), ('dioktilftalat_with_azetaldegid', '0.079')]
+['other', 'other', 'other', 'other', 'butilazetat']
+------------------
+[('butilazetat', '0.114'), ('toluol', '0.108'), ('stirol', '0.102'), ('dioktilftalat_with_etilazetat', '0.092'), ('butanol', '0.088'), ('dioktilftalat_with_azetaldegid', '0.083')]
+['other', 'other']
+------------------
+[('butilazetat', '0.116'), ('stirol', '0.105'), ('toluol', '0.105'), ('butanol', '0.090'), ('dioktilftalat_with_etilazetat', '0.086'), ('dioktilftalat_with_azetaldegid', '0.082')]
+['other', 'other', 'toluol', 'other']
+------------------
+[('butilazetat', '0.121'), ('stirol', '0.110'), ('toluol', '0.109'), ('butanol', '0.089'), ('dioktilftalat_with_etilazetat', '0.088'), ('dioktilftalat_with_azetaldegid', '0.076')]
+['other', 'butilazetat', 'toluol', 'other', 'izobutanol']
+------------------
+[('butilazetat', '0.123'), ('toluol', '0.118'), ('stirol', '0.108'), ('butanol', '0.094'), ('dioktilftalat_with_etilazetat', '0.078'), ('dioktilftalat_with_azetaldegid', '0.074')]
+['other', 'other', 'toluol', 'other']
+------------------
+[('butilazetat', '0.128'), ('toluol', '0.120'), ('stirol', '0.105'), ('butanol', '0.097'), ('dioktilftalat_with_etilazetat', '0.081'), ('dioktilftalat_with_azetaldegid', '0.073')]
+['fenol', 'other', 'other', 'toluol', 'other', 'other']
+------------------
+[('butilazetat', '0.127'), ('toluol', '0.122'), ('stirol', '0.100'), ('butanol', '0.099'), ('dioktilftalat_with_etilazetat', '0.084'), ('dioktilftalat_with_azetaldegid', '0.072')]
+['fenol', 'toluol', 'other', 'other']
+------------------
+[('butilazetat', '0.114'), ('stirol', '0.110'), ('toluol', '0.107'), ('dioktilftalat_with_etilazetat', '0.093'), ('butanol', '0.088'), ('dioktilftalat_with_azetaldegid', '0.080')]
+['stirol', 'other', 'other', 'butilazetat', 'other', 'other']
+------------------
+[('butilazetat', '0.123'), ('toluol', '0.112'), ('stirol', '0.106'), ('butanol', '0.096'), ('dioktilftalat_with_etilazetat', '0.082'), ('dioktilftalat_with_azetaldegid', '0.073')]
+['izobutanol', 'other', 'other', 'butilazetat', 'izopropanol', 'other']
+------------------
+[('butilazetat', '0.129'), ('toluol', '0.116'), ('stirol', '0.103'), ('butanol', '0.098'), ('dioktilftalat_with_etilazetat', '0.078'), ('dioktilftalat_with_azetaldegid', '0.074')]
+['toluol', 'other', 'other']
+------------------
+[('butilazetat', '0.117'), ('stirol', '0.113'), ('toluol', '0.111'), ('dioktilftalat_with_etilazetat', '0.089'), ('butanol', '0.088'), ('dioktilftalat_with_azetaldegid', '0.079')]
+['other', 'izopropanol']
+------------------
+[('butilazetat', '0.115'), ('toluol', '0.113'), ('stirol', '0.103'), ('dioktilftalat_with_etilazetat', '0.094'), ('butanol', '0.091'), ('dioktilftalat_with_azetaldegid', '0.081')]
+['butanol', 'izobutanol', 'propanol', 'izopropanol']
+------------------
+[('butilazetat', '0.117'), ('toluol', '0.109'), ('stirol', '0.098'), ('butanol', '0.089'), ('dioktilftalat_with_etilazetat', '0.088'), ('dioktilftalat_with_azetaldegid', '0.083')]
+['butanol', 'izobutanol', 'propanol', 'izopropanol']
+------------------
+You should predict top  15.0  labels for train
+You should predict top  8.33333333333  labels for toys
+label_ranking_average_precision_score on train 0.0666666666667
+label_ranking_average_precision_score on toys 0.275858424292
+------------------------------------------
+------------------------------------------
+--------------------RF-------------------
+------------------------------------------
+random forest train accuracy:  1.0
+[('izobutanol', '0.186'), ('dioktilftalat_with_benzol', '0.176'), ('propanol', '0.157'), ('fenol', '0.149'), ('izopropanol', '0.149'), ('butilazetat', '0.148')]
+['other', 'other']
+------------------
+[('fenol', '0.160'), ('dioktilftalat_with_etilazetat', '0.149'), ('butanol', '0.127'), ('dioktilftalat_with_benzol', '0.127'), ('stirol', '0.119'), ('other', '0.118')]
+['other', 'other']
+------------------
+[('dioktilftalat_with_benzol', '0.131'), ('butilazetat', '0.115'), ('dioktilftalat_with_etilazetat', '0.113'), ('fenol', '0.096'), ('izobutanol', '0.091'), ('butanol', '0.079')]
+['other', '']
+------------------
+[('butilazetat', '0.093'), ('toluol', '0.080'), ('izopropanol', '0.071'), ('stirol', '0.066'), ('dioktilftalat_with_benzol', '0.065'), ('butanol', '0.059')]
+['izobutanol', 'izopropanol', 'toluol', 'butilazetat', 'dioktilftalat_with_etilazetat', 'dioktilftalat_with_azetaldegid']
+------------------
+[('butilazetat', '0.140'), ('stirol', '0.120'), ('butanol', '0.102'), ('toluol', '0.093'), ('izopropanol', '0.079'), ('dioktilftalat_with_benzol', '0.066')]
+['izobutanol', 'izopropanol', 'toluol', 'butilazetat', 'dioktilftalat_with_etilazetat', 'dioktilftalat_with_azetaldegid']
+------------------
+[('propanol', '0.132'), ('izobutanol', '0.093'), ('stirol', '0.093'), ('benzin', '0.089'), ('izopropanol', '0.087'), ('dioktilftalat_with_etilazetat', '0.086')]
+['other', '']
+------------------
+[('fenol', '0.079'), ('stirol', '0.077'), ('dioktilftalat_with_azeton', '0.075'), ('geksan', '0.070'), ('dioktilftalat_with_azetaldegid', '0.069'), ('other', '0.066')]
+['other', '']
+------------------
+[('fenol', '0.131'), ('propanol', '0.128'), ('toluol', '0.103'), ('other', '0.098'), ('dioktilftalat_with_azeton', '0.097'), ('izopropanol', '0.095')]
+['other', '']
+------------------
+[('butanol', '0.161'), ('dioktilftalat_with_benzol', '0.137'), ('benzin', '0.117'), ('dioktilftalat_with_azetaldegid', '0.115'), ('butilazetat', '0.113'), ('dioktilftalat_with_azeton', '0.110')]
+['other', '']
+------------------
+[('dioktilftalat_with_etilazetat', '0.075'), ('stirol', '0.070'), ('dioktilftalat_with_benzol', '0.062'), ('dioktilftalat_with_azeton', '0.057'), ('toluol', '0.055'), ('dioktilftalat_with_azetaldegid', '0.049')]
+['other', 'toluol', 'other', 'other', 'other']
+------------------
+[('butilazetat', '0.061'), ('fenol', '0.054'), ('dioktilftalat_with_etilazetat', '0.049'), ('dioktilftalat_with_azetaldegid', '0.047'), ('izobutanol', '0.042'), ('dioktilftalat_with_azeton', '0.041')]
+['other', 'toluol', 'other', 'other', 'other']
+------------------
+[('stirol', '0.082'), ('butilazetat', '0.065'), ('toluol', '0.063'), ('fenol', '0.059'), ('dioktilftalat_with_azetaldegid', '0.057'), ('dioktilftalat_with_benzol', '0.053')]
+['dioktilftalat_with_azeton', 'other', 'dioktilftalat_with_azetaldegid']
+------------------
+[('izopropanol', '0.173'), ('fenol', '0.158'), ('stirol', '0.155'), ('dioktilftalat_with_etilazetat', '0.151'), ('toluol', '0.147'), ('dioktilftalat_with_azeton', '0.138')]
+['other', '']
+------------------
+[('stirol', '0.063'), ('butilazetat', '0.058'), ('dioktilftalat_with_benzol', '0.049'), ('dioktilftalat_with_azeton', '0.048'), ('izopropanol', '0.043'), ('dioktilftalat_with_etilazetat', '0.041')]
+['butilazetat', 'dioktilftalat_with_azeton', 'dioktilftalat_with_azetaldegid', 'toluol', 'other', 'fenol']
+------------------
+[('stirol', '0.083'), ('toluol', '0.061'), ('dioktilftalat_with_benzol', '0.053'), ('dioktilftalat_with_etilazetat', '0.041'), ('benzin', '0.037'), ('izopropanol', '0.037')]
+['dioktilftalat_with_azeton', '']
+------------------
+[('benzin', '0.049'), ('dioktilftalat_with_azetaldegid', '0.049'), ('butilazetat', '0.047'), ('izobutanol', '0.046'), ('stirol', '0.046'), ('dioktilftalat_with_azeton', '0.045')]
+['other', 'other']
+------------------
+[('izopropanol', '0.140'), ('izobutanol', '0.137'), ('butilazetat', '0.125'), ('dioktilftalat_with_benzol', '0.121'), ('stirol', '0.117'), ('propanol', '0.112')]
+['other', '']
+------------------
+[('butanol', '0.149'), ('fenol', '0.115'), ('toluol', '0.103'), ('izopropanol', '0.086'), ('butilazetat', '0.067'), ('dioktilftalat_with_azeton', '0.065')]
+['dioktilftalat_with_etilazetat', 'dioktilftalat_with_azetaldegid', 'geksan', 'other']
+------------------
+[('fenol', '0.115'), ('izopropanol', '0.108'), ('butanol', '0.104'), ('butilazetat', '0.090'), ('dioktilftalat_with_benzol', '0.077'), ('other', '0.071')]
+['other', '']
+------------------
+[('dioktilftalat_with_benzol', '0.090'), ('fenol', '0.084'), ('dioktilftalat_with_azetaldegid', '0.083'), ('toluol', '0.082'), ('other', '0.080'), ('stirol', '0.079')]
+['other', '']
+------------------
+[('butanol', '0.126'), ('butilazetat', '0.114'), ('propanol', '0.106'), ('toluol', '0.106'), ('izopropanol', '0.101'), ('other', '0.101')]
+['other', '']
+------------------
+[('izobutanol', '0.085'), ('benzin', '0.080'), ('fenol', '0.079'), ('dioktilftalat_with_azetaldegid', '0.067'), ('butanol', '0.065'), ('geksan', '0.062')]
+['other', '']
+------------------
+[('propanol', '0.083'), ('dioktilftalat_with_azeton', '0.082'), ('butilazetat', '0.075'), ('fenol', '0.073'), ('dioktilftalat_with_etilazetat', '0.071'), ('benzin', '0.070')]
+['dioktilftalat_with_etilazetat', 'dioktilftalat_with_azetaldegid']
+------------------
+[('dioktilftalat_with_azeton', '0.085'), ('fenol', '0.069'), ('benzin', '0.066'), ('butilazetat', '0.065'), ('izopropanol', '0.065'), ('izobutanol', '0.063')]
+['dioktilftalat_with_etilazetat', 'other']
+------------------
+[('izopropanol', '0.079'), ('dioktilftalat_with_azetaldegid', '0.073'), ('butanol', '0.057'), ('fenol', '0.055'), ('other', '0.049'), ('dioktilftalat_with_etilazetat', '0.048')]
+['other', '']
+------------------
+[('butanol', '0.113'), ('stirol', '0.108'), ('benzin', '0.097'), ('fenol', '0.095'), ('dioktilftalat_with_azetaldegid', '0.083'), ('dioktilftalat_with_etilazetat', '0.083')]
+['other', '']
+------------------
+[('fenol', '0.140'), ('dioktilftalat_with_etilazetat', '0.129'), ('izobutanol', '0.128'), ('benzin', '0.125'), ('toluol', '0.109'), ('dioktilftalat_with_azeton', '0.107')]
+['other', '']
+------------------
+[('butilazetat', '0.095'), ('propanol', '0.086'), ('butanol', '0.081'), ('dioktilftalat_with_etilazetat', '0.075'), ('toluol', '0.069'), ('izobutanol', '0.056')]
+['geksan', 'toluol', 'butilazetat', 'other']
+------------------
+[('stirol', '0.079'), ('dioktilftalat_with_benzol', '0.056'), ('dioktilftalat_with_azeton', '0.050'), ('toluol', '0.045'), ('fenol', '0.044'), ('dioktilftalat_with_azetaldegid', '0.039')]
+['geksan', 'toluol', 'butilazetat', 'other']
+------------------
+[('dioktilftalat_with_benzol', '0.083'), ('izopropanol', '0.082'), ('stirol', '0.077'), ('dioktilftalat_with_azetaldegid', '0.073'), ('benzin', '0.071'), ('toluol', '0.069')]
+['toluol', 'other', 'other']
+------------------
+[('toluol', '0.112'), ('butilazetat', '0.096'), ('izopropanol', '0.093'), ('butanol', '0.081'), ('fenol', '0.078'), ('propanol', '0.069')]
+['other', 'other']
+------------------
+[('stirol', '0.083'), ('dioktilftalat_with_azetaldegid', '0.062'), ('butilazetat', '0.059'), ('dioktilftalat_with_benzol', '0.050'), ('benzin', '0.048'), ('other', '0.047')]
+['other', 'other']
+------------------
+[('fenol', '0.096'), ('stirol', '0.091'), ('dioktilftalat_with_benzol', '0.084'), ('izobutanol', '0.068'), ('butanol', '0.067'), ('butilazetat', '0.066')]
+['dioktilftalat_with_etilazetat', 'dioktilftalat_with_azetaldegid', 'toluol', 'other', 'fenol']
+------------------
+[('dioktilftalat_with_benzol', '0.083'), ('toluol', '0.077'), ('dioktilftalat_with_azeton', '0.065'), ('propanol', '0.058'), ('dioktilftalat_with_etilazetat', '0.057'), ('benzin', '0.053')]
+['other', 'other', 'other', 'izobutanol']
+------------------
+[('fenol', '0.097'), ('butanol', '0.083'), ('propanol', '0.083'), ('butilazetat', '0.081'), ('izopropanol', '0.080'), ('dioktilftalat_with_azeton', '0.068')]
+['other', 'other', 'other', 'toluol', 'other', 'other', 'fenol']
+------------------
+[('butanol', '0.120'), ('stirol', '0.116'), ('fenol', '0.099'), ('izopropanol', '0.091'), ('dioktilftalat_with_azetaldegid', '0.089'), ('dioktilftalat_with_etilazetat', '0.080')]
+['other', 'other']
+------------------
+[('butanol', '0.101'), ('dioktilftalat_with_azeton', '0.081'), ('other', '0.071'), ('stirol', '0.071'), ('dioktilftalat_with_benzol', '0.061'), ('dioktilftalat_with_etilazetat', '0.059')]
+['other', 'other']
+------------------
+[('butanol', '0.113'), ('stirol', '0.113'), ('fenol', '0.106'), ('dioktilftalat_with_benzol', '0.105'), ('dioktilftalat_with_etilazetat', '0.093'), ('benzin', '0.085')]
+['other', 'other']
+------------------
+[('izobutanol', '0.115'), ('propanol', '0.113'), ('toluol', '0.113'), ('benzin', '0.108'), ('dioktilftalat_with_benzol', '0.097'), ('izopropanol', '0.095')]
+['other', '']
+------------------
+[('dioktilftalat_with_benzol', '0.060'), ('stirol', '0.056'), ('benzin', '0.055'), ('butanol', '0.052'), ('butilazetat', '0.050'), ('dioktilftalat_with_azetaldegid', '0.046')]
+['other', 'other', 'other', 'izobutanol']
+------------------
+[('butanol', '0.127'), ('butilazetat', '0.125'), ('izopropanol', '0.119'), ('dioktilftalat_with_azeton', '0.113'), ('dioktilftalat_with_benzol', '0.108'), ('stirol', '0.108')]
+['other', '']
+------------------
+[('fenol', '0.094'), ('dioktilftalat_with_azetaldegid', '0.091'), ('izobutanol', '0.088'), ('dioktilftalat_with_benzol', '0.074'), ('butanol', '0.073'), ('dioktilftalat_with_azeton', '0.073')]
+['other', '']
+------------------
+[('fenol', '0.085'), ('butilazetat', '0.077'), ('other', '0.055'), ('dioktilftalat_with_benzol', '0.053'), ('dioktilftalat_with_etilazetat', '0.049'), ('izobutanol', '0.048')]
+['other', '']
+------------------
+[('propanol', '0.105'), ('toluol', '0.081'), ('other', '0.078'), ('benzin', '0.072'), ('izobutanol', '0.066'), ('dioktilftalat_with_azetaldegid', '0.058')]
+['other', '']
+------------------
+[('izobutanol', '0.124'), ('butanol', '0.098'), ('fenol', '0.077'), ('other', '0.076'), ('dioktilftalat_with_azetaldegid', '0.072'), ('izopropanol', '0.071')]
+['other', '']
+------------------
+[('fenol', '0.085'), ('butanol', '0.075'), ('propanol', '0.071'), ('izopropanol', '0.068'), ('butilazetat', '0.063'), ('other', '0.061')]
+['other', '']
+------------------
+[('butanol', '0.113'), ('fenol', '0.068'), ('benzin', '0.061'), ('dioktilftalat_with_azetaldegid', '0.060'), ('dioktilftalat_with_azeton', '0.055'), ('izopropanol', '0.053')]
+['other', 'other', 'other']
+------------------
+[('dioktilftalat_with_azeton', '0.090'), ('propanol', '0.089'), ('butilazetat', '0.087'), ('dioktilftalat_with_benzol', '0.081'), ('toluol', '0.081'), ('benzin', '0.075')]
+['other', 'other', 'other']
+------------------
+[('propanol', '0.080'), ('izobutanol', '0.071'), ('butilazetat', '0.066'), ('izopropanol', '0.066'), ('other', '0.059'), ('dioktilftalat_with_azetaldegid', '0.055')]
+['geksan', 'dioktilftalat_with_benzol', 'dioktilftalat_with_azetaldegid', 'toluol', 'other', 'stirol', 'other']
+------------------
+[('fenol', '0.077'), ('dioktilftalat_with_etilazetat', '0.068'), ('propanol', '0.064'), ('butilazetat', '0.057'), ('other', '0.054'), ('butanol', '0.053')]
+['geksan', 'other', 'butilazetat', 'other']
+------------------
+[('propanol', '0.111'), ('toluol', '0.093'), ('butilazetat', '0.088'), ('fenol', '0.086'), ('dioktilftalat_with_benzol', '0.068'), ('other', '0.062')]
+['geksan', 'other', 'butilazetat', 'other']
+------------------
+[('dioktilftalat_with_etilazetat', '0.139'), ('fenol', '0.138'), ('izobutanol', '0.131'), ('butanol', '0.129'), ('izopropanol', '0.129'), ('butilazetat', '0.124')]
+['other', '']
+------------------
+[('toluol', '0.111'), ('fenol', '0.092'), ('butanol', '0.089'), ('propanol', '0.077'), ('other', '0.076'), ('benzin', '0.073')]
+['other', '']
+------------------
+[('toluol', '0.115'), ('dioktilftalat_with_azetaldegid', '0.109'), ('izopropanol', '0.109'), ('fenol', '0.107'), ('butilazetat', '0.101'), ('stirol', '0.101')]
+['other', '']
+------------------
+[('dioktilftalat_with_etilazetat', '0.083'), ('propanol', '0.073'), ('butanol', '0.072'), ('dioktilftalat_with_azetaldegid', '0.071'), ('izopropanol', '0.066'), ('butilazetat', '0.064')]
+['other', 'other', 'butilazetat', 'izopropanol', 'other', 'toluol', 'other']
+------------------
+[('dioktilftalat_with_benzol', '0.136'), ('butilazetat', '0.134'), ('stirol', '0.131'), ('toluol', '0.111'), ('izopropanol', '0.108'), ('izobutanol', '0.103')]
+['other', '']
+------------------
+[('butanol', '0.144'), ('fenol', '0.123'), ('izopropanol', '0.104'), ('izobutanol', '0.101'), ('propanol', '0.101'), ('toluol', '0.099')]
+['other', '']
+------------------
+[('toluol', '0.076'), ('stirol', '0.071'), ('fenol', '0.057'), ('butilazetat', '0.053'), ('izopropanol', '0.051'), ('dioktilftalat_with_azetaldegid', '0.047')]
+['other', 'izobutanol']
+------------------
+[('izopropanol', '0.169'), ('dioktilftalat_with_etilazetat', '0.147'), ('izobutanol', '0.137'), ('butanol', '0.135'), ('butilazetat', '0.135'), ('toluol', '0.132')]
+['other', '']
+------------------
+[('propanol', '0.107'), ('izobutanol', '0.101'), ('toluol', '0.101'), ('butilazetat', '0.083'), ('stirol', '0.081'), ('dioktilftalat_with_benzol', '0.077')]
+['butilazetat', 'other']
+------------------
+[('izobutanol', '0.112'), ('stirol', '0.106'), ('dioktilftalat_with_azetaldegid', '0.104'), ('benzin', '0.102'), ('butilazetat', '0.099'), ('butanol', '0.091')]
+['other', '']
+------------------
+[('izobutanol', '0.137'), ('propanol', '0.114'), ('fenol', '0.110'), ('butanol', '0.105'), ('stirol', '0.103'), ('dioktilftalat_with_azeton', '0.102')]
+['other', '']
+------------------
+[('butanol', '0.057'), ('fenol', '0.056'), ('butilazetat', '0.043'), ('benzin', '0.041'), ('dioktilftalat_with_etilazetat', '0.041'), ('izopropanol', '0.039')]
+['other', 'other', 'other', 'other', 'butilazetat']
+------------------
+[('fenol', '0.097'), ('butanol', '0.089'), ('izobutanol', '0.086'), ('dioktilftalat_with_etilazetat', '0.080'), ('dioktilftalat_with_benzol', '0.079'), ('other', '0.075')]
+['other', 'other']
+------------------
+[('benzin', '0.113'), ('butilazetat', '0.111'), ('izopropanol', '0.098'), ('stirol', '0.098'), ('izobutanol', '0.093'), ('fenol', '0.088')]
+['other', 'other', 'toluol', 'other']
+------------------
+[('dioktilftalat_with_etilazetat', '0.049'), ('stirol', '0.048'), ('other', '0.043'), ('izobutanol', '0.040'), ('dioktilftalat_with_azetaldegid', '0.038'), ('butanol', '0.035')]
+['other', 'butilazetat', 'toluol', 'other', 'izobutanol']
+------------------
+[('toluol', '0.103'), ('stirol', '0.097'), ('butanol', '0.069'), ('butilazetat', '0.067'), ('dioktilftalat_with_benzol', '0.046'), ('izobutanol', '0.039')]
+['other', 'other', 'toluol', 'other']
+------------------
+[('butanol', '0.094'), ('butilazetat', '0.061'), ('toluol', '0.050'), ('stirol', '0.047'), ('propanol', '0.040'), ('izopropanol', '0.037')]
+['fenol', 'other', 'other', 'toluol', 'other', 'other']
+------------------
+[('toluol', '0.104'), ('butanol', '0.058'), ('propanol', '0.058'), ('izobutanol', '0.051'), ('izopropanol', '0.047'), ('butilazetat', '0.046')]
+['fenol', 'toluol', 'other', 'other']
+------------------
+[('propanol', '0.122'), ('stirol', '0.106'), ('izopropanol', '0.089'), ('dioktilftalat_with_etilazetat', '0.082'), ('dioktilftalat_with_benzol', '0.080'), ('butilazetat', '0.075')]
+['stirol', 'other', 'other', 'butilazetat', 'other', 'other']
+------------------
+[('butanol', '0.091'), ('izopropanol', '0.073'), ('butilazetat', '0.071'), ('stirol', '0.056'), ('propanol', '0.049'), ('fenol', '0.045')]
+['izobutanol', 'other', 'other', 'butilazetat', 'izopropanol', 'other']
+------------------
+[('butilazetat', '0.097'), ('fenol', '0.092'), ('butanol', '0.090'), ('izopropanol', '0.081'), ('stirol', '0.068'), ('toluol', '0.067')]
+['toluol', 'other', 'other']
+------------------
+[('stirol', '0.087'), ('dioktilftalat_with_benzol', '0.071'), ('izobutanol', '0.069'), ('dioktilftalat_with_etilazetat', '0.064'), ('dioktilftalat_with_azetaldegid', '0.055'), ('benzin', '0.054')]
+['other', 'izopropanol']
+------------------
+[('toluol', '0.184'), ('propanol', '0.151'), ('fenol', '0.135'), ('izopropanol', '0.133'), ('butanol', '0.131'), ('other', '0.123')]
+['butanol', 'izobutanol', 'propanol', 'izopropanol']
+------------------
+[('izobutanol', '0.143'), ('fenol', '0.132'), ('dioktilftalat_with_etilazetat', '0.111'), ('propanol', '0.106'), ('benzin', '0.095'), ('izopropanol', '0.094')]
+['butanol', 'izobutanol', 'propanol', 'izopropanol']
+------------------
+You should predict top  1.0  labels for train
+You should predict top  10.56  labels for toys
+label_ranking_average_precision_score on train 1.0
+label_ranking_average_precision_score on toys 0.223039683156
+------------------------------------------
+------------------------------------------
+--------------------MLP-------------------
+------------------------------------------
+...................
+score:  0.333333333333
+alpha:  alpha 97.4
+[('butilazetat', '0.464'), ('dioktilftalat_with_benzol', '0.457'), ('benzin', '0.445'), ('stirol', '0.438'), ('izopropanol', '0.434'), ('toluol', '0.431')]
+['other', 'other']
+------------------
+[('dioktilftalat_with_benzol', '0.465'), ('benzin', '0.461'), ('butilazetat', '0.454'), ('stirol', '0.453'), ('toluol', '0.439'), ('dioktilftalat_with_etilazetat', '0.436')]
+['other', 'other']
+------------------
+[('butilazetat', '0.466'), ('dioktilftalat_with_benzol', '0.466'), ('benzin', '0.454'), ('stirol', '0.449'), ('dioktilftalat_with_etilazetat', '0.431'), ('izopropanol', '0.431')]
+['other', '']
+------------------
+[('dioktilftalat_with_benzol', '0.478'), ('benzin', '0.466'), ('stirol', '0.465'), ('butilazetat', '0.460'), ('izopropanol', '0.449'), ('toluol', '0.444')]
+['izobutanol', 'izopropanol', 'toluol', 'butilazetat', 'dioktilftalat_with_etilazetat', 'dioktilftalat_with_azetaldegid']
+------------------
+[('butilazetat', '0.463'), ('stirol', '0.449'), ('dioktilftalat_with_benzol', '0.442'), ('benzin', '0.439'), ('izopropanol', '0.432'), ('toluol', '0.429')]
+['izobutanol', 'izopropanol', 'toluol', 'butilazetat', 'dioktilftalat_with_etilazetat', 'dioktilftalat_with_azetaldegid']
+------------------
+[('benzin', '0.469'), ('dioktilftalat_with_benzol', '0.461'), ('stirol', '0.451'), ('butilazetat', '0.449'), ('izopropanol', '0.445'), ('toluol', '0.439')]
+['other', '']
+------------------
+[('dioktilftalat_with_benzol', '0.472'), ('benzin', '0.471'), ('stirol', '0.459'), ('butilazetat', '0.452'), ('toluol', '0.452'), ('dioktilftalat_with_etilazetat', '0.445')]
+['other', '']
+------------------
+[('benzin', '0.480'), ('dioktilftalat_with_benzol', '0.467'), ('izopropanol', '0.457'), ('stirol', '0.454'), ('toluol', '0.451'), ('butilazetat', '0.441')]
+['other', '']
+------------------
+[('dioktilftalat_with_benzol', '0.472'), ('benzin', '0.469'), ('stirol', '0.457'), ('butilazetat', '0.453'), ('izopropanol', '0.450'), ('toluol', '0.443')]
+['other', '']
+------------------
+[('dioktilftalat_with_benzol', '0.483'), ('stirol', '0.463'), ('benzin', '0.461'), ('butilazetat', '0.460'), ('izopropanol', '0.449'), ('toluol', '0.443')]
+['other', 'toluol', 'other', 'other', 'other']
+------------------
+[('dioktilftalat_with_benzol', '0.473'), ('benzin', '0.465'), ('butilazetat', '0.463'), ('stirol', '0.459'), ('toluol', '0.450'), ('dioktilftalat_with_etilazetat', '0.443')]
+['other', 'toluol', 'other', 'other', 'other']
+------------------
+[('dioktilftalat_with_benzol', '0.476'), ('benzin', '0.464'), ('butilazetat', '0.464'), ('stirol', '0.456'), ('toluol', '0.449'), ('izopropanol', '0.441')]
+['dioktilftalat_with_azeton', 'other', 'dioktilftalat_with_azetaldegid']
+------------------
+[('dioktilftalat_with_benzol', '0.482'), ('benzin', '0.466'), ('stirol', '0.459'), ('izopropanol', '0.452'), ('toluol', '0.448'), ('butilazetat', '0.442')]
+['other', '']
+------------------
+[('dioktilftalat_with_benzol', '0.473'), ('benzin', '0.465'), ('stirol', '0.461'), ('butilazetat', '0.455'), ('izopropanol', '0.454'), ('toluol', '0.444')]
+['butilazetat', 'dioktilftalat_with_azeton', 'dioktilftalat_with_azetaldegid', 'toluol', 'other', 'fenol']
+------------------
+[('dioktilftalat_with_benzol', '0.471'), ('benzin', '0.462'), ('butilazetat', '0.462'), ('stirol', '0.462'), ('izopropanol', '0.442'), ('toluol', '0.441')]
+['dioktilftalat_with_azeton', '']
+------------------
+[('benzin', '0.470'), ('dioktilftalat_with_benzol', '0.470'), ('butilazetat', '0.458'), ('stirol', '0.452'), ('toluol', '0.448'), ('izopropanol', '0.445')]
+['other', 'other']
+------------------
+[('dioktilftalat_with_benzol', '0.475'), ('benzin', '0.458'), ('butilazetat', '0.455'), ('stirol', '0.447'), ('toluol', '0.437'), ('izopropanol', '0.436')]
+['other', '']
+------------------
+[('butilazetat', '0.459'), ('benzin', '0.452'), ('dioktilftalat_with_benzol', '0.446'), ('stirol', '0.443'), ('toluol', '0.438'), ('izopropanol', '0.434')]
+['dioktilftalat_with_etilazetat', 'dioktilftalat_with_azetaldegid', 'geksan', 'other']
+------------------
+[('dioktilftalat_with_benzol', '0.463'), ('benzin', '0.456'), ('butilazetat', '0.450'), ('stirol', '0.443'), ('toluol', '0.439'), ('izopropanol', '0.435')]
+['other', '']
+------------------
+[('dioktilftalat_with_benzol', '0.487'), ('benzin', '0.470'), ('stirol', '0.462'), ('butilazetat', '0.446'), ('toluol', '0.446'), ('dioktilftalat_with_etilazetat', '0.445')]
+['other', '']
+------------------
+[('butilazetat', '0.468'), ('benzin', '0.447'), ('dioktilftalat_with_benzol', '0.447'), ('stirol', '0.438'), ('toluol', '0.436'), ('dioktilftalat_with_etilazetat', '0.427')]
+['other', '']
+------------------
+[('benzin', '0.476'), ('dioktilftalat_with_benzol', '0.468'), ('stirol', '0.459'), ('butilazetat', '0.448'), ('toluol', '0.444'), ('izopropanol', '0.443')]
+['other', '']
+------------------
+[('benzin', '0.472'), ('dioktilftalat_with_benzol', '0.470'), ('stirol', '0.451'), ('butilazetat', '0.450'), ('izopropanol', '0.446'), ('toluol', '0.444')]
+['dioktilftalat_with_etilazetat', 'dioktilftalat_with_azetaldegid']
+------------------
+[('dioktilftalat_with_benzol', '0.475'), ('benzin', '0.474'), ('stirol', '0.461'), ('butilazetat', '0.450'), ('izopropanol', '0.447'), ('toluol', '0.446')]
+['dioktilftalat_with_etilazetat', 'other']
+------------------
+[('benzin', '0.475'), ('dioktilftalat_with_benzol', '0.469'), ('stirol', '0.459'), ('butilazetat', '0.454'), ('toluol', '0.449'), ('izopropanol', '0.447')]
+['other', '']
+------------------
+[('dioktilftalat_with_benzol', '0.474'), ('benzin', '0.470'), ('stirol', '0.461'), ('butilazetat', '0.457'), ('dioktilftalat_with_etilazetat', '0.446'), ('toluol', '0.445')]
+['other', '']
+------------------
+[('butilazetat', '0.464'), ('benzin', '0.453'), ('stirol', '0.447'), ('dioktilftalat_with_benzol', '0.443'), ('dioktilftalat_with_etilazetat', '0.439'), ('toluol', '0.435')]
+['other', '']
+------------------
+[('butilazetat', '0.464'), ('benzin', '0.454'), ('dioktilftalat_with_benzol', '0.447'), ('stirol', '0.447'), ('toluol', '0.433'), ('izopropanol', '0.428')]
+['geksan', 'toluol', 'butilazetat', 'other']
+------------------
+[('dioktilftalat_with_benzol', '0.476'), ('benzin', '0.463'), ('stirol', '0.458'), ('butilazetat', '0.455'), ('izopropanol', '0.452'), ('toluol', '0.441')]
+['geksan', 'toluol', 'butilazetat', 'other']
+------------------
+[('dioktilftalat_with_benzol', '0.482'), ('benzin', '0.475'), ('stirol', '0.462'), ('izopropanol', '0.455'), ('toluol', '0.451'), ('butilazetat', '0.450')]
+['toluol', 'other', 'other']
+------------------
+[('benzin', '0.463'), ('butilazetat', '0.460'), ('dioktilftalat_with_benzol', '0.459'), ('stirol', '0.452'), ('toluol', '0.445'), ('izopropanol', '0.441')]
+['other', 'other']
+------------------
+[('dioktilftalat_with_benzol', '0.480'), ('benzin', '0.474'), ('stirol', '0.467'), ('butilazetat', '0.454'), ('toluol', '0.446'), ('izopropanol', '0.445')]
+['other', 'other']
+------------------
+[('dioktilftalat_with_benzol', '0.477'), ('benzin', '0.463'), ('stirol', '0.453'), ('izopropanol', '0.448'), ('butilazetat', '0.447'), ('toluol', '0.441')]
+['dioktilftalat_with_etilazetat', 'dioktilftalat_with_azetaldegid', 'toluol', 'other', 'fenol']
+------------------
+[('dioktilftalat_with_benzol', '0.479'), ('benzin', '0.462'), ('stirol', '0.459'), ('butilazetat', '0.457'), ('izopropanol', '0.443'), ('toluol', '0.440')]
+['other', 'other', 'other', 'izobutanol']
+------------------
+[('benzin', '0.459'), ('butilazetat', '0.456'), ('dioktilftalat_with_benzol', '0.446'), ('stirol', '0.444'), ('toluol', '0.439'), ('izopropanol', '0.435')]
+['other', 'other', 'other', 'toluol', 'other', 'other', 'fenol']
+------------------
+[('benzin', '0.465'), ('dioktilftalat_with_benzol', '0.462'), ('stirol', '0.459'), ('butilazetat', '0.454'), ('izopropanol', '0.450'), ('toluol', '0.449')]
+['other', 'other']
+------------------
+[('benzin', '0.470'), ('dioktilftalat_with_benzol', '0.467'), ('stirol', '0.453'), ('butilazetat', '0.450'), ('izopropanol', '0.449'), ('toluol', '0.444')]
+['other', 'other']
+------------------
+[('dioktilftalat_with_benzol', '0.482'), ('benzin', '0.476'), ('stirol', '0.462'), ('izopropanol', '0.448'), ('toluol', '0.447'), ('butilazetat', '0.446')]
+['other', 'other']
+------------------
+[('dioktilftalat_with_benzol', '0.467'), ('benzin', '0.466'), ('stirol', '0.456'), ('izopropanol', '0.453'), ('butilazetat', '0.450'), ('toluol', '0.437')]
+['other', '']
+------------------
+[('dioktilftalat_with_benzol', '0.476'), ('benzin', '0.463'), ('butilazetat', '0.457'), ('stirol', '0.457'), ('izopropanol', '0.445'), ('toluol', '0.438')]
+['other', 'other', 'other', 'izobutanol']
+------------------
+[('dioktilftalat_with_benzol', '0.477'), ('benzin', '0.464'), ('stirol', '0.461'), ('butilazetat', '0.456'), ('izopropanol', '0.456'), ('toluol', '0.439')]
+['other', '']
+------------------
+[('dioktilftalat_with_benzol', '0.478'), ('benzin', '0.474'), ('stirol', '0.467'), ('izopropanol', '0.461'), ('dioktilftalat_with_azetaldegid', '0.452'), ('butilazetat', '0.448')]
+['other', '']
+------------------
+[('dioktilftalat_with_benzol', '0.466'), ('benzin', '0.465'), ('butilazetat', '0.449'), ('toluol', '0.442'), ('stirol', '0.441'), ('izopropanol', '0.431')]
+['other', '']
+------------------
+[('benzin', '0.477'), ('dioktilftalat_with_benzol', '0.471'), ('stirol', '0.464'), ('butilazetat', '0.447'), ('izopropanol', '0.447'), ('toluol', '0.442')]
+['other', '']
+------------------
+[('benzin', '0.468'), ('dioktilftalat_with_benzol', '0.466'), ('izopropanol', '0.454'), ('stirol', '0.452'), ('butilazetat', '0.448'), ('toluol', '0.445')]
+['other', '']
+------------------
+[('benzin', '0.470'), ('dioktilftalat_with_benzol', '0.460'), ('butilazetat', '0.453'), ('stirol', '0.449'), ('toluol', '0.442'), ('izopropanol', '0.438')]
+['other', '']
+------------------
+[('benzin', '0.469'), ('dioktilftalat_with_benzol', '0.459'), ('butilazetat', '0.456'), ('stirol', '0.456'), ('izopropanol', '0.448'), ('toluol', '0.443')]
+['other', 'other', 'other']
+------------------
+[('dioktilftalat_with_benzol', '0.478'), ('butilazetat', '0.466'), ('benzin', '0.462'), ('stirol', '0.460'), ('izopropanol', '0.448'), ('toluol', '0.442')]
+['other', 'other', 'other']
+------------------
+[('benzin', '0.475'), ('dioktilftalat_with_benzol', '0.469'), ('butilazetat', '0.450'), ('stirol', '0.449'), ('toluol', '0.448'), ('izopropanol', '0.445')]
+['geksan', 'dioktilftalat_with_benzol', 'dioktilftalat_with_azetaldegid', 'toluol', 'other', 'stirol', 'other']
+------------------
+[('dioktilftalat_with_benzol', '0.466'), ('benzin', '0.465'), ('butilazetat', '0.460'), ('stirol', '0.449'), ('toluol', '0.449'), ('dioktilftalat_with_etilazetat', '0.440')]
+['geksan', 'other', 'butilazetat', 'other']
+------------------
+[('benzin', '0.461'), ('dioktilftalat_with_benzol', '0.460'), ('butilazetat', '0.457'), ('stirol', '0.453'), ('toluol', '0.445'), ('izopropanol', '0.442')]
+['geksan', 'other', 'butilazetat', 'other']
+------------------
+[('benzin', '0.473'), ('dioktilftalat_with_benzol', '0.458'), ('stirol', '0.458'), ('butilazetat', '0.451'), ('dioktilftalat_with_etilazetat', '0.438'), ('izopropanol', '0.437')]
+['other', '']
+------------------
+[('benzin', '0.466'), ('butilazetat', '0.460'), ('dioktilftalat_with_benzol', '0.459'), ('stirol', '0.449'), ('toluol', '0.445'), ('dioktilftalat_with_etilazetat', '0.439')]
+['other', '']
+------------------
+[('dioktilftalat_with_benzol', '0.472'), ('benzin', '0.471'), ('stirol', '0.462'), ('butilazetat', '0.461'), ('dioktilftalat_with_etilazetat', '0.448'), ('izopropanol', '0.446')]
+['other', '']
+------------------
+[('benzin', '0.472'), ('dioktilftalat_with_benzol', '0.468'), ('izopropanol', '0.454'), ('butilazetat', '0.453'), ('stirol', '0.452'), ('toluol', '0.447')]
+['other', 'other', 'butilazetat', 'izopropanol', 'other', 'toluol', 'other']
+------------------
+[('benzin', '0.470'), ('dioktilftalat_with_benzol', '0.470'), ('butilazetat', '0.457'), ('stirol', '0.453'), ('izopropanol', '0.439'), ('toluol', '0.437')]
+['other', '']
+------------------
+[('benzin', '0.468'), ('dioktilftalat_with_benzol', '0.458'), ('butilazetat', '0.455'), ('stirol', '0.452'), ('izopropanol', '0.448'), ('toluol', '0.448')]
+['other', '']
+------------------
+[('benzin', '0.467'), ('dioktilftalat_with_benzol', '0.465'), ('stirol', '0.462'), ('butilazetat', '0.461'), ('izopropanol', '0.444'), ('toluol', '0.444')]
+['other', 'izobutanol']
+------------------
+[('butilazetat', '0.466'), ('dioktilftalat_with_benzol', '0.458'), ('stirol', '0.455'), ('benzin', '0.452'), ('izopropanol', '0.439'), ('toluol', '0.438')]
+['other', '']
+------------------
+[('dioktilftalat_with_benzol', '0.474'), ('benzin', '0.460'), ('butilazetat', '0.458'), ('stirol', '0.456'), ('toluol', '0.442'), ('izopropanol', '0.441')]
+['butilazetat', 'other']
+------------------
+[('benzin', '0.477'), ('dioktilftalat_with_benzol', '0.477'), ('stirol', '0.459'), ('izopropanol', '0.452'), ('butilazetat', '0.450'), ('toluol', '0.444')]
+['other', '']
+------------------
+[('dioktilftalat_with_benzol', '0.478'), ('benzin', '0.466'), ('stirol', '0.464'), ('izopropanol', '0.461'), ('butilazetat', '0.449'), ('toluol', '0.438')]
+['other', '']
+------------------
+[('dioktilftalat_with_benzol', '0.473'), ('benzin', '0.468'), ('butilazetat', '0.458'), ('stirol', '0.455'), ('izopropanol', '0.448'), ('toluol', '0.444')]
+['other', 'other', 'other', 'other', 'butilazetat']
+------------------
+[('dioktilftalat_with_benzol', '0.474'), ('benzin', '0.465'), ('butilazetat', '0.461'), ('stirol', '0.453'), ('izopropanol', '0.447'), ('toluol', '0.440')]
+['other', 'other']
+------------------
+[('benzin', '0.467'), ('dioktilftalat_with_benzol', '0.464'), ('stirol', '0.451'), ('butilazetat', '0.449'), ('izopropanol', '0.445'), ('toluol', '0.437')]
+['other', 'other', 'toluol', 'other']
+------------------
+[('dioktilftalat_with_benzol', '0.468'), ('benzin', '0.460'), ('butilazetat', '0.460'), ('stirol', '0.454'), ('izopropanol', '0.449'), ('toluol', '0.441')]
+['other', 'butilazetat', 'toluol', 'other', 'izobutanol']
+------------------
+[('butilazetat', '0.459'), ('dioktilftalat_with_benzol', '0.458'), ('stirol', '0.453'), ('benzin', '0.449'), ('izopropanol', '0.436'), ('toluol', '0.434')]
+['other', 'other', 'toluol', 'other']
+------------------
+[('butilazetat', '0.461'), ('stirol', '0.448'), ('benzin', '0.447'), ('dioktilftalat_with_benzol', '0.446'), ('toluol', '0.431'), ('izopropanol', '0.429')]
+['fenol', 'other', 'other', 'toluol', 'other', 'other']
+------------------
+[('butilazetat', '0.462'), ('benzin', '0.437'), ('stirol', '0.437'), ('dioktilftalat_with_benzol', '0.431'), ('toluol', '0.428'), ('izopropanol', '0.421')]
+['fenol', 'toluol', 'other', 'other']
+------------------
+[('butilazetat', '0.460'), ('dioktilftalat_with_benzol', '0.459'), ('stirol', '0.459'), ('benzin', '0.456'), ('izopropanol', '0.435'), ('dioktilftalat_with_etilazetat', '0.434')]
+['stirol', 'other', 'other', 'butilazetat', 'other', 'other']
+------------------
+[('butilazetat', '0.459'), ('dioktilftalat_with_benzol', '0.449'), ('stirol', '0.445'), ('benzin', '0.444'), ('izopropanol', '0.434'), ('toluol', '0.431')]
+['izobutanol', 'other', 'other', 'butilazetat', 'izopropanol', 'other']
+------------------
+[('butilazetat', '0.458'), ('stirol', '0.434'), ('benzin', '0.432'), ('dioktilftalat_with_benzol', '0.431'), ('izopropanol', '0.424'), ('toluol', '0.423')]
+['toluol', 'other', 'other']
+------------------
+[('dioktilftalat_with_benzol', '0.480'), ('stirol', '0.471'), ('benzin', '0.469'), ('butilazetat', '0.464'), ('dioktilftalat_with_etilazetat', '0.449'), ('izopropanol', '0.448')]
+['other', 'izopropanol']
+------------------
+[('butilazetat', '0.456'), ('benzin', '0.450'), ('stirol', '0.442'), ('dioktilftalat_with_benzol', '0.441'), ('izopropanol', '0.437'), ('toluol', '0.434')]
+['butanol', 'izobutanol', 'propanol', 'izopropanol']
+------------------
+[('benzin', '0.475'), ('dioktilftalat_with_benzol', '0.462'), ('butilazetat', '0.453'), ('stirol', '0.449'), ('toluol', '0.447'), ('dioktilftalat_with_etilazetat', '0.445')]
+['butanol', 'izobutanol', 'propanol', 'izopropanol']
+------------------
+You should predict top  10.3333333333  labels for train
+You should predict top  9.94666666667  labels for toys
+label_ranking_average_precision_score on train 0.377777777778
+label_ranking_average_precision_score on toys 0.194969714236
+------------------------------------------

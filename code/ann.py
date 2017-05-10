@@ -48,7 +48,7 @@ def load_labels(in_file):
     labels = []
     for line in input_f:
         if ";" in line:
-            labels.append(line.replace("\n","").split(";"))
+            labels.append(set(line.replace("\n","").split(";")))
         else:
             labels.append(line.replace("\n",""))
     input_f.close()
@@ -150,12 +150,12 @@ def create_model_fully_connected():
     model.add(Dense(968, input_dim=968, activation='relu'))
     model.add(BatchNormalization())
     model.add(Dropout(0.7)) 
-    model.add(Dense(968, activation='sigmoid'))
+    model.add(Dense(484, activation='sigmoid'))
     model.add(Dropout(0.5)) 
-    model.add(Dense(121, activation='relu'))
-    model.add(Dropout(0.3)) 
-    model.add(Dense(60, activation='tanh'))
-    model.add(Dropout(0.3)) 
+    model.add(Dense(121, activation='sigmoid'))
+    model.add(Dropout(0.5)) 
+    model.add(Dense(60, activation='sigmoid'))
+    model.add(Dropout(0.1)) 
     model.add(Dense(fully_n_classes, activation='softmax'))
     model.compile(loss='categorical_crossentropy', optimizer='adagrad', metrics=['accuracy'])
     return model
@@ -188,7 +188,10 @@ def run_model_fully_connected(model, X_train, y_train, X_new):
     train_loss, train_acc = model.evaluate(X_train, dummy_y, batch_size=fully_b_size, verbose=0)
     print ("Train score: "+str(train_acc)+", loss: "+str(train_loss))
 
-    compute_ind_metrics(y_train, y_score, X_new,  model,  "fcn") 
+    y_new_proba = model.predict_proba(X_new)
+
+    compute_av_metrics(y_train, encoder.inverse_transform(y_score), y_new_proba)
+    compute_ind_metrics(y_train, encoder.inverse_transform(y_score), X_new, y_new_proba, model,"fcn") 
 
 ##########################################
 def get_lookback(a, lsize):
@@ -208,13 +211,14 @@ def get_lookback(a, lsize):
 def create_model_lstm(): 
     #define model
     model = Sequential()
-    model.add(LSTM(128, return_sequences=True, batch_input_shape=(lstm_b_size, look_back, 968), stateful=True))  # returns a sequence of vectors
+    model.add(LSTM(121, return_sequences=True, batch_input_shape=(lstm_b_size, lstm_look_back, 968), stateful=True))  # returns a sequence of vectors
+   # model.add(LSTM(121, return_sequences=True, batch_input_shape=(lstm_b_size, lstm_look_back, 968), stateful=False))  # returns a sequence of vectors
     model.add(BatchNormalization())
     model.add(Dropout(0.7)) 
-    model.add(LSTM(128, batch_input_shape=(lstm_b_size, look_back, 968), stateful=True, dropout_W=0.2, dropout_U=0.2))  # return a single vector 
-    #model.add(BatchNormalization())
-    model.add(Dropout(0.3)) 
-    model.add(Dense(20, activation='sigmoid'))
+    model.add(LSTM(121, batch_input_shape=(lstm_b_size, lstm_look_back, 968), stateful=True, dropout_W=0.4, dropout_U=0.4))  # return a single vector 
+   # model.add(LSTM(121, batch_input_shape=(lstm_b_size, lstm_look_back, 968), stateful=False, dropout_W=0.4, dropout_U=0.4))  # return a single vector 
+    model.add(Dropout(0.6)) 
+    model.add(Dense(lstm_n_classes, activation='sigmoid'))
 
     print ("Compiling LSTM model...")
     model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
@@ -222,15 +226,15 @@ def create_model_lstm():
     return model
     
 def run_lstm_rnn(model, X_train, y_train, X_new):
-    epoches = 100
+    epoches = 300
     print ("Preparing data...")
-    X_train = get_lookback(X_train, look_back)
-    X_new =  get_lookback(X_new, look_back)
+    X_train = get_lookback(X_train, lstm_look_back)
+    X_new =  get_lookback(X_new, lstm_look_back)
 
     encoder = LabelEncoder()
     encoder.fit(y_train)
     encoded_Y = encoder.transform(y_train)
-    dummy_y = np_utils.to_categorical(encoded_Y, n_classes)
+    dummy_y = np_utils.to_categorical(encoded_Y, lstm_n_classes)
     
     print (X_train.shape, dummy_y.shape, X_new.shape)
     print ("Training LSTM model...")
@@ -245,17 +249,20 @@ def run_lstm_rnn(model, X_train, y_train, X_new):
     print ("Train score: "+str(train_acc)+", loss: "+str(train_loss))
 
     #predictions for training and test
-    y_score = model.predict_classes(X_train, batch_size=lstm_b_size)
-    compute_ind_metrics(y_train, encoder.inverse_transform(y_score), X_new,  model,  "lstm")   
-    
+    y_score = model.predict_classes(X_train, batch_size=lstm_b_size) 
+    y_new_proba = model.predict_proba(X_new, batch_size=lstm_b_size)
+
+    compute_av_metrics(y_train, encoder.inverse_transform(y_score), y_new_proba)
+    compute_ind_metrics(y_train, encoder.inverse_transform(y_score), X_new, y_new_proba, model,"lstm") 
 ##########################################
 def predicted_vs_real_label(y_pred, mlb, folder_name):
     import pandas
-    y_true = load_labels("true_labels.txt")
+    y_true = load_labels("true_labels_other.txt")
     y_true = [[x.replace('dioktilftalat','dof') for x in l] for l in y_true]
     nums = range(1,76)
-    folder_name = "graphs/proba/real/"+folder_name
+    #folder_name = "graphs/proba/real/"+folder_name
     #folder_name = "graphs/proba/outliers/"+folder_name
+    folder_name = "output/"+folder_name
    
     for x_test,y_tr,num in zip(y_pred,y_true, nums):
         y_tr = filter(None, y_tr)
@@ -271,10 +278,7 @@ def predicted_vs_real_label(y_pred, mlb, folder_name):
         df_true.columns=["True"]
         df_result = pd.concat([df_true, df_pred], axis=1)
         df_result =  df_result.sort('Predicted', ascending=False)
-              
-        #print (num)
-        #print (df_result)             
-        #print ("--------------------------------")
+
         fig = plt.figure()
         ax = fig.add_subplot(111)
         df_result["Predicted"].plot(kind='bar', ax=ax, color = 'teal', label="pred", alpha = 0.7, rot=90)
@@ -292,26 +296,7 @@ def predicted_vs_real_label(y_pred, mlb, folder_name):
         plt.savefig(folder_name+"/"+str(num)+".png", dpi=100)
         plt.close('all')
 
-def compute_av_metrics(y_train, y_score, y_new_proba):
-    y_test_true_labels = load_labels("true_labels.txt")
-    y_test_true_labels = [list(filter(None, lab)) for lab in y_test_true_labels]
-    y_test_true_labels.append(['benzin'])
-    y_test_true =  mlb.fit_transform(y_test_true_labels) 
-    y_test_true = list(y_test_true)[:-1]      
-
-    from sklearn.metrics import coverage_error
-    err1 = coverage_error(y_train, y_score)
-    print ("You should predict top ",err1, " labels for train")
-    err2 = coverage_error(y_test_true, y_new_proba)
-    print ("You should predict top ",err2, " labels for toys")
-
-    from sklearn.metrics import label_ranking_average_precision_score
-    rap1 = label_ranking_average_precision_score(y_train, y_score) 
-    print ("label_ranking_average_precision_score on train", rap1)
-    rap2 = label_ranking_average_precision_score(y_test_true, y_new_proba) 
-    print ("label_ranking_average_precision_score on toys", rap2)
-  
-def compute_ind_metrics(y_train, y_score, X_new, clf, algo):
+def compute_av_metrics(y_train, y_score, y_new_proba):        
     ytrain = []
     for i in y_train:
         ytrain.append([i])   
@@ -322,46 +307,82 @@ def compute_ind_metrics(y_train, y_score, X_new, clf, algo):
 
     from sklearn.preprocessing import MultiLabelBinarizer
     mlb = MultiLabelBinarizer()
-    ytrain =  mlb.fit_transform(y_train) 
-    y = []
-    for item in yscore:
-        y.extend(mlb.transform(item))
-    yscore =  y#mlb.transform(yscore) 
+    ytrain =  mlb.fit_transform(ytrain)
+    yscore = mlb.transform(yscore) 
+    
+    y_test_true_labels = load_labels("true_labels_other.txt")
+    y_test_true_labels = [list(filter(None, lab)) for lab in y_test_true_labels]
+    for y_pred,y_tr,i in zip(y_new_proba,y_test_true_labels, range(len(y_new_proba))):
+        print (i+1)
+        r1 = [(c,"{:.3f}".format(yy)) for c,yy in zip(mlb.classes_,y_pred)]
+        sorted_by_second_1 = sorted(r1, key=lambda tup: tup[1], reverse=True)
+        print (sorted_by_second_1[:6])
+        print (set(y_tr))
+        print ("------------------")
 
-    y_test_true_labels = load_labels("true_labels.txt")
+    y_test_true_labels = load_labels("true_labels_other.txt")
     y_test_true_labels = [list(filter(None, lab)) for lab in y_test_true_labels]
     y_test_true_labels.append(['benzin'])
-
-    y = []
-    for item in y_test_true_labels:
-        y.extend(mlb.transform(item)) 
-    y_test_true = list(y)[:-1]      
+   # y_test_true_labels.append(['other2'])
+    y_test_true = mlb.fit_transform(y_test_true_labels)       
+    y_test_true = list(y_test_true)[:-1]
     
     from sklearn.metrics import coverage_error
     err1 = coverage_error(ytrain, yscore)
     print ("You should predict top ",err1, " labels for train")
+    err2 = coverage_error(y_test_true, y_new_proba)
+    print ("You should predict top ",err2, " labels for toys")
+
     from sklearn.metrics import label_ranking_average_precision_score
-    rap1 = label_ranking_average_precision_score(ytrain, yscore)
+    rap1 = label_ranking_average_precision_score(ytrain, yscore) 
     print ("label_ranking_average_precision_score on train", rap1)
+    rap2 = label_ranking_average_precision_score(y_test_true, y_new_proba) 
+    print ("label_ranking_average_precision_score on toys", rap2)
+  
+def compute_ind_metrics(y_train, y_score, X_new, probabilities, clf, algo):
+    ytrain = []
+    for i in y_train:
+        ytrain.append([i])   
+        
+    yscore = []
+    for i in y_score:
+        yscore.append([i])    
+
+    from sklearn.preprocessing import MultiLabelBinarizer
+    mlb = MultiLabelBinarizer()
+    ytrain =  mlb.fit_transform(ytrain) 
+    yscore = mlb.transform(yscore) 
+    
+    y_test_true_labels = load_labels("true_labels_other.txt")
+    y_test_true_labels = [list(filter(None, lab)) for lab in y_test_true_labels]
+    y_test_true_labels.append(['benzin'])
+    #y_test_true_labels.append(['other'])
+    y_test_true = mlb.fit_transform(y_test_true_labels) 
+    y_test_true = list(y_test_true)[:-1]
+
+    from sklearn.metrics import coverage_error
+    #err1 = coverage_error(ytrain, yscore)
+    #print ("You should predict top ",err1, " labels for train")
+    from sklearn.metrics import label_ranking_average_precision_score
+    #rap1 = label_ranking_average_precision_score(ytrain, yscore)
+    #print ("label_ranking_average_precision_score on train", rap1)
         
     true = {}
     pred = {}
     y_new = []
-    probabilities = clf.predict_proba(X_new, batch_size=lstm_b_size)
     for i in range(len(X_new)):
-        print (i+1)
+       # print (i+1)
         y_new_proba = probabilities[i]
         y_new.append(y_new_proba)
         err2 = coverage_error([y_test_true[i]], [y_new_proba])
-        print ("Compounds in real solution: ", len(y_test_true_labels[i]))
-        print ("You should predict top ",err2, " labels for toys")
+       # print ("Compounds in real solution: ", len(set(y_test_true_labels[i])))
+       # print ("You should predict top ",err2, " labels for toys")
         rap2 = label_ranking_average_precision_score([y_test_true[i]], [y_new_proba])
-        print ("label_ranking_average_precision_score on toys", rap2)
-        print ("--------------------------------------------------------------")
+      #  print ("label_ranking_average_precision_score on toys", rap2)
+      #  print ("--------------------------------------------------------------")
         true[i] = float(len(y_test_true_labels[i]))
         pred[i] = err2
         
-
     df_pred = pd.DataFrame.from_dict(pred, orient='index')
     df_pred.columns=["Predicted"]
     df_true = pd.DataFrame.from_dict(true, orient='index')
@@ -377,8 +398,12 @@ def compute_ind_metrics(y_train, y_score, X_new, clf, algo):
     plt.title("Coverage error VS true labell number")
     plt.savefig("graphs/metrics/real/"+algo+".png", dpi=100)
     #plt.savefig("graphs/metrics/outliers/"+algo+".png", dpi=100)
+    plt.savefig("output/"+algo+".png", dpi=100)
     compute_area_between_curves(df_result)
-    predicted_vs_real_label(y_new, mlb, algo)
+    #predicted_vs_real_label(y_new, mlb, algo)
+    
+    #predicted_vs_real_label(y_new_proba, mlb, algo)
+
     
 def compute_area_between_curves(df_result):
     y1 = df_result["Predicted"].values
@@ -397,8 +422,31 @@ def compute_area_between_curves(df_result):
     
 def main():
     X_train, y_train, X_new = load_dataset()
+    #remove outliers
     #X_train = load_data("data/data_all_outliers.txt")
     #y_train = load_labels("data/labels_all_outliers.txt")
+    
+    #detect only DOF
+    #X_train = load_data("data/pairs2/data_all.txt")
+    #y_train = load_labels("data/labels_dof_vs_other.txt")
+    
+    #detect without DOF
+    #X_train = load_data("data/data_all_dof.txt")
+    #y_train = load_labels("data/labels_all_dof.txt")
+    
+    #detect without rare classes (OTHER)
+    #X_train = load_data("data/pairs2/data_all.txt")
+    #y_train = load_labels("data/labels_all_vs_other.txt")
+    
+    #detect rare classes (OTHER)
+    #X_train = load_data("data/data_only_other.txt")
+    #y_train = load_labels("data/labels_only_other.txt")
+    
+    X_train = load_data("data/new/data_all.txt")
+    y_train = load_labels("data/new/labels_only_other2.txt")
+    
+    #X_train = load_data("data/new/data_all.txt")
+    #y_train = load_labels("data/new/labels_av_vs_other.txt")
 
     X_train = normalize_data(X_train)    
     X_train = patch_detrend(X_train)    
@@ -424,20 +472,22 @@ def main():
     print (np.array(X_new).shape)
     ###################################
     global fully_b_size
-    fully_b_size = 5
+    #fully_b_size = 5
+    fully_b_size = 5 #detect without DOF
     global fully_n_classes
-    fully_n_classes = 20
+    fully_n_classes = len(set(y_train))
     
-    #model = create_model_fully_connected()
+    model = create_model_fully_connected()
     #parameter_est_fully_connected(model, X_train, y_train)
-    #run_model_fully_connected(model, X_train, y_train, X_new)
+    run_model_fully_connected(model, X_train, y_train, X_new)
 
-    global look_back
-    look_back = 5
+    global lstm_look_back
+    lstm_look_back = 5
     global lstm_b_size
-    lstm_b_size = 5
-    global n_classes
-    n_classes = 20
+    #lstm_b_size = 5
+    lstm_b_size = 5 #detect without DOF
+    global lstm_n_classes
+    lstm_n_classes = len(set(y_train))
     
     model = create_model_lstm()
     run_lstm_rnn(model, X_train, y_train, X_new)

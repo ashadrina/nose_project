@@ -1,0 +1,517 @@
+initial data:  (36, 8, 121)
+initial data:  (4, 8, 121)
+initial data:  (75, 8, 121)
+(40, 968)
+(75, 968)
+Training model...
+Epoch 1/100
+0s - loss: 2.0777 - acc: 0.2000
+Epoch 2/100
+0s - loss: 1.9041 - acc: 0.2750
+Epoch 3/100
+0s - loss: 1.7664 - acc: 0.3250
+Epoch 4/100
+0s - loss: 1.7623 - acc: 0.2750
+Epoch 5/100
+0s - loss: 1.7128 - acc: 0.4500
+Epoch 6/100
+0s - loss: 1.6462 - acc: 0.4250
+Epoch 7/100
+0s - loss: 1.5995 - acc: 0.3500
+Epoch 8/100
+0s - loss: 1.6006 - acc: 0.4500
+Epoch 9/100
+0s - loss: 1.5095 - acc: 0.4750
+Epoch 10/100
+0s - loss: 1.5487 - acc: 0.4500
+Epoch 11/100
+0s - loss: 1.4588 - acc: 0.4500
+Epoch 12/100
+0s - loss: 1.3568 - acc: 0.5250
+Epoch 13/100
+0s - loss: 1.4279 - acc: 0.4750
+Epoch 14/100
+0s - loss: 1.3793 - acc: 0.4500
+Epoch 15/100
+0s - loss: 1.2018 - acc: 0.6250
+Epoch 16/100
+0s - loss: 1.2424 - acc: 0.5250
+Epoch 17/100
+0s - loss: 1.2447 - acc: 0.6500
+Epoch 18/100
+0s - loss: 1.1962 - acc: 0.6250
+Epoch 19/100
+0s - loss: 1.1849 - acc: 0.5750
+Epoch 20/100
+0s - loss: 1.1353 - acc: 0.6750
+Epoch 21/100
+0s - loss: 1.1682 - acc: 0.5750
+Epoch 22/100
+0s - loss: 1.1036 - acc: 0.6500
+Epoch 23/100
+0s - loss: 1.1539 - acc: 0.6250
+Epoch 24/100
+0s - loss: 1.0368 - acc: 0.7000
+Epoch 25/100
+0s - loss: 1.1046 - acc: 0.6000
+Epoch 26/100
+0s - loss: 1.0999 - acc: 0.6000
+Epoch 27/100
+0s - loss: 1.0688 - acc: 0.7000
+Epoch 28/100
+0s - loss: 0.9854 - acc: 0.6750
+Epoch 29/100
+0s - loss: 0.9313 - acc: 0.7000
+Epoch 30/100
+0s - loss: 0.9876 - acc: 0.6750
+Epoch 31/100
+0s - loss: 0.9603 - acc: 0.7250
+Epoch 32/100
+0s - loss: 1.0013 - acc: 0.6750
+Epoch 33/100
+0s - loss: 0.9056 - acc: 0.7250
+Epoch 34/100
+0s - loss: 0.9507 - acc: 0.7250
+Epoch 35/100
+0s - loss: 0.9380 - acc: 0.7250
+Epoch 36/100
+0s - loss: 0.9283 - acc: 0.7250
+Epoch 37/100
+0s - loss: 0.8711 - acc: 0.7750
+Epoch 38/100
+0s - loss: 0.9497 - acc: 0.7250
+Epoch 39/100
+0s - loss: 0.8734 - acc: 0.7750
+Epoch 40/100
+0s - loss: 0.8476 - acc: 0.8000
+Epoch 41/100
+0s - loss: 0.8168 - acc: 0.7250
+Epoch 42/100
+0s - loss: 0.9163 - acc: 0.7000
+Epoch 43/100
+0s - loss: 0.8449 - acc: 0.7500
+Epoch 44/100
+0s - loss: 0.8274 - acc: 0.8250
+Epoch 45/100
+0s - loss: 0.8224 - acc: 0.8000
+Epoch 46/100
+0s - loss: 0.8169 - acc: 0.8000
+Epoch 47/100
+0s - loss: 0.8001 - acc: 0.7250
+Epoch 48/100
+0s - loss: 0.7806 - acc: 0.7750
+Epoch 49/100
+0s - loss: 0.7845 - acc: 0.8000
+Epoch 50/100
+0s - loss: 0.6948 - acc: 0.8250
+Epoch 51/100
+0s - loss: 0.7668 - acc: 0.8000
+Epoch 52/100
+0s - loss: 0.7945 - acc: 0.7750
+Epoch 53/100
+0s - loss: 0.7324 - acc: 0.8000
+Epoch 54/100
+0s - loss: 0.6543 - acc: 0.8000
+Epoch 55/100
+0s - loss: 0.6667 - acc: 0.8750
+Epoch 56/100
+0s - loss: 0.7018 - acc: 0.8000
+Epoch 57/100
+0s - loss: 0.7722 - acc: 0.7500
+Epoch 58/100
+0s - loss: 0.6796 - acc: 0.8500
+Epoch 59/100
+0s - loss: 0.6649 - acc: 0.8000
+Epoch 60/100
+0s - loss: 0.6883 - acc: 0.8500
+Epoch 61/100
+0s - loss: 0.7190 - acc: 0.8250
+Epoch 62/100
+0s - loss: 0.6752 - acc: 0.8250
+Epoch 63/100
+0s - loss: 0.6041 - acc: 0.8500
+Epoch 64/100
+0s - loss: 0.6436 - acc: 0.8000
+Epoch 65/100
+0s - loss: 0.6580 - acc: 0.8750
+Epoch 66/100
+0s - loss: 0.6774 - acc: 0.8250
+Epoch 67/100
+0s - loss: 0.6665 - acc: 0.8000
+Epoch 68/100
+0s - loss: 0.6400 - acc: 0.8000
+Epoch 69/100
+0s - loss: 0.6250 - acc: 0.8750
+Epoch 70/100
+0s - loss: 0.6567 - acc: 0.8250
+Epoch 71/100
+0s - loss: 0.6028 - acc: 0.8500
+Epoch 72/100
+0s - loss: 0.6299 - acc: 0.8000
+Epoch 73/100
+0s - loss: 0.5536 - acc: 0.8750
+Epoch 74/100
+0s - loss: 0.5904 - acc: 0.8500
+Epoch 75/100
+0s - loss: 0.6119 - acc: 0.8750
+Epoch 76/100
+0s - loss: 0.5946 - acc: 0.9000
+Epoch 77/100
+0s - loss: 0.5504 - acc: 0.8750
+Epoch 78/100
+0s - loss: 0.5749 - acc: 0.8750
+Epoch 79/100
+0s - loss: 0.6020 - acc: 0.8750
+Epoch 80/100
+0s - loss: 0.5060 - acc: 0.9500
+Epoch 81/100
+0s - loss: 0.6110 - acc: 0.8000
+Epoch 82/100
+0s - loss: 0.5675 - acc: 0.8500
+Epoch 83/100
+0s - loss: 0.5012 - acc: 0.9000
+Epoch 84/100
+0s - loss: 0.5325 - acc: 0.9250
+Epoch 85/100
+0s - loss: 0.4972 - acc: 0.9500
+Epoch 86/100
+0s - loss: 0.5683 - acc: 0.8500
+Epoch 87/100
+0s - loss: 0.5590 - acc: 0.8500
+Epoch 88/100
+0s - loss: 0.5018 - acc: 0.8750
+Epoch 89/100
+0s - loss: 0.4680 - acc: 0.9500
+Epoch 90/100
+0s - loss: 0.5364 - acc: 0.8500
+Epoch 91/100
+0s - loss: 0.4523 - acc: 0.9250
+Epoch 92/100
+0s - loss: 0.5086 - acc: 0.8750
+Epoch 93/100
+0s - loss: 0.4753 - acc: 0.9000
+Epoch 94/100
+0s - loss: 0.5035 - acc: 0.9250
+Epoch 95/100
+0s - loss: 0.4824 - acc: 0.9250
+Epoch 96/100
+0s - loss: 0.4588 - acc: 0.9000
+Epoch 97/100
+0s - loss: 0.4703 - acc: 0.9500
+Epoch 98/100
+0s - loss: 0.4735 - acc: 0.8750
+Epoch 99/100
+0s - loss: 0.3870 - acc: 0.9750
+Epoch 100/100
+0s - loss: 0.4608 - acc: 0.9750
+32/40 [=======================>......] - ETA: 0s40/40 [==============================] - 0s     
+Training model... DONE
+Train score: 1.0, loss: 0.287776330486
+32/75 [===========>..................] - ETA: 0s64/75 [========================>.....] - ETA: 0s75/75 [==============================] - 0s     
+['azetaldegid' 'azeton' 'benzol' 'dioktilftalat' 'etilazetat' 'other'
+ 'plastizol']
+['azetaldegid' 'azeton' 'benzol' 'dioktilftalat' 'etilazetat' 'other'
+ 'plastizol']
+['azetaldegid' 'azeton' 'benzol' 'dioktilftalat' 'etilazetat' 'other'
+ 'plastizol']
+You should predict top  1.0  labels for train
+You should predict top  4.89333333333  labels for toys
+label_ranking_average_precision_score on train 1.0
+label_ranking_average_precision_score on toys 0.537704232804
+Compiling LSTM model...
+Compiling LSTM model... DONE
+Preparing data...
+(40, 5, 968) (40, 7) (75, 5, 968)
+Training LSTM model...
+Epoch 1/1
+0s - loss: 0.7314 - acc: 0.1000
+Epoch 1/1
+0s - loss: 0.7018 - acc: 0.1250
+Epoch 1/1
+0s - loss: 0.7273 - acc: 0.1000
+Epoch 1/1
+0s - loss: 0.7094 - acc: 0.2000
+Epoch 1/1
+0s - loss: 0.6763 - acc: 0.2750
+Epoch 1/1
+0s - loss: 0.6888 - acc: 0.1250
+Epoch 1/1
+0s - loss: 0.6412 - acc: 0.2500
+Epoch 1/1
+0s - loss: 0.6770 - acc: 0.1750
+Epoch 1/1
+0s - loss: 0.6678 - acc: 0.2500
+Epoch 1/1
+0s - loss: 0.6769 - acc: 0.0750
+Epoch 1/1
+0s - loss: 0.6583 - acc: 0.1500
+Epoch 1/1
+0s - loss: 0.6468 - acc: 0.2000
+Epoch 1/1
+0s - loss: 0.6466 - acc: 0.1500
+Epoch 1/1
+0s - loss: 0.5732 - acc: 0.3000
+Epoch 1/1
+0s - loss: 0.5797 - acc: 0.3250
+Epoch 1/1
+0s - loss: 0.5737 - acc: 0.2250
+Epoch 1/1
+0s - loss: 0.5938 - acc: 0.1750
+Epoch 1/1
+0s - loss: 0.5807 - acc: 0.1750
+Epoch 1/1
+0s - loss: 0.5382 - acc: 0.3250
+Epoch 1/1
+0s - loss: 0.5586 - acc: 0.2750
+Epoch 1/1
+0s - loss: 0.5236 - acc: 0.2750
+Epoch 1/1
+0s - loss: 0.5106 - acc: 0.4250
+Epoch 1/1
+0s - loss: 0.5456 - acc: 0.2500
+Epoch 1/1
+0s - loss: 0.5213 - acc: 0.3750
+Epoch 1/1
+0s - loss: 0.4704 - acc: 0.4500
+Epoch 1/1
+0s - loss: 0.4648 - acc: 0.4250
+Epoch 1/1
+0s - loss: 0.4777 - acc: 0.4250
+Epoch 1/1
+0s - loss: 0.5057 - acc: 0.3000
+Epoch 1/1
+0s - loss: 0.4369 - acc: 0.3500
+Epoch 1/1
+0s - loss: 0.4484 - acc: 0.4000
+Epoch 1/1
+0s - loss: 0.4539 - acc: 0.3750
+Epoch 1/1
+0s - loss: 0.4343 - acc: 0.3000
+Epoch 1/1
+0s - loss: 0.4088 - acc: 0.4500
+Epoch 1/1
+0s - loss: 0.3687 - acc: 0.4250
+Epoch 1/1
+0s - loss: 0.3848 - acc: 0.3750
+Epoch 1/1
+0s - loss: 0.3545 - acc: 0.4000
+Epoch 1/1
+0s - loss: 0.3595 - acc: 0.4750
+Epoch 1/1
+0s - loss: 0.3609 - acc: 0.4000
+Epoch 1/1
+0s - loss: 0.3702 - acc: 0.4250
+Epoch 1/1
+0s - loss: 0.3731 - acc: 0.3750
+Epoch 1/1
+0s - loss: 0.3385 - acc: 0.4250
+Epoch 1/1
+0s - loss: 0.3604 - acc: 0.4750
+Epoch 1/1
+0s - loss: 0.3215 - acc: 0.5250
+Epoch 1/1
+0s - loss: 0.3283 - acc: 0.4750
+Epoch 1/1
+0s - loss: 0.3139 - acc: 0.4750
+Epoch 1/1
+0s - loss: 0.3297 - acc: 0.4250
+Epoch 1/1
+0s - loss: 0.3763 - acc: 0.3250
+Epoch 1/1
+0s - loss: 0.3281 - acc: 0.5250
+Epoch 1/1
+0s - loss: 0.3152 - acc: 0.4500
+Epoch 1/1
+0s - loss: 0.3165 - acc: 0.5500
+Epoch 1/1
+0s - loss: 0.3222 - acc: 0.5500
+Epoch 1/1
+0s - loss: 0.3367 - acc: 0.4750
+Epoch 1/1
+0s - loss: 0.3430 - acc: 0.4250
+Epoch 1/1
+0s - loss: 0.3404 - acc: 0.5000
+Epoch 1/1
+0s - loss: 0.3277 - acc: 0.5250
+Epoch 1/1
+0s - loss: 0.3180 - acc: 0.5750
+Epoch 1/1
+0s - loss: 0.3251 - acc: 0.5750
+Epoch 1/1
+0s - loss: 0.3003 - acc: 0.5500
+Epoch 1/1
+0s - loss: 0.2830 - acc: 0.6000
+Epoch 1/1
+0s - loss: 0.3138 - acc: 0.6000
+Epoch 1/1
+0s - loss: 0.3099 - acc: 0.4750
+Epoch 1/1
+0s - loss: 0.3097 - acc: 0.5500
+Epoch 1/1
+0s - loss: 0.2878 - acc: 0.5750
+Epoch 1/1
+0s - loss: 0.3199 - acc: 0.4750
+Epoch 1/1
+0s - loss: 0.3106 - acc: 0.6250
+Epoch 1/1
+0s - loss: 0.2787 - acc: 0.6000
+Epoch 1/1
+0s - loss: 0.3010 - acc: 0.5750
+Epoch 1/1
+0s - loss: 0.2799 - acc: 0.6000
+Epoch 1/1
+0s - loss: 0.2997 - acc: 0.5750
+Epoch 1/1
+0s - loss: 0.2551 - acc: 0.7000
+Epoch 1/1
+0s - loss: 0.2805 - acc: 0.6250
+Epoch 1/1
+0s - loss: 0.2823 - acc: 0.5500
+Epoch 1/1
+0s - loss: 0.2761 - acc: 0.6500
+Epoch 1/1
+0s - loss: 0.2568 - acc: 0.6250
+Epoch 1/1
+0s - loss: 0.2816 - acc: 0.6250
+Epoch 1/1
+0s - loss: 0.2736 - acc: 0.5750
+Epoch 1/1
+0s - loss: 0.2743 - acc: 0.6500
+Epoch 1/1
+0s - loss: 0.2653 - acc: 0.6500
+Epoch 1/1
+0s - loss: 0.2477 - acc: 0.7250
+Epoch 1/1
+0s - loss: 0.2405 - acc: 0.6500
+Epoch 1/1
+0s - loss: 0.2383 - acc: 0.6250
+Epoch 1/1
+0s - loss: 0.2423 - acc: 0.6750
+Epoch 1/1
+0s - loss: 0.2597 - acc: 0.5250
+Epoch 1/1
+0s - loss: 0.2466 - acc: 0.6000
+Epoch 1/1
+0s - loss: 0.2535 - acc: 0.6000
+Epoch 1/1
+0s - loss: 0.2113 - acc: 0.7750
+Epoch 1/1
+0s - loss: 0.2372 - acc: 0.7000
+Epoch 1/1
+0s - loss: 0.2491 - acc: 0.6250
+Epoch 1/1
+0s - loss: 0.2516 - acc: 0.6750
+Epoch 1/1
+0s - loss: 0.2288 - acc: 0.7750
+Epoch 1/1
+0s - loss: 0.2299 - acc: 0.7500
+Epoch 1/1
+0s - loss: 0.2602 - acc: 0.6750
+Epoch 1/1
+0s - loss: 0.2087 - acc: 0.7250
+Epoch 1/1
+0s - loss: 0.1989 - acc: 0.7500
+Epoch 1/1
+0s - loss: 0.2054 - acc: 0.7500
+Epoch 1/1
+0s - loss: 0.2302 - acc: 0.7500
+Epoch 1/1
+0s - loss: 0.2104 - acc: 0.7500
+Epoch 1/1
+0s - loss: 0.1995 - acc: 0.7500
+Epoch 1/1
+0s - loss: 0.2003 - acc: 0.7750
+Epoch 1/1
+0s - loss: 0.2028 - acc: 0.7250
+Training LSTM model... DONE
+Train score: 0.92500000447, loss: 0.0960502931848
+ 5/40 [==>...........................] - ETA: 0s10/40 [======>.......................] - ETA: 0s15/40 [==========>...................] - ETA: 0s20/40 [==============>...............] - ETA: 0s25/40 [=================>............] - ETA: 0s30/40 [=====================>........] - ETA: 0s35/40 [=========================>....] - ETA: 0s40/40 [==============================] - 0s     
+ 5/75 [=>............................] - ETA: 0s10/75 [===>..........................] - ETA: 0s15/75 [=====>........................] - ETA: 0s20/75 [=======>......................] - ETA: 0s25/75 [=========>....................] - ETA: 0s30/75 [===========>..................] - ETA: 0s35/75 [=============>................] - ETA: 0s40/75 [===============>..............] - ETA: 0s45/75 [=================>............] - ETA: 0s50/75 [===================>..........] - ETA: 0s55/75 [=====================>........] - ETA: 0s60/75 [=======================>......] - ETA: 0s65/75 [=========================>....] - ETA: 0s70/75 [===========================>..] - ETA: 0s75/75 [==============================] - 0s     
+['azetaldegid' 'azeton' 'benzol' 'dioktilftalat' 'etilazetat' 'other'
+ 'plastizol']
+['azetaldegid' 'azeton' 'benzol' 'dioktilftalat' 'etilazetat' 'other'
+ 'plastizol']
+['azetaldegid' 'azeton' 'benzol' 'dioktilftalat' 'etilazetat' 'other'
+ 'plastizol']
+You should predict top  1.45  labels for train
+You should predict top  4.6  labels for toys
+label_ranking_average_precision_score on train 0.935714285714
+label_ranking_average_precision_score on toys 0.559814814815
+You should predict top  1.45  labels for train
+label_ranking_average_precision_score on train 0.935714285714
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+Area between curves:  176.446428571

@@ -1,0 +1,123 @@
+(38, 26) (38, 26)
+(40, 968)
+One-Class NuSVM :  [-1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1.  1.
+  1.  1.  1.  1.  1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1.
+  1.  1. -1. -1.]
+azetaldegid  -  -1.0
+azetaldegid  -  -1.0
+azetaldegid  -  -1.0
+azetaldegid  -  -1.0
+azeton  -  -1.0
+azeton  -  -1.0
+azeton  -  -1.0
+benzin  -  -1.0
+benzol  -  -1.0
+benzol  -  -1.0
+benzol  -  -1.0
+benzol  -  -1.0
+butanol  -  -1.0
+butilazetat  -  -1.0
+geksan  -  -1.0
+dioktilftalat  -  -1.0
+dioktilftalat  -  -1.0
+dioktilftalat  -  -1.0
+izobutanol  -  -1.0
+izopropanol  -  -1.0
+plastizol  -  -1.0
+plastizol  -  -1.0
+propanol  -  -1.0
+stirol  -  -1.0
+toluol  -  -1.0
+fenol  -  -1.0
+etilazetat  -  -1.0
+etilazetat  -  -1.0
+etilazetat  -  -1.0
+etilazetat  -  -1.0
+dioktilftalat_with_benzol  -  -1.0
+dioktilftalat_with_azetaldegid  -  -1.0
+outliers:  32
+Robust Covariance (Minimum Covariance Determinant) :  [ 1  1  1 -1  1  1  1  1 -1  1  1 -1 -1  1 -1  1  1  1  1  1 -1  1  1  1  1
+ -1  1  1  1 -1  1  1 -1 -1  1  1  1 -1  1  1]
+azetaldegid  -  -1
+benzol  -  -1
+benzol  -  -1
+butanol  -  -1
+geksan  -  -1
+dioktilftalat  -  -1
+izopropanol  -  -1
+stirol  -  -1
+etilazetat  -  -1
+etilazetat  -  -1
+dioktilftalat_with_etilazetat  -  -1
+outliers:  11
+Robust covariance (default) :  [ 1  1  1 -1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1
+  1  1  1  1 -1  1  1  1  1  1  1  1 -1  1  1]
+azetaldegid  -  -1
+stirol  -  -1
+dioktilftalat_with_etilazetat  -  -1
+outliers:  3
+Empirical Covariance :  [ 1  1  1 -1  1  1  1  1 -1  1  1 -1 -1  1 -1  1  1  1  1  1 -1  1  1  1  1
+ -1  1  1  1 -1  1  1 -1 -1  1  1  1 -1  1  1]
+azetaldegid  -  -1
+benzol  -  -1
+benzol  -  -1
+butanol  -  -1
+geksan  -  -1
+dioktilftalat  -  -1
+izopropanol  -  -1
+stirol  -  -1
+etilazetat  -  -1
+etilazetat  -  -1
+dioktilftalat_with_etilazetat  -  -1
+outliers:  11
+Isolation Forest :  [-1  1  1  1  1  1  1  1  1  1  1  1  1  1 -1 -1  1  1  1  1  1  1 -1  1  1
+  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1]
+azetaldegid  -  -1
+geksan  -  -1
+dioktilftalat  -  -1
+dioktilftalat  -  -1
+outliers:  4
+One-Class SVM (rbf) :  [-1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1.
+ -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1.
+ -1. -1. -1. -1.]
+azetaldegid  -  -1.0
+azetaldegid  -  -1.0
+azetaldegid  -  -1.0
+azetaldegid  -  -1.0
+azeton  -  -1.0
+azeton  -  -1.0
+azeton  -  -1.0
+benzin  -  -1.0
+benzol  -  -1.0
+benzol  -  -1.0
+benzol  -  -1.0
+benzol  -  -1.0
+butanol  -  -1.0
+butilazetat  -  -1.0
+geksan  -  -1.0
+dioktilftalat  -  -1.0
+dioktilftalat  -  -1.0
+dioktilftalat  -  -1.0
+dioktilftalat  -  -1.0
+dioktilftalat  -  -1.0
+dioktilftalat  -  -1.0
+dioktilftalat  -  -1.0
+dioktilftalat  -  -1.0
+dioktilftalat  -  -1.0
+izobutanol  -  -1.0
+izopropanol  -  -1.0
+plastizol  -  -1.0
+plastizol  -  -1.0
+propanol  -  -1.0
+stirol  -  -1.0
+toluol  -  -1.0
+fenol  -  -1.0
+etilazetat  -  -1.0
+etilazetat  -  -1.0
+etilazetat  -  -1.0
+etilazetat  -  -1.0
+dioktilftalat_with_azeton  -  -1.0
+dioktilftalat_with_etilazetat  -  -1.0
+dioktilftalat_with_benzol  -  -1.0
+dioktilftalat_with_azetaldegid  -  -1.0
+outliers:  40

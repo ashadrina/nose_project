@@ -205,30 +205,69 @@ def run_log_reg(X_train, y_train, X_new, y_new):
 	#plot_confusion_matrix(cnf_matrix_train, classes=class_names, title='Confusion matrix train')
 	#plt.show()
 
-def estimation_svm(X_train, y_train, kfold):
-    print ("parameter estimation for SVM")    
+def estimation_svm(X_train, y_train, kfold):    
+    print ("parameter estimation for SVM")  
+    from sklearn.svm import SVC, NuSVC  
     from sklearn.grid_search import GridSearchCV
-    #Cs = 10.**np.arange(-5, 5)
-    Cs = [0.001, 0.01, 1, 10]
- #   Gammas = 10.**np.arange(-5, 5)
+    from sklearn.multiclass import OneVsRestClassifier
     Gammas = [0.001, 0.01, 1, 10]
-    kernels = ['rbf','linear']
+    kernels = ['rbf','linear', 'sigmoid']
+    decision_function = ['ovo', 'ovr']
+    coefs = [0.0, 0.5, 1.0, 10.0, 100.0]
+    class_weight = ['balanced', 'auto']
+    Cs = [0.001, 0.01, 1, 10]
 
-    svc_grid = GridSearchCV(estimator = SVC(random_state=7), 
-        param_grid = {'C': Cs, 'gamma': Gammas, 'kernel':kernels},
-        cv = kfold, 
-        n_jobs = 1)
+   # svc_grid = GridSearchCV(estimator = OneVsRestClassifier(NuSVC(nu=0.001, probability=True)), 
+    #    param_grid = {'estimator__C': Cs, 'estimator__gamma': Gammas, 'estimator__kernel': kernels, 
+    #    'estimator__decision_function_shape': decision_function,
+    #    'estimator__coef0': coefs, 'estimator__class_weight': class_weight },
+    #    cv = kfold, n_jobs = 1)    
+        
+    svc_grid = GridSearchCV(estimator = OneVsRestClassifier(SVC(probability=True)), 
+        param_grid = {'estimator__C': Cs, 'estimator__gamma': Gammas, 'estimator__kernel': kernels, 
+        'estimator__decision_function_shape': decision_function,
+        'estimator__coef0': coefs, 'estimator__class_weight': class_weight },
+        cv = kfold, n_jobs = 1)
  
     svc_grid.fit(X_train, y_train)
 
-    best_C = svc_grid.best_estimator_.C
-    best_Gamma = svc_grid.best_estimator_.gamma
-    best_kernel = svc_grid.best_estimator_.kernel
+    print ("best score:", svc_grid.best_score_)
+    print ("best params: ", svc_grid.best_params_)
+    
+def estimation_rf(X_train, y_train, kfold):    
+    print ("parameter estimation for RF")
+    from sklearn.ensemble import RandomForestClassifier
+    from sklearn.grid_search import GridSearchCV
+    from sklearn.multiclass import OneVsRestClassifier
+    n_est = [7, 15, 25, 50, 101, 1001]#, 3000, 5000, 7000]
+    criterion = ['gini', 'entropy']
+    
 
-    print ("best score", svc_grid.best_score_)
-    print ("C = "+str(best_C)+", gamma = "+str(best_Gamma)+", kernel = "+str(best_kernel))
-#best score 0.9288537549407114
-#C = 1, gamma = 0.001, kernel = rbf
+    svc_grid = GridSearchCV(OneVsRestClassifier(estimator = RandomForestClassifier(class_weight='balanced')), 
+        param_grid = {'estimator__n_estimators': n_est, 'estimator__criterion' : criterion },
+        cv = kfold, n_jobs = 1)
+ 
+    svc_grid.fit(X_train, y_train)
+
+    print ("best score:", svc_grid.best_score_)
+    print ("best params: ", svc_grid.best_params_)
+    
+def estimation_bagging(X_train, y_train, kfold):    
+    print ("parameter estimation for Bagging")
+    from sklearn.ensemble import BaggingClassifier, RandomForestClassifier
+    from sklearn.grid_search import GridSearchCV
+    from sklearn.multiclass import OneVsRestClassifier
+    n_est = [7, 15, 25, 50, 100]
+
+    svc_grid = GridSearchCV(estimator = BaggingClassifier(base_estimator=RandomForestClassifier()), 
+        param_grid = {'estimator__n_estimators': n_est },
+        cv = kfold, n_jobs = 1)
+ 
+    svc_grid.fit(X_train, y_train)
+
+    print ("best score:", svc_grid.best_score_)
+    print ("best params: ", svc_grid.best_params_)
+
 
 def run_svm(X_train, y_train, X_new, y_new):
 	clf = SVC(random_state=7, C=1, gamma=0.001,kernel='rbf')
@@ -284,50 +323,114 @@ def plot_confusion_matrix(cm, classes, normalize=False, title='Confusion matrix'
  
 def main():
     X_train, y_train, X_new, mlb = load_dataset()
-
-    X_train = normalize_data(X_train)    
-    X_train = patch_detrend(X_train)    
-
-    X_train = np.array(X_train)
-    nsamples00, nx, ny = X_train.shape
-    X_train = X_train.reshape((nsamples00,nx*ny))        
-
-    X_new = normalize_data(X_new)    
-    X_new = patch_detrend(X_new)    
-
-    X_new = np.array(X_new)
-    nsamples22, nx, ny = X_new.shape
-    X_new = X_new.reshape((nsamples22,nx*ny))        
-
-    X_train = preprocessing.scale(X_train)
-    X_new = preprocessing.scale(X_new)
-
-    print (np.array(X_train).shape)
-    print (np.array(X_new).shape)
-
-    y_train_lat_labels = load_labels("data/labels_train.txt")
-    y_test_lat_labels = load_labels("data/labels_test.txt")
-    y_test_lat_labels = ["_with_".join(i) for i in y_test_lat_labels]    
-
-    y_train = []
-    y_train.extend(y_train_lat_labels)
-    y_train.extend(y_test_lat_labels)
     
-    ########################
+   # X_train = load_data("data/new/data_all.txt")
+   # y_train = load_labels("data/new/labels_av_vs_other.txt")
+   
+    # X_train = load_data("data/new/data_all.txt")
+    # y_train = load_labels("data/new/labels_only_other2.txt")
     
-    y_train_over = load_labels("data/labels_train_over.txt")
-    X_train_over = load_data("data/data_train_over.txt")
-    X_train_over = np.array(X_train_over)
-    nsamples00, nx, ny = X_train_over.shape
-    X_train_over = X_train_over.reshape((nsamples00,nx*ny))   
-    print (np.array(X_train_over).shape)
-    
-    #kfold = model_evaluation(X_train_over, y_train_over)  
-    #estimation_log_reg(X_train_over, y_train_over, kfold)
-    #estimation_svm(X_train_over, y_train_over, kfold)
+    # y_train_lat_list = []
+    # for i in y_train:
+        # y_train_lat_list.append([i])
 
-    run_log_reg(X_train_over, y_train_over, X_train, y_train)
-    run_svm(X_train_over, y_train_over, X_train, y_train)
+    # y_train =  mlb.fit_transform(y_train_lat_list) 
+ 
+
+    # X_train = normalize_data(X_train)    
+    # X_train = patch_detrend(X_train)    
+
+    # X_train = np.array(X_train)
+    # nsamples00, nx, ny = X_train.shape
+    # X_train = X_train.reshape((nsamples00,nx*ny))        
+
+    # X_new = normalize_data(X_new)    
+    # X_new = patch_detrend(X_new)    
+
+    # X_new = np.array(X_new)
+    # nsamples22, nx, ny = X_new.shape
+    # X_new = X_new.reshape((nsamples22,nx*ny))        
+
+    # X_train = preprocessing.scale(X_train)
+    # X_new = preprocessing.scale(X_new)
+
+    # print (np.array(X_train).shape)
+    # print (np.array(X_new).shape)
+
+    #y_train_lat_labels = load_labels("data/labels_train.txt")
+    #y_test_lat_labels = load_labels("data/labels_test.txt")
+    #y_test_lat_labels = ["_with_".join(i) for i in y_test_lat_labels]    
+
+    #y_train = []
+    #y_train.extend(y_train_lat_labels)
+    #y_train.extend(y_test_lat_labels)
+    
+    #########################
+    
+    #y_train_over = load_labels("data/labels_train_over.txt")
+    #X_train_over = load_data("data/data_train_over.txt")
+    #X_train_over = np.array(X_train_over)
+    #nsamples00, nx, ny = X_train_over.shape
+    #X_train_over = X_train_over.reshape((nsamples00,nx*ny))   
+    #print (np.array(X_train_over).shape)
+    
+    from sklearn.decomposition import PCA
+    pca = PCA(n_components=1, whiten=True)
+
+    X_train2 = []
+    for X in X_train:
+        pca.fit(X)
+        X2 = pca.transform(X)
+        X_train2.append(X2)    
+         
+    X_new2 = []
+    for X in X_new:
+        pca.fit(X)
+        X2 = pca.transform(X)
+        X_new2.append(X2)
+    
+    X_train2 = np.array(X_train2)
+    nsamples00, nx, ny = X_train2.shape
+    X_train2 = X_train2.reshape((nsamples00,nx*ny))        
+    
+    X_new2 = np.array(X_new2)
+    nsamples00, nx, ny = X_new2.shape
+    X_new2 = X_new2.reshape((nsamples00,nx*ny))      
+    
+    from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+    clf = LinearDiscriminantAnalysis(solver='eigen', shrinkage = 'auto')
+    y_train2 = load_labels("data/labels_all.txt")
+    clf.fit_transform(X_train2, y_train2)
+    
+    print ("Parameter estimation for train:")
+    kfold = model_evaluation(X_train2, y_train2)  
+    estimation_svm(X_train2, y_train2, kfold)
+    #estimation_rf(X_train, y_train, kfold)
+    #y_test_true_labels = load_labels("true_labels_other.txt")
+    #y_test_true_labels = [list(filter(None, lab)) for lab in y_test_true_labels]
+    ##y_test_true_labels.append(['benzin'])
+    ##y_test_true_labels.append(['other2'])
+    #y_test_true =  mlb.transform(y_test_true_labels) 
+    #y_new = list(y_test_true)#[:-1]  
+        
+    #X = []
+    #X.extend(list(X_train))
+    #X.extend(list(X_new))
+    #Y = []
+    #Y.extend(list(y_train))
+    #Y.extend(list(y_new))
+    #print ("Parameter estimation for all:")
+   ## X = np.array(X)
+   ## Y = np.array(Y)
+   ## print (np.array(X).shape, np.array(Y).shape)
+    #kfold = model_evaluation(X, Y)  
+    ##estimation_log_reg(X_train_over, y_train_over, kfold)
+    #estimation_svm(X, Y, kfold)
+    #estimation_rf(X, Y, kfold)
+   ## estimation_bagging(X, Y, kfold)
+
+    ##run_log_reg(X_train_over, y_train_over, X_train, y_train)
+    ##run_svm(X_train_over, y_train_over, X_train, y_train)
     
 if __name__ == "__main__":
     main()

@@ -1,0 +1,52 @@
+alina@alina:~/Dropbox/MAG_PMI_1/2_DIPLOM/e-nose_data$ python ml.py 
+initial data:  (36, 8, 121)
+initial data:  (4, 8, 121)
+initial data:  (75, 8, 121)
+order:  15
+order:  15
+(40, 968)
+(75, 968)
+------------------------------------------
+--------------------SVM-------------------
+------------------------------------------
+svm train accuracy:  0.929166666667
+['azetaldegid' 'azeton' 'benzol' 'etilazetat' 'other' 'plastizol']
+You should predict top  1.825  labels for train
+You should predict top  3.72  labels for toys
+label_ranking_average_precision_score on train 0.7625
+label_ranking_average_precision_score on toys 0.670281481481
+------------------------------------------
+------------------------------------------
+------------Bagging with RF---------------
+------------------------------------------
+bagging train accuracy:  0.866666666667
+['azetaldegid' 'azeton' 'benzol' 'etilazetat' 'other' 'plastizol']
+You should predict top  3.125  labels for train
+You should predict top  4.17333333333  labels for toys
+label_ranking_average_precision_score on train 0.645833333333
+label_ranking_average_precision_score on toys 0.641055555556
+------------------------------------------
+------------------------------------------
+--------------------RF-------------------
+------------------------------------------
+random forest train accuracy:  1.0
+['azetaldegid' 'azeton' 'benzol' 'etilazetat' 'other' 'plastizol']
+You should predict top  1.0  labels for train
+You should predict top  4.12  labels for toys
+label_ranking_average_precision_score on train 1.0
+label_ranking_average_precision_score on toys 0.624388888889
+------------------------------------------
+------------------------------------------
+--------------------MLP-------------------
+------------------------------------------
+/home/alina/anaconda3/lib/python3.5/site-packages/sklearn/neural_network/multilayer_perceptron.py:563: ConvergenceWarning: Stochastic Optimizer: Maximum iterations reached and the optimization hasn't converged yet.
+  % (), ConvergenceWarning)
+...................
+score:  0.575
+alpha:  alpha 97.4
+['azetaldegid' 'azeton' 'benzol' 'etilazetat' 'other' 'plastizol']
+You should predict top  3.125  labels for train
+You should predict top  3.74666666667  labels for toys
+label_ranking_average_precision_score on train 0.645833333333
+label_ranking_average_precision_score on toys 0.658777777778
+------------------------------------------

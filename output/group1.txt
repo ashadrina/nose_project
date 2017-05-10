@@ -1,0 +1,1377 @@
+initial data:  (36, 8, 121)
+initial data:  (4, 8, 121)
+initial data:  (75, 8, 121)
+order:  15
+order:  15
+(40, 968)
+(75, 968)
+------------------------------------------
+--------------------SVM-------------------
+------------------------------------------
+svm train accuracy:  0.9375
+1
+[('other', '0.604'), ('dioktilftalat', '0.283')]
+{'dioktilftalat', 'other'}
+------------------
+2
+[('other', '0.644'), ('dioktilftalat', '0.223')]
+{'dioktilftalat', 'other'}
+------------------
+3
+[('other', '0.846'), ('dioktilftalat', '0.141')]
+{'other'}
+------------------
+4
+[('other', '0.761'), ('dioktilftalat', '0.147')]
+{'other'}
+------------------
+5
+[('other', '0.747'), ('dioktilftalat', '0.221')]
+{'other'}
+------------------
+6
+[('other', '0.646'), ('dioktilftalat', '0.174')]
+{'other'}
+------------------
+7
+[('other', '0.571'), ('dioktilftalat', '0.276')]
+{'other'}
+------------------
+8
+[('other', '0.677'), ('dioktilftalat', '0.132')]
+{'other'}
+------------------
+9
+[('other', '0.770'), ('dioktilftalat', '0.173')]
+{'other'}
+------------------
+10
+[('other', '0.753'), ('dioktilftalat', '0.091')]
+{'dioktilftalat', 'other'}
+------------------
+11
+[('other', '0.569'), ('dioktilftalat', '0.275')]
+{'dioktilftalat', 'other'}
+------------------
+12
+[('other', '0.500'), ('dioktilftalat', '0.269')]
+{'dioktilftalat', 'other'}
+------------------
+13
+[('other', '0.470'), ('dioktilftalat', '0.307')]
+{'other'}
+------------------
+14
+[('other', '0.758'), ('dioktilftalat', '0.095')]
+{'other'}
+------------------
+15
+[('other', '0.681'), ('dioktilftalat', '0.157')]
+{'other'}
+------------------
+16
+[('other', '0.741'), ('dioktilftalat', '0.093')]
+{'dioktilftalat', 'other'}
+------------------
+17
+[('other', '0.423'), ('dioktilftalat', '0.344')]
+{'other'}
+------------------
+18
+[('other', '0.621'), ('dioktilftalat', '0.228')]
+{'other'}
+------------------
+19
+[('other', '0.555'), ('dioktilftalat', '0.164')]
+{'other'}
+------------------
+20
+[('other', '0.457'), ('dioktilftalat', '0.409')]
+{'dioktilftalat'}
+------------------
+21
+[('dioktilftalat', '0.530'), ('other', '0.492')]
+{'dioktilftalat'}
+------------------
+22
+[('other', '0.569'), ('dioktilftalat', '0.234')]
+{'dioktilftalat'}
+------------------
+23
+[('other', '0.647'), ('dioktilftalat', '0.142')]
+{'other'}
+------------------
+24
+[('other', '0.768'), ('dioktilftalat', '0.104')]
+{'other'}
+------------------
+25
+[('other', '0.713'), ('dioktilftalat', '0.129')]
+{'dioktilftalat'}
+------------------
+26
+[('other', '0.548'), ('dioktilftalat', '0.242')]
+{'other'}
+------------------
+27
+[('dioktilftalat', '0.422'), ('other', '0.358')]
+{'other'}
+------------------
+28
+[('other', '0.690'), ('dioktilftalat', '0.154')]
+{'other'}
+------------------
+29
+[('other', '0.672'), ('dioktilftalat', '0.130')]
+{'other'}
+------------------
+30
+[('other', '0.459'), ('dioktilftalat', '0.294')]
+{'dioktilftalat', 'other'}
+------------------
+31
+[('other', '0.646'), ('dioktilftalat', '0.248')]
+{'dioktilftalat', 'other'}
+------------------
+32
+[('other', '0.772'), ('dioktilftalat', '0.112')]
+{'dioktilftalat', 'other'}
+------------------
+33
+[('other', '0.820'), ('dioktilftalat', '0.130')]
+{'other'}
+------------------
+34
+[('other', '0.678'), ('dioktilftalat', '0.245')]
+{'dioktilftalat', 'other'}
+------------------
+35
+[('other', '0.628'), ('dioktilftalat', '0.135')]
+{'dioktilftalat', 'other'}
+------------------
+36
+[('other', '0.394'), ('dioktilftalat', '0.187')]
+{'other'}
+------------------
+37
+[('other', '0.656'), ('dioktilftalat', '0.135')]
+{'dioktilftalat', 'other'}
+------------------
+38
+[('other', '0.608'), ('dioktilftalat', '0.098')]
+{'dioktilftalat', 'other'}
+------------------
+39
+[('other', '0.663'), ('dioktilftalat', '0.188')]
+{'other'}
+------------------
+40
+[('other', '0.692'), ('dioktilftalat', '0.150')]
+{'dioktilftalat', 'other'}
+------------------
+41
+[('other', '0.515'), ('dioktilftalat', '0.386')]
+{'other'}
+------------------
+42
+[('other', '0.622'), ('dioktilftalat', '0.169')]
+{'other'}
+------------------
+43
+[('other', '0.694'), ('dioktilftalat', '0.205')]
+{'other'}
+------------------
+44
+[('other', '0.639'), ('dioktilftalat', '0.199')]
+{'other'}
+------------------
+45
+[('other', '0.584'), ('dioktilftalat', '0.161')]
+{'other'}
+------------------
+46
+[('other', '0.713'), ('dioktilftalat', '0.204')]
+{'other'}
+------------------
+47
+[('other', '0.575'), ('dioktilftalat', '0.143')]
+{'dioktilftalat', 'other'}
+------------------
+48
+[('other', '0.716'), ('dioktilftalat', '0.215')]
+{'dioktilftalat', 'other'}
+------------------
+49
+[('other', '0.595'), ('dioktilftalat', '0.205')]
+{'other'}
+------------------
+50
+[('other', '0.697'), ('dioktilftalat', '0.191')]
+{'dioktilftalat', 'other'}
+------------------
+51
+[('other', '0.674'), ('dioktilftalat', '0.287')]
+{'dioktilftalat', 'other'}
+------------------
+52
+[('other', '0.758'), ('dioktilftalat', '0.098')]
+{'other'}
+------------------
+53
+[('other', '0.577'), ('dioktilftalat', '0.300')]
+{'other'}
+------------------
+54
+[('other', '0.630'), ('dioktilftalat', '0.141')]
+{'other'}
+------------------
+55
+[('other', '0.701'), ('dioktilftalat', '0.097')]
+{'dioktilftalat', 'other'}
+------------------
+56
+[('other', '0.851'), ('dioktilftalat', '0.053')]
+{'other'}
+------------------
+57
+[('other', '0.500'), ('dioktilftalat', '0.263')]
+{'other'}
+------------------
+58
+[('other', '0.837'), ('dioktilftalat', '0.080')]
+{'other'}
+------------------
+59
+[('other', '0.813'), ('dioktilftalat', '0.086')]
+{'other'}
+------------------
+60
+[('other', '0.758'), ('dioktilftalat', '0.199')]
+{'dioktilftalat', 'other'}
+------------------
+61
+[('other', '0.661'), ('dioktilftalat', '0.147')]
+{'other'}
+------------------
+62
+[('other', '0.593'), ('dioktilftalat', '0.215')]
+{'other'}
+------------------
+63
+[('other', '0.599'), ('dioktilftalat', '0.150')]
+{'dioktilftalat', 'other'}
+------------------
+64
+[('other', '0.575'), ('dioktilftalat', '0.152')]
+{'other'}
+------------------
+65
+[('dioktilftalat', '0.356'), ('other', '0.313')]
+{'dioktilftalat', 'other'}
+------------------
+66
+[('other', '0.845'), ('dioktilftalat', '0.076')]
+{'other'}
+------------------
+67
+[('other', '0.845'), ('dioktilftalat', '0.102')]
+{'dioktilftalat', 'other'}
+------------------
+68
+[('other', '0.831'), ('dioktilftalat', '0.098')]
+{'dioktilftalat', 'other'}
+------------------
+69
+[('other', '0.764'), ('dioktilftalat', '0.189')]
+{'other'}
+------------------
+70
+[('other', '0.541'), ('dioktilftalat', '0.330')]
+{'dioktilftalat', 'other'}
+------------------
+71
+[('other', '0.740'), ('dioktilftalat', '0.174')]
+{'dioktilftalat', 'other'}
+------------------
+72
+[('other', '0.815'), ('dioktilftalat', '0.152')]
+{'dioktilftalat', 'other'}
+------------------
+73
+[('other', '0.803'), ('dioktilftalat', '0.108')]
+{'dioktilftalat', 'other'}
+------------------
+74
+[('other', '0.500'), ('dioktilftalat', '0.191')]
+{'other'}
+------------------
+75
+[('other', '0.748'), ('dioktilftalat', '0.110')]
+{'other'}
+------------------
+You should predict top  1.125  labels for train
+You should predict top  1.42666666667  labels for toys
+label_ranking_average_precision_score on train 0.9375
+label_ranking_average_precision_score on toys 0.973333333333
+1
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+2
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+3
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+4
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+5
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+6
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+7
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+8
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+9
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+10
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+11
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+12
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+13
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+14
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+15
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+16
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+17
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+18
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+19
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+20
+Compounds in real solution:  1
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 0.5
+--------------------------------------------------------------
+21
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+22
+Compounds in real solution:  1
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 0.5
+--------------------------------------------------------------
+23
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+24
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+25
+Compounds in real solution:  1
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 0.5
+--------------------------------------------------------------
+26
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+27
+Compounds in real solution:  1
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 0.5
+--------------------------------------------------------------
+28
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+29
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+30
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+31
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+32
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+33
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+34
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+35
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+36
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+37
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+38
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+39
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+40
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+41
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+42
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+43
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+44
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+45
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+46
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+47
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+48
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+49
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+50
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+51
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+52
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+53
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+54
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+55
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+56
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+57
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+58
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+59
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+60
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+61
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+62
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+63
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+64
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+65
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+66
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+67
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+68
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+69
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+70
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+71
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+72
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+73
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+74
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+75
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+Area between curves:  4.0
+------------------------------------------
+------------------------------------------
+--------------------RF-------------------
+------------------------------------------
+random forest train accuracy:  1.0
+1
+[('other', '0.621'), ('dioktilftalat', '0.383')]
+{'dioktilftalat', 'other'}
+------------------
+2
+[('other', '0.531'), ('dioktilftalat', '0.445')]
+{'dioktilftalat', 'other'}
+------------------
+3
+[('other', '0.690'), ('dioktilftalat', '0.301')]
+{'other'}
+------------------
+4
+[('other', '0.863'), ('dioktilftalat', '0.141')]
+{'other'}
+------------------
+5
+[('other', '0.795'), ('dioktilftalat', '0.203')]
+{'other'}
+------------------
+6
+[('other', '0.637'), ('dioktilftalat', '0.371')]
+{'other'}
+------------------
+7
+[('other', '0.557'), ('dioktilftalat', '0.460')]
+{'other'}
+------------------
+8
+[('other', '0.621'), ('dioktilftalat', '0.377')]
+{'other'}
+------------------
+9
+[('other', '0.576'), ('dioktilftalat', '0.461')]
+{'other'}
+------------------
+10
+[('other', '0.701'), ('dioktilftalat', '0.301')]
+{'dioktilftalat', 'other'}
+------------------
+11
+[('other', '0.781'), ('dioktilftalat', '0.214')]
+{'dioktilftalat', 'other'}
+------------------
+12
+[('other', '0.633'), ('dioktilftalat', '0.387')]
+{'dioktilftalat', 'other'}
+------------------
+13
+[('other', '0.562'), ('dioktilftalat', '0.428')]
+{'other'}
+------------------
+14
+[('other', '0.645'), ('dioktilftalat', '0.343')]
+{'other'}
+------------------
+15
+[('other', '0.761'), ('dioktilftalat', '0.230')]
+{'other'}
+------------------
+16
+[('other', '0.733'), ('dioktilftalat', '0.271')]
+{'dioktilftalat', 'other'}
+------------------
+17
+[('other', '0.564'), ('dioktilftalat', '0.469')]
+{'other'}
+------------------
+18
+[('other', '0.730'), ('dioktilftalat', '0.251')]
+{'other'}
+------------------
+19
+[('other', '0.624'), ('dioktilftalat', '0.390')]
+{'other'}
+------------------
+20
+[('other', '0.642'), ('dioktilftalat', '0.330')]
+{'dioktilftalat'}
+------------------
+21
+[('other', '0.593'), ('dioktilftalat', '0.415')]
+{'dioktilftalat'}
+------------------
+22
+[('other', '0.700'), ('dioktilftalat', '0.281')]
+{'dioktilftalat'}
+------------------
+23
+[('other', '0.671'), ('dioktilftalat', '0.329')]
+{'other'}
+------------------
+24
+[('other', '0.753'), ('dioktilftalat', '0.245')]
+{'other'}
+------------------
+25
+[('other', '0.729'), ('dioktilftalat', '0.271')]
+{'dioktilftalat'}
+------------------
+26
+[('other', '0.553'), ('dioktilftalat', '0.442')]
+{'other'}
+------------------
+27
+[('other', '0.486'), ('dioktilftalat', '0.479')]
+{'other'}
+------------------
+28
+[('other', '0.781'), ('dioktilftalat', '0.205')]
+{'other'}
+------------------
+29
+[('other', '0.671'), ('dioktilftalat', '0.319')]
+{'other'}
+------------------
+30
+[('dioktilftalat', '0.537'), ('other', '0.483')]
+{'dioktilftalat', 'other'}
+------------------
+31
+[('other', '0.725'), ('dioktilftalat', '0.268')]
+{'dioktilftalat', 'other'}
+------------------
+32
+[('other', '0.804'), ('dioktilftalat', '0.202')]
+{'dioktilftalat', 'other'}
+------------------
+33
+[('other', '0.731'), ('dioktilftalat', '0.284')]
+{'other'}
+------------------
+34
+[('other', '0.585'), ('dioktilftalat', '0.427')]
+{'dioktilftalat', 'other'}
+------------------
+35
+[('other', '0.701'), ('dioktilftalat', '0.294')]
+{'dioktilftalat', 'other'}
+------------------
+36
+[('other', '0.524'), ('dioktilftalat', '0.470')]
+{'other'}
+------------------
+37
+[('other', '0.663'), ('dioktilftalat', '0.340')]
+{'dioktilftalat', 'other'}
+------------------
+38
+[('other', '0.629'), ('dioktilftalat', '0.359')]
+{'dioktilftalat', 'other'}
+------------------
+39
+[('other', '0.555'), ('dioktilftalat', '0.423')]
+{'other'}
+------------------
+40
+[('other', '0.771'), ('dioktilftalat', '0.211')]
+{'dioktilftalat', 'other'}
+------------------
+41
+[('other', '0.493'), ('dioktilftalat', '0.483')]
+{'other'}
+------------------
+42
+[('other', '0.563'), ('dioktilftalat', '0.393')]
+{'other'}
+------------------
+43
+[('other', '0.642'), ('dioktilftalat', '0.341')]
+{'other'}
+------------------
+44
+[('other', '0.677'), ('dioktilftalat', '0.336')]
+{'other'}
+------------------
+45
+[('other', '0.660'), ('dioktilftalat', '0.361')]
+{'other'}
+------------------
+46
+[('other', '0.686'), ('dioktilftalat', '0.292')]
+{'other'}
+------------------
+47
+[('other', '0.723'), ('dioktilftalat', '0.265')]
+{'dioktilftalat', 'other'}
+------------------
+48
+[('other', '0.620'), ('dioktilftalat', '0.371')]
+{'dioktilftalat', 'other'}
+------------------
+49
+[('other', '0.645'), ('dioktilftalat', '0.342')]
+{'other'}
+------------------
+50
+[('other', '0.770'), ('dioktilftalat', '0.229')]
+{'dioktilftalat', 'other'}
+------------------
+51
+[('other', '0.620'), ('dioktilftalat', '0.378')]
+{'dioktilftalat', 'other'}
+------------------
+52
+[('other', '0.616'), ('dioktilftalat', '0.381')]
+{'other'}
+------------------
+53
+[('other', '0.699'), ('dioktilftalat', '0.289')]
+{'other'}
+------------------
+54
+[('other', '0.601'), ('dioktilftalat', '0.378')]
+{'other'}
+------------------
+55
+[('other', '0.668'), ('dioktilftalat', '0.340')]
+{'dioktilftalat', 'other'}
+------------------
+56
+[('other', '0.717'), ('dioktilftalat', '0.264')]
+{'other'}
+------------------
+57
+[('other', '0.527'), ('dioktilftalat', '0.453')]
+{'other'}
+------------------
+58
+[('other', '0.805'), ('dioktilftalat', '0.189')]
+{'other'}
+------------------
+59
+[('other', '0.534'), ('dioktilftalat', '0.463')]
+{'other'}
+------------------
+60
+[('other', '0.614'), ('dioktilftalat', '0.392')]
+{'dioktilftalat', 'other'}
+------------------
+61
+[('other', '0.645'), ('dioktilftalat', '0.327')]
+{'other'}
+------------------
+62
+[('other', '0.597'), ('dioktilftalat', '0.399')]
+{'other'}
+------------------
+63
+[('other', '0.801'), ('dioktilftalat', '0.185')]
+{'dioktilftalat', 'other'}
+------------------
+64
+[('other', '0.627'), ('dioktilftalat', '0.356')]
+{'other'}
+------------------
+65
+[('dioktilftalat', '0.526'), ('other', '0.476')]
+{'dioktilftalat', 'other'}
+------------------
+66
+[('other', '0.857'), ('dioktilftalat', '0.135')]
+{'other'}
+------------------
+67
+[('other', '0.853'), ('dioktilftalat', '0.150')]
+{'dioktilftalat', 'other'}
+------------------
+68
+[('other', '0.935'), ('dioktilftalat', '0.075')]
+{'dioktilftalat', 'other'}
+------------------
+69
+[('other', '0.911'), ('dioktilftalat', '0.090')]
+{'other'}
+------------------
+70
+[('other', '0.630'), ('dioktilftalat', '0.341')]
+{'dioktilftalat', 'other'}
+------------------
+71
+[('other', '0.787'), ('dioktilftalat', '0.207')]
+{'dioktilftalat', 'other'}
+------------------
+72
+[('other', '0.875'), ('dioktilftalat', '0.136')]
+{'dioktilftalat', 'other'}
+------------------
+73
+[('other', '0.833'), ('dioktilftalat', '0.181')]
+{'dioktilftalat', 'other'}
+------------------
+74
+[('other', '0.570'), ('dioktilftalat', '0.409')]
+{'other'}
+------------------
+75
+[('other', '0.661'), ('dioktilftalat', '0.322')]
+{'other'}
+------------------
+You should predict top  1.0  labels for train
+You should predict top  1.42666666667  labels for toys
+label_ranking_average_precision_score on train 1.0
+label_ranking_average_precision_score on toys 0.973333333333
+1
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+2
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+3
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+4
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+5
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+6
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+7
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+8
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+9
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+10
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+11
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+12
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+13
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+14
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+15
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+16
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+17
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+18
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+19
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+20
+Compounds in real solution:  1
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 0.5
+--------------------------------------------------------------
+21
+Compounds in real solution:  1
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 0.5
+--------------------------------------------------------------
+22
+Compounds in real solution:  1
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 0.5
+--------------------------------------------------------------
+23
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+24
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+25
+Compounds in real solution:  1
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 0.5
+--------------------------------------------------------------
+26
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+27
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+28
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+29
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+30
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+31
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+32
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+33
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+34
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+35
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+36
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+37
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+38
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+39
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+40
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+41
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+42
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+43
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+44
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+45
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+46
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+47
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+48
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+49
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+50
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+51
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+52
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+53
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+54
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+55
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+56
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+57
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+58
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+59
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+60
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+61
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+62
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+63
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+64
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+65
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+66
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+67
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+68
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+69
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+70
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+71
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+72
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+73
+Compounds in real solution:  2
+You should predict top  2.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+74
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+75
+Compounds in real solution:  1
+You should predict top  1.0  labels for toys
+label_ranking_average_precision_score on toys 1.0
+--------------------------------------------------------------
+Area between curves:  4.0
+------------------------------------------

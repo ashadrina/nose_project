@@ -1,0 +1,48 @@
+initial data:  (36, 8, 121)
+initial data:  (4, 8, 121)
+initial data:  (75, 8, 121)
+order:  15
+order:  15
+(40, 968)
+(75, 968)
+------------------------------------------
+--------------------SVM-------------------
+------------------------------------------
+svm train accuracy:  0.978333333333
+You should predict top  5.55  labels for train
+You should predict top  5.82666666667  labels for toys
+label_ranking_average_precision_score on train 0.696666666667
+label_ranking_average_precision_score on toys 0.801253626004
+------------------------------------------
+------------------------------------------
+------------Bagging with RF---------------
+------------------------------------------
+
+
+bagging train accuracy:  0.956666666667
+You should predict top  5.9  labels for train
+You should predict top  5.0  labels for toys
+label_ranking_average_precision_score on train 0.673333333333
+label_ranking_average_precision_score on toys 0.844309536143
+------------------------------------------
+------------------------------------------
+--------------------RF-------------------
+------------------------------------------
+pyrandom forest train accuracy:  1.0
+You should predict top  1.0  labels for train
+You should predict top  5.41333333333  labels for toys
+label_ranking_average_precision_score on train 1.0
+label_ranking_average_precision_score on toys 0.804878306878
+------------------------------------------
+------------------------------------------
+--------------------MLP-------------------
+------------------------------------------
+/home/alina/anaconda3/lib/python3.5/site-packages/sklearn/neural_network/multilayer_perceptron.py:563: ConvergenceWarning: Stochastic Optimizer: Maximum iterations reached and the optimization hasn't converged yet.
+  % (), ConvergenceWarning)
+...................
+score:  0.65
+alpha:  alpha 97.4
+You should predict top  5.9  labels for train
+You should predict top  5.02666666667  labels for toys
+label_ranking_average_precision_score on train 0.673333333333
+label_ranking_average_precision_score on toys 0.795287960805

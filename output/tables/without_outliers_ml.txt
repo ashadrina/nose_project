@@ -1,0 +1,45 @@
+initial data:  (36, 8, 121)
+initial data:  (4, 8, 121)
+initial data:  (75, 8, 121)
+order:  15
+order:  15
+(37, 968)
+(75, 968)
+------------------------------------------
+--------------------SVM-------------------
+------------------------------------------
+svm train accuracy:  1.0
+You should predict top  1.0  labels for train
+You should predict top  10.36  labels for toys
+label_ranking_average_precision_score on train 1.0
+label_ranking_average_precision_score on toys 0.443413184702
+------------------------------------------
+------------------------------------------
+------------Bagging with RF---------------
+------------------------------------------
+bagging train accuracy:  0.95
+You should predict top  20.0  labels for train
+You should predict top  9.06666666667  labels for toys
+label_ranking_average_precision_score on train 0.05
+label_ranking_average_precision_score on toys 0.449382362644
+------------------------------------------
+------------------------------------------
+--------------------RF-------------------
+------------------------------------------
+random forest train accuracy:  1.0
+You should predict top  1.0  labels for train
+You should predict top  10.2533333333  labels for toys
+label_ranking_average_precision_score on train 1.0
+label_ranking_average_precision_score on toys 0.416343894712
+------------------------------------------
+------------------------------------------
+--------------------MLP-------------------
+------------------------------------------
+...................
+score:  0.0810810810811
+alpha:  alpha 97.4
+You should predict top  18.4594594595  labels for train
+You should predict top  10.5733333333  labels for toys
+label_ranking_average_precision_score on train 0.127027027027
+label_ranking_average_precision_score on toys 0.372421553533
+------------------------------------------

@@ -217,7 +217,7 @@ def cross_corr(X_train, labels, folder_name):
             os.stat(folder_name)
         except:
             os.mkdir(folder_name) 
-        plt.savefig(folder_name+"/"+str(ind)+"_"+m_name+".png"+".jpeg", dpi=300, format='jpeg', bbox_extra_artists=(lgd,), bbox_inches='tight')
+        plt.savefig(folder_name+"/"+str(ind)+"_"+m_name+".png", dpi=300, format='jpeg', bbox_extra_artists=(lgd,), bbox_inches='tight')
         #plt.show()
         plt.close('all')
 

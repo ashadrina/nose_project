@@ -227,12 +227,12 @@ def main():
                 #X_res, y_res = oversampling_data(X_train, y)
                 X_res, y_res = undersampling_data(X_train, y)
                 X_res = preprocessing.scale(X_res)
-                #viz_svm_2d(X_res, y_res, voc)
-                voc_to_file(X_res, y_res, voc)
+                viz_svm_2d(X_res, y_res, voc)
+                #voc_to_file(X_res, y_res, voc)
 
-    X_train, y_train = form_dataset("data/pairs2/")
-    print ("classes: ", len(set(y_train)))
-    data_to_file(X_train, y_train)
+    #X_train, y_train = form_dataset("data/pairs2/")
+    #print ("classes: ", len(set(y_train)))
+    #data_to_file(X_train, y_train)
     
 if __name__ == "__main__":
     main()

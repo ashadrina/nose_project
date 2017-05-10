@@ -41,8 +41,8 @@ def load_labels(in_file):
 
 def load_data_train():    
     #training - compounds
-    X_train = load_data("data/data_train_2.txt")
-    y_train = load_labels("data/labels_train_2.txt")
+    X_train = load_data("data/data_train.txt")
+    y_train = load_labels("data/labels_train.txt")
     #X_train = load_data("/home/ashadrin/Videos/HSE/data/data_train.txt")
     #y_train = load_labels("/home/ashadrin/Videos/HSE/data/labels_train.txt")
     print ("initial train data: ", np.array(X_train).shape)
@@ -54,7 +54,15 @@ def load_data_train():
     #y_test = load_labels("/home/ashadrin/Videos/HSE/data/labels_test.txt")
     print ("initial test data: ", np.array(X_test).shape)
 
-    return (np.array(X_train), np.array(y_train)), (np.array(X_test), np.array(y_test))
+    X = []
+    X.extend(X_train)
+    X.extend(X_test)
+    X = np.array(X)
+    
+    y = []
+    y.extend(y_train)
+    y.extend(y_test)
+    return X, y
 
 def generator_model():
     model = Sequential()
@@ -181,19 +189,60 @@ def normalize_data(data):
             norm_col.append([float(i)//current_max for i in col])
         norm_matrix.append(norm_col)
     return norm_matrix
+def detrend(x, order, FLAG):
+    import numpy as np
+    import scipy.signal as sps
+    import matplotlib.pyplot as plt
 
-def train(BATCH_SIZE):
-    (X_train_0, y_train), (X_test, y_test) = load_data_train()
-   # print (X_train.shape)
-   # print (X_train[0].shape)
-   
-    X_train_poly = fit_polynom(X_train_0, 5)
-    X_train = normalize_data(X_train_poly)
-    X_train = np.array(X_train)
-    #X_train = np.array(X_train_poly)
+    x = np.asarray(x)   
+    if FLAG:
+        plt.plot(x, label='original')
+
+    # detect and remove jumps
+    jmps = np.where(np.diff(x) < -0.5)[0]  # find large, rapid drops in amplitdue
+    for j in jmps:
+        x[j+1:] += x[j] - x[j+1] 
+    if FLAG:        
+        plt.plot(x, label='unrolled')
+
+    # detrend with a low-pass
+    x -= sps.filtfilt([1] * order, [order], x)  # this is a very simple moving average filter
+    if FLAG:
+        plt.plot(x, label='detrended')
+
+        plt.legend(loc='best')
+        plt.show()
+    return x
     
+def patch_detrend(X_train):
+    order = 15
+    START = 0#1
+    print ("order: ", order)
+    X_res = []
+    for matr in X_train:
+        matr_res = []
+        for ch in matr:
+            if START == 1:
+                matr_res.append(detrend(ch, order, 1))
+                START = 0
+            else:
+                matr_res.append(detrend(ch, order, 0))
+        X_res.append(matr_res)
+    return X_res
+    
+def train(BATCH_SIZE):
+    #(X_train_0, y_train), (X_test, y_test) = load_data_train()
+    X_train, y_train = load_data_train()
+   
+    X_train = normalize_data(X_train)    
+    X_train = patch_detrend(X_train)    
+       
+    X_train = np.array(X_train)
     nsamples00, nx, ny = X_train.shape
-    X_train = X_train.reshape((nsamples00,nx*ny))  
+    X_train = X_train.reshape((nsamples00,nx*ny))
+
+    #from sklearn import preprocessing
+    #X_train = preprocessing.scale(X_train)
 
     generator = generator_model()    
     discriminator = discriminator_model() 
@@ -217,10 +266,10 @@ def train(BATCH_SIZE):
         print("Number of batches", int(X_train.shape[0]/BATCH_SIZE))
         for index in range(int(X_train.shape[0]/BATCH_SIZE)):
             for i in range(BATCH_SIZE):
-                #noise[i, :] = np.random.uniform(-1, 1, 968)
-                gen_noise = np.random.multinomial(155, [1/150.]*121, size=1).tolist()*8
-                flattened  = [val for sublist in gen_noise for val in sublist]
-                noise[i, :] =  np.array(flattened)
+                noise[i, :] = np.random.uniform(-1, 1, 968)
+                #gen_noise = np.random.multinomial(155, [1/150.]*121, size=1).tolist()*8
+                #flattened  = [val for sublist in gen_noise for val in sublist]
+                #noise[i, :] =  np.array(flattened)
                 
             image_batch = X_train[index*BATCH_SIZE:(index+1)*BATCH_SIZE]
             generated_signal = generator.predict(noise, verbose=0)
@@ -236,10 +285,10 @@ def train(BATCH_SIZE):
             d_loss = discriminator.train_on_batch(X, y)
             print("batch %d d_loss : %f" % (index, d_loss))
             for i in range(BATCH_SIZE):
-                #noise[i, :] = np.random.uniform(-1, 968, 1)
-                gen_noise = np.random.multinomial(155, [1/150.]*121, size=1).tolist()*8
-                flattened  = [val for sublist in gen_noise for val in sublist]
-                noise[i, :] =  np.array(flattened)            
+                noise[i, :] = np.random.uniform(-1, 1, 968)
+                #gen_noise = np.random.multinomial(155, [1/150.]*121, size=1).tolist()*8
+                #flattened  = [val for sublist in gen_noise for val in sublist]
+                #noise[i, :] =  np.array(flattened)            
             discriminator.trainable = False
             g_loss = discriminator_on_generator.train_on_batch(noise, [1] * BATCH_SIZE)
             discriminator.trainable = True
@@ -259,10 +308,10 @@ def generate(BATCH_SIZE, nice=False):
         discriminator.load_weights('discriminator')
         noise = np.zeros((BATCH_SIZE*20, 968))
         for i in range(BATCH_SIZE*20):
-           # noise[i, :] = np.random.uniform(-1, 1, 968)
-            gen_noise = np.random.multinomial(155, [1/150.]*121, size=1).tolist()*8
-            flattened  = [val for sublist in gen_noise for val in sublist]
-            noise[i, :] =  np.array(flattened)
+            noise[i, :] = np.random.uniform(-1, 1, 968)
+            #gen_noise = np.random.multinomial(155, [1/150.]*121, size=1).tolist()*8
+            #flattened  = [val for sublist in gen_noise for val in sublist]
+            #noise[i, :] =  np.array(flattened)
         generated_signals = generator.predict(noise, verbose=1)
         generated_signals = generated_signals.reshape((BATCH_SIZE, 968))
         d_pret = discriminator.predict(generated_signals, verbose=1)
@@ -279,10 +328,10 @@ def generate(BATCH_SIZE, nice=False):
     else:
         noise = np.zeros((BATCH_SIZE, 968))
         for i in range(BATCH_SIZE):
-          #  noise[i, :] = np.random.uniform(-1, 1, 968)
-            gen_noise = np.random.multinomial(155, [1/150.]*121, size=1).tolist()*8
-            flattened  = [val for sublist in gen_noise for val in sublist]
-            noise[i, :] =  np.array(flattened)
+            noise[i, :] = np.random.uniform(-1, 1, 968)
+            #gen_noise = np.random.multinomial(155, [1/150.]*121, size=1).tolist()*8
+            #flattened  = [val for sublist in gen_noise for val in sublist]
+            #noise[i, :] =  np.array(flattened)
         generated_signals = generator.predict(noise, verbose=1)
         signals_to_show = generated_signals
     plot_final(signals_to_show,BATCH_SIZE)

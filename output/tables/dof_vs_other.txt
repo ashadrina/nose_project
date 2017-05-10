@@ -1,0 +1,945 @@
+initial data:  (36, 8, 121)
+initial data:  (4, 8, 121)
+initial data:  (75, 8, 121)
+order:  15
+order:  15
+(40, 968)
+(75, 968)
+------------------------------------------
+--------------------SVM-------------------
+------------------------------------------
+svm train accuracy:  1.0
+[('other', '0.622'), ('dioktilftalat', '0.255')]
+{'dioktilftalat', 'other'}
+------------------
+[('other', '0.626'), ('dioktilftalat', '0.254')]
+{'dioktilftalat', 'other'}
+------------------
+[('other', '0.780'), ('dioktilftalat', '0.230')]
+{'', 'other'}
+------------------
+[('other', '0.875'), ('dioktilftalat', '0.209')]
+{'other'}
+------------------
+[('other', '0.752'), ('dioktilftalat', '0.233')]
+{'other'}
+------------------
+[('other', '0.678'), ('dioktilftalat', '0.245')]
+{'', 'other'}
+------------------
+[('other', '0.691'), ('dioktilftalat', '0.244')]
+{'', 'other'}
+------------------
+[('other', '0.713'), ('dioktilftalat', '0.241')]
+{'', 'other'}
+------------------
+[('other', '0.720'), ('dioktilftalat', '0.239')]
+{'', 'other'}
+------------------
+[('other', '0.822'), ('dioktilftalat', '0.220')]
+{'dioktilftalat', 'other'}
+------------------
+[('other', '0.707'), ('dioktilftalat', '0.240')]
+{'dioktilftalat', 'other'}
+------------------
+[('other', '0.688'), ('dioktilftalat', '0.243')]
+{'dioktilftalat', 'other'}
+------------------
+[('other', '0.629'), ('dioktilftalat', '0.256')]
+{'', 'other'}
+------------------
+[('other', '0.856'), ('dioktilftalat', '0.213')]
+{'other'}
+------------------
+[('other', '0.812'), ('dioktilftalat', '0.224')]
+{'', 'other'}
+------------------
+[('other', '0.845'), ('dioktilftalat', '0.215')]
+{'dioktilftalat', 'other'}
+------------------
+[('other', '0.582'), ('dioktilftalat', '0.259')]
+{'', 'other'}
+------------------
+[('other', '0.719'), ('dioktilftalat', '0.235')]
+{'other'}
+------------------
+[('other', '0.762'), ('dioktilftalat', '0.230')]
+{'', 'other'}
+------------------
+[('other', '0.687'), ('dioktilftalat', '0.244')]
+{'', 'dioktilftalat'}
+------------------
+[('other', '0.561'), ('dioktilftalat', '0.259')]
+{'', 'dioktilftalat'}
+------------------
+[('other', '0.733'), ('dioktilftalat', '0.235')]
+{'', 'dioktilftalat'}
+------------------
+[('other', '0.773'), ('dioktilftalat', '0.230')]
+{'other'}
+------------------
+[('other', '0.850'), ('dioktilftalat', '0.216')]
+{'other'}
+------------------
+[('other', '0.840'), ('dioktilftalat', '0.217')]
+{'', 'dioktilftalat'}
+------------------
+[('other', '0.662'), ('dioktilftalat', '0.249')]
+{'', 'other'}
+------------------
+[('other', '0.614'), ('dioktilftalat', '0.256')]
+{'', 'other'}
+------------------
+[('other', '0.770'), ('dioktilftalat', '0.228')]
+{'other'}
+------------------
+[('other', '0.783'), ('dioktilftalat', '0.231')]
+{'other'}
+------------------
+[('other', '0.651'), ('dioktilftalat', '0.250')]
+{'dioktilftalat', 'other'}
+------------------
+[('other', '0.705'), ('dioktilftalat', '0.239')]
+{'dioktilftalat', 'other'}
+------------------
+[('other', '0.836'), ('dioktilftalat', '0.219')]
+{'dioktilftalat', 'other'}
+------------------
+[('other', '0.819'), ('dioktilftalat', '0.221')]
+{'other'}
+------------------
+[('other', '0.705'), ('dioktilftalat', '0.240')]
+{'dioktilftalat', 'other'}
+------------------
+[('other', '0.806'), ('dioktilftalat', '0.220')]
+{'dioktilftalat', 'other'}
+------------------
+[('other', '0.668'), ('dioktilftalat', '0.248')]
+{'other'}
+------------------
+[('other', '0.792'), ('dioktilftalat', '0.225')]
+{'dioktilftalat', 'other'}
+------------------
+[('other', '0.772'), ('dioktilftalat', '0.231')]
+{'dioktilftalat', 'other'}
+------------------
+[('other', '0.688'), ('dioktilftalat', '0.245')]
+{'', 'other'}
+------------------
+[('other', '0.734'), ('dioktilftalat', '0.235')]
+{'dioktilftalat', 'other'}
+------------------
+[('other', '0.596'), ('dioktilftalat', '0.258')]
+{'', 'other'}
+------------------
+[('other', '0.739'), ('dioktilftalat', '0.236')]
+{'', 'other'}
+------------------
+[('other', '0.760'), ('dioktilftalat', '0.231')]
+{'', 'other'}
+------------------
+[('other', '0.650'), ('dioktilftalat', '0.250')]
+{'', 'other'}
+------------------
+[('other', '0.666'), ('dioktilftalat', '0.245')]
+{'', 'other'}
+------------------
+[('other', '0.772'), ('dioktilftalat', '0.230')]
+{'', 'other'}
+------------------
+[('other', '0.750'), ('dioktilftalat', '0.228')]
+{'dioktilftalat', 'other'}
+------------------
+[('other', '0.753'), ('dioktilftalat', '0.233')]
+{'dioktilftalat', 'other'}
+------------------
+[('other', '0.743'), ('dioktilftalat', '0.233')]
+{'other'}
+------------------
+[('other', '0.750'), ('dioktilftalat', '0.232')]
+{'dioktilftalat', 'other'}
+------------------
+[('other', '0.705'), ('dioktilftalat', '0.241')]
+{'dioktilftalat', 'other'}
+------------------
+[('other', '0.724'), ('dioktilftalat', '0.241')]
+{'', 'other'}
+------------------
+[('other', '0.770'), ('dioktilftalat', '0.229')]
+{'', 'other'}
+------------------
+[('other', '0.688'), ('dioktilftalat', '0.245')]
+{'', 'other'}
+------------------
+[('other', '0.826'), ('dioktilftalat', '0.221')]
+{'dioktilftalat', 'other'}
+------------------
+[('other', '0.767'), ('dioktilftalat', '0.231')]
+{'', 'other'}
+------------------
+[('other', '0.680'), ('dioktilftalat', '0.245')]
+{'', 'other'}
+------------------
+[('other', '0.867'), ('dioktilftalat', '0.209')]
+{'other'}
+------------------
+[('other', '0.690'), ('dioktilftalat', '0.245')]
+{'', 'other'}
+------------------
+[('other', '0.694'), ('dioktilftalat', '0.246')]
+{'dioktilftalat', 'other'}
+------------------
+[('other', '0.747'), ('dioktilftalat', '0.236')]
+{'', 'other'}
+------------------
+[('other', '0.633'), ('dioktilftalat', '0.254')]
+{'', 'other'}
+------------------
+[('other', '0.844'), ('dioktilftalat', '0.213')]
+{'dioktilftalat', 'other'}
+------------------
+[('other', '0.739'), ('dioktilftalat', '0.237')]
+{'other'}
+------------------
+[('other', '0.569'), ('dioktilftalat', '0.261')]
+{'dioktilftalat', 'other'}
+------------------
+[('other', '0.861'), ('dioktilftalat', '0.211')]
+{'other'}
+------------------
+[('other', '0.869'), ('dioktilftalat', '0.207')]
+{'dioktilftalat', 'other'}
+------------------
+[('other', '0.887'), ('dioktilftalat', '0.201')]
+{'dioktilftalat', 'other'}
+------------------
+[('other', '0.817'), ('dioktilftalat', '0.216')]
+{'other'}
+------------------
+[('other', '0.645'), ('dioktilftalat', '0.250')]
+{'dioktilftalat', 'other'}
+------------------
+[('other', '0.815'), ('dioktilftalat', '0.218')]
+{'dioktilftalat', 'other'}
+------------------
+[('other', '0.840'), ('dioktilftalat', '0.212')]
+{'dioktilftalat', 'other'}
+------------------
+[('other', '0.853'), ('dioktilftalat', '0.214')]
+{'dioktilftalat', 'other'}
+------------------
+[('other', '0.668'), ('dioktilftalat', '0.247')]
+{'other'}
+------------------
+[('other', '0.773'), ('dioktilftalat', '0.232')]
+{'other'}
+------------------
+You should predict top  1.0  labels for train
+You should predict top  1.42666666667  labels for toys
+label_ranking_average_precision_score on train 1.0
+label_ranking_average_precision_score on toys 0.973333333333
+------------------------------------------
+------------------------------------------
+------------Bagging with RF---------------
+------------------------------------------
+bagging train accuracy:  0.775
+[('other', '0.784'), ('dioktilftalat', '0.268')]
+['dioktilftalat', 'other']
+------------------
+[('other', '0.766'), ('dioktilftalat', '0.295')]
+['dioktilftalat', 'other']
+------------------
+[('other', '0.797'), ('dioktilftalat', '0.260')]
+['other', '']
+------------------
+[('other', '0.825'), ('dioktilftalat', '0.232')]
+['other', 'other', 'other', 'other', 'other', 'other']
+------------------
+[('other', '0.811'), ('dioktilftalat', '0.247')]
+['other', 'other', 'other', 'other', 'other', 'other']
+------------------
+[('other', '0.788'), ('dioktilftalat', '0.275')]
+['other', '']
+------------------
+[('other', '0.775'), ('dioktilftalat', '0.292')]
+['other', '']
+------------------
+[('other', '0.776'), ('dioktilftalat', '0.275')]
+['other', '']
+------------------
+[('other', '0.783'), ('dioktilftalat', '0.271')]
+['other', '']
+------------------
+[('other', '0.805'), ('dioktilftalat', '0.252')]
+['dioktilftalat', 'other', 'other', 'other', 'other']
+------------------
+[('other', '0.806'), ('dioktilftalat', '0.249')]
+['dioktilftalat', 'other', 'other', 'other', 'other']
+------------------
+[('other', '0.797'), ('dioktilftalat', '0.276')]
+['other', 'dioktilftalat', 'other']
+------------------
+[('other', '0.768'), ('dioktilftalat', '0.293')]
+['other', '']
+------------------
+[('other', '0.821'), ('dioktilftalat', '0.232')]
+['other', 'other', 'other', 'other', 'other', 'other']
+------------------
+[('other', '0.816'), ('dioktilftalat', '0.249')]
+['other', '']
+------------------
+[('other', '0.810'), ('dioktilftalat', '0.250')]
+['dioktilftalat', 'other']
+------------------
+[('other', '0.776'), ('dioktilftalat', '0.286')]
+['other', '']
+------------------
+[('other', '0.804'), ('dioktilftalat', '0.251')]
+['other', 'other', 'other', 'other']
+------------------
+[('other', '0.800'), ('dioktilftalat', '0.267')]
+['other', '']
+------------------
+[('other', '0.786'), ('dioktilftalat', '0.280')]
+['dioktilftalat', '']
+------------------
+[('other', '0.787'), ('dioktilftalat', '0.281')]
+['dioktilftalat', '']
+------------------
+[('other', '0.803'), ('dioktilftalat', '0.262')]
+['dioktilftalat', '']
+------------------
+[('other', '0.803'), ('dioktilftalat', '0.252')]
+['other', 'other']
+------------------
+[('other', '0.805'), ('dioktilftalat', '0.251')]
+['other', 'other']
+------------------
+[('other', '0.807'), ('dioktilftalat', '0.247')]
+['dioktilftalat', '']
+------------------
+[('other', '0.782'), ('dioktilftalat', '0.282')]
+['other', '']
+------------------
+[('other', '0.768'), ('dioktilftalat', '0.300')]
+['other', '']
+------------------
+[('other', '0.801'), ('dioktilftalat', '0.256')]
+['other', 'other', 'other', 'other']
+------------------
+[('other', '0.807'), ('dioktilftalat', '0.250')]
+['other', 'other', 'other', 'other']
+------------------
+[('other', '0.777'), ('dioktilftalat', '0.291')]
+['other', 'dioktilftalat', 'other']
+------------------
+[('other', '0.811'), ('dioktilftalat', '0.248')]
+['dioktilftalat', 'other']
+------------------
+[('other', '0.810'), ('dioktilftalat', '0.256')]
+['dioktilftalat', 'other']
+------------------
+[('other', '0.816'), ('dioktilftalat', '0.241')]
+['other', 'other', 'other', 'other', 'other']
+------------------
+[('other', '0.799'), ('dioktilftalat', '0.262')]
+['other', 'dioktilftalat', 'other', 'other']
+------------------
+[('other', '0.808'), ('dioktilftalat', '0.254')]
+['other', 'other', 'other', 'other', 'other', 'dioktilftalat', 'other']
+------------------
+[('other', '0.773'), ('dioktilftalat', '0.277')]
+['other', 'other']
+------------------
+[('other', '0.803'), ('dioktilftalat', '0.247')]
+['other', 'dioktilftalat']
+------------------
+[('other', '0.786'), ('dioktilftalat', '0.268')]
+['other', 'dioktilftalat']
+------------------
+[('other', '0.781'), ('dioktilftalat', '0.287')]
+['other', '']
+------------------
+[('other', '0.807'), ('dioktilftalat', '0.257')]
+['dioktilftalat', 'other', 'other', 'other']
+------------------
+[('other', '0.762'), ('dioktilftalat', '0.303')]
+['other', '']
+------------------
+[('other', '0.783'), ('dioktilftalat', '0.285')]
+['other', '']
+------------------
+[('other', '0.800'), ('dioktilftalat', '0.271')]
+['other', '']
+------------------
+[('other', '0.791'), ('dioktilftalat', '0.268')]
+['other', '']
+------------------
+[('other', '0.797'), ('dioktilftalat', '0.268')]
+['other', '']
+------------------
+[('other', '0.806'), ('dioktilftalat', '0.251')]
+['other', '']
+------------------
+[('other', '0.813'), ('dioktilftalat', '0.243')]
+['other', 'dioktilftalat', 'other']
+------------------
+[('other', '0.798'), ('dioktilftalat', '0.264')]
+['other', 'dioktilftalat', 'other']
+------------------
+[('other', '0.805'), ('dioktilftalat', '0.253')]
+['other', 'other', 'other', 'other', 'other', 'other', 'other']
+------------------
+[('other', '0.805'), ('dioktilftalat', '0.260')]
+['other', 'dioktilftalat', 'other', 'other']
+------------------
+[('other', '0.801'), ('dioktilftalat', '0.264')]
+['other', 'dioktilftalat', 'other', 'other']
+------------------
+[('other', '0.777'), ('dioktilftalat', '0.283')]
+['other', '']
+------------------
+[('other', '0.804'), ('dioktilftalat', '0.265')]
+['other', '']
+------------------
+[('other', '0.776'), ('dioktilftalat', '0.275')]
+['other', '']
+------------------
+[('other', '0.810'), ('dioktilftalat', '0.254')]
+['other', 'other', 'other', 'other', 'other', 'other', 'dioktilftalat']
+------------------
+[('other', '0.800'), ('dioktilftalat', '0.244')]
+['other', '']
+------------------
+[('other', '0.775'), ('dioktilftalat', '0.283')]
+['other', '']
+------------------
+[('other', '0.819'), ('dioktilftalat', '0.239')]
+['other', 'other']
+------------------
+[('other', '0.770'), ('dioktilftalat', '0.289')]
+['other', '']
+------------------
+[('other', '0.783'), ('dioktilftalat', '0.277')]
+['other', 'dioktilftalat']
+------------------
+[('other', '0.784'), ('dioktilftalat', '0.270')]
+['other', '']
+------------------
+[('other', '0.790'), ('dioktilftalat', '0.268')]
+['other', '']
+------------------
+[('other', '0.819'), ('dioktilftalat', '0.237')]
+['dioktilftalat', 'other', 'other', 'other', 'other']
+------------------
+[('other', '0.789'), ('dioktilftalat', '0.267')]
+['other', 'other']
+------------------
+[('other', '0.769'), ('dioktilftalat', '0.301')]
+['other', 'other', 'other', 'dioktilftalat']
+------------------
+[('other', '0.822'), ('dioktilftalat', '0.234')]
+['other', 'other', 'other', 'other', 'other']
+------------------
+[('other', '0.828'), ('dioktilftalat', '0.221')]
+['other', 'other', 'other', 'dioktilftalat']
+------------------
+[('other', '0.846'), ('dioktilftalat', '0.206')]
+['other', 'other', 'other', 'other', 'other', 'dioktilftalat']
+------------------
+[('other', '0.838'), ('dioktilftalat', '0.214')]
+['other', 'other', 'other', 'other']
+------------------
+[('other', '0.788'), ('dioktilftalat', '0.268')]
+['other', 'other', 'other', 'other', 'other', 'dioktilftalat']
+------------------
+[('other', '0.820'), ('dioktilftalat', '0.236')]
+['other', 'other', 'other', 'other', 'other', 'dioktilftalat']
+------------------
+[('other', '0.831'), ('dioktilftalat', '0.220')]
+['other', 'other', 'dioktilftalat']
+------------------
+[('other', '0.820'), ('dioktilftalat', '0.237')]
+['dioktilftalat', 'other']
+------------------
+[('other', '0.781'), ('dioktilftalat', '0.284')]
+['other', 'other', 'other', 'other']
+------------------
+[('other', '0.799'), ('dioktilftalat', '0.256')]
+['other', 'other', 'other', 'other']
+------------------
+You should predict top  1.225  labels for train
+You should predict top  1.42666666667  labels for toys
+label_ranking_average_precision_score on train 0.8875
+label_ranking_average_precision_score on toys 0.973333333333
+------------------------------------------
+------------------------------------------
+--------------------RF-------------------
+------------------------------------------
+random forest train accuracy:  1.0
+[('other', '0.689'), ('dioktilftalat', '0.314')]
+['dioktilftalat', 'other']
+------------------
+[('other', '0.611'), ('dioktilftalat', '0.387')]
+['dioktilftalat', 'other']
+------------------
+[('other', '0.764'), ('dioktilftalat', '0.251')]
+['other', '']
+------------------
+[('other', '0.909'), ('dioktilftalat', '0.106')]
+['other', 'other', 'other', 'other', 'other', 'other']
+------------------
+[('other', '0.817'), ('dioktilftalat', '0.186')]
+['other', 'other', 'other', 'other', 'other', 'other']
+------------------
+[('other', '0.714'), ('dioktilftalat', '0.284')]
+['other', '']
+------------------
+[('other', '0.644'), ('dioktilftalat', '0.327')]
+['other', '']
+------------------
+[('other', '0.683'), ('dioktilftalat', '0.312')]
+['other', '']
+------------------
+[('other', '0.676'), ('dioktilftalat', '0.369')]
+['other', '']
+------------------
+[('other', '0.771'), ('dioktilftalat', '0.229')]
+['dioktilftalat', 'other', 'other', 'other', 'other']
+------------------
+[('other', '0.843'), ('dioktilftalat', '0.156')]
+['dioktilftalat', 'other', 'other', 'other', 'other']
+------------------
+[('other', '0.679'), ('dioktilftalat', '0.320')]
+['other', 'dioktilftalat', 'other']
+------------------
+[('other', '0.605'), ('dioktilftalat', '0.393')]
+['other', '']
+------------------
+[('other', '0.809'), ('dioktilftalat', '0.213')]
+['other', 'other', 'other', 'other', 'other', 'other']
+------------------
+[('other', '0.852'), ('dioktilftalat', '0.183')]
+['other', '']
+------------------
+[('other', '0.819'), ('dioktilftalat', '0.156')]
+['dioktilftalat', 'other']
+------------------
+[('other', '0.597'), ('dioktilftalat', '0.399')]
+['other', '']
+------------------
+[('other', '0.789'), ('dioktilftalat', '0.219')]
+['other', 'other', 'other', 'other']
+------------------
+[('other', '0.727'), ('dioktilftalat', '0.273')]
+['other', '']
+------------------
+[('other', '0.711'), ('dioktilftalat', '0.319')]
+['dioktilftalat', '']
+------------------
+[('other', '0.675'), ('dioktilftalat', '0.313')]
+['dioktilftalat', '']
+------------------
+[('other', '0.813'), ('dioktilftalat', '0.182')]
+['dioktilftalat', '']
+------------------
+[('other', '0.777'), ('dioktilftalat', '0.226')]
+['other', 'other']
+------------------
+[('other', '0.811'), ('dioktilftalat', '0.197')]
+['other', 'other']
+------------------
+[('other', '0.803'), ('dioktilftalat', '0.181')]
+['dioktilftalat', '']
+------------------
+[('other', '0.669'), ('dioktilftalat', '0.318')]
+['other', '']
+------------------
+[('other', '0.577'), ('dioktilftalat', '0.435')]
+['other', '']
+------------------
+[('other', '0.854'), ('dioktilftalat', '0.172')]
+['other', 'other', 'other', 'other']
+------------------
+[('other', '0.770'), ('dioktilftalat', '0.224')]
+['other', 'other', 'other', 'other']
+------------------
+[('other', '0.569'), ('dioktilftalat', '0.426')]
+['other', 'dioktilftalat', 'other']
+------------------
+[('other', '0.773'), ('dioktilftalat', '0.227')]
+['dioktilftalat', 'other']
+------------------
+[('other', '0.852'), ('dioktilftalat', '0.143')]
+['dioktilftalat', 'other']
+------------------
+[('other', '0.779'), ('dioktilftalat', '0.247')]
+['other', 'other', 'other', 'other', 'other']
+------------------
+[('other', '0.689'), ('dioktilftalat', '0.325')]
+['other', 'dioktilftalat', 'other', 'other']
+------------------
+[('other', '0.813'), ('dioktilftalat', '0.198')]
+['other', 'other', 'other', 'other', 'other', 'dioktilftalat', 'other']
+------------------
+[('other', '0.645'), ('dioktilftalat', '0.377')]
+['other', 'other']
+------------------
+[('other', '0.730'), ('dioktilftalat', '0.276')]
+['other', 'dioktilftalat']
+------------------
+[('other', '0.706'), ('dioktilftalat', '0.292')]
+['other', 'dioktilftalat']
+------------------
+[('other', '0.657'), ('dioktilftalat', '0.345')]
+['other', '']
+------------------
+[('other', '0.853'), ('dioktilftalat', '0.165')]
+['dioktilftalat', 'other', 'other', 'other']
+------------------
+[('other', '0.565'), ('dioktilftalat', '0.447')]
+['other', '']
+------------------
+[('other', '0.655'), ('dioktilftalat', '0.348')]
+['other', '']
+------------------
+[('other', '0.793'), ('dioktilftalat', '0.241')]
+['other', '']
+------------------
+[('other', '0.750'), ('dioktilftalat', '0.263')]
+['other', '']
+------------------
+[('other', '0.745'), ('dioktilftalat', '0.253')]
+['other', '']
+------------------
+[('other', '0.808'), ('dioktilftalat', '0.211')]
+['other', '']
+------------------
+[('other', '0.806'), ('dioktilftalat', '0.207')]
+['other', 'dioktilftalat', 'other']
+------------------
+[('other', '0.697'), ('dioktilftalat', '0.315')]
+['other', 'dioktilftalat', 'other']
+------------------
+[('other', '0.784'), ('dioktilftalat', '0.229')]
+['other', 'other', 'other', 'other', 'other', 'other', 'other']
+------------------
+[('other', '0.826'), ('dioktilftalat', '0.194')]
+['other', 'dioktilftalat', 'other', 'other']
+------------------
+[('other', '0.755'), ('dioktilftalat', '0.259')]
+['other', 'dioktilftalat', 'other', 'other']
+------------------
+[('other', '0.684'), ('dioktilftalat', '0.335')]
+['other', '']
+------------------
+[('other', '0.773'), ('dioktilftalat', '0.225')]
+['other', '']
+------------------
+[('other', '0.682'), ('dioktilftalat', '0.311')]
+['other', '']
+------------------
+[('other', '0.784'), ('dioktilftalat', '0.225')]
+['other', 'other', 'other', 'other', 'other', 'other', 'dioktilftalat']
+------------------
+[('other', '0.795'), ('dioktilftalat', '0.223')]
+['other', '']
+------------------
+[('other', '0.581'), ('dioktilftalat', '0.458')]
+['other', '']
+------------------
+[('other', '0.860'), ('dioktilftalat', '0.161')]
+['other', 'other']
+------------------
+[('other', '0.635'), ('dioktilftalat', '0.386')]
+['other', '']
+------------------
+[('other', '0.700'), ('dioktilftalat', '0.305')]
+['other', 'dioktilftalat']
+------------------
+[('other', '0.732'), ('dioktilftalat', '0.281')]
+['other', '']
+------------------
+[('other', '0.679'), ('dioktilftalat', '0.337')]
+['other', '']
+------------------
+[('other', '0.884'), ('dioktilftalat', '0.106')]
+['dioktilftalat', 'other', 'other', 'other', 'other']
+------------------
+[('other', '0.711'), ('dioktilftalat', '0.287')]
+['other', 'other']
+------------------
+[('other', '0.668'), ('dioktilftalat', '0.351')]
+['other', 'other', 'other', 'dioktilftalat']
+------------------
+[('other', '0.925'), ('dioktilftalat', '0.073')]
+['other', 'other', 'other', 'other', 'other']
+------------------
+[('other', '0.837'), ('dioktilftalat', '0.155')]
+['other', 'other', 'other', 'dioktilftalat']
+------------------
+[('other', '0.925'), ('dioktilftalat', '0.058')]
+['other', 'other', 'other', 'other', 'other', 'dioktilftalat']
+------------------
+[('other', '0.903'), ('dioktilftalat', '0.108')]
+['other', 'other', 'other', 'other']
+------------------
+[('other', '0.753'), ('dioktilftalat', '0.244')]
+['other', 'other', 'other', 'other', 'other', 'dioktilftalat']
+------------------
+[('other', '0.799'), ('dioktilftalat', '0.197')]
+['other', 'other', 'other', 'other', 'other', 'dioktilftalat']
+------------------
+[('other', '0.864'), ('dioktilftalat', '0.151')]
+['other', 'other', 'dioktilftalat']
+------------------
+[('other', '0.871'), ('dioktilftalat', '0.144')]
+['dioktilftalat', 'other']
+------------------
+[('other', '0.664'), ('dioktilftalat', '0.349')]
+['other', 'other', 'other', 'other']
+------------------
+[('other', '0.763'), ('dioktilftalat', '0.267')]
+['other', 'other', 'other', 'other']
+------------------
+You should predict top  1.0  labels for train
+You should predict top  1.42666666667  labels for toys
+label_ranking_average_precision_score on train 1.0
+label_ranking_average_precision_score on toys 0.973333333333
+------------------------------------------
+------------------------------------------
+--------------------MLP-------------------
+------------------------------------------
+...................
+score:  0.925
+alpha:  alpha 97.4
+[('other', '0.663'), ('dioktilftalat', '0.372')]
+['dioktilftalat', 'other']
+------------------
+[('other', '0.608'), ('dioktilftalat', '0.438')]
+['dioktilftalat', 'other']
+------------------
+[('other', '0.671'), ('dioktilftalat', '0.365')]
+['other', '']
+------------------
+[('other', '0.679'), ('dioktilftalat', '0.359')]
+['other', 'other', 'other', 'other', 'other', 'other']
+------------------
+[('other', '0.655'), ('dioktilftalat', '0.377')]
+['other', 'other', 'other', 'other', 'other', 'other']
+------------------
+[('other', '0.623'), ('dioktilftalat', '0.416')]
+['other', '']
+------------------
+[('other', '0.589'), ('dioktilftalat', '0.456')]
+['other', '']
+------------------
+[('other', '0.662'), ('dioktilftalat', '0.378')]
+['other', '']
+------------------
+[('other', '0.668'), ('dioktilftalat', '0.369')]
+['other', '']
+------------------
+[('other', '0.655'), ('dioktilftalat', '0.385')]
+['dioktilftalat', 'other', 'other', 'other', 'other']
+------------------
+[('other', '0.608'), ('dioktilftalat', '0.435')]
+['dioktilftalat', 'other', 'other', 'other', 'other']
+------------------
+[('other', '0.594'), ('dioktilftalat', '0.450')]
+['other', 'dioktilftalat', 'other']
+------------------
+[('other', '0.609'), ('dioktilftalat', '0.431')]
+['other', '']
+------------------
+[('other', '0.671'), ('dioktilftalat', '0.367')]
+['other', 'other', 'other', 'other', 'other', 'other']
+------------------
+[('other', '0.652'), ('dioktilftalat', '0.387')]
+['other', '']
+------------------
+[('other', '0.645'), ('dioktilftalat', '0.398')]
+['dioktilftalat', 'other']
+------------------
+[('other', '0.593'), ('dioktilftalat', '0.451')]
+['other', '']
+------------------
+[('other', '0.657'), ('dioktilftalat', '0.377')]
+['other', 'other', 'other', 'other']
+------------------
+[('other', '0.661'), ('dioktilftalat', '0.376')]
+['other', '']
+------------------
+[('other', '0.615'), ('dioktilftalat', '0.426')]
+['dioktilftalat', '']
+------------------
+[('other', '0.599'), ('dioktilftalat', '0.436')]
+['dioktilftalat', '']
+------------------
+[('other', '0.628'), ('dioktilftalat', '0.410')]
+['dioktilftalat', '']
+------------------
+[('other', '0.647'), ('dioktilftalat', '0.393')]
+['other', 'other']
+------------------
+[('other', '0.645'), ('dioktilftalat', '0.399')]
+['other', 'other']
+------------------
+[('other', '0.645'), ('dioktilftalat', '0.396')]
+['dioktilftalat', '']
+------------------
+[('other', '0.607'), ('dioktilftalat', '0.439')]
+['other', '']
+------------------
+[('other', '0.607'), ('dioktilftalat', '0.436')]
+['other', '']
+------------------
+[('other', '0.648'), ('dioktilftalat', '0.390')]
+['other', 'other', 'other', 'other']
+------------------
+[('other', '0.623'), ('dioktilftalat', '0.419')]
+['other', 'other', 'other', 'other']
+------------------
+[('other', '0.580'), ('dioktilftalat', '0.465')]
+['other', 'dioktilftalat', 'other']
+------------------
+[('other', '0.645'), ('dioktilftalat', '0.392')]
+['dioktilftalat', 'other']
+------------------
+[('other', '0.652'), ('dioktilftalat', '0.386')]
+['dioktilftalat', 'other']
+------------------
+[('other', '0.678'), ('dioktilftalat', '0.359')]
+['other', 'other', 'other', 'other', 'other']
+------------------
+[('other', '0.608'), ('dioktilftalat', '0.432')]
+['other', 'dioktilftalat', 'other', 'other']
+------------------
+[('other', '0.670'), ('dioktilftalat', '0.366')]
+['other', 'other', 'other', 'other', 'other', 'dioktilftalat', 'other']
+------------------
+[('other', '0.604'), ('dioktilftalat', '0.440')]
+['other', 'other']
+------------------
+[('other', '0.662'), ('dioktilftalat', '0.378')]
+['other', 'dioktilftalat']
+------------------
+[('other', '0.655'), ('dioktilftalat', '0.385')]
+['other', 'dioktilftalat']
+------------------
+[('other', '0.638'), ('dioktilftalat', '0.402')]
+['other', '']
+------------------
+[('other', '0.626'), ('dioktilftalat', '0.415')]
+['dioktilftalat', 'other', 'other', 'other']
+------------------
+[('other', '0.568'), ('dioktilftalat', '0.476')]
+['other', '']
+------------------
+[('other', '0.628'), ('dioktilftalat', '0.418')]
+['other', '']
+------------------
+[('other', '0.643'), ('dioktilftalat', '0.399')]
+['other', '']
+------------------
+[('other', '0.583'), ('dioktilftalat', '0.460')]
+['other', '']
+------------------
+[('other', '0.629'), ('dioktilftalat', '0.407')]
+['other', '']
+------------------
+[('other', '0.634'), ('dioktilftalat', '0.405')]
+['other', '']
+------------------
+[('other', '0.655'), ('dioktilftalat', '0.382')]
+['other', 'dioktilftalat', 'other']
+------------------
+[('other', '0.643'), ('dioktilftalat', '0.395')]
+['other', 'dioktilftalat', 'other']
+------------------
+[('other', '0.643'), ('dioktilftalat', '0.397')]
+['other', 'other', 'other', 'other', 'other', 'other', 'other']
+------------------
+[('other', '0.619'), ('dioktilftalat', '0.422')]
+['other', 'dioktilftalat', 'other', 'other']
+------------------
+[('other', '0.650'), ('dioktilftalat', '0.383')]
+['other', 'dioktilftalat', 'other', 'other']
+------------------
+[('other', '0.663'), ('dioktilftalat', '0.376')]
+['other', '']
+------------------
+[('other', '0.656'), ('dioktilftalat', '0.381')]
+['other', '']
+------------------
+[('other', '0.620'), ('dioktilftalat', '0.422')]
+['other', '']
+------------------
+[('other', '0.657'), ('dioktilftalat', '0.386')]
+['other', 'other', 'other', 'other', 'other', 'other', 'dioktilftalat']
+------------------
+[('other', '0.708'), ('dioktilftalat', '0.326')]
+['other', '']
+------------------
+[('other', '0.627'), ('dioktilftalat', '0.412')]
+['other', '']
+------------------
+[('other', '0.667'), ('dioktilftalat', '0.371')]
+['other', 'other']
+------------------
+[('other', '0.659'), ('dioktilftalat', '0.381')]
+['other', '']
+------------------
+[('other', '0.600'), ('dioktilftalat', '0.446')]
+['other', 'dioktilftalat']
+------------------
+[('other', '0.656'), ('dioktilftalat', '0.386')]
+['other', '']
+------------------
+[('other', '0.614'), ('dioktilftalat', '0.426')]
+['other', '']
+------------------
+[('other', '0.648'), ('dioktilftalat', '0.393')]
+['dioktilftalat', 'other', 'other', 'other', 'other']
+------------------
+[('other', '0.622'), ('dioktilftalat', '0.422')]
+['other', 'other']
+------------------
+[('other', '0.580'), ('dioktilftalat', '0.469')]
+['other', 'other', 'other', 'dioktilftalat']
+------------------
+[('other', '0.656'), ('dioktilftalat', '0.383')]
+['other', 'other', 'other', 'other', 'other']
+------------------
+[('other', '0.680'), ('dioktilftalat', '0.353')]
+['other', 'other', 'other', 'dioktilftalat']
+------------------
+[('other', '0.693'), ('dioktilftalat', '0.340')]
+['other', 'other', 'other', 'other', 'other', 'dioktilftalat']
+------------------
+[('other', '0.689'), ('dioktilftalat', '0.342')]
+['other', 'other', 'other', 'other']
+------------------
+[('other', '0.607'), ('dioktilftalat', '0.432')]
+['other', 'other', 'other', 'other', 'other', 'dioktilftalat']
+------------------
+[('other', '0.676'), ('dioktilftalat', '0.359')]
+['other', 'other', 'other', 'other', 'other', 'dioktilftalat']
+------------------
+[('other', '0.693'), ('dioktilftalat', '0.338')]
+['other', 'other', 'dioktilftalat']
+------------------
+[('other', '0.678'), ('dioktilftalat', '0.358')]
+['dioktilftalat', 'other']
+------------------
+[('other', '0.688'), ('dioktilftalat', '0.346')]
+['other', 'other', 'other', 'other']
+------------------
+[('other', '0.675'), ('dioktilftalat', '0.367')]
+['other', 'other', 'other', 'other']
+------------------
+You should predict top  1.075  labels for train
+You should predict top  1.42666666667  labels for toys
+label_ranking_average_precision_score on train 0.9625
+label_ranking_average_precision_score on toys 0.973333333333
+------------------------------------------
