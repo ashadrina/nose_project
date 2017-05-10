@@ -1,0 +1,14 @@
+benzin
+butanol
+butilazetat
+geksan
+izobutanol
+izopropanol
+propanol
+stirol
+toluol
+fenol
+dioktilftalat_with_azeton
+dioktilftalat_with_etilazetat
+dioktilftalat_with_benzol
+dioktilftalat_with_azetaldegid
