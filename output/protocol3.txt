@@ -1,0 +1,63 @@
+Learning on:  Group1
+order:  5
+order:  5
+(40, 968)
+(75, 968)
+parameter estimation for RF
+best score: 0.775
+best params:  {'estimator__criterion': 'gini', 'estimator__n_estimators': 25, 'estimator__class_weight': 'balanced'}
+rf train accuracy:  1.0
+Confusion matrix, without normalization
+RF
+rf train accuracy:  1.0
+You should predict top  1.0  labels for train
+You should predict top  1.42666666667  labels for toys
+label_ranking_average_precision_score on train 1.0
+label_ranking_average_precision_score on toys 0.973333333333
+Hamming score: 0.7533333333333333
+Subset accuracy: 0.5466666666666666
+Hamming loss: 0.24666666666666667
+--------------------------------------------------
+Learning on:  Group2
+order:  5
+order:  5
+(40, 968)
+(75, 968)
+parameter estimation for RF
+best score: 0.55
+best params:  {'estimator__criterion': 'entropy', 'estimator__n_estimators': 500, 'estimator__class_weight': 'balanced'}
+rf train accuracy:  1.0
+Confusion matrix, without normalization
+RF
+rf train accuracy:  1.0
+You should predict top  1.0  labels for train
+You should predict top  2.53333333333  labels for toys
+label_ranking_average_precision_score on train 1.0
+label_ranking_average_precision_score on toys 0.900444444444
+Hamming score: 0.6937777777777777
+Subset accuracy: 0.5066666666666667
+Hamming loss: 0.176
+--------------------------------------------------
+Learning on:  Group3
+order:  5
+order:  5
+(40, 968)
+(75, 968)
+parameter estimation for RF
+best score: 0.65
+best params:  {'estimator__criterion': 'gini', 'estimator__n_estimators': 101, 'estimator__class_weight': 'balanced'}
+rf train accuracy:  1.0
+Confusion matrix, without normalization
+RF
+rf train accuracy:  1.0
+You should predict top  1.0  labels for train
+You should predict top  5.70666666667  labels for toys
+label_ranking_average_precision_score on train 1.0
+label_ranking_average_precision_score on toys 0.794378177378
+Hamming score: 0.6782222222222222
+Subset accuracy: 0.5333333333333333
+Hamming loss: 0.07822222222222222
+--------------------------------------------------
+Hamming score: 0.32666666666666666
+Subset accuracy: 0.30666666666666664
+Hamming loss: 0.15266666666666667

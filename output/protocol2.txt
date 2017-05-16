@@ -1,0 +1,54 @@
+Только balanced, только SVM
+
+Learning on:  Group1
+order:  15
+order:  15
+(40, 968)
+(75, 968)
+parameter estimation for SVM
+best score: 0.825
+best params:  {'estimator__coef0': 0.5, 'estimator__kernel': 'sigmoid', 'estimator__C': 10, 'estimat
+or__decision_function_shape': 'ovo', 'estimator__class_weight': 'balanced', 'estimator__gamma': 0.00
+1}
+svm train accuracy:  1.0
+Confusion matrix, without normalization
+SVM
+svm train accuracy:  1.0
+You should predict top  1.0  labels for train
+You should predict top  1.42666666667  labels for toys
+label_ranking_average_precision_score on train 1.0
+label_ranking_average_precision_score on toys 0.973333333333
+--------------------------------------------------
+Learning on:  Group2
+order:  15
+order:  15
+(40, 968)
+(75, 968)
+parameter estimation for SVM
+best score: 0.625
+best params:  {'estimator__coef0': 0.0, 'estimator__kernel': 'rbf', 'estimator__C': 1, 'estimator__d
+ecision_function_shape': 'ovo', 'estimator__class_weight': 'balanced', 'estimator__gamma': 0.01}
+svm train accuracy:  1.0
+Confusion matrix, without normalization
+SVM
+svm train accuracy:  1.0
+You should predict top  1.0  labels for train
+You should predict top  2.42666666667  labels for toys
+label_ranking_average_precision_score on train 1.0
+label_ranking_average_precision_score on toys 0.917814814815
+--------------------------------------------------
+Learning on:  Group3
+order:  15
+order:  15
+(40, 968)
+(75, 968)
+SVM
+svm train accuracy:  0.953333333333
+You should predict top  5.9  labels for train
+You should predict top  5.90666666667  labels for toys
+label_ranking_average_precision_score on train 0.673333333333
+label_ranking_average_precision_score on toys 0.78153037703
+--------------------------------------------------
+Hamming score: 0.22247619047619044
+Subset accuracy: 0.13333333333333333
+Hamming loss: 0.14266666666666666

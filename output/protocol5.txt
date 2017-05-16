@@ -1,0 +1,60 @@
+Learning on:  Group1
+order:  5
+order:  5
+(40, 968)
+(75, 968)
+parameter estimation for Logistic Regression
+best score:  0.775
+best params:  {'estimator__class_weight': 'balanced', 'estimator__C': 0.001, 'estimator__multi_class': 'multinomial', 'estimator__penalty': 'l2', 'estimator__solver': 'newton-cg'}
+LR train accuracy:  1.0
+Confusion matrix, without normalization
+LR train accuracy:  1.0
+You should predict top  1.0  labels for train
+You should predict top  1.42666666667  labels for toys
+label_ranking_average_precision_score on train 1.0
+label_ranking_average_precision_score on toys 0.973333333333
+Hamming score: 0.6866666666666666
+Subset accuracy: 0.37333333333333335
+Hamming loss: 0.31333333333333335
+--------------------------------------------------
+Learning on:  Group2
+order:  5
+order:  5
+(40, 968)
+(75, 968)
+parameter estimation for Logistic Regression
+best score:  0.475
+best params:  {'estimator__class_weight': 'balanced', 'estimator__C': 0.1, 'estimator__multi_class': 'multinomial', 'estimator__penalty': 'l2', 'estimator__solver': 'newton-cg'}
+LR train accuracy:  1.0
+Confusion matrix, without normalization
+LR train accuracy:  1.0
+You should predict top  1.0  labels for train
+You should predict top  2.53333333333  labels for toys
+label_ranking_average_precision_score on train 1.0
+label_ranking_average_precision_score on toys 0.903777777778
+Hamming score: 0.6837777777777777
+Subset accuracy: 0.48
+Hamming loss: 0.17866666666666667
+--------------------------------------------------
+Learning on:  Group3
+order:  5
+order:  5
+(40, 968)
+(75, 968)
+parameter estimation for Logistic Regression
+best score:  0.525
+best params:  {'estimator__class_weight': 'balanced', 'estimator__C': 0.001, 'estimator__multi_class': 'ovr', 'estimator__penalty': 'l2', 'estimator__solver': 'newton-cg'}
+LR train accuracy:  1.0
+Confusion matrix, without normalization
+LR train accuracy:  1.0
+You should predict top  1.0  labels for train
+You should predict top  4.65333333333  labels for toys
+label_ranking_average_precision_score on train 1.0
+label_ranking_average_precision_score on toys 0.838439813273
+Hamming score: 0.08665848965848964
+Subset accuracy: 0.0
+Hamming loss: 0.5582222222222222
+--------------------------------------------------
+Hamming score: 0.1182911162911163
+Subset accuracy: 0.0
+Hamming loss: 0.4186666666666667

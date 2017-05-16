@@ -1,0 +1,63 @@
+Learning on:  Group1
+order:  5
+order:  5
+(40, 968)
+(75, 968)
+parameter estimation for SVM
+best score: 0.775
+best params:  {'estimator__decision_function_shape': 'ovo', 'estimator__kernel': 'linear', 'estimator__coef0': 0.0, 'estimator__C': 0.001, 'estimator__gamma': 0.001, 'estimator__class_weight': 'balanced'}
+svm train accuracy:  1.0
+Confusion matrix, without normalization
+SVM
+svm train accuracy:  1.0
+You should predict top  1.0  labels for train
+You should predict top  1.42666666667  labels for toys
+label_ranking_average_precision_score on train 1.0
+label_ranking_average_precision_score on toys 0.973333333333
+Hamming score: 0.76
+Subset accuracy: 0.5733333333333334
+Hamming loss: 0.24
+--------------------------------------------------
+Learning on:  Group2
+order:  5
+order:  5
+(40, 968)
+(75, 968)
+parameter estimation for SVM
+best score: 0.625
+best params:  {'estimator__decision_function_shape': 'ovo', 'estimator__kernel': 'rbf', 'estimator__coef0': 0.0, 'estimator__C': 1, 'estimator__gamma': 0.01, 'estimator__class_weight': 'balanced'}
+svm train accuracy:  1.0
+Confusion matrix, without normalization
+SVM
+svm train accuracy:  1.0
+You should predict top  1.0  labels for train
+You should predict top  2.66666666667  labels for toys
+label_ranking_average_precision_score on train 1.0
+label_ranking_average_precision_score on toys 0.891611111111
+Hamming score: 0.6937777777777777
+Subset accuracy: 0.5066666666666667
+Hamming loss: 0.176
+--------------------------------------------------
+Learning on:  Group3
+order:  5
+order:  5
+(40, 968)
+(75, 968)
+parameter estimation for SVM
+best score: 0.625
+best params:  {'estimator__decision_function_shape': 'ovo', 'estimator__kernel': 'rbf', 'estimator__coef0': 0.0, 'estimator__C': 1, 'estimator__gamma': 0.01, 'estimator__class_weight': 'balanced'}
+svm train accuracy:  1.0
+Confusion matrix, without normalization
+SVM
+svm train accuracy:  1.0
+You should predict top  1.0  labels for train
+You should predict top  5.73333333333  labels for toys
+label_ranking_average_precision_score on train 1.0
+label_ranking_average_precision_score on toys 0.80310692764
+Hamming score: 0.6782222222222222
+Subset accuracy: 0.5333333333333333
+Hamming loss: 0.07822222222222222
+--------------------------------------------------
+Hamming score: 0.3333333333333333
+Subset accuracy: 0.3333333333333333
+Hamming loss: 0.152
