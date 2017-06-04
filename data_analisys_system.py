@@ -129,6 +129,14 @@ def patch_detrend(X_train):
         X_res.append(matr_res)
     return X_res
 
+    
+def get_cross_corr(X_train):
+    X_train_corr = []
+    for X in X_train:
+        X = list(map(list, zip(*X)))
+        df = pd.DataFrame(X, index=None, columns=["C0", "C1", "C2", "C3", "C4", "C5", "C6", "C7"])
+        X_train_corr.append(df.corr().as_matrix())
+    return X_train_corr
 ##################################
 def model_evaluation(X_train, y_train): 
     import warnings
@@ -183,7 +191,7 @@ def estimation_svm(X_train, y_train, kfold, group, y_train_lat):
     return best
     
 def svm_mlb(X_train, y_train, X_new, mlb, params):
-    from sklearn.svm import SVC, NuSVC
+    from sklearn.svm import SVC
     from sklearn.multiclass import OneVsRestClassifier, OneVsOneClassifier
 
     print ("SVM")
@@ -194,13 +202,13 @@ def svm_mlb(X_train, y_train, X_new, mlb, params):
     print ("svm train accuracy: ", 1 - err_train)
     y_new_proba = clf.predict_proba(X_new)
     return (y_score, y_new_proba)
-
+    
 def estimation_rf(X_train, y_train, kfold, group, y_train_lat):    
     print ("parameter estimation for RF")
     from sklearn.ensemble import RandomForestClassifier
     from sklearn.grid_search import GridSearchCV
     from sklearn.multiclass import OneVsRestClassifier
-    n_est = [7, 15, 25, 50, 101, 500]
+    n_est = [7, 15, 25, 50, 101, 200, 500, 1000]
     criterion = ['gini', 'entropy']
     class_weight = ['balanced']
 
@@ -301,6 +309,7 @@ def lr_mlb(X_train, y_train, X_new, mlb, params):
     print ("LR train accuracy: ", 1 - err_train)
     y_new_proba = clf.predict_proba(X_new)
     return (y_score, y_new_proba)
+    
 ##################################
 def compute_av_metrics(y_train, y_score, y_new_proba, mlb, y_true_path):
     y_test_true_labels = load_labels(y_true_path)
@@ -450,110 +459,149 @@ def main():
     
     #detect only DOF -> detect only  classes 2-4 -> detect rare classes
     
-    for dataset in datasets:
-        X_train_path = dataset[0]
-        y_train_path = dataset[1]
-        X_new_path = dataset[2]
-        y_true_path = dataset[3]
-        thr = dataset[4]
-        group = dataset[5]
+    # for dataset in datasets:
+        # X_train_path = dataset[0]
+        # y_train_path = dataset[1]
+        # X_new_path = dataset[2]
+        # y_true_path = dataset[3]
+        # thr = dataset[4]
+        # group = dataset[5]
 
-        print ("Learning on: ", group)
+        # print ("Learning on: ", group)
         
-        X_train  = load_data(X_train_path)
-        y_train  = load_labels(y_train_path)
-        X_new  = load_data(X_new_path)
+        # X_train  = load_data(X_train_path)
+        # y_train  = load_labels(y_train_path)
+        # X_new  = load_data(X_new_path)
         
-        y_train_lat_list = []
-        for i in y_train:
-            y_train_lat_list.append([i])
-        y_train =  mlb.fit_transform(y_train_lat_list) 
+        # y_train_lat_list = []
+        # for i in y_train:
+            # y_train_lat_list.append([i])
+        # y_train =  mlb.fit_transform(y_train_lat_list) 
              
-        ###################################  
-        X_train = normalize_data(X_train)    
-        X_train = patch_detrend(X_train)
-        X_train = np.array(X_train)
-        nsamples00, nx, ny = X_train.shape
-        X_train = X_train.reshape((nsamples00,nx*ny))        
-        ###################################  
-        X_new = normalize_data(X_new)    
-        X_new = patch_detrend(X_new)    
-        X_new = np.array(X_new)
-        nsamples22, nx, ny = X_new.shape
-        X_new = X_new.reshape((nsamples22,nx*ny))      
-        ###################################
-        X_train = preprocessing.scale(X_train)
-        X_new = preprocessing.scale(X_new)
-        print (np.array(X_train).shape)
-        print (np.array(X_new).shape)
-        ###################################
-        kfold = model_evaluation(X_train, y_train)
-        
-        params = estimation_svm(X_train, y_train, kfold, group, y_train_path)
-        (y_score, y_new_proba) = svm_mlb(X_train, y_train, X_new, mlb, params)
+             
 
-        #params = estimation_rf(X_train, y_train, kfold, group, y_train_path)
-        #(y_score, y_new_proba) = rf_mlb(X_train, y_train, X_new, mlb, params)
+        # ###################################  
+        # X_train = normalize_data(X_train)    
+        # X_train = patch_detrend(X_train)
+      # #  X_train = get_cross_corr(X_train)
+        # X_train = np.array(X_train)
+        # nsamples00, nx, ny = X_train.shape
+        # X_train = X_train.reshape((nsamples00,nx*ny))        
+        # ###################################  
+        # X_new = normalize_data(X_new)    
+       # # X_new = get_cross_corr(X_new)
+        # X_new = patch_detrend(X_new)    
+        # X_new = np.array(X_new)
+        # nsamples22, nx, ny = X_new.shape
+        # X_new = X_new.reshape((nsamples22,nx*ny))       
+        # ###################################
+        # X_train = preprocessing.robust_scale(X_train)
+        # X_new = preprocessing.robust_scale(X_new)
+        # X_train = np.array(X_train)
+        # X_new = np.array(X_new)
+        # print (np.array(X_train).shape)
+        # print (np.array(X_new).shape)
+        # ###################################
+        # kfold = model_evaluation(X_train, y_train)
 
-       # params = estimation_lr(X_train, y_train, kfold, group, y_train_path)
-       # (y_score, y_new_proba) = lr_mlb(X_train, y_train, X_new, mlb, params)
-       
-        compute_av_metrics(y_train, y_score, y_new_proba, mlb, y_true_path)
-       
-        y_solution = []
-        for y_pred,i in zip(y_new_proba,range(len(X_new))):
-            r1 = [(c,"{:.3f}".format(yy)) for c,yy in zip(mlb.classes_,y_pred)]
-            sorted_by_second_1 = sorted(r1, key=lambda tup: tup[1], reverse=True)
-            fin = []
-            for item in sorted_by_second_1:
-                if float(item[1]) > float(thr):
-                    fin.append(item)
-            y_solution.append(fin)
-       
-        save_group(y_solution, group)
-        compute_ind_metrics(y_solution, y_true_path, mlb)
-        print ("--------------------------------------------------")
+        # #params = estimation_svm(X_train, y_train, kfold, group, y_train_path)
+        # #(y_score, y_new_proba) = svm_mlb(X_train, y_train, X_new, mlb, params)
 
-    G1  = load_labels_with_proba("output/system/Group1.txt")
-    G2  = load_labels_with_proba("output/system/Group2.txt")
-    G3  = load_labels_with_proba("output/system/Group3.txt")       
-    y_new_true_labels = load_labels("data/new/true_labels.txt")
+        # #params = estimation_rf(X_train, y_train, kfold, group, y_train_path)
+        # #(y_score, y_new_proba) = rf_mlb(X_train, y_train, X_new, mlb, params)
+
+        # params = estimation_lr(X_train, y_train, kfold, group, y_train_path)
+        # (y_score, y_new_proba) = lr_mlb(X_train, y_train, X_new, mlb, params)
+       
+        # compute_av_metrics(y_train, y_score, y_new_proba, mlb, y_true_path)
+       
+        # y_solution = []
+        # for y_pred,i in zip(y_new_proba,range(len(X_new))):
+            # r1 = [(c,"{:.3f}".format(yy)) for c,yy in zip(mlb.classes_,y_pred)]
+            # sorted_by_second_1 = sorted(r1, key=lambda tup: tup[1], reverse=True)
+            # fin = []
+            # for item in sorted_by_second_1:
+                # if float(item[1]) > float(thr):
+                    # fin.append(item)
+            # y_solution.append(fin)
+       
+        # save_group(y_solution, group)
+        # compute_ind_metrics(y_solution, y_true_path, mlb)
+        # print ("--------------------------------------------------")
+
+    # G1  = load_labels_with_proba("output/system/Group1.txt")
+    # G2  = load_labels_with_proba("output/system/Group2.txt")
+    # G3  = load_labels_with_proba("output/system/Group3.txt")       
+    # y_new_true_labels = load_labels("data/new/true_labels.txt")
      
-    y_new_predict = []
-    for g1,g2,g3 in zip(G1,G2,G3):
-        common = []
-        common.extend(g1)
-        common.extend(g2)
-        common.extend(g3)
-        common = list( filter(None, common) )
+    # y_new_predict = []
+    # for g1,g2,g3 in zip(G1,G2,G3):
+        # common = []
+        # common.extend(g1)
+        # common.extend(g2)
+        # common.extend(g3)
+        # common = list( filter(None, common) )
                 
-        c = []
-        sorted_by_second_1 = sorted(common, key=lambda tup: tup[1], reverse=True)
-        for item in sorted_by_second_1:
-            c.append(item[0])
+        # c = []
+        # sorted_by_second_1 = sorted(common, key=lambda tup: tup[1], reverse=True)
+        # for item in sorted_by_second_1:
+            # c.append(item[0])
             
-        if len(set(c)) >= 8:
-            common = [x for x in c if x != "other"]
-            y_new_predict.append(common[:8])
-        elif len(set(c)) >= 8 and len(set(c)) != 1:
-            common = [x for x in c if x != "other"]
-            y_new_predict.append(common)
-        else:
-            y_new_predict.append(set(c))
-
-    y_new_predict = [list(filter(None, lab)) for lab in y_new_predict]
-    save_res(y_new_predict, "FINAL")
+        # if len(set(c)) >= 8:
+            # common = [x for x in c if x != "other"]
+            # y_new_predict.append(common[:8])
+        # elif len(set(c)) < 8 and len(set(c)) != 1:
+            # common = [x for x in c if x != "other"]
+            # y_new_predict.append(common)
+        # else:
+            # y_new_predict.append(set(c))
+    # y_new_predict = [list(filter(None, lab)) for lab in y_new_predict]
+    # save_res(y_new_predict, "FINAL")
     
+    # y_new_true_labels = [list(filter(None, lab)) for lab in y_new_true_labels]
+    # y_new_true_labels.append(['benzin'])
+    # y_new_true_labels =  mlb.fit_transform(y_new_true_labels) 
+    # y_new_true_labels = list(y_new_true_labels)[:-1]
+    # y_new_predict =  mlb.transform(y_new_predict) 
+    
+    # y_new_predict = np.array(y_new_predict)
+    # y_new_true_labels = np.array(y_new_true_labels)
+    
+    ##################################
+    # ANOTHER APPROACHES
+    ##################################
+    
+    y_new_true_labels = load_labels("data/new/true_labels.txt")
     y_new_true_labels = [list(filter(None, lab)) for lab in y_new_true_labels]
     y_new_true_labels.append(['benzin'])
     y_new_true_labels =  mlb.fit_transform(y_new_true_labels) 
     y_new_true_labels = list(y_new_true_labels)[:-1]
+    
+    y_new_predict = load_labels("output/dataset_final.txt")
     y_new_predict =  mlb.transform(y_new_predict) 
     
     y_new_predict = np.array(y_new_predict)
     y_new_true_labels = np.array(y_new_true_labels)
     
     compute_final_metrics(y_new_true_labels, y_new_predict)
+    
+    ##all#
+    
+    y_new_true_labels = load_labels("data/new/true_labels.txt")
+    y_new_true_labels = [list(filter(None, lab)) for lab in y_new_true_labels]
+    y_new_true_labels.append(['benzin'])
+    y_new_true_labels =  mlb.fit_transform(y_new_true_labels) 
+    y_new_true_labels = list(y_new_true_labels)[:-1]
+    
+    y_new_predict = load_labels("output/group_final.txt")
+    y_new_predict = [list(filter(None, lab)) for lab in y_new_predict]
+    y_new_predict =  mlb.transform(y_new_predict) 
+    
+    y_new_predict = np.array(y_new_predict)
+    y_new_true_labels = np.array(y_new_true_labels)
+    
+    compute_final_metrics(y_new_true_labels, y_new_predict)
+
 
 
 if __name__ == "__main__":
